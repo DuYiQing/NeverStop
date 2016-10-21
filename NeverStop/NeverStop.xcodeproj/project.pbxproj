@@ -14,6 +14,11 @@
 		494374161DB9B29800FF641A /* ScopeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 494374111DB9B29800FF641A /* ScopeViewController.m */; };
 		4943741A1DB9B2A900FF641A /* 6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 494374181DB9B2A900FF641A /* 6.jpg */; };
 		4943741B1DB9B2A900FF641A /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 494374191DB9B2A900FF641A /* 7.jpg */; };
+		494374211DB9B71500FF641A /* RecommendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 494374201DB9B71500FF641A /* RecommendTableViewCell.m */; };
+		494374241DB9C4E000FF641A /* Recommend.m in Sources */ = {isa = PBXBuildFile; fileRef = 494374231DB9C4E000FF641A /* Recommend.m */; };
+		4943744D1DBA183100FF641A /* RouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4943744C1DBA183100FF641A /* RouteViewController.m */; };
+		494374501DBA294900FF641A /* RouteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4943744F1DBA294900FF641A /* RouteTableViewCell.m */; };
+		494374531DBA2CA300FF641A /* Route.m in Sources */ = {isa = PBXBuildFile; fileRef = 494374521DBA2CA300FF641A /* Route.m */; };
 		51A099F404C6DE66F7A2C786 /* libPods-NeverStop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBA9E162BB3BD86CD3202020 /* libPods-NeverStop.a */; };
 		EE1A002B1DB8CF610003762E /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1AFFE71DB8CF610003762E /* BaseViewController.m */; };
 		EE1A002C1DB8CF610003762E /* DYQBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1AFFEA1DB8CF610003762E /* DYQBaseModel.m */; };
@@ -69,6 +74,16 @@
 		494374111DB9B29800FF641A /* ScopeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScopeViewController.m; sourceTree = "<group>"; };
 		494374181DB9B2A900FF641A /* 6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 6.jpg; sourceTree = "<group>"; };
 		494374191DB9B2A900FF641A /* 7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7.jpg; sourceTree = "<group>"; };
+		4943741F1DB9B71500FF641A /* RecommendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendTableViewCell.h; sourceTree = "<group>"; };
+		494374201DB9B71500FF641A /* RecommendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendTableViewCell.m; sourceTree = "<group>"; };
+		494374221DB9C4E000FF641A /* Recommend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recommend.h; sourceTree = "<group>"; };
+		494374231DB9C4E000FF641A /* Recommend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recommend.m; sourceTree = "<group>"; };
+		4943744B1DBA183100FF641A /* RouteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteViewController.h; sourceTree = "<group>"; };
+		4943744C1DBA183100FF641A /* RouteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteViewController.m; sourceTree = "<group>"; };
+		4943744E1DBA294900FF641A /* RouteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteTableViewCell.h; sourceTree = "<group>"; };
+		4943744F1DBA294900FF641A /* RouteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteTableViewCell.m; sourceTree = "<group>"; };
+		494374511DBA2CA300FF641A /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
+		494374521DBA2CA300FF641A /* Route.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Route.m; sourceTree = "<group>"; };
 		6FF5020B15B17A794E56E0B5 /* Pods-NeverStop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeverStop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NeverStop/Pods-NeverStop.debug.xcconfig"; sourceTree = "<group>"; };
 		EBA9E162BB3BD86CD3202020 /* libPods-NeverStop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NeverStop.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE1A00001DB8CF610003762E /* NSString+Size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Size.h"; sourceTree = "<group>"; };
@@ -188,8 +203,9 @@
 		494374031DB9B29800FF641A /* Match */ = {
 			isa = PBXGroup;
 			children = (
-				494374041DB9B29800FF641A /* MatchViewController.h */,
-				494374051DB9B29800FF641A /* MatchViewController.m */,
+				4943741E1DB9B64D00FF641A /* Controller */,
+				4943741D1DB9B64500FF641A /* View */,
+				4943741C1DB9B63700FF641A /* Model */,
 			);
 			path = Match;
 			sourceTree = "<group>";
@@ -237,6 +253,39 @@
 				494374191DB9B2A900FF641A /* 7.jpg */,
 			);
 			path = "素材";
+			sourceTree = "<group>";
+		};
+		4943741C1DB9B63700FF641A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				494374221DB9C4E000FF641A /* Recommend.h */,
+				494374231DB9C4E000FF641A /* Recommend.m */,
+				494374511DBA2CA300FF641A /* Route.h */,
+				494374521DBA2CA300FF641A /* Route.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		4943741D1DB9B64500FF641A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4943741F1DB9B71500FF641A /* RecommendTableViewCell.h */,
+				494374201DB9B71500FF641A /* RecommendTableViewCell.m */,
+				4943744E1DBA294900FF641A /* RouteTableViewCell.h */,
+				4943744F1DBA294900FF641A /* RouteTableViewCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		4943741E1DB9B64D00FF641A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				494374041DB9B29800FF641A /* MatchViewController.h */,
+				494374051DB9B29800FF641A /* MatchViewController.m */,
+				4943744B1DBA183100FF641A /* RouteViewController.h */,
+				4943744C1DBA183100FF641A /* RouteViewController.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		503DE363B59CE9450ADD39A8 /* Frameworks */ = {
@@ -602,10 +651,12 @@
 				494374121DB9B29800FF641A /* MatchViewController.m in Sources */,
 				EE1A00381DB8CF610003762E /* UIBarButtonItem+ButtonImage.m in Sources */,
 				EE1A00401DB8CF610003762E /* AppStoreUtils.m in Sources */,
+				494374501DBA294900FF641A /* RouteTableViewCell.m in Sources */,
 				494374131DB9B29800FF641A /* MessageViewController.m in Sources */,
 				EE1A002D1DB8CF610003762E /* DYQBaseView.m in Sources */,
 				494374161DB9B29800FF641A /* ScopeViewController.m in Sources */,
 				EE1A00311DB8CF610003762E /* NSDate+EasyExtend.mm in Sources */,
+				494374241DB9C4E000FF641A /* Recommend.m in Sources */,
 				EE1A00431DB8CF610003762E /* ExerciseViewController.m in Sources */,
 				EE1A003C1DB8CF610003762E /* UILabel+SizeToFit_W_H.m in Sources */,
 				EE1A003F1DB8CF610003762E /* HttpClient.m in Sources */,
@@ -621,6 +672,7 @@
 				EE1A00341DB8CF610003762E /* NSString+Categories.m in Sources */,
 				EE56EAA81DB8CE6D000B8082 /* AppDelegate.m in Sources */,
 				EE1A003A1DB8CF610003762E /* UIColor+Categories.m in Sources */,
+				4943744D1DBA183100FF641A /* RouteViewController.m in Sources */,
 				EE1A002E1DB8CF610003762E /* HKHealthStore+AAPLExtensions.m in Sources */,
 				EE1A00411DB8CF610003762E /* FileManagerUtils.m in Sources */,
 				EE1A00301DB8CF610003762E /* NSDate+Categories.m in Sources */,
@@ -628,7 +680,9 @@
 				EE1A00331DB8CF610003762E /* NSNumber+Extend.m in Sources */,
 				EE1A00461DB8CF610003762E /* XLImagePageView.m in Sources */,
 				EE1A002C1DB8CF610003762E /* DYQBaseModel.m in Sources */,
+				494374211DB9B71500FF641A /* RecommendTableViewCell.m in Sources */,
 				EE1A00391DB8CF610003762E /* UIButton+Block.m in Sources */,
+				494374531DBA2CA300FF641A /* Route.m in Sources */,
 				494374141DB9B29800FF641A /* MotionViewController.m in Sources */,
 				EE56EAA51DB8CE6D000B8082 /* main.m in Sources */,
 				EE1A00421DB8CF610003762E /* NSUserDefaultsUtils.m in Sources */,

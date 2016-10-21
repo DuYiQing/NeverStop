@@ -7,10 +7,6 @@
 //
 
 #import "MatchViewController.h"
-#import "RecommendTableViewCell.h"
-#import "Recommend.h"
-#import "RouteViewController.h"
-
 @interface MatchViewController ()
 
 <
@@ -29,14 +25,9 @@ UITableViewDataSource
 // 附近按钮的判断
 @property (nonatomic, assign) BOOL NEB;
 @property (nonatomic, strong) UIButton *nearbyButton;
-// 推荐的cell数量的数组
-@property (nonatomic, strong) NSMutableArray *reArray;
-// 推荐的tableView
-@property (nonatomic, strong) UITableView *reTV;
 @end
 
 @implementation MatchViewController
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -45,9 +36,7 @@ UITableViewDataSource
     [self button];
     self.REB = YES;
     self.NEB = NO;
-    [self recommendTableView];
-    [self recommendJX];
-    self.reArray = [NSMutableArray array];
+    //[self recommendTableView];
     
     NSArray *array = [NSArray arrayWithObjects:@"骑行",@"跑步", nil];
     
@@ -74,6 +63,11 @@ UITableViewDataSource
     _scrollView.pagingEnabled = YES;
     _scrollView.bounces = NO;
     _scrollView.backgroundColor = [UIColor grayColor];
+    UIImageView *i = [[UIImageView alloc] init];
+    i.image = [UIImage imageNamed:@"7.jpg"];
+    i.frame = CGRectMake(0, 0, _scrollView.frame.size.width, _scrollView.frame.size.height);
+    //_scrollView.contentOffset = CGPointMake(self.view.frame.size.width, 0);
+    [_scrollView addSubview:i];
     _scrollView.delegate = self;
     [self.view addSubview:_scrollView];
 
@@ -117,9 +111,9 @@ UITableViewDataSource
 // 推荐
 - (void)recommendScrollView {
 
-    self.RSV = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 128 - 44)];
+    self.RSV = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT)];
     _RSV.scrollsToTop = NO;
-    _RSV.contentSize = CGSizeMake(SCREEN_WIDTH * 2, 0);
+    _RSV.contentSize = CGSizeMake(SCREEN_WIDTH * 2, SCREEN_HEIGHT - 128);
 //    _RSV.directionalLockEnabled = YES;
     _RSV.pagingEnabled = YES;
 //    _RSV.bounces = NO;
@@ -127,7 +121,11 @@ UITableViewDataSource
     _RSV.delegate = self;
     [_scrollView addSubview:_RSV];
     _RSV.showsHorizontalScrollIndicator = YES;
-
+    UIImageView *i = [[UIImageView alloc] init];
+    i.image = [UIImage imageNamed:@"6.jpg"];
+    i.frame = CGRectMake(0, 0, _RSV.bounds.size.width, _RSV.bounds.size.height);
+    [_RSV addSubview:i];
+    
     UIImageView *i2 = [[UIImageView alloc] init];
     i2.image = [UIImage imageNamed:@"7.jpg"];
     i2.frame = CGRectMake(SCREEN_WIDTH, 0, _RSV.bounds.size.width, _RSV.bounds.size.height);
@@ -204,65 +202,23 @@ UITableViewDataSource
 
 
 
- //推荐的tableView
-- (void)recommendTableView {
-    self.reTV = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, _RSV.height) style:UITableViewStylePlain];
-    _reTV.backgroundColor = [UIColor whiteColor];
-    _reTV.rowHeight = 155.f;
-    _reTV.delegate = self;
-    _reTV.dataSource = self;
-    [_RSV addSubview:_reTV];
-
-}
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
-    return _reArray.count;
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
-    RecommendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if (cell == nil) {
-        cell = [[RecommendTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-    }
-    cell.backgroundColor = [UIColor lightGrayColor];
-    Recommend *recommendModel = _reArray[indexPath.row];
-    cell.recommend = recommendModel;
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
-    RouteViewController *RVC = [[RouteViewController alloc] init];
-    [self.navigationController pushViewController:RVC animated:YES];
-}
-
-
-- (void) recommendJX {
-    
-    NSString *recommendJx = @"http://www.imxingzhe.com/api/v4/collection_list/?lat=38.88268844181218&limit=20&lng=121.5394275381143&page=0&province_id=0&type=0&xingzhe_timestamp=1476843880.032672";
-    
-[HttpClient GET:recommendJx body:nil headerFile:nil response:JYX_JSON success:^(id result) {
-    
-    NSDictionary *Dic = result;
-    NSArray *reArray = [Dic objectForKey:@"lushu_collection"];
-    for (NSDictionary *reDic in reArray) {
-        Recommend *reModel = [Recommend modelWithDic:reDic];
-        [_reArray addObject : reModel];
-    }
-    [_reTV reloadData];
-    
-} failure:^(NSError *error) {
-    NSLog(@"error");
-}];
-
-
-}
 
 
 
 
+
+
+// 推荐的tableView
+//- (void)recommendTableView {
+//    UITableView *reTV = [[UITableView alloc] initWithFrame:_RSV.bounds style:UITableViewStylePlain];
+//    reTV.backgroundColor = [UIColor grayColor];
+//    reTV.delegate = self;
+//    reTV.dataSource = self;
+//    [_RSV addSubview:reTV];
+//
+//}
+//- ()
+//
 
 
 

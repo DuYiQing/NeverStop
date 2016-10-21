@@ -29,6 +29,7 @@
 #import "NSDate+EasyExtend.h"
 #import "NSString+Categories.h"
 #import "NSString+Regex.h"
+#import "NSString+Size.h"
 #import "UIView+Frame.h"
 #import <UIImageView+WebCache.h>
 #import <Masonry.h>

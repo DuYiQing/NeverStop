@@ -8,7 +8,16 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "MatchViewController.h"
+#import "MessageViewController.h"
+#import "MotionViewController.h"
+#import "MyViewController.h"
+#import "ScopeViewController.h"
+
 @interface AppDelegate ()
+<
+UITabBarControllerDelegate
+>
 
 @end
 
@@ -52,7 +61,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    
+    [self createTabBarController];
     
     [self DDLogsetup];
     [self initMobClick];
@@ -69,6 +78,82 @@ void uncaughtExceptionHandler(NSException *exception) {
     
     return YES;
 }
+
+- (void)createTabBarController {
+    
+    // 运动圈页面
+    ScopeViewController *scVC = [[ScopeViewController alloc] init];
+    scVC.title = @"运动圈";
+    UINavigationController *scNavigationController = [[UINavigationController alloc] initWithRootViewController:scVC];
+    UIImage *scimage = [UIImage imageNamed:@"pyh"];
+    scimage = [scimage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *ascimage = [UIImage imageNamed:@"pyl"];
+    ascimage = [ascimage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    scNavigationController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"运动圈" image:scimage selectedImage:ascimage];
+    
+    
+    
+    
+    
+    
+    // 比赛页面
+    MatchViewController *maVC = [[MatchViewController alloc] init];
+    maVC.title = @"赛事";
+    UINavigationController *maNavigationController = [[UINavigationController alloc] initWithRootViewController:maVC];
+    UIImage *maimage = [UIImage imageNamed:@"bsh"];
+    maimage = [maimage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *amaimage = [UIImage imageNamed:@"bsl"];
+    amaimage = [amaimage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    maNavigationController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"赛事" image:maimage selectedImage:amaimage];
+    
+    
+    
+    // 运动页面
+    MotionViewController *moVC = [[MotionViewController alloc] init];
+    moVC.title = @"运动";
+    UINavigationController *moNavigationController = [[UINavigationController alloc] initWithRootViewController:moVC];
+    UIImage *moimage = [UIImage imageNamed:@"ydh"];
+    moimage = [moimage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *amoimage = [UIImage imageNamed:@"ydl"];
+    amoimage = [amoimage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    moNavigationController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"运动" image:moimage selectedImage:amoimage];
+    
+    
+    
+    // 消息页面
+    MessageViewController *meVC = [[MessageViewController alloc] init];
+    meVC.title =@"消息";
+    UINavigationController *meNavigationController = [[UINavigationController alloc] initWithRootViewController:meVC];
+    UIImage *meimage = [UIImage imageNamed:@"xxh"];
+    meimage = [meimage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *ameimage = [UIImage imageNamed:@"xxl"];
+    ameimage = [ameimage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    meNavigationController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"消息" image:meimage selectedImage:ameimage];
+    
+    
+    // 我的页面
+    MyViewController *myVC = [[MyViewController alloc] init];
+    myVC.title = @"我的";
+    UINavigationController *myNavigationController = [[UINavigationController alloc] initWithRootViewController:myVC];
+    UIImage *myimage =[UIImage imageNamed:@"myh"];
+    myimage = [myimage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *amyimage = [UIImage imageNamed:@"myl"];
+    amyimage = [amyimage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    myNavigationController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我的" image:myimage selectedImage:amyimage];
+    
+    
+    
+    
+    
+    
+    UITabBarController *rootTabBarController = [[UITabBarController alloc] init];
+    rootTabBarController.viewControllers = @[scNavigationController,maNavigationController,moNavigationController,meNavigationController,myNavigationController];
+    rootTabBarController.delegate = self;
+    self.window.rootViewController = rootTabBarController;
+
+    
+}
+
 #pragma mark - NetworkReachability
 
 - (void)networkReachability {

@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		494374121DB9B29800FF641A /* MatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 494374051DB9B29800FF641A /* MatchViewController.m */; };
+		494374131DB9B29800FF641A /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 494374081DB9B29800FF641A /* MessageViewController.m */; };
+		494374141DB9B29800FF641A /* MotionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4943740B1DB9B29800FF641A /* MotionViewController.m */; };
+		494374151DB9B29800FF641A /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4943740E1DB9B29800FF641A /* MyViewController.m */; };
+		494374161DB9B29800FF641A /* ScopeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 494374111DB9B29800FF641A /* ScopeViewController.m */; };
+		4943741A1DB9B2A900FF641A /* 6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 494374181DB9B2A900FF641A /* 6.jpg */; };
+		4943741B1DB9B2A900FF641A /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 494374191DB9B2A900FF641A /* 7.jpg */; };
 		51A099F404C6DE66F7A2C786 /* libPods-NeverStop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBA9E162BB3BD86CD3202020 /* libPods-NeverStop.a */; };
 		EE1A002B1DB8CF610003762E /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1AFFE71DB8CF610003762E /* BaseViewController.m */; };
 		EE1A002C1DB8CF610003762E /* DYQBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1AFFEA1DB8CF610003762E /* DYQBaseModel.m */; };
@@ -50,6 +57,18 @@
 
 /* Begin PBXFileReference section */
 		364DA3B93C758159869B6031 /* Pods-NeverStop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeverStop.release.xcconfig"; path = "Pods/Target Support Files/Pods-NeverStop/Pods-NeverStop.release.xcconfig"; sourceTree = "<group>"; };
+		494374041DB9B29800FF641A /* MatchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchViewController.h; sourceTree = "<group>"; };
+		494374051DB9B29800FF641A /* MatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchViewController.m; sourceTree = "<group>"; };
+		494374071DB9B29800FF641A /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
+		494374081DB9B29800FF641A /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
+		4943740A1DB9B29800FF641A /* MotionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MotionViewController.h; sourceTree = "<group>"; };
+		4943740B1DB9B29800FF641A /* MotionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MotionViewController.m; sourceTree = "<group>"; };
+		4943740D1DB9B29800FF641A /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
+		4943740E1DB9B29800FF641A /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
+		494374101DB9B29800FF641A /* ScopeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScopeViewController.h; sourceTree = "<group>"; };
+		494374111DB9B29800FF641A /* ScopeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScopeViewController.m; sourceTree = "<group>"; };
+		494374181DB9B2A900FF641A /* 6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 6.jpg; sourceTree = "<group>"; };
+		494374191DB9B2A900FF641A /* 7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7.jpg; sourceTree = "<group>"; };
 		6FF5020B15B17A794E56E0B5 /* Pods-NeverStop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeverStop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NeverStop/Pods-NeverStop.debug.xcconfig"; sourceTree = "<group>"; };
 		EBA9E162BB3BD86CD3202020 /* libPods-NeverStop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NeverStop.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE1A00001DB8CF610003762E /* NSString+Size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Size.h"; sourceTree = "<group>"; };
@@ -152,6 +171,72 @@
 				364DA3B93C758159869B6031 /* Pods-NeverStop.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		494374021DB9B29800FF641A /* Modul */ = {
+			isa = PBXGroup;
+			children = (
+				494374031DB9B29800FF641A /* Match */,
+				494374061DB9B29800FF641A /* Message */,
+				494374091DB9B29800FF641A /* Motion */,
+				4943740C1DB9B29800FF641A /* My */,
+				4943740F1DB9B29800FF641A /* Scope */,
+			);
+			path = Modul;
+			sourceTree = "<group>";
+		};
+		494374031DB9B29800FF641A /* Match */ = {
+			isa = PBXGroup;
+			children = (
+				494374041DB9B29800FF641A /* MatchViewController.h */,
+				494374051DB9B29800FF641A /* MatchViewController.m */,
+			);
+			path = Match;
+			sourceTree = "<group>";
+		};
+		494374061DB9B29800FF641A /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				494374071DB9B29800FF641A /* MessageViewController.h */,
+				494374081DB9B29800FF641A /* MessageViewController.m */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		494374091DB9B29800FF641A /* Motion */ = {
+			isa = PBXGroup;
+			children = (
+				4943740A1DB9B29800FF641A /* MotionViewController.h */,
+				4943740B1DB9B29800FF641A /* MotionViewController.m */,
+			);
+			path = Motion;
+			sourceTree = "<group>";
+		};
+		4943740C1DB9B29800FF641A /* My */ = {
+			isa = PBXGroup;
+			children = (
+				4943740D1DB9B29800FF641A /* MyViewController.h */,
+				4943740E1DB9B29800FF641A /* MyViewController.m */,
+			);
+			path = My;
+			sourceTree = "<group>";
+		};
+		4943740F1DB9B29800FF641A /* Scope */ = {
+			isa = PBXGroup;
+			children = (
+				494374101DB9B29800FF641A /* ScopeViewController.h */,
+				494374111DB9B29800FF641A /* ScopeViewController.m */,
+			);
+			path = Scope;
+			sourceTree = "<group>";
+		};
+		494374171DB9B2A900FF641A /* 素材 */ = {
+			isa = PBXGroup;
+			children = (
+				494374181DB9B2A900FF641A /* 6.jpg */,
+				494374191DB9B2A900FF641A /* 7.jpg */,
+			);
+			path = "素材";
 			sourceTree = "<group>";
 		};
 		503DE363B59CE9450ADD39A8 /* Frameworks */ = {
@@ -328,6 +413,7 @@
 		EE56EA971DB8CE6D000B8082 = {
 			isa = PBXGroup;
 			children = (
+				494374171DB9B2A900FF641A /* 素材 */,
 				EE1AFFE31DB8CF610003762E /* JDTKit */,
 				EE56EAA21DB8CE6D000B8082 /* NeverStop */,
 				EE56EAA11DB8CE6D000B8082 /* Products */,
@@ -347,6 +433,7 @@
 		EE56EAA21DB8CE6D000B8082 /* NeverStop */ = {
 			isa = PBXGroup;
 			children = (
+				494374021DB9B29800FF641A /* Modul */,
 				EE1A005C1DB8E0090003762E /* NeverStop.entitlements */,
 				EE56EAA31DB8CE6D000B8082 /* Supporting Files */,
 				EE56EAA61DB8CE6D000B8082 /* AppDelegate.h */,
@@ -448,6 +535,8 @@
 			files = (
 				EE56EAB31DB8CE6D000B8082 /* LaunchScreen.storyboard in Resources */,
 				EE56EAB01DB8CE6D000B8082 /* Assets.xcassets in Resources */,
+				4943741B1DB9B2A900FF641A /* 7.jpg in Resources */,
+				4943741A1DB9B2A900FF641A /* 6.jpg in Resources */,
 				EE56EAAE1DB8CE6D000B8082 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -510,9 +599,12 @@
 				EE1A002F1DB8CF610003762E /* NSArray+Categories.m in Sources */,
 				EE1A00441DB8CF610003762E /* UIImageView+XLWebCache.m in Sources */,
 				EE1A003B1DB8CF610003762E /* UIImage+Categories.m in Sources */,
+				494374121DB9B29800FF641A /* MatchViewController.m in Sources */,
 				EE1A00381DB8CF610003762E /* UIBarButtonItem+ButtonImage.m in Sources */,
 				EE1A00401DB8CF610003762E /* AppStoreUtils.m in Sources */,
+				494374131DB9B29800FF641A /* MessageViewController.m in Sources */,
 				EE1A002D1DB8CF610003762E /* DYQBaseView.m in Sources */,
+				494374161DB9B29800FF641A /* ScopeViewController.m in Sources */,
 				EE1A00311DB8CF610003762E /* NSDate+EasyExtend.mm in Sources */,
 				EE1A00431DB8CF610003762E /* ExerciseViewController.m in Sources */,
 				EE1A003C1DB8CF610003762E /* UILabel+SizeToFit_W_H.m in Sources */,
@@ -523,6 +615,7 @@
 				EE1A00361DB8CF610003762E /* NSString+Size.m in Sources */,
 				EE1A00321DB8CF610003762E /* NSDictionary+Categories.m in Sources */,
 				EE1A00351DB8CF610003762E /* NSString+Regex.m in Sources */,
+				494374151DB9B29800FF641A /* MyViewController.m in Sources */,
 				EE1A003D1DB8CF610003762E /* UIView+Frame.m in Sources */,
 				EE1A002B1DB8CF610003762E /* BaseViewController.m in Sources */,
 				EE1A00341DB8CF610003762E /* NSString+Categories.m in Sources */,
@@ -536,6 +629,7 @@
 				EE1A00461DB8CF610003762E /* XLImagePageView.m in Sources */,
 				EE1A002C1DB8CF610003762E /* DYQBaseModel.m in Sources */,
 				EE1A00391DB8CF610003762E /* UIButton+Block.m in Sources */,
+				494374141DB9B29800FF641A /* MotionViewController.m in Sources */,
 				EE56EAA51DB8CE6D000B8082 /* main.m in Sources */,
 				EE1A00421DB8CF610003762E /* NSUserDefaultsUtils.m in Sources */,
 				EE1A004F1DB8CFC80003762E /* HealthManager.m in Sources */,

@@ -7,26 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		405E490F1DBA5099004105F2 /* MotionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E48FD1DBA5099004105F2 /* MotionViewController.m */; };
-		405E49101DBA5099004105F2 /* SportView.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E48FF1DBA5099004105F2 /* SportView.m */; };
-		405E49111DBA5099004105F2 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 405E49021DBA5099004105F2 /* 1.png */; };
-		405E49121DBA5099004105F2 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 405E49031DBA5099004105F2 /* 2.png */; };
-		405E49131DBA5099004105F2 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E49051DBA5099004105F2 /* StartViewController.m */; };
-		405E49141DBA5099004105F2 /* AimModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E49081DBA5099004105F2 /* AimModel.m */; };
-		405E49151DBA5099004105F2 /* AimSettingPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E490A1DBA5099004105F2 /* AimSettingPickerView.m */; };
-		405E49161DBA5099004105F2 /* JiangPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E490C1DBA5099004105F2 /* JiangPickerView.m */; };
-		405E49171DBA5099004105F2 /* StepCountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E490E1DBA5099004105F2 /* StepCountView.m */; };
-		494374121DB9B29800FF641A /* MatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 494374051DB9B29800FF641A /* MatchViewController.m */; };
+		40121E881DB9BCD2008BB927 /* run.png in Resources */ = {isa = PBXBuildFile; fileRef = 40121E871DB9BCD2008BB927 /* run.png */; };
+		40121E8A1DB9E6F8008BB927 /* ride.png in Resources */ = {isa = PBXBuildFile; fileRef = 40121E891DB9E6F8008BB927 /* ride.png */; };
+		40121E8C1DB9E6FD008BB927 /* walk.png in Resources */ = {isa = PBXBuildFile; fileRef = 40121E8B1DB9E6FD008BB927 /* walk.png */; };
+		40121E8E1DB9E702008BB927 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 40121E8D1DB9E702008BB927 /* back.png */; };
+		405E48DB1DBA0579004105F2 /* leave.png in Resources */ = {isa = PBXBuildFile; fileRef = 405E48DA1DBA0579004105F2 /* leave.png */; };
+		405E48E11DBA0B07004105F2 /* SportView.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E48E01DBA0B07004105F2 /* SportView.m */; };
+		405E48E41DBA12BC004105F2 /* StepCountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E48E31DBA12BC004105F2 /* StepCountView.m */; };
+		405E48F21DBA4DBB004105F2 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 405E48E71DBA4DBB004105F2 /* 1.png */; };
+		405E48F31DBA4DBB004105F2 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 405E48E81DBA4DBB004105F2 /* 2.png */; };
+		405E48F41DBA4DBB004105F2 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E48EA1DBA4DBB004105F2 /* StartViewController.m */; };
+		405E48F51DBA4DBB004105F2 /* AimModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E48ED1DBA4DBB004105F2 /* AimModel.m */; };
+		405E48F61DBA4DBB004105F2 /* AimSettingPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E48EF1DBA4DBB004105F2 /* AimSettingPickerView.m */; };
+		405E48F71DBA4DBB004105F2 /* JiangPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E48F11DBA4DBB004105F2 /* JiangPickerView.m */; };
+		405E49251DBCD0EB004105F2 /* MatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E491A1DBCD0EB004105F2 /* MatchViewController.m */; };
+		405E49261DBCD0EB004105F2 /* Recommend.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E491C1DBCD0EB004105F2 /* Recommend.m */; };
+		405E49271DBCD0EB004105F2 /* RecommendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E491E1DBCD0EB004105F2 /* RecommendTableViewCell.m */; };
+		405E49281DBCD0EB004105F2 /* Route.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E49201DBCD0EB004105F2 /* Route.m */; };
+		405E49291DBCD0EB004105F2 /* RouteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E49221DBCD0EB004105F2 /* RouteTableViewCell.m */; };
+		405E492A1DBCD0EB004105F2 /* RouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E49241DBCD0EB004105F2 /* RouteViewController.m */; };
 		494374131DB9B29800FF641A /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 494374081DB9B29800FF641A /* MessageViewController.m */; };
+		494374141DB9B29800FF641A /* MotionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4943740B1DB9B29800FF641A /* MotionViewController.m */; };
 		494374151DB9B29800FF641A /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4943740E1DB9B29800FF641A /* MyViewController.m */; };
 		494374161DB9B29800FF641A /* ScopeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 494374111DB9B29800FF641A /* ScopeViewController.m */; };
 		4943741A1DB9B2A900FF641A /* 6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 494374181DB9B2A900FF641A /* 6.jpg */; };
 		4943741B1DB9B2A900FF641A /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 494374191DB9B2A900FF641A /* 7.jpg */; };
-		494374211DB9B71500FF641A /* RecommendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 494374201DB9B71500FF641A /* RecommendTableViewCell.m */; };
-		494374241DB9C4E000FF641A /* Recommend.m in Sources */ = {isa = PBXBuildFile; fileRef = 494374231DB9C4E000FF641A /* Recommend.m */; };
-		4943744D1DBA183100FF641A /* RouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4943744C1DBA183100FF641A /* RouteViewController.m */; };
-		494374501DBA294900FF641A /* RouteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4943744F1DBA294900FF641A /* RouteTableViewCell.m */; };
-		494374531DBA2CA300FF641A /* Route.m in Sources */ = {isa = PBXBuildFile; fileRef = 494374521DBA2CA300FF641A /* Route.m */; };
 		51A099F404C6DE66F7A2C786 /* libPods-NeverStop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBA9E162BB3BD86CD3202020 /* libPods-NeverStop.a */; };
 		EE1A002B1DB8CF610003762E /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1AFFE71DB8CF610003762E /* BaseViewController.m */; };
 		EE1A002C1DB8CF610003762E /* DYQBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1AFFEA1DB8CF610003762E /* DYQBaseModel.m */; };
@@ -52,7 +57,6 @@
 		EE1A00401DB8CF610003762E /* AppStoreUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A00191DB8CF610003762E /* AppStoreUtils.m */; };
 		EE1A00411DB8CF610003762E /* FileManagerUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A001B1DB8CF610003762E /* FileManagerUtils.m */; };
 		EE1A00421DB8CF610003762E /* NSUserDefaultsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A001D1DB8CF610003762E /* NSUserDefaultsUtils.m */; };
-		EE1A00431DB8CF610003762E /* ExerciseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A00201DB8CF610003762E /* ExerciseViewController.m */; };
 		EE1A00441DB8CF610003762E /* UIImageView+XLWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A00261DB8CF610003762E /* UIImageView+XLWebCache.m */; };
 		EE1A00451DB8CF610003762E /* XLImagePageDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A00281DB8CF610003762E /* XLImagePageDetailCell.m */; };
 		EE1A00461DB8CF610003762E /* XLImagePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A002A1DB8CF610003762E /* XLImagePageView.m */; };
@@ -70,42 +74,47 @@
 
 /* Begin PBXFileReference section */
 		364DA3B93C758159869B6031 /* Pods-NeverStop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeverStop.release.xcconfig"; path = "Pods/Target Support Files/Pods-NeverStop/Pods-NeverStop.release.xcconfig"; sourceTree = "<group>"; };
-		405E48FC1DBA5099004105F2 /* MotionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MotionViewController.h; sourceTree = "<group>"; };
-		405E48FD1DBA5099004105F2 /* MotionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MotionViewController.m; sourceTree = "<group>"; };
-		405E48FE1DBA5099004105F2 /* SportView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SportView.h; sourceTree = "<group>"; };
-		405E48FF1DBA5099004105F2 /* SportView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SportView.m; sourceTree = "<group>"; };
-		405E49021DBA5099004105F2 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
-		405E49031DBA5099004105F2 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
-		405E49041DBA5099004105F2 /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
-		405E49051DBA5099004105F2 /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
-		405E49071DBA5099004105F2 /* AimModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AimModel.h; sourceTree = "<group>"; };
-		405E49081DBA5099004105F2 /* AimModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AimModel.m; sourceTree = "<group>"; };
-		405E49091DBA5099004105F2 /* AimSettingPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AimSettingPickerView.h; sourceTree = "<group>"; };
-		405E490A1DBA5099004105F2 /* AimSettingPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AimSettingPickerView.m; sourceTree = "<group>"; };
-		405E490B1DBA5099004105F2 /* JiangPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JiangPickerView.h; sourceTree = "<group>"; };
-		405E490C1DBA5099004105F2 /* JiangPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JiangPickerView.m; sourceTree = "<group>"; };
-		405E490D1DBA5099004105F2 /* StepCountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepCountView.h; sourceTree = "<group>"; };
-		405E490E1DBA5099004105F2 /* StepCountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepCountView.m; sourceTree = "<group>"; };
-		494374041DB9B29800FF641A /* MatchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchViewController.h; sourceTree = "<group>"; };
-		494374051DB9B29800FF641A /* MatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchViewController.m; sourceTree = "<group>"; };
+		40121E871DB9BCD2008BB927 /* run.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = run.png; sourceTree = "<group>"; };
+		40121E891DB9E6F8008BB927 /* ride.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ride.png; sourceTree = "<group>"; };
+		40121E8B1DB9E6FD008BB927 /* walk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = walk.png; sourceTree = "<group>"; };
+		40121E8D1DB9E702008BB927 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		405E48DA1DBA0579004105F2 /* leave.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leave.png; sourceTree = "<group>"; };
+		405E48DF1DBA0B07004105F2 /* SportView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SportView.h; sourceTree = "<group>"; };
+		405E48E01DBA0B07004105F2 /* SportView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SportView.m; sourceTree = "<group>"; };
+		405E48E21DBA12BC004105F2 /* StepCountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepCountView.h; sourceTree = "<group>"; };
+		405E48E31DBA12BC004105F2 /* StepCountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepCountView.m; sourceTree = "<group>"; };
+		405E48E71DBA4DBB004105F2 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		405E48E81DBA4DBB004105F2 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		405E48E91DBA4DBB004105F2 /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
+		405E48EA1DBA4DBB004105F2 /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
+		405E48EC1DBA4DBB004105F2 /* AimModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AimModel.h; sourceTree = "<group>"; };
+		405E48ED1DBA4DBB004105F2 /* AimModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AimModel.m; sourceTree = "<group>"; };
+		405E48EE1DBA4DBB004105F2 /* AimSettingPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AimSettingPickerView.h; sourceTree = "<group>"; };
+		405E48EF1DBA4DBB004105F2 /* AimSettingPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AimSettingPickerView.m; sourceTree = "<group>"; };
+		405E48F01DBA4DBB004105F2 /* JiangPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JiangPickerView.h; sourceTree = "<group>"; };
+		405E48F11DBA4DBB004105F2 /* JiangPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JiangPickerView.m; sourceTree = "<group>"; };
+		405E49191DBCD0EB004105F2 /* MatchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchViewController.h; sourceTree = "<group>"; };
+		405E491A1DBCD0EB004105F2 /* MatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchViewController.m; sourceTree = "<group>"; };
+		405E491B1DBCD0EB004105F2 /* Recommend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recommend.h; sourceTree = "<group>"; };
+		405E491C1DBCD0EB004105F2 /* Recommend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recommend.m; sourceTree = "<group>"; };
+		405E491D1DBCD0EB004105F2 /* RecommendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendTableViewCell.h; sourceTree = "<group>"; };
+		405E491E1DBCD0EB004105F2 /* RecommendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendTableViewCell.m; sourceTree = "<group>"; };
+		405E491F1DBCD0EB004105F2 /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
+		405E49201DBCD0EB004105F2 /* Route.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Route.m; sourceTree = "<group>"; };
+		405E49211DBCD0EB004105F2 /* RouteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteTableViewCell.h; sourceTree = "<group>"; };
+		405E49221DBCD0EB004105F2 /* RouteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteTableViewCell.m; sourceTree = "<group>"; };
+		405E49231DBCD0EB004105F2 /* RouteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteViewController.h; sourceTree = "<group>"; };
+		405E49241DBCD0EB004105F2 /* RouteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteViewController.m; sourceTree = "<group>"; };
 		494374071DB9B29800FF641A /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
 		494374081DB9B29800FF641A /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
+		4943740A1DB9B29800FF641A /* MotionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MotionViewController.h; sourceTree = "<group>"; };
+		4943740B1DB9B29800FF641A /* MotionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MotionViewController.m; sourceTree = "<group>"; };
 		4943740D1DB9B29800FF641A /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
 		4943740E1DB9B29800FF641A /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
 		494374101DB9B29800FF641A /* ScopeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScopeViewController.h; sourceTree = "<group>"; };
 		494374111DB9B29800FF641A /* ScopeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScopeViewController.m; sourceTree = "<group>"; };
 		494374181DB9B2A900FF641A /* 6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 6.jpg; sourceTree = "<group>"; };
 		494374191DB9B2A900FF641A /* 7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7.jpg; sourceTree = "<group>"; };
-		4943741F1DB9B71500FF641A /* RecommendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendTableViewCell.h; sourceTree = "<group>"; };
-		494374201DB9B71500FF641A /* RecommendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendTableViewCell.m; sourceTree = "<group>"; };
-		494374221DB9C4E000FF641A /* Recommend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recommend.h; sourceTree = "<group>"; };
-		494374231DB9C4E000FF641A /* Recommend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recommend.m; sourceTree = "<group>"; };
-		4943744B1DBA183100FF641A /* RouteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteViewController.h; sourceTree = "<group>"; };
-		4943744C1DBA183100FF641A /* RouteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteViewController.m; sourceTree = "<group>"; };
-		4943744E1DBA294900FF641A /* RouteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteTableViewCell.h; sourceTree = "<group>"; };
-		4943744F1DBA294900FF641A /* RouteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteTableViewCell.m; sourceTree = "<group>"; };
-		494374511DBA2CA300FF641A /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
-		494374521DBA2CA300FF641A /* Route.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Route.m; sourceTree = "<group>"; };
 		6FF5020B15B17A794E56E0B5 /* Pods-NeverStop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeverStop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NeverStop/Pods-NeverStop.debug.xcconfig"; sourceTree = "<group>"; };
 		EBA9E162BB3BD86CD3202020 /* libPods-NeverStop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NeverStop.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE1A00001DB8CF610003762E /* NSString+Size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Size.h"; sourceTree = "<group>"; };
@@ -136,8 +145,6 @@
 		EE1A001C1DB8CF610003762E /* NSUserDefaultsUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSUserDefaultsUtils.h; sourceTree = "<group>"; };
 		EE1A001D1DB8CF610003762E /* NSUserDefaultsUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSUserDefaultsUtils.m; sourceTree = "<group>"; };
 		EE1A001E1DB8CF610003762E /* SystemUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemUnit.h; sourceTree = "<group>"; };
-		EE1A001F1DB8CF610003762E /* ExerciseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseViewController.h; sourceTree = "<group>"; };
-		EE1A00201DB8CF610003762E /* ExerciseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseViewController.m; sourceTree = "<group>"; };
 		EE1A00221DB8CF610003762E /* DYQMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYQMacro.h; sourceTree = "<group>"; };
 		EE1A00251DB8CF610003762E /* UIImageView+XLWebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+XLWebCache.h"; sourceTree = "<group>"; };
 		EE1A00261DB8CF610003762E /* UIImageView+XLWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+XLWebCache.m"; sourceTree = "<group>"; };
@@ -210,73 +217,141 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		405E48FB1DBA5099004105F2 /* Motion */ = {
+		405E48DC1DBA0A79004105F2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				405E48FC1DBA5099004105F2 /* MotionViewController.h */,
-				405E48FD1DBA5099004105F2 /* MotionViewController.m */,
-				405E48FE1DBA5099004105F2 /* SportView.h */,
-				405E48FF1DBA5099004105F2 /* SportView.m */,
-				405E49001DBA5099004105F2 /* Start */,
-				405E490D1DBA5099004105F2 /* StepCountView.h */,
-				405E490E1DBA5099004105F2 /* StepCountView.m */,
+				EE1A00471DB8CFC80003762E /* StepManager.h */,
+				EE1A00481DB8CFC80003762E /* StepManager.m */,
+				EE1A00491DB8CFC80003762E /* StepModel.h */,
+				EE1A004A1DB8CFC80003762E /* StepModel.m */,
 			);
-			path = Motion;
+			path = Model;
 			sourceTree = "<group>";
 		};
-		405E49001DBA5099004105F2 /* Start */ = {
+		405E48DD1DBA0A81004105F2 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				405E49011DBA5099004105F2 /* Controller */,
-				405E49061DBA5099004105F2 /* View */,
+				405E48DF1DBA0B07004105F2 /* SportView.h */,
+				405E48E01DBA0B07004105F2 /* SportView.m */,
+				405E48E21DBA12BC004105F2 /* StepCountView.h */,
+				405E48E31DBA12BC004105F2 /* StepCountView.m */,
 			);
-			path = Start;
+			path = View;
 			sourceTree = "<group>";
 		};
-		405E49011DBA5099004105F2 /* Controller */ = {
+		405E48DE1DBA0A87004105F2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				405E49021DBA5099004105F2 /* 1.png */,
-				405E49031DBA5099004105F2 /* 2.png */,
-				405E49041DBA5099004105F2 /* StartViewController.h */,
-				405E49051DBA5099004105F2 /* StartViewController.m */,
+				4943740A1DB9B29800FF641A /* MotionViewController.h */,
+				4943740B1DB9B29800FF641A /* MotionViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		405E49061DBA5099004105F2 /* View */ = {
+		405E48E51DBA4DBB004105F2 /* Start */ = {
 			isa = PBXGroup;
 			children = (
-				405E49071DBA5099004105F2 /* AimModel.h */,
-				405E49081DBA5099004105F2 /* AimModel.m */,
-				405E49091DBA5099004105F2 /* AimSettingPickerView.h */,
-				405E490A1DBA5099004105F2 /* AimSettingPickerView.m */,
-				405E490B1DBA5099004105F2 /* JiangPickerView.h */,
-				405E490C1DBA5099004105F2 /* JiangPickerView.m */,
+				405E48E61DBA4DBB004105F2 /* Controller */,
+				405E492F1DBCDC00004105F2 /* Model */,
+				405E48EB1DBA4DBB004105F2 /* View */,
+			);
+			path = Start;
+			sourceTree = "<group>";
+		};
+		405E48E61DBA4DBB004105F2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				405E48E71DBA4DBB004105F2 /* 1.png */,
+				405E48E81DBA4DBB004105F2 /* 2.png */,
+				405E48E91DBA4DBB004105F2 /* StartViewController.h */,
+				405E48EA1DBA4DBB004105F2 /* StartViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		405E48EB1DBA4DBB004105F2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				405E48EE1DBA4DBB004105F2 /* AimSettingPickerView.h */,
+				405E48EF1DBA4DBB004105F2 /* AimSettingPickerView.m */,
+				405E48F01DBA4DBB004105F2 /* JiangPickerView.h */,
+				405E48F11DBA4DBB004105F2 /* JiangPickerView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		405E49181DBCD0EB004105F2 /* Match */ = {
+			isa = PBXGroup;
+			children = (
+				405E492C1DBCD6E7004105F2 /* Controller */,
+				405E492D1DBCD6F0004105F2 /* Model */,
+				405E492B1DBCD6DF004105F2 /* View */,
+			);
+			path = Match;
+			sourceTree = "<group>";
+		};
+		405E492B1DBCD6DF004105F2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				405E491D1DBCD0EB004105F2 /* RecommendTableViewCell.h */,
+				405E491E1DBCD0EB004105F2 /* RecommendTableViewCell.m */,
+				405E49211DBCD0EB004105F2 /* RouteTableViewCell.h */,
+				405E49221DBCD0EB004105F2 /* RouteTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		405E492C1DBCD6E7004105F2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				405E49191DBCD0EB004105F2 /* MatchViewController.h */,
+				405E491A1DBCD0EB004105F2 /* MatchViewController.m */,
+				405E49231DBCD0EB004105F2 /* RouteViewController.h */,
+				405E49241DBCD0EB004105F2 /* RouteViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		405E492D1DBCD6F0004105F2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				405E491B1DBCD0EB004105F2 /* Recommend.h */,
+				405E491C1DBCD0EB004105F2 /* Recommend.m */,
+				405E491F1DBCD0EB004105F2 /* Route.h */,
+				405E49201DBCD0EB004105F2 /* Route.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		405E492E1DBCDB59004105F2 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				405E48DE1DBA0A87004105F2 /* Controller */,
+				405E48DC1DBA0A79004105F2 /* Model */,
+				405E48DD1DBA0A81004105F2 /* View */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		405E492F1DBCDC00004105F2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				405E48EC1DBA4DBB004105F2 /* AimModel.h */,
+				405E48ED1DBA4DBB004105F2 /* AimModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		494374021DB9B29800FF641A /* Modul */ = {
 			isa = PBXGroup;
 			children = (
-				405E48FB1DBA5099004105F2 /* Motion */,
-				494374031DB9B29800FF641A /* Match */,
+				405E49181DBCD0EB004105F2 /* Match */,
 				494374061DB9B29800FF641A /* Message */,
+				494374091DB9B29800FF641A /* Motion */,
 				4943740C1DB9B29800FF641A /* My */,
 				4943740F1DB9B29800FF641A /* Scope */,
 			);
 			path = Modul;
-			sourceTree = "<group>";
-		};
-		494374031DB9B29800FF641A /* Match */ = {
-			isa = PBXGroup;
-			children = (
-				4943741E1DB9B64D00FF641A /* Controller */,
-				4943741D1DB9B64500FF641A /* View */,
-				4943741C1DB9B63700FF641A /* Model */,
-			);
-			path = Match;
 			sourceTree = "<group>";
 		};
 		494374061DB9B29800FF641A /* Message */ = {
@@ -288,18 +363,15 @@
 			path = Message;
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
-=======
 		494374091DB9B29800FF641A /* Motion */ = {
 			isa = PBXGroup;
 			children = (
-				4943740A1DB9B29800FF641A /* MotionViewController.h */,
-				4943740B1DB9B29800FF641A /* MotionViewController.m */,
+				405E492E1DBCDB59004105F2 /* Root */,
+				405E48E51DBA4DBB004105F2 /* Start */,
 			);
 			path = Motion;
 			sourceTree = "<group>";
 		};
->>>>>>> 22b6a5112ba4b4b1131ee5f41f34797f547901e3
 		4943740C1DB9B29800FF641A /* My */ = {
 			isa = PBXGroup;
 			children = (
@@ -323,41 +395,13 @@
 			children = (
 				494374181DB9B2A900FF641A /* 6.jpg */,
 				494374191DB9B2A900FF641A /* 7.jpg */,
+				40121E8D1DB9E702008BB927 /* back.png */,
+				405E48DA1DBA0579004105F2 /* leave.png */,
+				40121E891DB9E6F8008BB927 /* ride.png */,
+				40121E871DB9BCD2008BB927 /* run.png */,
+				40121E8B1DB9E6FD008BB927 /* walk.png */,
 			);
 			path = "素材";
-			sourceTree = "<group>";
-		};
-		4943741C1DB9B63700FF641A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				494374221DB9C4E000FF641A /* Recommend.h */,
-				494374231DB9C4E000FF641A /* Recommend.m */,
-				494374511DBA2CA300FF641A /* Route.h */,
-				494374521DBA2CA300FF641A /* Route.m */,
-			);
-			name = Model;
-			sourceTree = "<group>";
-		};
-		4943741D1DB9B64500FF641A /* View */ = {
-			isa = PBXGroup;
-			children = (
-				4943741F1DB9B71500FF641A /* RecommendTableViewCell.h */,
-				494374201DB9B71500FF641A /* RecommendTableViewCell.m */,
-				4943744E1DBA294900FF641A /* RouteTableViewCell.h */,
-				4943744F1DBA294900FF641A /* RouteTableViewCell.m */,
-			);
-			name = View;
-			sourceTree = "<group>";
-		};
-		4943741E1DB9B64D00FF641A /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				494374041DB9B29800FF641A /* MatchViewController.h */,
-				494374051DB9B29800FF641A /* MatchViewController.m */,
-				4943744B1DBA183100FF641A /* RouteViewController.h */,
-				4943744C1DBA183100FF641A /* RouteViewController.m */,
-			);
-			name = Controller;
 			sourceTree = "<group>";
 		};
 		503DE363B59CE9450ADD39A8 /* Frameworks */ = {
@@ -438,8 +482,6 @@
 				EE1AFFEE1DB8CF610003762E /* Common */,
 				EE1A00211DB8CF610003762E /* Macro */,
 				EE1A00231DB8CF610003762E /* Vendors */,
-				EE1A001F1DB8CF610003762E /* ExerciseViewController.h */,
-				EE1A00201DB8CF610003762E /* ExerciseViewController.m */,
 			);
 			path = JDTKit;
 			sourceTree = "<group>";
@@ -534,12 +576,12 @@
 		EE56EA971DB8CE6D000B8082 = {
 			isa = PBXGroup;
 			children = (
-				494374171DB9B2A900FF641A /* 素材 */,
+				503DE363B59CE9450ADD39A8 /* Frameworks */,
 				EE1AFFE31DB8CF610003762E /* JDTKit */,
 				EE56EAA21DB8CE6D000B8082 /* NeverStop */,
-				EE56EAA11DB8CE6D000B8082 /* Products */,
 				04369AE15D5EDDE5CE8D5782 /* Pods */,
-				503DE363B59CE9450ADD39A8 /* Frameworks */,
+				EE56EAA11DB8CE6D000B8082 /* Products */,
+				494374171DB9B2A900FF641A /* 素材 */,
 			);
 			sourceTree = "<group>";
 		};
@@ -555,7 +597,6 @@
 			isa = PBXGroup;
 			children = (
 				494374021DB9B29800FF641A /* Modul */,
-				EE1A005C1DB8E0090003762E /* NeverStop.entitlements */,
 				EE56EAA31DB8CE6D000B8082 /* Supporting Files */,
 				EE56EAA61DB8CE6D000B8082 /* AppDelegate.h */,
 				EE56EAA71DB8CE6D000B8082 /* AppDelegate.m */,
@@ -565,10 +606,7 @@
 				EE56EAB41DB8CE6D000B8082 /* Info.plist */,
 				EE56EAB11DB8CE6D000B8082 /* LaunchScreen.storyboard */,
 				EE56EAAC1DB8CE6D000B8082 /* Main.storyboard */,
-				EE1A00471DB8CFC80003762E /* StepManager.h */,
-				EE1A00481DB8CFC80003762E /* StepManager.m */,
-				EE1A00491DB8CFC80003762E /* StepModel.h */,
-				EE1A004A1DB8CFC80003762E /* StepModel.m */,
+				EE1A005C1DB8E0090003762E /* NeverStop.entitlements */,
 				EE56EAA91DB8CE6D000B8082 /* ViewController.h */,
 				EE56EAAA1DB8CE6D000B8082 /* ViewController.m */,
 			);
@@ -654,15 +692,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				405E48F21DBA4DBB004105F2 /* 1.png in Resources */,
 				EE56EAB31DB8CE6D000B8082 /* LaunchScreen.storyboard in Resources */,
+				40121E8A1DB9E6F8008BB927 /* ride.png in Resources */,
+				40121E8E1DB9E702008BB927 /* back.png in Resources */,
+				40121E8C1DB9E6FD008BB927 /* walk.png in Resources */,
 				EE56EAB01DB8CE6D000B8082 /* Assets.xcassets in Resources */,
-<<<<<<< HEAD
-				405E49121DBA5099004105F2 /* 2.png in Resources */,
+				405E48F31DBA4DBB004105F2 /* 2.png in Resources */,
+				405E48DB1DBA0579004105F2 /* leave.png in Resources */,
+				40121E881DB9BCD2008BB927 /* run.png in Resources */,
 				4943741B1DB9B2A900FF641A /* 7.jpg in Resources */,
-				405E49111DBA5099004105F2 /* 1.png in Resources */,
-=======
-				4943741B1DB9B2A900FF641A /* 7.jpg in Resources */,
->>>>>>> 22b6a5112ba4b4b1131ee5f41f34797f547901e3
 				4943741A1DB9B2A900FF641A /* 6.jpg in Resources */,
 				EE56EAAE1DB8CE6D000B8082 /* Main.storyboard in Resources */,
 			);
@@ -723,43 +762,38 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				405E49151DBA5099004105F2 /* AimSettingPickerView.m in Sources */,
 				EE1A002F1DB8CF610003762E /* NSArray+Categories.m in Sources */,
+				405E49291DBCD0EB004105F2 /* RouteTableViewCell.m in Sources */,
 				EE1A00441DB8CF610003762E /* UIImageView+XLWebCache.m in Sources */,
 				EE1A003B1DB8CF610003762E /* UIImage+Categories.m in Sources */,
-				494374121DB9B29800FF641A /* MatchViewController.m in Sources */,
-				405E49131DBA5099004105F2 /* StartViewController.m in Sources */,
+				405E48F41DBA4DBB004105F2 /* StartViewController.m in Sources */,
 				EE1A00381DB8CF610003762E /* UIBarButtonItem+ButtonImage.m in Sources */,
 				EE1A00401DB8CF610003762E /* AppStoreUtils.m in Sources */,
-				494374501DBA294900FF641A /* RouteTableViewCell.m in Sources */,
 				494374131DB9B29800FF641A /* MessageViewController.m in Sources */,
 				EE1A002D1DB8CF610003762E /* DYQBaseView.m in Sources */,
-				405E49171DBA5099004105F2 /* StepCountView.m in Sources */,
 				494374161DB9B29800FF641A /* ScopeViewController.m in Sources */,
 				EE1A00311DB8CF610003762E /* NSDate+EasyExtend.mm in Sources */,
-<<<<<<< HEAD
-				405E49141DBA5099004105F2 /* AimModel.m in Sources */,
-=======
-				494374241DB9C4E000FF641A /* Recommend.m in Sources */,
->>>>>>> 22b6a5112ba4b4b1131ee5f41f34797f547901e3
-				EE1A00431DB8CF610003762E /* ExerciseViewController.m in Sources */,
 				EE1A003C1DB8CF610003762E /* UILabel+SizeToFit_W_H.m in Sources */,
 				EE1A003F1DB8CF610003762E /* HttpClient.m in Sources */,
 				EE1A004E1DB8CFC80003762E /* StepModel.m in Sources */,
 				EE56EAAB1DB8CE6D000B8082 /* ViewController.m in Sources */,
+				405E49271DBCD0EB004105F2 /* RecommendTableViewCell.m in Sources */,
 				EE1A003E1DB8CF610003762E /* DataBaseManager.m in Sources */,
 				EE1A00361DB8CF610003762E /* NSString+Size.m in Sources */,
-				405E49101DBA5099004105F2 /* SportView.m in Sources */,
+				405E48E11DBA0B07004105F2 /* SportView.m in Sources */,
 				EE1A00321DB8CF610003762E /* NSDictionary+Categories.m in Sources */,
 				EE1A00351DB8CF610003762E /* NSString+Regex.m in Sources */,
+				405E48E41DBA12BC004105F2 /* StepCountView.m in Sources */,
 				494374151DB9B29800FF641A /* MyViewController.m in Sources */,
 				EE1A003D1DB8CF610003762E /* UIView+Frame.m in Sources */,
 				EE1A002B1DB8CF610003762E /* BaseViewController.m in Sources */,
-				405E49161DBA5099004105F2 /* JiangPickerView.m in Sources */,
 				EE1A00341DB8CF610003762E /* NSString+Categories.m in Sources */,
+				405E49251DBCD0EB004105F2 /* MatchViewController.m in Sources */,
 				EE56EAA81DB8CE6D000B8082 /* AppDelegate.m in Sources */,
+				405E48F61DBA4DBB004105F2 /* AimSettingPickerView.m in Sources */,
 				EE1A003A1DB8CF610003762E /* UIColor+Categories.m in Sources */,
-				4943744D1DBA183100FF641A /* RouteViewController.m in Sources */,
+				405E48F71DBA4DBB004105F2 /* JiangPickerView.m in Sources */,
+				405E48F51DBA4DBB004105F2 /* AimModel.m in Sources */,
 				EE1A002E1DB8CF610003762E /* HKHealthStore+AAPLExtensions.m in Sources */,
 				EE1A00411DB8CF610003762E /* FileManagerUtils.m in Sources */,
 				EE1A00301DB8CF610003762E /* NSDate+Categories.m in Sources */,
@@ -767,18 +801,15 @@
 				EE1A00331DB8CF610003762E /* NSNumber+Extend.m in Sources */,
 				EE1A00461DB8CF610003762E /* XLImagePageView.m in Sources */,
 				EE1A002C1DB8CF610003762E /* DYQBaseModel.m in Sources */,
-				494374211DB9B71500FF641A /* RecommendTableViewCell.m in Sources */,
 				EE1A00391DB8CF610003762E /* UIButton+Block.m in Sources */,
-<<<<<<< HEAD
-=======
-				494374531DBA2CA300FF641A /* Route.m in Sources */,
 				494374141DB9B29800FF641A /* MotionViewController.m in Sources */,
->>>>>>> 22b6a5112ba4b4b1131ee5f41f34797f547901e3
+				405E49261DBCD0EB004105F2 /* Recommend.m in Sources */,
 				EE56EAA51DB8CE6D000B8082 /* main.m in Sources */,
+				405E49281DBCD0EB004105F2 /* Route.m in Sources */,
 				EE1A00421DB8CF610003762E /* NSUserDefaultsUtils.m in Sources */,
-				405E490F1DBA5099004105F2 /* MotionViewController.m in Sources */,
 				EE1A004F1DB8CFC80003762E /* HealthManager.m in Sources */,
 				EE1A00371DB8CF610003762E /* NSUserDefaults+Categories.m in Sources */,
+				405E492A1DBCD0EB004105F2 /* RouteViewController.m in Sources */,
 				EE1A004D1DB8CFC80003762E /* StepManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

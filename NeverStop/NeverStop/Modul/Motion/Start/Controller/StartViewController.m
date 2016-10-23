@@ -28,13 +28,13 @@ AimSettingPickerViewDelegate
 @implementation StartViewController
 - (void)viewWillAppear:(BOOL)animated {
     [self.mapView setUserTrackingMode:MAUserTrackingModeFollow animated:YES];
+    self.navigationController.navigationBarHidden = NO;
   
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:self];
     //自定义一个NaVigationBar
-    [navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     //消除阴影
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     [self creatMapView];
@@ -45,7 +45,7 @@ AimSettingPickerViewDelegate
     [_settingButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     _settingButton.backgroundColor = [UIColor clearColor];
     CGFloat width = [_settingButton.titleLabel.text widthWithFont:_settingButton.titleLabel.font constrainedToHeight:50];
-    _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width / 2, _mapView.y + _mapView.height + 100, width, 50);
+    _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width / 2, _mapView.y + _mapView.height, width, 50);
     [_settingButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
         AimSettingPickerView *aimSettingPicker = [[AimSettingPickerView alloc]init];
         [aimSettingPicker setDelegate:self];
@@ -105,6 +105,8 @@ AimSettingPickerViewDelegate
     [UIView animateWithDuration:0.25 animations:^{
         btn.transform = CGAffineTransformMakeScale(0.75, 0.75);
     }];
+    
+    
 }
 //点击手势拖出按钮frame区域松开，响应取消
 - (void)cancelEvent:(UIButton *)btn
@@ -128,7 +130,7 @@ AimSettingPickerViewDelegate
 
 
 - (void)creatMapView {
-    self.mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 250)];
+    self.mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 300)];
     [self.view addSubview:_mapView];
     _mapView.showsUserLocation = YES;
     _mapView.delegate = self;

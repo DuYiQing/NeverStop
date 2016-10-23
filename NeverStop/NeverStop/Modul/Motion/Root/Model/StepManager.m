@@ -14,7 +14,7 @@
 #define ACCELERO_START_TIME 2
 
 // 计步器开始计步步数（步）
-#define ACCELERO_START_STEP 100
+#define ACCELERO_START_STEP 1
 
 // 数据库存储步数采集间隔（步）
 #define DB_STEP_INTERVAL 1

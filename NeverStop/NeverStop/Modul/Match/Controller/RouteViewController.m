@@ -68,7 +68,6 @@ UITableViewDataSource
             [_routeArray addObject:roModel];
             
         }
-        NSLog(@"----------------------------%ld",_routeArray.count);
         [_tableView reloadData];
         
     } failure:^(NSError *error) {

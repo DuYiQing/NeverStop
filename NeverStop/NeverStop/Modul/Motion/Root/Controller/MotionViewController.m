@@ -26,6 +26,9 @@ UIScrollViewDelegate
 @property (nonatomic, retain) StepCountView *stepCountView;
 @property (nonatomic, assign) CGFloat contentOffsetX;
 @property (nonatomic, retain) UIView *whiteView;
+@property (nonatomic, retain) UIButton *stepCountButton;
+@property (nonatomic, retain) UIButton *sportButton;
+@property (nonatomic, retain) UIButton *startButton;
 
 @end
 
@@ -63,38 +66,41 @@ UIScrollViewDelegate
     _whiteView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_whiteView];
     
-    UIButton *startButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    startButton.frame = CGRectMake(150, 60, 50, 50);
-    startButton.backgroundColor = [UIColor greenColor];
-    [_whiteView addSubview:startButton];
-    [startButton addTarget:self action:@selector(startButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    self.startButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _startButton.frame = CGRectMake((_whiteView.width - 100) / 2, 60, 100, 100);
+    _startButton.layer.cornerRadius = 50;
+    [_startButton setTitle:@"开始" forState:UIControlStateNormal];
+    [_startButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    _startButton.backgroundColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74/255.f alpha:1.0];
+    [_whiteView addSubview:_startButton];
+    [_startButton addTarget:self action:@selector(startButtonAction) forControlEvents:UIControlEventTouchUpInside];
     
+    self.sportButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _sportButton.frame = CGRectMake(100, 30, 80, 40);
+    [_sportButton setTitle:@"运动" forState:UIControlStateNormal];
+    [_sportButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.view addSubview:_sportButton];
     
-    UIButton *sportButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    sportButton.frame = CGRectMake(100, 30, 80, 40);
-    [sportButton setTitle:@"运动" forState:UIControlStateNormal];
-    [sportButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.view addSubview:sportButton];
-    
-    UIButton *stepCountButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    stepCountButton.frame = CGRectMake(SCREEN_WIDTH - 100 - 80, 30, 80, 40);
-    [stepCountButton setTitle:@"计步" forState:UIControlStateNormal];
-    [stepCountButton setTitleColor:[UIColor colorWithWhite:0.7 alpha:0.4] forState:UIControlStateNormal];
-    [self.view addSubview:stepCountButton];
+    self.stepCountButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _stepCountButton.frame = CGRectMake(SCREEN_WIDTH - 100 - 80, 30, 80, 40);
+    [_stepCountButton setTitle:@"计步" forState:UIControlStateNormal];
+    [_stepCountButton setTitleColor:[UIColor colorWithWhite:0.7 alpha:0.4] forState:UIControlStateNormal];
+    [self.view addSubview:_stepCountButton];
     
     UIImageView *weatherImageView = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 60, 40, 20, 20)];
     weatherImageView.image = [UIImage imageNamed:@"leave.png"];
     [self.view addSubview:weatherImageView];
     
-    UILabel *weatherLabel = [[UILabel alloc] initWithFrame:CGRectMake(weatherImageView.frame.origin.x + weatherImageView.bounds.size.width + 5, stepCountButton.frame.origin.y, 20, 40)];
+    UILabel *weatherLabel = [[UILabel alloc] initWithFrame:CGRectMake(weatherImageView.frame.origin.x + weatherImageView.bounds.size.width + 5, _stepCountButton.frame.origin.y, 20, 40)];
     weatherLabel.text = @"优";
     weatherLabel.textColor = [UIColor whiteColor];
     [self.view addSubview:weatherLabel];
     
-    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 90, SCREEN_WIDTH, SCREEN_HEIGHT / 3 * 2)];
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 90, SCREEN_WIDTH, SCREEN_HEIGHT / 2)];
     scrollView.pagingEnabled = YES;
     scrollView.showsHorizontalScrollIndicator = YES;
     scrollView.delegate = self;
+    scrollView.showsHorizontalScrollIndicator = NO;
     scrollView.contentSize = CGSizeMake(SCREEN_WIDTH * 2, scrollView.height);
     [self.view addSubview:scrollView];
     
@@ -105,7 +111,7 @@ UIScrollViewDelegate
     [scrollView addSubview:_stepCountView];
     
 }
-
+#pragma mark - 切换步行,跑步,骑行模式
 - (void)modeButtonAction {
     [self.view addSubview:_blurEffectView];
     self.backButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -137,19 +143,37 @@ UIScrollViewDelegate
     [_rideButton addTarget:self action:@selector(backButtonAction:) forControlEvents:UIControlEventTouchUpInside];
 }
 
-//- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-//    self.contentOffsetX = scrollView.contentOffset.x;
-//    
-//}
+#pragma mark - 切换运动和计步
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat scale = SCREEN_WIDTH / _startButton.width;
+    if (scrollView.contentOffset.x >= 0 && scrollView.contentOffset.x <= SCREEN_WIDTH) {
+        _startButton.width = 100 - scrollView.contentOffset.x / scale;
+        _startButton.height = _startButton.width;
+        _startButton.x = (_whiteView.width - _startButton.width) / 2;
+        _startButton.layer.cornerRadius = _startButton.width / 2;
+    }
+    if (scrollView.contentOffset.x > SCREEN_WIDTH / 2) {
+        [_stepCountButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_sportButton setTitleColor:[UIColor colorWithWhite:0.7 alpha:0.4] forState:UIControlStateNormal];
+        _modeButton.hidden = YES;
+        [UIView animateWithDuration:0.2f animations:^{
+            _startButton.backgroundColor = [UIColor whiteColor];
+        }];
+        if (scrollView.contentOffset.x == SCREEN_WIDTH) {
+            _startButton.hidden = YES;
+        }
+    } else if (scrollView.contentOffset.x < SCREEN_WIDTH / 2) {
+        [_sportButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_stepCountButton setTitleColor:[UIColor colorWithWhite:0.7 alpha:0.4] forState:UIControlStateNormal];
+        _modeButton.hidden = NO;
+        [UIView animateWithDuration:0.5f animations:^{
+            _startButton.backgroundColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74/255.f alpha:1.0];
+        } completion:^(BOOL finished) {
+            _startButton.hidden = NO;
+        }];
 
-//- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
-//    if (scrollView.contentOffset.x > _contentOffsetX) {
-//        [UIView animateWithDuration:1.5f delay:1.f usingSpringWithDamping:0.3 initialSpringVelocity:10.f options:UIViewAnimationOptionCurveEaseIn animations:^{
-//            _sportView.center = CGPointMake(_whiteView.center.x + cosf(), <#CGFloat y#>)
-//            
-//        } completion:nil];
-//    }
-//}
+    }
+}
 
 - (void)backButtonAction:(UIButton *)button {
     if (button.tag == 1114) {

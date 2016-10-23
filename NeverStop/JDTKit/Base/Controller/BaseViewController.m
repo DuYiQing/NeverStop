@@ -20,7 +20,6 @@
     self.navigationController.navigationBar.translucent = NO;
     self.view.backgroundColor = [UIColor whiteColor];
     
-    
 }
 
 

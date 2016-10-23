@@ -153,13 +153,6 @@ void uncaughtExceptionHandler(NSException *exception) {
     self.window.rootViewController = rootTabBarController;
     
     
-
-    StartViewController *startVC = [[StartViewController alloc] init];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:startVC];
-    
-    self.window.rootViewController = nav;
-
-    
     
 }
 

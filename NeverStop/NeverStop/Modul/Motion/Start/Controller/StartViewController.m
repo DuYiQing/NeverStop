@@ -32,8 +32,9 @@ AimSettingPickerViewDelegate
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:self];
     //自定义一个NaVigationBar
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     //消除阴影
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     [self creatMapView];

@@ -13,7 +13,6 @@
 #import "MotionViewController.h"
 #import "MyViewController.h"
 #import "ScopeViewController.h"
-#import "StartViewController.h"
 
 @interface AppDelegate ()
 <
@@ -151,8 +150,12 @@ void uncaughtExceptionHandler(NSException *exception) {
     rootTabBarController.viewControllers = @[scNavigationController,maNavigationController,moNavigationController,meNavigationController,myNavigationController];
     rootTabBarController.delegate = self;
     self.window.rootViewController = rootTabBarController;
+<<<<<<< HEAD
     
     
+=======
+
+>>>>>>> 22b6a5112ba4b4b1131ee5f41f34797f547901e3
     
 }
 

@@ -15,20 +15,23 @@
 <
 UIScrollViewDelegate
 >
-@property (nonatomic, retain) UIBlurEffect *blur;
-@property (nonatomic, retain) UIVisualEffectView *blurEffectView;
-@property (nonatomic, retain) UIButton *modeButton;
-@property (nonatomic, retain) UIButton *backButton;
-@property (nonatomic, retain) UIButton *runButton;
-@property (nonatomic, retain) UIButton *walkButton;
-@property (nonatomic, retain) UIButton *rideButton;
-@property (nonatomic, retain) SportView *sportView;
-@property (nonatomic, retain) StepCountView *stepCountView;
+@property (nonatomic, strong) UIBlurEffect *blur;
+@property (nonatomic, strong) UIVisualEffectView *blurEffectView;
+@property (nonatomic, strong) UIButton *modeButton;
+@property (nonatomic, strong) UIButton *backButton;
+@property (nonatomic, strong) UIButton *runButton;
+@property (nonatomic, strong) UIButton *walkButton;
+@property (nonatomic, strong) UIButton *rideButton;
+@property (nonatomic, strong) SportView *sportView;
+@property (nonatomic, strong) StepCountView *stepCountView;
 @property (nonatomic, assign) CGFloat contentOffsetX;
-@property (nonatomic, retain) UIView *whiteView;
-@property (nonatomic, retain) UIButton *stepCountButton;
-@property (nonatomic, retain) UIButton *sportButton;
-@property (nonatomic, retain) UIButton *startButton;
+@property (nonatomic, strong) UIView *whiteView;
+@property (nonatomic, strong) UIButton *stepCountButton;
+@property (nonatomic, strong) UIButton *sportButton;
+@property (nonatomic, strong) UIButton *startButton;
+@property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong) SQLiteDatabaseManager *SQLManager;
+
 
 @end
 
@@ -48,6 +51,11 @@ UIScrollViewDelegate
     _blurEffectView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     
     [self showRootView];
+    
+    self.SQLManager = [SQLiteDatabaseManager shareManager];
+    [_SQLManager openSQLite];
+    [_SQLManager createTable];
+    
     
 }
 
@@ -80,35 +88,41 @@ UIScrollViewDelegate
     [_sportButton setTitle:@"运动" forState:UIControlStateNormal];
     [_sportButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.view addSubview:_sportButton];
+    [_sportButton addTarget:self action:@selector(sportButtonAction) forControlEvents:UIControlEventTouchUpInside];
     
     self.stepCountButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _stepCountButton.frame = CGRectMake(SCREEN_WIDTH - 100 - 80, 30, 80, 40);
     [_stepCountButton setTitle:@"计步" forState:UIControlStateNormal];
     [_stepCountButton setTitleColor:[UIColor colorWithWhite:0.7 alpha:0.4] forState:UIControlStateNormal];
     [self.view addSubview:_stepCountButton];
+    [_stepCountButton addTarget:self action:@selector(stepButtonAction) forControlEvents:UIControlEventTouchUpInside];
     
     UIImageView *weatherImageView = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 60, 40, 20, 20)];
     weatherImageView.image = [UIImage imageNamed:@"leave.png"];
     [self.view addSubview:weatherImageView];
     
+    // 天气
     UILabel *weatherLabel = [[UILabel alloc] initWithFrame:CGRectMake(weatherImageView.frame.origin.x + weatherImageView.bounds.size.width + 5, _stepCountButton.frame.origin.y, 20, 40)];
     weatherLabel.text = @"优";
     weatherLabel.textColor = [UIColor whiteColor];
     [self.view addSubview:weatherLabel];
+    UITapGestureRecognizer *tapWeatherLabel = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapWeatherLabelAction)];
     
-    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 90, SCREEN_WIDTH, SCREEN_HEIGHT / 2)];
-    scrollView.pagingEnabled = YES;
-    scrollView.showsHorizontalScrollIndicator = YES;
-    scrollView.delegate = self;
-    scrollView.showsHorizontalScrollIndicator = NO;
-    scrollView.contentSize = CGSizeMake(SCREEN_WIDTH * 2, scrollView.height);
-    [self.view addSubview:scrollView];
     
-    self.sportView = [[SportView alloc]initWithFrame:CGRectMake(0, 55, SCREEN_WIDTH, scrollView.height / 3 * 2)];
-    [scrollView addSubview:_sportView];
     
-    self.stepCountView = [[StepCountView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH, 25, SCREEN_WIDTH, scrollView.height / 3 * 2)];
-    [scrollView addSubview:_stepCountView];
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 90, SCREEN_WIDTH, SCREEN_HEIGHT / 2)];
+    _scrollView.pagingEnabled = YES;
+    _scrollView.showsHorizontalScrollIndicator = YES;
+    _scrollView.delegate = self;
+    _scrollView.showsHorizontalScrollIndicator = NO;
+    _scrollView.contentSize = CGSizeMake(SCREEN_WIDTH * 2, _scrollView.height);
+    [self.view addSubview:_scrollView];
+    
+    self.sportView = [[SportView alloc]initWithFrame:CGRectMake(0, 55, SCREEN_WIDTH, _scrollView.height / 3 * 2)];
+    [_scrollView addSubview:_sportView];
+    
+    self.stepCountView = [[StepCountView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH, 25, SCREEN_WIDTH, _scrollView.height / 3 * 2)];
+    [_scrollView addSubview:_stepCountView];
     
 }
 #pragma mark - 切换步行,跑步,骑行模式
@@ -142,9 +156,48 @@ UIScrollViewDelegate
     [_blurEffectView addSubview:_rideButton];
     [_rideButton addTarget:self action:@selector(backButtonAction:) forControlEvents:UIControlEventTouchUpInside];
 }
+- (void)backButtonAction:(UIButton *)button {
+    if (button.tag == 1114) {
+        [_modeButton setImage:[UIImage imageNamed:@"ride.png"] forState:UIControlStateNormal];
+        _sportView.titleText = @"骑行";
+    } else if (button.tag == 1113) {
+        [_modeButton setImage:[UIImage imageNamed:@"walk.png"] forState:UIControlStateNormal];
+        _sportView.titleText = @"走路";
+    } else if (button.tag == 1112) {
+        [_modeButton setImage:[UIImage imageNamed:@"run.png"] forState:UIControlStateNormal];
+        _sportView.titleText = @"跑步";
+    }
+    [UIView animateWithDuration:0.2 animations:^{
+        _runButton.frame = _backButton.frame;
+        _walkButton.frame = _backButton.frame;
+        _rideButton.frame = _backButton.frame;
+        
+    } completion:^(BOOL finished) {
+        [_blurEffectView removeFromSuperview];
+        [_backButton removeFromSuperview];
+        [_walkButton removeFromSuperview];
+        [_runButton removeFromSuperview];
+        [_rideButton removeFromSuperview];
+    }];
+}
+
 
 #pragma mark - 切换运动和计步
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+
+    CGFloat lenth = scrollView.contentOffset.x / 180;
+    CGAffineTransform trans = CGAffineTransformRotate(_startButton.transform, -lenth * 35/ 180.0 * M_PI);
+    _sportView.transform = CGAffineTransformIdentity;
+    _sportView.transform = trans;
+    
+    
+    CGFloat lenth2 = (scrollView.contentOffset.x - SCREEN_WIDTH) / 180;
+    CGAffineTransform trans2 = CGAffineTransformRotate(_startButton.transform, -lenth2 * 35/ 180.0 * M_PI);
+    _stepCountView.transform = CGAffineTransformIdentity;
+    _stepCountView.transform = trans2;
+
+    
     CGFloat scale = SCREEN_WIDTH / _startButton.width;
     if (scrollView.contentOffset.x >= 0 && scrollView.contentOffset.x <= SCREEN_WIDTH) {
         _startButton.width = 100 - scrollView.contentOffset.x / scale;
@@ -174,34 +227,33 @@ UIScrollViewDelegate
 
     }
 }
-
-- (void)backButtonAction:(UIButton *)button {
-    if (button.tag == 1114) {
-        [_modeButton setImage:[UIImage imageNamed:@"ride.png"] forState:UIControlStateNormal];
-    } else if (button.tag == 1113) {
-        [_modeButton setImage:[UIImage imageNamed:@"walk.png"] forState:UIControlStateNormal];
-    } else if (button.tag == 1112) {
-        [_modeButton setImage:[UIImage imageNamed:@"run.png"] forState:UIControlStateNormal];
-    }
-    [UIView animateWithDuration:0.2 animations:^{
-        _runButton.frame = _backButton.frame;
-        _walkButton.frame = _backButton.frame;
-        _rideButton.frame = _backButton.frame;
-        
-    } completion:^(BOOL finished) {
-        [_blurEffectView removeFromSuperview];
-        [_backButton removeFromSuperview];
-        [_walkButton removeFromSuperview];
-        [_runButton removeFromSuperview];
-        [_rideButton removeFromSuperview];
+- (void)sportButtonAction {
+    [UIView animateWithDuration:0.5f animations:^{
+        [_sportButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_stepCountButton setTitleColor:[UIColor colorWithWhite:0.7 alpha:0.4] forState:UIControlStateNormal];
+        _scrollView.contentOffset = CGPointMake(0, 0);
     }];
-}
 
+}
+- (void)stepButtonAction {
+    [UIView animateWithDuration:0.5f animations:^{
+        [_stepCountButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_sportButton setTitleColor:[UIColor colorWithWhite:0.7 alpha:0.4] forState:UIControlStateNormal];
+        _scrollView.contentOffset = CGPointMake(SCREEN_WIDTH, 0);
+        
+    }];
+    
+    
+}
+#pragma mark - 开始按钮点击事件
 - (void)startButtonAction {
     StartViewController *startVC = [[StartViewController alloc] init];
     [self.navigationController pushViewController:startVC animated:YES];
 }
-
+#pragma mark - 天气label的手势事件
+- (void)tapWeatherLabelAction {
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -21,11 +21,11 @@
 /**
  *  标题
  */
-@property (nonatomic, copy) NSString *title;
+@property (copy) NSString *title;
 
 /**
  *  副标题
  */
-@property (nonatomic, copy) NSString *subtitle;
+@property (copy) NSString *subtitle;
 
 @end

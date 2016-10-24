@@ -7,13 +7,18 @@
 //
 
 #import "StepCountView.h"
+#import "StepManager.h"
 
-@interface StepCountView ()
+@interface StepCountView () {
+    NSTimer *timer;
+}
+
 
 @property (nonatomic, retain) UIView *roundView;
 @property (nonatomic, retain) UILabel *todyLabel;
 @property (nonatomic, retain) UILabel *stepCountLabel;
 @property (nonatomic, retain) UILabel *targetLabel;
+@property (nonatomic, assign) long systemStep;
 
 @end
 
@@ -38,7 +43,6 @@
         [_roundView addSubview:_todyLabel];
         
         self.stepCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, (_roundView.height - 80) / 2, _roundView.width, 80)];
-        _stepCountLabel.text = @"5555";
         _stepCountLabel.textColor = [UIColor whiteColor];
         _stepCountLabel.textAlignment = NSTextAlignmentCenter;
         _stepCountLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:60];
@@ -50,8 +54,29 @@
         _targetLabel.textColor = [UIColor whiteColor];
         _targetLabel.font = kFONT_SIZE_18;
         [_roundView addSubview:_targetLabel];
+        
+        [[HealthManager shareInstance] getStepCount:[HealthManager predicateForSamplesToday] completionHandler:^(double value, NSError *error) {
+            if (error) {
+                NSLog(@"error");
+            } else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+//                    _stepCountLabel.text = [NSString stringWithFormat:@"%f", value];
+                    self.systemStep = value;
+                });
+            }
+        }];
+        [[StepManager shareManager] startWithStep];
+        timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(getStepNumber) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+        
+        
     }
     return self;
+}
+
+- (void)getStepNumber{
+    long step = [StepManager shareManager].step;
+    _stepCountLabel.text = [NSString stringWithFormat:@"%ld",step + _systemStep];
 }
 
 

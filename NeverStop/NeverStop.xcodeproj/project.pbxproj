@@ -26,6 +26,9 @@
 		405E49281DBCD0EB004105F2 /* Route.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E49201DBCD0EB004105F2 /* Route.m */; };
 		405E49291DBCD0EB004105F2 /* RouteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E49221DBCD0EB004105F2 /* RouteTableViewCell.m */; };
 		405E492A1DBCD0EB004105F2 /* RouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E49241DBCD0EB004105F2 /* RouteViewController.m */; };
+		40AD5F8D1DBDA36500FFE06D /* SQLiteDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AD5F8C1DBDA36500FFE06D /* SQLiteDatabaseManager.m */; };
+		40AD5F8F1DBDA59D00FFE06D /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 40AD5F8E1DBDA59D00FFE06D /* libsqlite3.0.tbd */; };
+		40AD5F921DBDA93D00FFE06D /* StepCountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AD5F911DBDA93D00FFE06D /* StepCountModel.m */; };
 		494374131DB9B29800FF641A /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 494374081DB9B29800FF641A /* MessageViewController.m */; };
 		494374141DB9B29800FF641A /* MotionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4943740B1DB9B29800FF641A /* MotionViewController.m */; };
 		494374151DB9B29800FF641A /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4943740E1DB9B29800FF641A /* MyViewController.m */; };
@@ -105,6 +108,11 @@
 		405E49221DBCD0EB004105F2 /* RouteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteTableViewCell.m; sourceTree = "<group>"; };
 		405E49231DBCD0EB004105F2 /* RouteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteViewController.h; sourceTree = "<group>"; };
 		405E49241DBCD0EB004105F2 /* RouteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteViewController.m; sourceTree = "<group>"; };
+		40AD5F8B1DBDA36500FFE06D /* SQLiteDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLiteDatabaseManager.h; sourceTree = "<group>"; };
+		40AD5F8C1DBDA36500FFE06D /* SQLiteDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLiteDatabaseManager.m; sourceTree = "<group>"; };
+		40AD5F8E1DBDA59D00FFE06D /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		40AD5F901DBDA93D00FFE06D /* StepCountModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepCountModel.h; sourceTree = "<group>"; };
+		40AD5F911DBDA93D00FFE06D /* StepCountModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepCountModel.m; sourceTree = "<group>"; };
 		494374071DB9B29800FF641A /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
 		494374081DB9B29800FF641A /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 		4943740A1DB9B29800FF641A /* MotionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MotionViewController.h; sourceTree = "<group>"; };
@@ -156,8 +164,8 @@
 		EE1A00481DB8CFC80003762E /* StepManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepManager.m; sourceTree = "<group>"; };
 		EE1A00491DB8CFC80003762E /* StepModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepModel.h; sourceTree = "<group>"; };
 		EE1A004A1DB8CFC80003762E /* StepModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepModel.m; sourceTree = "<group>"; };
-		EE1A004B1DB8CFC80003762E /* HealthManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthManager.h; sourceTree = "<group>"; };
-		EE1A004C1DB8CFC80003762E /* HealthManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthManager.m; sourceTree = "<group>"; };
+		EE1A004B1DB8CFC80003762E /* HealthManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HealthManager.h; path = ../../../../HealthManager.h; sourceTree = "<group>"; };
+		EE1A004C1DB8CFC80003762E /* HealthManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HealthManager.m; path = ../../../../HealthManager.m; sourceTree = "<group>"; };
 		EE1A00501DB8D0AC0003762E /* NeverStop.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NeverStop.pch; sourceTree = "<group>"; };
 		EE1A005C1DB8E0090003762E /* NeverStop.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = NeverStop.entitlements; sourceTree = "<group>"; };
 		EE1AFFE61DB8CF610003762E /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -200,6 +208,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40AD5F8F1DBDA59D00FFE06D /* libsqlite3.0.tbd in Frameworks */,
 				51A099F404C6DE66F7A2C786 /* libPods-NeverStop.a in Frameworks */,
 				EEC8E70D1DB8ED1500349793 /* HealthKit.framework in Frameworks */,
 			);
@@ -224,6 +233,8 @@
 				EE1A00481DB8CFC80003762E /* StepManager.m */,
 				EE1A00491DB8CFC80003762E /* StepModel.h */,
 				EE1A004A1DB8CFC80003762E /* StepModel.m */,
+				EE1A004B1DB8CFC80003762E /* HealthManager.h */,
+				EE1A004C1DB8CFC80003762E /* HealthManager.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -342,6 +353,17 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		40AD5F8A1DBDA30200FFE06D /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				40AD5F8B1DBDA36500FFE06D /* SQLiteDatabaseManager.h */,
+				40AD5F8C1DBDA36500FFE06D /* SQLiteDatabaseManager.m */,
+				40AD5F901DBDA93D00FFE06D /* StepCountModel.h */,
+				40AD5F911DBDA93D00FFE06D /* StepCountModel.m */,
+			);
+			name = Database;
+			sourceTree = "<group>";
+		};
 		494374021DB9B29800FF641A /* Modul */ = {
 			isa = PBXGroup;
 			children = (
@@ -407,6 +429,7 @@
 		503DE363B59CE9450ADD39A8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				40AD5F8E1DBDA59D00FFE06D /* libsqlite3.0.tbd */,
 				EEC8E70C1DB8ED1500349793 /* HealthKit.framework */,
 				EBA9E162BB3BD86CD3202020 /* libPods-NeverStop.a */,
 			);
@@ -596,13 +619,12 @@
 		EE56EAA21DB8CE6D000B8082 /* NeverStop */ = {
 			isa = PBXGroup;
 			children = (
+				40AD5F8A1DBDA30200FFE06D /* Database */,
 				494374021DB9B29800FF641A /* Modul */,
 				EE56EAA31DB8CE6D000B8082 /* Supporting Files */,
 				EE56EAA61DB8CE6D000B8082 /* AppDelegate.h */,
 				EE56EAA71DB8CE6D000B8082 /* AppDelegate.m */,
 				EE56EAAF1DB8CE6D000B8082 /* Assets.xcassets */,
-				EE1A004B1DB8CFC80003762E /* HealthManager.h */,
-				EE1A004C1DB8CFC80003762E /* HealthManager.m */,
 				EE56EAB41DB8CE6D000B8082 /* Info.plist */,
 				EE56EAB11DB8CE6D000B8082 /* LaunchScreen.storyboard */,
 				EE56EAAC1DB8CE6D000B8082 /* Main.storyboard */,
@@ -802,12 +824,14 @@
 				EE1A00461DB8CF610003762E /* XLImagePageView.m in Sources */,
 				EE1A002C1DB8CF610003762E /* DYQBaseModel.m in Sources */,
 				EE1A00391DB8CF610003762E /* UIButton+Block.m in Sources */,
+				40AD5F921DBDA93D00FFE06D /* StepCountModel.m in Sources */,
 				494374141DB9B29800FF641A /* MotionViewController.m in Sources */,
 				405E49261DBCD0EB004105F2 /* Recommend.m in Sources */,
 				EE56EAA51DB8CE6D000B8082 /* main.m in Sources */,
 				405E49281DBCD0EB004105F2 /* Route.m in Sources */,
 				EE1A00421DB8CF610003762E /* NSUserDefaultsUtils.m in Sources */,
 				EE1A004F1DB8CFC80003762E /* HealthManager.m in Sources */,
+				40AD5F8D1DBDA36500FFE06D /* SQLiteDatabaseManager.m in Sources */,
 				EE1A00371DB8CF610003762E /* NSUserDefaults+Categories.m in Sources */,
 				405E492A1DBCD0EB004105F2 /* RouteViewController.m in Sources */,
 				EE1A004D1DB8CFC80003762E /* StepManager.m in Sources */,

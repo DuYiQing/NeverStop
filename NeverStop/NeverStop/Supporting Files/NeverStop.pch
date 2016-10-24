@@ -42,6 +42,7 @@
 #import "HealthManager.h"
 #import "HKHealthStore+AAPLExtensions.h"
 #import <UIKit/UIDevice.h>
+#import "SQLiteDatabaseManager.h"
 
 
 #import <AMapFoundationKit/AMapFoundationKit.h>

@@ -10,6 +10,7 @@
 #import "RouteViewController.h"
 #import "RouteTableViewCell.h"
 #import "Route.h"
+#import "DetailedViewController.h"
 @interface RouteViewController ()
 <
 UITableViewDelegate,
@@ -31,7 +32,7 @@ UITableViewDataSource
     self.view.backgroundColor = [UIColor blackColor];
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,SCREEN_HEIGHT) style:UITableViewStylePlain];
     _tableView.backgroundColor = [UIColor whiteColor];
-    _tableView.rowHeight = 155.f;
+    _tableView.rowHeight = 160.f;
     _tableView.delegate = self;
     _tableView.dataSource = self;
     [self.view addSubview:_tableView];
@@ -51,7 +52,7 @@ UITableViewDataSource
     if (cell == nil) {
         cell = [[RouteTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
-    cell.backgroundColor = [UIColor lightGrayColor];
+    cell.backgroundColor = [UIColor whiteColor];
     Route *routeModel = _routeArray[indexPath.row];
     cell.route = routeModel;
     return cell;
@@ -74,6 +75,15 @@ UITableViewDataSource
         NSLog(@"error");
     }];
     
+    
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+   DetailedViewController *DVC = [[DetailedViewController alloc] init];
+    Route *roModel = _routeArray[indexPath.row];
+    DVC.roModel = roModel;
+    
+    [self.navigationController pushViewController:DVC animated:YES];
     
 }
 

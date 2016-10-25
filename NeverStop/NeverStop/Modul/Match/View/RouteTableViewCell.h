@@ -16,5 +16,9 @@
 @property (nonatomic, retain) UIImageView *imageViewD;
 // 楼主头像
 @property (nonatomic, retain) UIImageView *userImabeView;
+// 距离
+@property (nonatomic, retain) UILabel *distance;
 @property (nonatomic, retain) Route *route;
+@property (nonatomic, retain) UIView *routeView;
+@property (nonatomic, retain) UIImageView *commentImageView;
 @end

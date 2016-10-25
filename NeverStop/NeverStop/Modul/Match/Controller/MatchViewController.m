@@ -10,6 +10,9 @@
 #import "RecommendTableViewCell.h"
 #import "Recommend.h"
 #import "RouteViewController.h"
+#import "NearbyTableViewCell.h"
+#import "Nearby.h"
+#import "NearbyViewController.h"
 
 @interface MatchViewController ()
 
@@ -30,9 +33,13 @@ UITableViewDataSource
 @property (nonatomic, assign) BOOL NEB;
 @property (nonatomic, strong) UIButton *nearbyButton;
 // 推荐的cell数量的数组
-@property (nonatomic, strong) NSMutableArray *reArray;
+@property (nonatomic, strong) NSMutableArray *Array;
+// 附近的cell的数组
+@property (nonatomic, strong) NSMutableArray *neArray;
 // 推荐的tableView
 @property (nonatomic, strong) UITableView *reTV;
+// 附近的tableView
+@property (nonatomic, strong) UITableView *neTV;
 @end
 
 @implementation MatchViewController
@@ -47,7 +54,9 @@ UITableViewDataSource
     self.NEB = NO;
     [self recommendTableView];
     [self recommendJX];
-    self.reArray = [NSMutableArray array];
+//    [self nearbyTableView];
+    self.Array = [NSMutableArray array];
+    self.neArray = [NSMutableArray array];
     
     NSArray *array = [NSArray arrayWithObjects:@"骑行",@"跑步", nil];
     
@@ -73,7 +82,7 @@ UITableViewDataSource
     _scrollView.directionalLockEnabled = YES;
     _scrollView.pagingEnabled = YES;
     _scrollView.bounces = NO;
-    _scrollView.backgroundColor = [UIColor grayColor];
+    _scrollView.backgroundColor = [UIColor whiteColor];
     _scrollView.delegate = self;
     [self.view addSubview:_scrollView];
 
@@ -104,6 +113,10 @@ UITableViewDataSource
     }
     
     
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    [self nearbyTableView];
 }
 
 - (void)segmentedAction:(NSInteger)index {
@@ -183,7 +196,7 @@ UITableViewDataSource
 - (void)nearbyButtonAction {
     _REB = NO;
     if (_REB == NO) {
-        
+        [self nearbyTableView];
         _REB = YES;
         [_nearbyButton setTitleColor:[UIColor whiteColor]forState:UIControlStateNormal];
         _nearbyButton.backgroundColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74/255.f alpha:1.0];
@@ -215,32 +228,67 @@ UITableViewDataSource
 
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
-    return _reArray.count;
+    if (_RSV.contentOffset.x == SCREEN_WIDTH) {
+        return _neArray.count;
+    } else if (_RSV.contentOffset.x == 0) {
+        return _Array.count;
+    }
+    return 0;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    if (_RSV.contentOffset.x == SCREEN_WIDTH) {
+        NearbyTableViewCell *neCell = [tableView dequeueReusableCellWithIdentifier:@"neCell"];
+        if (neCell == nil) {
+            neCell = [[NearbyTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"neCell"];
+        }
+        //neCell.backgroundColor = [UIColor greenColor];
+        Nearby *nearbyModel = _neArray[indexPath.row];
+        neCell.nearby = nearbyModel;
+        return neCell;
+        
+    } else if (_RSV.contentOffset.x == 0) {
     RecommendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (cell == nil) {
         cell = [[RecommendTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     cell.backgroundColor = [UIColor lightGrayColor];
-    Recommend *recommendModel = _reArray[indexPath.row];
-    cell.recommend = recommendModel;
-    return cell;
+    Recommend *recommendModel = _Array[indexPath.row];
+        cell.recommend = recommendModel;
+        return cell;
+    }
+    return 0;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (_RSV.contentOffset.x == SCREEN_WIDTH) {
+        NearbyViewController *NVC = [[NearbyViewController alloc] init];
+        [self.navigationController pushViewController:NVC animated:YES];
+    } else if (_RSV.contentOffset.x == 0) {
     RouteViewController *RVC = [[RouteViewController alloc] init];
     [self.navigationController pushViewController:RVC animated:YES];
+    }
 }
 
 
 - (void) recommendJX {
     
+
+        NSString *nearby = @"http://www.imxingzhe.com/api/v4/lushu_search?lat=38.88267204674046&limit=20&lng=121.5393655619539&page=0&type=3&xingzhe_timestamp=1476844257.990716";
+        [HttpClient GET:nearby body:nil headerFile:nil response:JYX_JSON success:^(id result) {
+            for (NSDictionary *neDIc in result) {
+                Nearby *neModel = [Nearby modelWithDic:neDIc];
+                [_neArray addObject:neModel];
+            }
+            [_neTV reloadData];
+        } failure:^(NSError *error) {
+            
+        }];
+ 
+
+
     NSString *recommendJx = @"http://www.imxingzhe.com/api/v4/collection_list/?lat=38.88268844181218&limit=20&lng=121.5394275381143&page=0&province_id=0&type=0&xingzhe_timestamp=1476843880.032672";
     
 [HttpClient GET:recommendJx body:nil headerFile:nil response:JYX_JSON success:^(id result) {
@@ -249,16 +297,34 @@ UITableViewDataSource
     NSArray *reArray = [Dic objectForKey:@"lushu_collection"];
     for (NSDictionary *reDic in reArray) {
         Recommend *reModel = [Recommend modelWithDic:reDic];
-        [_reArray addObject : reModel];
+        [_Array addObject : reModel];
     }
     [_reTV reloadData];
     
 } failure:^(NSError *error) {
     NSLog(@"error");
 }];
-
-
+    
+    
+    
 }
+
+
+// 附近的tabelView
+- (void) nearbyTableView {
+    
+    self.neTV = [[UITableView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
+    _neTV.backgroundColor = [UIColor redColor];
+    _neTV.rowHeight = 160.f;
+    _neTV.delegate = self;
+    _neTV.dataSource = self;
+    [_RSV addSubview:_neTV];
+}
+
+
+
+
+
 
 
 

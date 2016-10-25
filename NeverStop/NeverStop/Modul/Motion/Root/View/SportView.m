@@ -22,7 +22,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 10, SCREEN_WIDTH - 200, 30)];
-        _distanceLabel.text = @"跑步总里程(公里)";
+        _distanceLabel.text = @"XX总里程(公里)";
         _distanceLabel.textColor = [UIColor whiteColor];
         _distanceLabel.font = kFONT_SIZE_18_BOLD;
         _distanceLabel.textAlignment = NSTextAlignmentCenter;
@@ -36,16 +36,5 @@
         [self addSubview:_numberLabel];
     }
     return self;
-}
-
-- (void)setTitleText:(NSString *)titleText {
-    if (_titleText != titleText) {
-        _titleText = titleText;
-        _distanceLabel.text = [NSString stringWithFormat:@"%@总里程(公里)", titleText];
-//        if ([_titleText isEqualToString:@"走路"]) {
-//            _numberLabel.text =
-//        }
-    }
-    
 }
 @end

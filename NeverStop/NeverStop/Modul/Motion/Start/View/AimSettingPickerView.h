@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class AimSettingPickerView;
 @protocol AimSettingPickerViewDelegate <NSObject>
 
-- (void)aimSettingPicker:(AimSettingPickerView *)aimSettingPicker setting:(NSString *)setting viewForRow:(NSInteger)row forChildRow:(NSInteger)childRow;
+- (void)aimSettingPicker:(AimSettingPickerView *)aimSettingPicker setting:(NSString *)setting viewForRow:(NSInteger)row forComponent:(NSInteger)component;
 
 @end
 

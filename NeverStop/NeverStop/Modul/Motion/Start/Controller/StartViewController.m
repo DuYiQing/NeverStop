@@ -9,26 +9,18 @@
 #import "StartViewController.h"
 #import "JiangPickerView.h"
 #import "AimSettingPickerView.h"
-#import "CaloriePickerView.h"
-#import "CustomPickerView.h"
-#import "ExerciseViewController.h"
 
 @interface StartViewController ()
 <
 MAMapViewDelegate,
 AMapSearchDelegate,
-AimSettingPickerViewDelegate,
-CaloriePickerViewDelegate,
-CustomPickerViewDelegate
+AimSettingPickerViewDelegate
 >
 @property (nonatomic, retain) MAMapView *mapView;
 @property (nonatomic, retain) UIButton *startButton;
 @property (nonatomic, retain) UIButton *settingButton;
 @property (nonatomic, retain) AMapSearchAPI *mapSearchAPI;
 @property (nonatomic, retain) JiangPickerView *aimPickerView;
-
-@property (nonatomic, retain) NSString *setting;
-@property (nonatomic, assign) NSInteger row;
 
 
 @end
@@ -37,12 +29,11 @@ CustomPickerViewDelegate
 - (void)viewWillAppear:(BOOL)animated {
     [self.mapView setUserTrackingMode:MAUserTrackingModeFollow animated:YES];
     self.navigationController.navigationBarHidden = NO;
-    
+  
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     //自定义一个NaVigationBar
-    self.row = 0;
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     //消除阴影
     self.navigationController.navigationBar.shadowImage = [UIImage new];
@@ -57,8 +48,8 @@ CustomPickerViewDelegate
     _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width / 2, _mapView.y + _mapView.height, width, 50);
     [_settingButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
         AimSettingPickerView *aimSettingPicker = [[AimSettingPickerView alloc]init];
-        aimSettingPicker.delegate = self;
-        aimSettingPicker.contentMode = JiangPickerContentModeBottom;
+        [aimSettingPicker setDelegate:self];
+        [aimSettingPicker setContentMode:STPickerContentModeBottom];
         [aimSettingPicker show];
         
     }];
@@ -94,90 +85,13 @@ CustomPickerViewDelegate
     
 }
 
-- (void)aimSettingPicker:(AimSettingPickerView *)aimSettingPicker setting:(NSString *)setting viewForRow:(NSInteger)row forChildRow:(NSInteger)childRow {
-    
-    NSLog(@"%ld %ld", (long)childRow, (long)row);
-    self.row = row;
-    CustomPickerView *customPicker = [[CustomPickerView alloc] init];
-    customPicker.delegate = self;
-    customPicker.contentMode = JiangPickerContentModeBottom;
-    CaloriePickerView *caloriePicker = [[CaloriePickerView alloc] init];
-    caloriePicker.delegate = self;
-    caloriePicker.contentMode = JiangPickerContentModeBottom;
-    
-    switch (row) {
-      
-        case 0:
-            [_settingButton setTitle:@"设定单次目标" forState:UIControlStateNormal];
-            CGFloat width0 = [_settingButton.titleLabel.text widthWithFont:_settingButton.titleLabel.font constrainedToHeight:50];
-            _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width0 / 2, _mapView.y + _mapView.height + 100, width0, 50);
-            break;
-        case 1:
-            [_settingButton setTitle:setting forState:UIControlStateNormal];
-            CGFloat width1 = [_settingButton.titleLabel.text widthWithFont:_settingButton.titleLabel.font constrainedToHeight:50];
-            _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width1 / 2, _mapView.y + _mapView.height + 100, width1, 50);
-            break;
-        case 2:
-            if (childRow != 0) {
-                NSString *distanceStr = [NSString stringWithFormat:@"距离目标: %@", setting];
-                [_settingButton setTitle:distanceStr forState:UIControlStateNormal];
-                CGFloat width2 = [_settingButton.titleLabel.text widthWithFont:_settingButton.titleLabel.font constrainedToHeight:50];
-                _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width2 / 2, _mapView.y + _mapView.height + 100, width2, 50);
-                
-            } else {
-            customPicker.cus_ContentMode = CustomPickerContentModeDistance;
-            [customPicker show];
-            }
-            break;
-        case 3:
-            if (childRow != 0) {
-                NSString *timeStr = [NSString stringWithFormat:@"时间目标: %@", setting];
-                [_settingButton setTitle:timeStr forState:UIControlStateNormal];
-                CGFloat width3 = [_settingButton.titleLabel.text widthWithFont:_settingButton.titleLabel.font constrainedToHeight:50];
-                _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width3 / 2, _mapView.y + _mapView.height + 100, width3, 50);
-            } else {
-            customPicker.cus_ContentMode = CustomPickerContentModeTime;
-            [customPicker show];
-            }
-            break;
-        case 4:
-            if (childRow != 0) {
-                NSString *calorieStr = [NSString stringWithFormat:@"卡路里目标: %@", setting];
-                [_settingButton setTitle:calorieStr forState:UIControlStateNormal];
-                CGFloat width4 = [_settingButton.titleLabel.text widthWithFont:_settingButton.titleLabel.font constrainedToHeight:50];
-                _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width4 / 2, _mapView.y + _mapView.height + 100, width4, 50);
-            } else {
-            [caloriePicker show];
-            }
-            break;
-        default:
-            break;
-    }
-        
- 
-    
-  
-}
-- (void)caloriePicker:(CaloriePickerView *)caloriePicker selected:(NSString *)selected {
-    NSString *string = [NSString stringWithFormat:@"卡路里目标: %@大卡", selected];
-    [_settingButton setTitle:string forState:UIControlStateNormal];
+- (void)aimSettingPicker:(AimSettingPickerView *)aimSettingPicker setting:(NSString *)setting viewForRow:(NSInteger)row forComponent:(NSInteger)component {
+    [_settingButton setTitle:setting forState:UIControlStateNormal];
     CGFloat width = [_settingButton.titleLabel.text widthWithFont:_settingButton.titleLabel.font constrainedToHeight:50];
     _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width / 2, _mapView.y + _mapView.height + 100, width, 50);
+}
 
-}
-- (void)customPicker:(CustomPickerView *)customPicker selected:(NSString *)selected childSelected:(NSString *)childSelected viewForRow:(NSInteger)row forChildRow:(NSInteger)childRow {
-    if (customPicker.cus_ContentMode == CustomPickerContentModeDistance) {
-        [_settingButton setTitle:[NSString stringWithFormat:@"距离目标: %@.%@公里", selected, childSelected] forState:UIControlStateNormal];
-        CGFloat width = [_settingButton.titleLabel.text widthWithFont:_settingButton.titleLabel.font constrainedToHeight:50];
-        _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width / 2, _mapView.y + _mapView.height + 100, width, 50);
-    } else {
-       NSInteger time = [selected intValue] * 60 + [childSelected intValue];
-        [_settingButton setTitle:[NSString stringWithFormat:@"时间目标: %ld分钟", time] forState:UIControlStateNormal];
-        CGFloat width = [_settingButton.titleLabel.text widthWithFont:_settingButton.titleLabel.font constrainedToHeight:50];
-        _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width / 2, _mapView.y + _mapView.height + 100, width, 50);
-    }
-    
-}
+
 
 
 
@@ -209,11 +123,8 @@ CustomPickerViewDelegate
     [UIView animateWithDuration:0.25 animations:^{
         btn.transform = CGAffineTransformMakeScale(1.0, 1.0);
     } completion:^(BOOL finished) {
-        ExerciseViewController *exerciseVC = [[ExerciseViewController alloc] init];
-        exerciseVC.aim = _startButton.currentTitle;
-        exerciseVC.aimType = _row;
-        
-        
+        //执行动作响应
+       
     }];
 }
 

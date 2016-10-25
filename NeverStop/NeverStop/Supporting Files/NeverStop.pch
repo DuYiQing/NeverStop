@@ -35,6 +35,7 @@
 #import <Masonry.h>
 #import <MJExtension.h>
 #import <MJRefresh.h>
+#import <FTPopOverMenu.h>
 #import "UILabel+SizeToFit_W_H.h"
 #import "UIBarButtonItem+ButtonImage.h"
 #import "UIImage+Categories.h"
@@ -42,6 +43,7 @@
 #import "HealthManager.h"
 #import "HKHealthStore+AAPLExtensions.h"
 #import <UIKit/UIDevice.h>
+#import "SQLiteDatabaseManager.h"
 
 
 #import <AMapFoundationKit/AMapFoundationKit.h>

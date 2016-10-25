@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSInteger, STPickerContentMode) {
-    STPickerContentModeBottom, // 1.选择器在视图的下方
-    STPickerContentModeCenter  // 2.选择器在视图的中间
+typedef NS_ENUM(NSInteger, JiangPickerContentMode) {
+    JiangPickerContentModeBottom, // 1.选择器在视图的下方
+    JiangPickerContentModeCenter  // 2.选择器在视图的中间
 };
 @interface JiangPickerView : UIButton
 
@@ -39,9 +39,9 @@ typedef NS_ENUM(NSInteger, STPickerContentMode) {
 /** 4.按钮边框颜色颜色，default is RGB(205, 205, 205) */
 @property(null_resettable, nonatomic,strong) UIColor  *borderButtonColor;
 /** 5.选择器的高度，default is 240 */
-@property (nonatomic, assign)CGFloat heightPicker;
+@property (nonatomic, assign) CGFloat heightPicker;
 /** 6.视图的显示模式 */
-@property (nonatomic, assign)STPickerContentMode contentMode;
+@property (nonatomic, assign) JiangPickerContentMode contentMode;
 
 
 /**

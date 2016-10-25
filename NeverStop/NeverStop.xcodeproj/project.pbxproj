@@ -26,10 +26,17 @@
 		405E49281DBCD0EB004105F2 /* Route.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E49201DBCD0EB004105F2 /* Route.m */; };
 		405E49291DBCD0EB004105F2 /* RouteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E49221DBCD0EB004105F2 /* RouteTableViewCell.m */; };
 		405E492A1DBCD0EB004105F2 /* RouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E49241DBCD0EB004105F2 /* RouteViewController.m */; };
+<<<<<<< HEAD
 		49060C151DBEE5F0003FE373 /* NearbyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49060C141DBEE5F0003FE373 /* NearbyTableViewCell.m */; };
 		49060C1B1DBEE971003FE373 /* Nearby.m in Sources */ = {isa = PBXBuildFile; fileRef = 49060C1A1DBEE971003FE373 /* Nearby.m */; };
 		49060C471DBF8461003FE373 /* NearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49060C461DBF8461003FE373 /* NearbyViewController.m */; };
 		49060C4B1DBF8E4A003FE373 /* w2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 49060C4A1DBF8E4A003FE373 /* w2.jpg */; };
+=======
+		40AD5F8D1DBDA36500FFE06D /* SQLiteDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AD5F8C1DBDA36500FFE06D /* SQLiteDatabaseManager.m */; };
+		40AD5F8F1DBDA59D00FFE06D /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 40AD5F8E1DBDA59D00FFE06D /* libsqlite3.0.tbd */; };
+		40AD5F921DBDA93D00FFE06D /* StepCountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AD5F911DBDA93D00FFE06D /* StepCountModel.m */; };
+		40D141921DBE2FA200B80F66 /* WeekRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40D141911DBE2FA200B80F66 /* WeekRecordView.m */; };
+>>>>>>> fd8d108d668635defc4d3eed57344f77358b78af
 		494374131DB9B29800FF641A /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 494374081DB9B29800FF641A /* MessageViewController.m */; };
 		494374141DB9B29800FF641A /* MotionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4943740B1DB9B29800FF641A /* MotionViewController.m */; };
 		494374151DB9B29800FF641A /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4943740E1DB9B29800FF641A /* MyViewController.m */; };
@@ -77,6 +84,9 @@
 		EE56EAAE1DB8CE6D000B8082 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE56EAAC1DB8CE6D000B8082 /* Main.storyboard */; };
 		EE56EAB01DB8CE6D000B8082 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE56EAAF1DB8CE6D000B8082 /* Assets.xcassets */; };
 		EE56EAB31DB8CE6D000B8082 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE56EAB11DB8CE6D000B8082 /* LaunchScreen.storyboard */; };
+		EE7420881DBD97100007F71E /* CaloriePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7420871DBD97100007F71E /* CaloriePickerView.m */; };
+		EE7420911DBDB49D0007F71E /* CustomPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7420901DBDB49D0007F71E /* CustomPickerView.m */; };
+		EE7420C91DBE0FBD0007F71E /* ExerciseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7420C81DBE0FBD0007F71E /* ExerciseViewController.m */; };
 		EEC8E70D1DB8ED1500349793 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEC8E70C1DB8ED1500349793 /* HealthKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -113,6 +123,7 @@
 		405E49221DBCD0EB004105F2 /* RouteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteTableViewCell.m; sourceTree = "<group>"; };
 		405E49231DBCD0EB004105F2 /* RouteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteViewController.h; sourceTree = "<group>"; };
 		405E49241DBCD0EB004105F2 /* RouteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteViewController.m; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		49060C131DBEE5F0003FE373 /* NearbyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyTableViewCell.h; sourceTree = "<group>"; };
 		49060C141DBEE5F0003FE373 /* NearbyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyTableViewCell.m; sourceTree = "<group>"; };
 		49060C191DBEE971003FE373 /* Nearby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Nearby.h; sourceTree = "<group>"; };
@@ -120,6 +131,15 @@
 		49060C451DBF8461003FE373 /* NearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyViewController.h; sourceTree = "<group>"; };
 		49060C461DBF8461003FE373 /* NearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyViewController.m; sourceTree = "<group>"; };
 		49060C4A1DBF8E4A003FE373 /* w2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = w2.jpg; sourceTree = "<group>"; };
+=======
+		40AD5F8B1DBDA36500FFE06D /* SQLiteDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLiteDatabaseManager.h; sourceTree = "<group>"; };
+		40AD5F8C1DBDA36500FFE06D /* SQLiteDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLiteDatabaseManager.m; sourceTree = "<group>"; };
+		40AD5F8E1DBDA59D00FFE06D /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		40AD5F901DBDA93D00FFE06D /* StepCountModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepCountModel.h; sourceTree = "<group>"; };
+		40AD5F911DBDA93D00FFE06D /* StepCountModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepCountModel.m; sourceTree = "<group>"; };
+		40D141901DBE2FA200B80F66 /* WeekRecordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekRecordView.h; sourceTree = "<group>"; };
+		40D141911DBE2FA200B80F66 /* WeekRecordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekRecordView.m; sourceTree = "<group>"; };
+>>>>>>> fd8d108d668635defc4d3eed57344f77358b78af
 		494374071DB9B29800FF641A /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
 		494374081DB9B29800FF641A /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 		4943740A1DB9B29800FF641A /* MotionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MotionViewController.h; sourceTree = "<group>"; };
@@ -178,8 +198,8 @@
 		EE1A00481DB8CFC80003762E /* StepManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepManager.m; sourceTree = "<group>"; };
 		EE1A00491DB8CFC80003762E /* StepModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepModel.h; sourceTree = "<group>"; };
 		EE1A004A1DB8CFC80003762E /* StepModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepModel.m; sourceTree = "<group>"; };
-		EE1A004B1DB8CFC80003762E /* HealthManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthManager.h; sourceTree = "<group>"; };
-		EE1A004C1DB8CFC80003762E /* HealthManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthManager.m; sourceTree = "<group>"; };
+		EE1A004B1DB8CFC80003762E /* HealthManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HealthManager.h; path = ../../../../HealthManager.h; sourceTree = "<group>"; };
+		EE1A004C1DB8CFC80003762E /* HealthManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HealthManager.m; path = ../../../../HealthManager.m; sourceTree = "<group>"; };
 		EE1A00501DB8D0AC0003762E /* NeverStop.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NeverStop.pch; sourceTree = "<group>"; };
 		EE1A005C1DB8E0090003762E /* NeverStop.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = NeverStop.entitlements; sourceTree = "<group>"; };
 		EE1AFFE61DB8CF610003762E /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -214,6 +234,12 @@
 		EE56EAAF1DB8CE6D000B8082 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EE56EAB21DB8CE6D000B8082 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EE56EAB41DB8CE6D000B8082 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EE7420861DBD97100007F71E /* CaloriePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaloriePickerView.h; sourceTree = "<group>"; };
+		EE7420871DBD97100007F71E /* CaloriePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaloriePickerView.m; sourceTree = "<group>"; };
+		EE74208F1DBDB49D0007F71E /* CustomPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPickerView.h; sourceTree = "<group>"; };
+		EE7420901DBDB49D0007F71E /* CustomPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPickerView.m; sourceTree = "<group>"; };
+		EE7420C71DBE0FBD0007F71E /* ExerciseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseViewController.h; sourceTree = "<group>"; };
+		EE7420C81DBE0FBD0007F71E /* ExerciseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseViewController.m; sourceTree = "<group>"; };
 		EEC8E70C1DB8ED1500349793 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -222,6 +248,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40AD5F8F1DBDA59D00FFE06D /* libsqlite3.0.tbd in Frameworks */,
 				51A099F404C6DE66F7A2C786 /* libPods-NeverStop.a in Frameworks */,
 				EEC8E70D1DB8ED1500349793 /* HealthKit.framework in Frameworks */,
 			);
@@ -246,6 +273,8 @@
 				EE1A00481DB8CFC80003762E /* StepManager.m */,
 				EE1A00491DB8CFC80003762E /* StepModel.h */,
 				EE1A004A1DB8CFC80003762E /* StepModel.m */,
+				EE1A004B1DB8CFC80003762E /* HealthManager.h */,
+				EE1A004C1DB8CFC80003762E /* HealthManager.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -257,6 +286,8 @@
 				405E48E01DBA0B07004105F2 /* SportView.m */,
 				405E48E21DBA12BC004105F2 /* StepCountView.h */,
 				405E48E31DBA12BC004105F2 /* StepCountView.m */,
+				40D141901DBE2FA200B80F66 /* WeekRecordView.h */,
+				40D141911DBE2FA200B80F66 /* WeekRecordView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -273,9 +304,8 @@
 		405E48E51DBA4DBB004105F2 /* Start */ = {
 			isa = PBXGroup;
 			children = (
-				405E48E61DBA4DBB004105F2 /* Controller */,
-				405E492F1DBCDC00004105F2 /* Model */,
-				405E48EB1DBA4DBB004105F2 /* View */,
+				EE7420C31DBE0F8D0007F71E /* Exercise */,
+				EE7420C21DBE0F820007F71E /* Start */,
 			);
 			path = Start;
 			sourceTree = "<group>";
@@ -298,6 +328,10 @@
 				405E48EF1DBA4DBB004105F2 /* AimSettingPickerView.m */,
 				405E48F01DBA4DBB004105F2 /* JiangPickerView.h */,
 				405E48F11DBA4DBB004105F2 /* JiangPickerView.m */,
+				EE7420861DBD97100007F71E /* CaloriePickerView.h */,
+				EE7420871DBD97100007F71E /* CaloriePickerView.m */,
+				EE74208F1DBDB49D0007F71E /* CustomPickerView.h */,
+				EE7420901DBDB49D0007F71E /* CustomPickerView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -376,6 +410,17 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		40AD5F8A1DBDA30200FFE06D /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				40AD5F8B1DBDA36500FFE06D /* SQLiteDatabaseManager.h */,
+				40AD5F8C1DBDA36500FFE06D /* SQLiteDatabaseManager.m */,
+				40AD5F901DBDA93D00FFE06D /* StepCountModel.h */,
+				40AD5F911DBDA93D00FFE06D /* StepCountModel.m */,
+			);
+			name = Database;
+			sourceTree = "<group>";
+		};
 		494374021DB9B29800FF641A /* Modul */ = {
 			isa = PBXGroup;
 			children = (
@@ -443,6 +488,7 @@
 		503DE363B59CE9450ADD39A8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				40AD5F8E1DBDA59D00FFE06D /* libsqlite3.0.tbd */,
 				EEC8E70C1DB8ED1500349793 /* HealthKit.framework */,
 				EBA9E162BB3BD86CD3202020 /* libPods-NeverStop.a */,
 			);
@@ -632,19 +678,18 @@
 		EE56EAA21DB8CE6D000B8082 /* NeverStop */ = {
 			isa = PBXGroup;
 			children = (
+				40AD5F8A1DBDA30200FFE06D /* Database */,
 				494374021DB9B29800FF641A /* Modul */,
 				EE56EAA31DB8CE6D000B8082 /* Supporting Files */,
 				EE56EAA61DB8CE6D000B8082 /* AppDelegate.h */,
 				EE56EAA71DB8CE6D000B8082 /* AppDelegate.m */,
+				EE56EAA91DB8CE6D000B8082 /* ViewController.h */,
+				EE56EAAA1DB8CE6D000B8082 /* ViewController.m */,
 				EE56EAAF1DB8CE6D000B8082 /* Assets.xcassets */,
-				EE1A004B1DB8CFC80003762E /* HealthManager.h */,
-				EE1A004C1DB8CFC80003762E /* HealthManager.m */,
 				EE56EAB41DB8CE6D000B8082 /* Info.plist */,
 				EE56EAB11DB8CE6D000B8082 /* LaunchScreen.storyboard */,
 				EE56EAAC1DB8CE6D000B8082 /* Main.storyboard */,
 				EE1A005C1DB8E0090003762E /* NeverStop.entitlements */,
-				EE56EAA91DB8CE6D000B8082 /* ViewController.h */,
-				EE56EAAA1DB8CE6D000B8082 /* ViewController.m */,
 			);
 			path = NeverStop;
 			sourceTree = "<group>";
@@ -656,6 +701,49 @@
 				EE56EAA41DB8CE6D000B8082 /* main.m */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EE7420C21DBE0F820007F71E /* Start */ = {
+			isa = PBXGroup;
+			children = (
+				405E48E61DBA4DBB004105F2 /* Controller */,
+				405E492F1DBCDC00004105F2 /* Model */,
+				405E48EB1DBA4DBB004105F2 /* View */,
+			);
+			name = Start;
+			sourceTree = "<group>";
+		};
+		EE7420C31DBE0F8D0007F71E /* Exercise */ = {
+			isa = PBXGroup;
+			children = (
+				EE7420C61DBE0FA90007F71E /* Model */,
+				EE7420C51DBE0FA40007F71E /* View */,
+				EE7420C41DBE0F9A0007F71E /* Controller */,
+			);
+			name = Exercise;
+			sourceTree = "<group>";
+		};
+		EE7420C41DBE0F9A0007F71E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EE7420C71DBE0FBD0007F71E /* ExerciseViewController.h */,
+				EE7420C81DBE0FBD0007F71E /* ExerciseViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		EE7420C51DBE0FA40007F71E /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		EE7420C61DBE0FA90007F71E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -803,7 +891,11 @@
 				EE1A002F1DB8CF610003762E /* NSArray+Categories.m in Sources */,
 				49060C471DBF8461003FE373 /* NearbyViewController.m in Sources */,
 				405E49291DBCD0EB004105F2 /* RouteTableViewCell.m in Sources */,
+<<<<<<< HEAD
 				49704A8A1DBE217C0028DB2F /* DetailTableViewCell.m in Sources */,
+=======
+				EE7420881DBD97100007F71E /* CaloriePickerView.m in Sources */,
+>>>>>>> fd8d108d668635defc4d3eed57344f77358b78af
 				EE1A00441DB8CF610003762E /* UIImageView+XLWebCache.m in Sources */,
 				EE1A003B1DB8CF610003762E /* UIImage+Categories.m in Sources */,
 				405E48F41DBA4DBB004105F2 /* StartViewController.m in Sources */,
@@ -815,6 +907,7 @@
 				EE1A00311DB8CF610003762E /* NSDate+EasyExtend.mm in Sources */,
 				EE1A003C1DB8CF610003762E /* UILabel+SizeToFit_W_H.m in Sources */,
 				EE1A003F1DB8CF610003762E /* HttpClient.m in Sources */,
+				40D141921DBE2FA200B80F66 /* WeekRecordView.m in Sources */,
 				EE1A004E1DB8CFC80003762E /* StepModel.m in Sources */,
 				EE56EAAB1DB8CE6D000B8082 /* ViewController.m in Sources */,
 				405E49271DBCD0EB004105F2 /* RecommendTableViewCell.m in Sources */,
@@ -828,6 +921,7 @@
 				494374151DB9B29800FF641A /* MyViewController.m in Sources */,
 				EE1A003D1DB8CF610003762E /* UIView+Frame.m in Sources */,
 				EE1A002B1DB8CF610003762E /* BaseViewController.m in Sources */,
+				EE7420C91DBE0FBD0007F71E /* ExerciseViewController.m in Sources */,
 				EE1A00341DB8CF610003762E /* NSString+Categories.m in Sources */,
 				49704A871DBDF5560028DB2F /* Detail.m in Sources */,
 				405E49251DBCD0EB004105F2 /* MatchViewController.m in Sources */,
@@ -845,13 +939,16 @@
 				EE1A002C1DB8CF610003762E /* DYQBaseModel.m in Sources */,
 				49060C1B1DBEE971003FE373 /* Nearby.m in Sources */,
 				EE1A00391DB8CF610003762E /* UIButton+Block.m in Sources */,
+				40AD5F921DBDA93D00FFE06D /* StepCountModel.m in Sources */,
 				494374141DB9B29800FF641A /* MotionViewController.m in Sources */,
 				405E49261DBCD0EB004105F2 /* Recommend.m in Sources */,
+				EE7420911DBDB49D0007F71E /* CustomPickerView.m in Sources */,
 				EE56EAA51DB8CE6D000B8082 /* main.m in Sources */,
 				405E49281DBCD0EB004105F2 /* Route.m in Sources */,
 				49704A311DBDA7CE0028DB2F /* DetailedViewController.m in Sources */,
 				EE1A00421DB8CF610003762E /* NSUserDefaultsUtils.m in Sources */,
 				EE1A004F1DB8CFC80003762E /* HealthManager.m in Sources */,
+				40AD5F8D1DBDA36500FFE06D /* SQLiteDatabaseManager.m in Sources */,
 				EE1A00371DB8CF610003762E /* NSUserDefaults+Categories.m in Sources */,
 				405E492A1DBCD0EB004105F2 /* RouteViewController.m in Sources */,
 				EE1A004D1DB8CFC80003762E /* StepManager.m in Sources */,

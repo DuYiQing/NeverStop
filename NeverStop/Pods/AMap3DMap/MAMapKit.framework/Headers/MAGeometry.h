@@ -13,24 +13,20 @@
 extern "C" {
 #endif
     
-    struct MACoordinateBounds{
+    typedef struct {
         CLLocationCoordinate2D northEast;
         CLLocationCoordinate2D southWest;
-    };
-    typedef struct MACoordinateBounds MACoordinateBounds;
+    } MACoordinateBounds;
     
-    
-    struct MACoordinateSpan{
+    typedef struct {
         CLLocationDegrees latitudeDelta;
         CLLocationDegrees longitudeDelta;
-    };
-    typedef struct MACoordinateSpan MACoordinateSpan;
+    } MACoordinateSpan;
     
-    struct MACoordinateRegion{
+    typedef struct {
         CLLocationCoordinate2D center;
         MACoordinateSpan span;
-    };
-    typedef struct MACoordinateRegion MACoordinateRegion;
+    } MACoordinateRegion;
     
     static inline MACoordinateBounds MACoordinateBoundsMake(CLLocationCoordinate2D northEast,CLLocationCoordinate2D southWest)
     {
@@ -61,29 +57,26 @@ extern "C" {
     /**
      *  平面投影坐标结构定义
      */
-    struct MAMapPoint{
+    typedef struct {
         double x;
         double y;
-    };
-    typedef struct MAMapPoint MAMapPoint;
+    } MAMapPoint;
     
     /**
      *  平面投影大小结构定义
      */
-    struct MAMapSize{
+    typedef struct {
         double width;
         double height;
-    };
-    typedef struct MAMapSize MAMapSize;
+    } MAMapSize;
     
     /**
      *  平面投影矩形结构定义
      */
-    struct MAMapRect{
+    typedef struct {
         MAMapPoint origin;
         MAMapSize size;
-    };
-    typedef struct MAMapRect MAMapRect;
+    } MAMapRect;
     
     /**
      *  比例关系:MAZoomScale = Screen Point / MAMapPoint, 当MAZoomScale = 1时, 1 screen point = 1 MAMapPoint, 当MAZoomScale = 0.5时, 1 screen point = 2 MAMapPoints

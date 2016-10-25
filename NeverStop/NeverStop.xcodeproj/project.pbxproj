@@ -29,6 +29,7 @@
 		40AD5F8D1DBDA36500FFE06D /* SQLiteDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AD5F8C1DBDA36500FFE06D /* SQLiteDatabaseManager.m */; };
 		40AD5F8F1DBDA59D00FFE06D /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 40AD5F8E1DBDA59D00FFE06D /* libsqlite3.0.tbd */; };
 		40AD5F921DBDA93D00FFE06D /* StepCountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AD5F911DBDA93D00FFE06D /* StepCountModel.m */; };
+		40D141921DBE2FA200B80F66 /* WeekRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40D141911DBE2FA200B80F66 /* WeekRecordView.m */; };
 		494374131DB9B29800FF641A /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 494374081DB9B29800FF641A /* MessageViewController.m */; };
 		494374141DB9B29800FF641A /* MotionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4943740B1DB9B29800FF641A /* MotionViewController.m */; };
 		494374151DB9B29800FF641A /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4943740E1DB9B29800FF641A /* MyViewController.m */; };
@@ -113,6 +114,8 @@
 		40AD5F8E1DBDA59D00FFE06D /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		40AD5F901DBDA93D00FFE06D /* StepCountModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepCountModel.h; sourceTree = "<group>"; };
 		40AD5F911DBDA93D00FFE06D /* StepCountModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepCountModel.m; sourceTree = "<group>"; };
+		40D141901DBE2FA200B80F66 /* WeekRecordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekRecordView.h; sourceTree = "<group>"; };
+		40D141911DBE2FA200B80F66 /* WeekRecordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekRecordView.m; sourceTree = "<group>"; };
 		494374071DB9B29800FF641A /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
 		494374081DB9B29800FF641A /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 		4943740A1DB9B29800FF641A /* MotionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MotionViewController.h; sourceTree = "<group>"; };
@@ -246,6 +249,8 @@
 				405E48E01DBA0B07004105F2 /* SportView.m */,
 				405E48E21DBA12BC004105F2 /* StepCountView.h */,
 				405E48E31DBA12BC004105F2 /* StepCountView.m */,
+				40D141901DBE2FA200B80F66 /* WeekRecordView.h */,
+				40D141911DBE2FA200B80F66 /* WeekRecordView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -624,13 +629,13 @@
 				EE56EAA31DB8CE6D000B8082 /* Supporting Files */,
 				EE56EAA61DB8CE6D000B8082 /* AppDelegate.h */,
 				EE56EAA71DB8CE6D000B8082 /* AppDelegate.m */,
+				EE56EAA91DB8CE6D000B8082 /* ViewController.h */,
+				EE56EAAA1DB8CE6D000B8082 /* ViewController.m */,
 				EE56EAAF1DB8CE6D000B8082 /* Assets.xcassets */,
 				EE56EAB41DB8CE6D000B8082 /* Info.plist */,
 				EE56EAB11DB8CE6D000B8082 /* LaunchScreen.storyboard */,
 				EE56EAAC1DB8CE6D000B8082 /* Main.storyboard */,
 				EE1A005C1DB8E0090003762E /* NeverStop.entitlements */,
-				EE56EAA91DB8CE6D000B8082 /* ViewController.h */,
-				EE56EAAA1DB8CE6D000B8082 /* ViewController.m */,
 			);
 			path = NeverStop;
 			sourceTree = "<group>";
@@ -797,6 +802,7 @@
 				EE1A00311DB8CF610003762E /* NSDate+EasyExtend.mm in Sources */,
 				EE1A003C1DB8CF610003762E /* UILabel+SizeToFit_W_H.m in Sources */,
 				EE1A003F1DB8CF610003762E /* HttpClient.m in Sources */,
+				40D141921DBE2FA200B80F66 /* WeekRecordView.m in Sources */,
 				EE1A004E1DB8CFC80003762E /* StepModel.m in Sources */,
 				EE56EAAB1DB8CE6D000B8082 /* ViewController.m in Sources */,
 				405E49271DBCD0EB004105F2 /* RecommendTableViewCell.m in Sources */,

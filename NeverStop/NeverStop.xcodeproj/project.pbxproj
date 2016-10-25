@@ -12,8 +12,6 @@
 		40121E8C1DB9E6FD008BB927 /* walk.png in Resources */ = {isa = PBXBuildFile; fileRef = 40121E8B1DB9E6FD008BB927 /* walk.png */; };
 		40121E8E1DB9E702008BB927 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 40121E8D1DB9E702008BB927 /* back.png */; };
 		405E48DB1DBA0579004105F2 /* leave.png in Resources */ = {isa = PBXBuildFile; fileRef = 405E48DA1DBA0579004105F2 /* leave.png */; };
-		405E48E11DBA0B07004105F2 /* SportView.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E48E01DBA0B07004105F2 /* SportView.m */; };
-		405E48E41DBA12BC004105F2 /* StepCountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E48E31DBA12BC004105F2 /* StepCountView.m */; };
 		405E48F21DBA4DBB004105F2 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 405E48E71DBA4DBB004105F2 /* 1.png */; };
 		405E48F31DBA4DBB004105F2 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 405E48E81DBA4DBB004105F2 /* 2.png */; };
 		405E48F41DBA4DBB004105F2 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E48EA1DBA4DBB004105F2 /* StartViewController.m */; };
@@ -26,12 +24,19 @@
 		405E49281DBCD0EB004105F2 /* Route.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E49201DBCD0EB004105F2 /* Route.m */; };
 		405E49291DBCD0EB004105F2 /* RouteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E49221DBCD0EB004105F2 /* RouteTableViewCell.m */; };
 		405E492A1DBCD0EB004105F2 /* RouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E49241DBCD0EB004105F2 /* RouteViewController.m */; };
+		409229B91DBFC99D00FDAD4E /* MotionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 409229AC1DBFC99D00FDAD4E /* MotionViewController.m */; };
+		409229BA1DBFC99D00FDAD4E /* StepManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 409229AF1DBFC99D00FDAD4E /* StepManager.m */; };
+		409229BB1DBFC99D00FDAD4E /* StepModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 409229B11DBFC99D00FDAD4E /* StepModel.m */; };
+		409229BC1DBFC99D00FDAD4E /* SportView.m in Sources */ = {isa = PBXBuildFile; fileRef = 409229B41DBFC99D00FDAD4E /* SportView.m */; };
+		409229BD1DBFC99D00FDAD4E /* StepCountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 409229B61DBFC99D00FDAD4E /* StepCountView.m */; };
+		409229BE1DBFC99D00FDAD4E /* WeekRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 409229B81DBFC99D00FDAD4E /* WeekRecordView.m */; };
+		409229C11DBFCA0500FDAD4E /* SQLiteDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 409229C01DBFCA0500FDAD4E /* SQLiteDatabaseManager.m */; };
+		409229C41DBFCACD00FDAD4E /* StepCountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 409229C31DBFCACD00FDAD4E /* StepCountModel.m */; };
 		49060C151DBEE5F0003FE373 /* NearbyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49060C141DBEE5F0003FE373 /* NearbyTableViewCell.m */; };
 		49060C1B1DBEE971003FE373 /* Nearby.m in Sources */ = {isa = PBXBuildFile; fileRef = 49060C1A1DBEE971003FE373 /* Nearby.m */; };
 		49060C471DBF8461003FE373 /* NearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49060C461DBF8461003FE373 /* NearbyViewController.m */; };
 		49060C4B1DBF8E4A003FE373 /* w2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 49060C4A1DBF8E4A003FE373 /* w2.jpg */; };
 		494374131DB9B29800FF641A /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 494374081DB9B29800FF641A /* MessageViewController.m */; };
-		494374141DB9B29800FF641A /* MotionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4943740B1DB9B29800FF641A /* MotionViewController.m */; };
 		494374151DB9B29800FF641A /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4943740E1DB9B29800FF641A /* MyViewController.m */; };
 		494374161DB9B29800FF641A /* ScopeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 494374111DB9B29800FF641A /* ScopeViewController.m */; };
 		4943741A1DB9B2A900FF641A /* 6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 494374181DB9B2A900FF641A /* 6.jpg */; };
@@ -68,8 +73,6 @@
 		EE1A00441DB8CF610003762E /* UIImageView+XLWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A00261DB8CF610003762E /* UIImageView+XLWebCache.m */; };
 		EE1A00451DB8CF610003762E /* XLImagePageDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A00281DB8CF610003762E /* XLImagePageDetailCell.m */; };
 		EE1A00461DB8CF610003762E /* XLImagePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A002A1DB8CF610003762E /* XLImagePageView.m */; };
-		EE1A004D1DB8CFC80003762E /* StepManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A00481DB8CFC80003762E /* StepManager.m */; };
-		EE1A004E1DB8CFC80003762E /* StepModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A004A1DB8CFC80003762E /* StepModel.m */; };
 		EE1A004F1DB8CFC80003762E /* HealthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A004C1DB8CFC80003762E /* HealthManager.m */; };
 		EE56EAA51DB8CE6D000B8082 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EE56EAA41DB8CE6D000B8082 /* main.m */; };
 		EE56EAA81DB8CE6D000B8082 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EE56EAA71DB8CE6D000B8082 /* AppDelegate.m */; };
@@ -87,10 +90,6 @@
 		40121E8B1DB9E6FD008BB927 /* walk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = walk.png; sourceTree = "<group>"; };
 		40121E8D1DB9E702008BB927 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		405E48DA1DBA0579004105F2 /* leave.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leave.png; sourceTree = "<group>"; };
-		405E48DF1DBA0B07004105F2 /* SportView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SportView.h; sourceTree = "<group>"; };
-		405E48E01DBA0B07004105F2 /* SportView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SportView.m; sourceTree = "<group>"; };
-		405E48E21DBA12BC004105F2 /* StepCountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepCountView.h; sourceTree = "<group>"; };
-		405E48E31DBA12BC004105F2 /* StepCountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepCountView.m; sourceTree = "<group>"; };
 		405E48E71DBA4DBB004105F2 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		405E48E81DBA4DBB004105F2 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		405E48E91DBA4DBB004105F2 /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
@@ -113,6 +112,22 @@
 		405E49221DBCD0EB004105F2 /* RouteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteTableViewCell.m; sourceTree = "<group>"; };
 		405E49231DBCD0EB004105F2 /* RouteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteViewController.h; sourceTree = "<group>"; };
 		405E49241DBCD0EB004105F2 /* RouteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteViewController.m; sourceTree = "<group>"; };
+		409229AB1DBFC99D00FDAD4E /* MotionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MotionViewController.h; sourceTree = "<group>"; };
+		409229AC1DBFC99D00FDAD4E /* MotionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MotionViewController.m; sourceTree = "<group>"; };
+		409229AE1DBFC99D00FDAD4E /* StepManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepManager.h; sourceTree = "<group>"; };
+		409229AF1DBFC99D00FDAD4E /* StepManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepManager.m; sourceTree = "<group>"; };
+		409229B01DBFC99D00FDAD4E /* StepModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepModel.h; sourceTree = "<group>"; };
+		409229B11DBFC99D00FDAD4E /* StepModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepModel.m; sourceTree = "<group>"; };
+		409229B31DBFC99D00FDAD4E /* SportView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SportView.h; sourceTree = "<group>"; };
+		409229B41DBFC99D00FDAD4E /* SportView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SportView.m; sourceTree = "<group>"; };
+		409229B51DBFC99D00FDAD4E /* StepCountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepCountView.h; sourceTree = "<group>"; };
+		409229B61DBFC99D00FDAD4E /* StepCountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepCountView.m; sourceTree = "<group>"; };
+		409229B71DBFC99D00FDAD4E /* WeekRecordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekRecordView.h; sourceTree = "<group>"; };
+		409229B81DBFC99D00FDAD4E /* WeekRecordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekRecordView.m; sourceTree = "<group>"; };
+		409229BF1DBFCA0500FDAD4E /* SQLiteDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLiteDatabaseManager.h; sourceTree = "<group>"; };
+		409229C01DBFCA0500FDAD4E /* SQLiteDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLiteDatabaseManager.m; sourceTree = "<group>"; };
+		409229C21DBFCACD00FDAD4E /* StepCountModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepCountModel.h; sourceTree = "<group>"; };
+		409229C31DBFCACD00FDAD4E /* StepCountModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepCountModel.m; sourceTree = "<group>"; };
 		49060C131DBEE5F0003FE373 /* NearbyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyTableViewCell.h; sourceTree = "<group>"; };
 		49060C141DBEE5F0003FE373 /* NearbyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyTableViewCell.m; sourceTree = "<group>"; };
 		49060C191DBEE971003FE373 /* Nearby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Nearby.h; sourceTree = "<group>"; };
@@ -122,8 +137,6 @@
 		49060C4A1DBF8E4A003FE373 /* w2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = w2.jpg; sourceTree = "<group>"; };
 		494374071DB9B29800FF641A /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
 		494374081DB9B29800FF641A /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
-		4943740A1DB9B29800FF641A /* MotionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MotionViewController.h; sourceTree = "<group>"; };
-		4943740B1DB9B29800FF641A /* MotionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MotionViewController.m; sourceTree = "<group>"; };
 		4943740D1DB9B29800FF641A /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
 		4943740E1DB9B29800FF641A /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
 		494374101DB9B29800FF641A /* ScopeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScopeViewController.h; sourceTree = "<group>"; };
@@ -174,12 +187,8 @@
 		EE1A00281DB8CF610003762E /* XLImagePageDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLImagePageDetailCell.m; sourceTree = "<group>"; };
 		EE1A00291DB8CF610003762E /* XLImagePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLImagePageView.h; sourceTree = "<group>"; };
 		EE1A002A1DB8CF610003762E /* XLImagePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLImagePageView.m; sourceTree = "<group>"; };
-		EE1A00471DB8CFC80003762E /* StepManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepManager.h; sourceTree = "<group>"; };
-		EE1A00481DB8CFC80003762E /* StepManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepManager.m; sourceTree = "<group>"; };
-		EE1A00491DB8CFC80003762E /* StepModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepModel.h; sourceTree = "<group>"; };
-		EE1A004A1DB8CFC80003762E /* StepModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepModel.m; sourceTree = "<group>"; };
-		EE1A004B1DB8CFC80003762E /* HealthManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthManager.h; sourceTree = "<group>"; };
-		EE1A004C1DB8CFC80003762E /* HealthManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthManager.m; sourceTree = "<group>"; };
+		EE1A004B1DB8CFC80003762E /* HealthManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HealthManager.h; path = ../../../../HealthManager.h; sourceTree = "<group>"; };
+		EE1A004C1DB8CFC80003762E /* HealthManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HealthManager.m; path = ../../../../HealthManager.m; sourceTree = "<group>"; };
 		EE1A00501DB8D0AC0003762E /* NeverStop.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NeverStop.pch; sourceTree = "<group>"; };
 		EE1A005C1DB8E0090003762E /* NeverStop.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = NeverStop.entitlements; sourceTree = "<group>"; };
 		EE1AFFE61DB8CF610003762E /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -237,37 +246,6 @@
 				364DA3B93C758159869B6031 /* Pods-NeverStop.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		405E48DC1DBA0A79004105F2 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				EE1A00471DB8CFC80003762E /* StepManager.h */,
-				EE1A00481DB8CFC80003762E /* StepManager.m */,
-				EE1A00491DB8CFC80003762E /* StepModel.h */,
-				EE1A004A1DB8CFC80003762E /* StepModel.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		405E48DD1DBA0A81004105F2 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				405E48DF1DBA0B07004105F2 /* SportView.h */,
-				405E48E01DBA0B07004105F2 /* SportView.m */,
-				405E48E21DBA12BC004105F2 /* StepCountView.h */,
-				405E48E31DBA12BC004105F2 /* StepCountView.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		405E48DE1DBA0A87004105F2 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				4943740A1DB9B29800FF641A /* MotionViewController.h */,
-				4943740B1DB9B29800FF641A /* MotionViewController.m */,
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		405E48E51DBA4DBB004105F2 /* Start */ = {
@@ -357,16 +335,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		405E492E1DBCDB59004105F2 /* Root */ = {
-			isa = PBXGroup;
-			children = (
-				405E48DE1DBA0A87004105F2 /* Controller */,
-				405E48DC1DBA0A79004105F2 /* Model */,
-				405E48DD1DBA0A81004105F2 /* View */,
-			);
-			path = Root;
-			sourceTree = "<group>";
-		};
 		405E492F1DBCDC00004105F2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -374,6 +342,53 @@
 				405E48ED1DBA4DBB004105F2 /* AimModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		409229A91DBFC99D00FDAD4E /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				409229AA1DBFC99D00FDAD4E /* Controller */,
+				409229AD1DBFC99D00FDAD4E /* Model */,
+				409229B21DBFC99D00FDAD4E /* View */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		409229AA1DBFC99D00FDAD4E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				409229AB1DBFC99D00FDAD4E /* MotionViewController.h */,
+				409229AC1DBFC99D00FDAD4E /* MotionViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		409229AD1DBFC99D00FDAD4E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				409229C21DBFCACD00FDAD4E /* StepCountModel.h */,
+				409229C31DBFCACD00FDAD4E /* StepCountModel.m */,
+				409229AE1DBFC99D00FDAD4E /* StepManager.h */,
+				409229AF1DBFC99D00FDAD4E /* StepManager.m */,
+				409229B01DBFC99D00FDAD4E /* StepModel.h */,
+				409229B11DBFC99D00FDAD4E /* StepModel.m */,
+				EE1A004B1DB8CFC80003762E /* HealthManager.h */,
+				EE1A004C1DB8CFC80003762E /* HealthManager.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		409229B21DBFC99D00FDAD4E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				409229B31DBFC99D00FDAD4E /* SportView.h */,
+				409229B41DBFC99D00FDAD4E /* SportView.m */,
+				409229B51DBFC99D00FDAD4E /* StepCountView.h */,
+				409229B61DBFC99D00FDAD4E /* StepCountView.m */,
+				409229B71DBFC99D00FDAD4E /* WeekRecordView.h */,
+				409229B81DBFC99D00FDAD4E /* WeekRecordView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		494374021DB9B29800FF641A /* Modul */ = {
@@ -400,7 +415,7 @@
 		494374091DB9B29800FF641A /* Motion */ = {
 			isa = PBXGroup;
 			children = (
-				405E492E1DBCDB59004105F2 /* Root */,
+				409229A91DBFC99D00FDAD4E /* Root */,
 				405E48E51DBA4DBB004105F2 /* Start */,
 			);
 			path = Motion;
@@ -632,13 +647,13 @@
 		EE56EAA21DB8CE6D000B8082 /* NeverStop */ = {
 			isa = PBXGroup;
 			children = (
+				409229BF1DBFCA0500FDAD4E /* SQLiteDatabaseManager.h */,
+				409229C01DBFCA0500FDAD4E /* SQLiteDatabaseManager.m */,
 				494374021DB9B29800FF641A /* Modul */,
 				EE56EAA31DB8CE6D000B8082 /* Supporting Files */,
 				EE56EAA61DB8CE6D000B8082 /* AppDelegate.h */,
 				EE56EAA71DB8CE6D000B8082 /* AppDelegate.m */,
 				EE56EAAF1DB8CE6D000B8082 /* Assets.xcassets */,
-				EE1A004B1DB8CFC80003762E /* HealthManager.h */,
-				EE1A004C1DB8CFC80003762E /* HealthManager.m */,
 				EE56EAB41DB8CE6D000B8082 /* Info.plist */,
 				EE56EAB11DB8CE6D000B8082 /* LaunchScreen.storyboard */,
 				EE56EAAC1DB8CE6D000B8082 /* Main.storyboard */,
@@ -807,7 +822,9 @@
 				EE1A00441DB8CF610003762E /* UIImageView+XLWebCache.m in Sources */,
 				EE1A003B1DB8CF610003762E /* UIImage+Categories.m in Sources */,
 				405E48F41DBA4DBB004105F2 /* StartViewController.m in Sources */,
+				409229BC1DBFC99D00FDAD4E /* SportView.m in Sources */,
 				EE1A00381DB8CF610003762E /* UIBarButtonItem+ButtonImage.m in Sources */,
+				409229BE1DBFC99D00FDAD4E /* WeekRecordView.m in Sources */,
 				EE1A00401DB8CF610003762E /* AppStoreUtils.m in Sources */,
 				494374131DB9B29800FF641A /* MessageViewController.m in Sources */,
 				EE1A002D1DB8CF610003762E /* DYQBaseView.m in Sources */,
@@ -815,19 +832,17 @@
 				EE1A00311DB8CF610003762E /* NSDate+EasyExtend.mm in Sources */,
 				EE1A003C1DB8CF610003762E /* UILabel+SizeToFit_W_H.m in Sources */,
 				EE1A003F1DB8CF610003762E /* HttpClient.m in Sources */,
-				EE1A004E1DB8CFC80003762E /* StepModel.m in Sources */,
 				EE56EAAB1DB8CE6D000B8082 /* ViewController.m in Sources */,
 				405E49271DBCD0EB004105F2 /* RecommendTableViewCell.m in Sources */,
 				49060C151DBEE5F0003FE373 /* NearbyTableViewCell.m in Sources */,
 				EE1A003E1DB8CF610003762E /* DataBaseManager.m in Sources */,
 				EE1A00361DB8CF610003762E /* NSString+Size.m in Sources */,
-				405E48E11DBA0B07004105F2 /* SportView.m in Sources */,
 				EE1A00321DB8CF610003762E /* NSDictionary+Categories.m in Sources */,
 				EE1A00351DB8CF610003762E /* NSString+Regex.m in Sources */,
-				405E48E41DBA12BC004105F2 /* StepCountView.m in Sources */,
 				494374151DB9B29800FF641A /* MyViewController.m in Sources */,
 				EE1A003D1DB8CF610003762E /* UIView+Frame.m in Sources */,
 				EE1A002B1DB8CF610003762E /* BaseViewController.m in Sources */,
+				409229C41DBFCACD00FDAD4E /* StepCountModel.m in Sources */,
 				EE1A00341DB8CF610003762E /* NSString+Categories.m in Sources */,
 				49704A871DBDF5560028DB2F /* Detail.m in Sources */,
 				405E49251DBCD0EB004105F2 /* MatchViewController.m in Sources */,
@@ -840,12 +855,15 @@
 				EE1A00411DB8CF610003762E /* FileManagerUtils.m in Sources */,
 				EE1A00301DB8CF610003762E /* NSDate+Categories.m in Sources */,
 				EE1A00451DB8CF610003762E /* XLImagePageDetailCell.m in Sources */,
+				409229C11DBFCA0500FDAD4E /* SQLiteDatabaseManager.m in Sources */,
 				EE1A00331DB8CF610003762E /* NSNumber+Extend.m in Sources */,
 				EE1A00461DB8CF610003762E /* XLImagePageView.m in Sources */,
+				409229BD1DBFC99D00FDAD4E /* StepCountView.m in Sources */,
 				EE1A002C1DB8CF610003762E /* DYQBaseModel.m in Sources */,
+				409229BB1DBFC99D00FDAD4E /* StepModel.m in Sources */,
 				49060C1B1DBEE971003FE373 /* Nearby.m in Sources */,
+				409229B91DBFC99D00FDAD4E /* MotionViewController.m in Sources */,
 				EE1A00391DB8CF610003762E /* UIButton+Block.m in Sources */,
-				494374141DB9B29800FF641A /* MotionViewController.m in Sources */,
 				405E49261DBCD0EB004105F2 /* Recommend.m in Sources */,
 				EE56EAA51DB8CE6D000B8082 /* main.m in Sources */,
 				405E49281DBCD0EB004105F2 /* Route.m in Sources */,
@@ -854,7 +872,7 @@
 				EE1A004F1DB8CFC80003762E /* HealthManager.m in Sources */,
 				EE1A00371DB8CF610003762E /* NSUserDefaults+Categories.m in Sources */,
 				405E492A1DBCD0EB004105F2 /* RouteViewController.m in Sources */,
-				EE1A004D1DB8CFC80003762E /* StepManager.m in Sources */,
+				409229BA1DBFC99D00FDAD4E /* StepManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

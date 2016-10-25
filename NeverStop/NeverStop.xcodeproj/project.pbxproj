@@ -187,8 +187,8 @@
 		EE1A00281DB8CF610003762E /* XLImagePageDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLImagePageDetailCell.m; sourceTree = "<group>"; };
 		EE1A00291DB8CF610003762E /* XLImagePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLImagePageView.h; sourceTree = "<group>"; };
 		EE1A002A1DB8CF610003762E /* XLImagePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLImagePageView.m; sourceTree = "<group>"; };
-		EE1A004B1DB8CFC80003762E /* HealthManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HealthManager.h; path = ../../../../HealthManager.h; sourceTree = "<group>"; };
-		EE1A004C1DB8CFC80003762E /* HealthManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HealthManager.m; path = ../../../../HealthManager.m; sourceTree = "<group>"; };
+		EE1A004B1DB8CFC80003762E /* HealthManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthManager.h; sourceTree = "<group>"; };
+		EE1A004C1DB8CFC80003762E /* HealthManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthManager.m; sourceTree = "<group>"; };
 		EE1A00501DB8D0AC0003762E /* NeverStop.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NeverStop.pch; sourceTree = "<group>"; };
 		EE1A005C1DB8E0090003762E /* NeverStop.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = NeverStop.entitlements; sourceTree = "<group>"; };
 		EE1AFFE61DB8CF610003762E /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -293,14 +293,14 @@
 		405E492B1DBCD6DF004105F2 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				405E491D1DBCD0EB004105F2 /* RecommendTableViewCell.h */,
-				405E491E1DBCD0EB004105F2 /* RecommendTableViewCell.m */,
-				405E49211DBCD0EB004105F2 /* RouteTableViewCell.h */,
-				405E49221DBCD0EB004105F2 /* RouteTableViewCell.m */,
 				49704A881DBE217C0028DB2F /* DetailTableViewCell.h */,
 				49704A891DBE217C0028DB2F /* DetailTableViewCell.m */,
 				49060C131DBEE5F0003FE373 /* NearbyTableViewCell.h */,
 				49060C141DBEE5F0003FE373 /* NearbyTableViewCell.m */,
+				405E491D1DBCD0EB004105F2 /* RecommendTableViewCell.h */,
+				405E491E1DBCD0EB004105F2 /* RecommendTableViewCell.m */,
+				405E49211DBCD0EB004105F2 /* RouteTableViewCell.h */,
+				405E49221DBCD0EB004105F2 /* RouteTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -308,14 +308,14 @@
 		405E492C1DBCD6E7004105F2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				405E49191DBCD0EB004105F2 /* MatchViewController.h */,
-				405E491A1DBCD0EB004105F2 /* MatchViewController.m */,
-				405E49231DBCD0EB004105F2 /* RouteViewController.h */,
-				405E49241DBCD0EB004105F2 /* RouteViewController.m */,
 				49704A2F1DBDA7CE0028DB2F /* DetailedViewController.h */,
 				49704A301DBDA7CE0028DB2F /* DetailedViewController.m */,
+				405E49191DBCD0EB004105F2 /* MatchViewController.h */,
+				405E491A1DBCD0EB004105F2 /* MatchViewController.m */,
 				49060C451DBF8461003FE373 /* NearbyViewController.h */,
 				49060C461DBF8461003FE373 /* NearbyViewController.m */,
+				405E49231DBCD0EB004105F2 /* RouteViewController.h */,
+				405E49241DBCD0EB004105F2 /* RouteViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -323,14 +323,14 @@
 		405E492D1DBCD6F0004105F2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				405E491B1DBCD0EB004105F2 /* Recommend.h */,
-				405E491C1DBCD0EB004105F2 /* Recommend.m */,
-				405E491F1DBCD0EB004105F2 /* Route.h */,
-				405E49201DBCD0EB004105F2 /* Route.m */,
 				49704A851DBDF5560028DB2F /* Detail.h */,
 				49704A861DBDF5560028DB2F /* Detail.m */,
 				49060C191DBEE971003FE373 /* Nearby.h */,
 				49060C1A1DBEE971003FE373 /* Nearby.m */,
+				405E491B1DBCD0EB004105F2 /* Recommend.h */,
+				405E491C1DBCD0EB004105F2 /* Recommend.m */,
+				405E491F1DBCD0EB004105F2 /* Route.h */,
+				405E49201DBCD0EB004105F2 /* Route.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -366,14 +366,14 @@
 		409229AD1DBFC99D00FDAD4E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EE1A004B1DB8CFC80003762E /* HealthManager.h */,
+				EE1A004C1DB8CFC80003762E /* HealthManager.m */,
 				409229C21DBFCACD00FDAD4E /* StepCountModel.h */,
 				409229C31DBFCACD00FDAD4E /* StepCountModel.m */,
 				409229AE1DBFC99D00FDAD4E /* StepManager.h */,
 				409229AF1DBFC99D00FDAD4E /* StepManager.m */,
 				409229B01DBFC99D00FDAD4E /* StepModel.h */,
 				409229B11DBFC99D00FDAD4E /* StepModel.m */,
-				EE1A004B1DB8CFC80003762E /* HealthManager.h */,
-				EE1A004C1DB8CFC80003762E /* HealthManager.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -389,6 +389,15 @@
 				409229B81DBFC99D00FDAD4E /* WeekRecordView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		409229C51DBFCD5300FDAD4E /* SQLite */ = {
+			isa = PBXGroup;
+			children = (
+				409229BF1DBFCA0500FDAD4E /* SQLiteDatabaseManager.h */,
+				409229C01DBFCA0500FDAD4E /* SQLiteDatabaseManager.m */,
+			);
+			path = SQLite;
 			sourceTree = "<group>";
 		};
 		494374021DB9B29800FF641A /* Modul */ = {
@@ -442,14 +451,14 @@
 		494374171DB9B2A900FF641A /* 素材 */ = {
 			isa = PBXGroup;
 			children = (
-				49060C4A1DBF8E4A003FE373 /* w2.jpg */,
-				49704A2D1DBDA1240028DB2F /* pl.png */,
 				494374181DB9B2A900FF641A /* 6.jpg */,
 				494374191DB9B2A900FF641A /* 7.jpg */,
 				40121E8D1DB9E702008BB927 /* back.png */,
 				405E48DA1DBA0579004105F2 /* leave.png */,
+				49704A2D1DBDA1240028DB2F /* pl.png */,
 				40121E891DB9E6F8008BB927 /* ride.png */,
 				40121E871DB9BCD2008BB927 /* run.png */,
+				49060C4A1DBF8E4A003FE373 /* w2.jpg */,
 				40121E8B1DB9E6FD008BB927 /* walk.png */,
 			);
 			path = "素材";
@@ -647,9 +656,8 @@
 		EE56EAA21DB8CE6D000B8082 /* NeverStop */ = {
 			isa = PBXGroup;
 			children = (
-				409229BF1DBFCA0500FDAD4E /* SQLiteDatabaseManager.h */,
-				409229C01DBFCA0500FDAD4E /* SQLiteDatabaseManager.m */,
 				494374021DB9B29800FF641A /* Modul */,
+				409229C51DBFCD5300FDAD4E /* SQLite */,
 				EE56EAA31DB8CE6D000B8082 /* Supporting Files */,
 				EE56EAA61DB8CE6D000B8082 /* AppDelegate.h */,
 				EE56EAA71DB8CE6D000B8082 /* AppDelegate.m */,

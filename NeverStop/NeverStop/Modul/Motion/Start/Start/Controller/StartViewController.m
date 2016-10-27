@@ -51,7 +51,11 @@ UINavigationControllerDelegate
     [super viewDidLoad];
     //自定义一个NaVigationBar
     self.row = 0;
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    __weak typeof(self) weakSelf = self;
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem getBarButtonItemWithImageName:@"map" HighLightedImageName:@"map" targetBlock:^{
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+
+    }];
     //消除阴影
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -60,13 +64,12 @@ UINavigationControllerDelegate
     // 设定目标按钮
     self.settingButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [_settingButton setTitle:@"设定单次目标" forState:UIControlStateNormal];
-    [_settingButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_settingButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     _settingButton.titleLabel.font = kFONT_SIZE_18_BOLD;
     _settingButton.backgroundColor = [UIColor clearColor];
     CGFloat width = [_settingButton.titleLabel.text widthWithFont:_settingButton.titleLabel.font constrainedToHeight:50];
     _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width / 2, _mapView.y + _mapView.height, width, 50);
     
-    __weak typeof(self) weakSelf = self;
     [_settingButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
         AimSettingPickerView *aimSettingPicker = [[AimSettingPickerView alloc]init];
         aimSettingPicker.delegate = weakSelf;
@@ -202,7 +205,10 @@ UINavigationControllerDelegate
     {
         CustomAnimateTransitionPush *animateTransitionPush=[CustomAnimateTransitionPush new];
         animateTransitionPush.contentMode = JiangContentModeToExercise;
-        animateTransitionPush.button = self.startButton;
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame = _startButton.frame;
+        button.y = button.y + 64;
+        animateTransitionPush.button = button;
         return animateTransitionPush;
     }
     else

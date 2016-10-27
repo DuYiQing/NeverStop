@@ -41,7 +41,6 @@ UIScrollViewDelegate
 
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBarHidden = YES;
-    self.tabBarController.tabBar.hidden = NO;
 
 }
 

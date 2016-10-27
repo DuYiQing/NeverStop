@@ -22,5 +22,7 @@
 // 距离
 @property (nonatomic, strong) NSNumber *distance;
 
+@property (nonatomic, strong) NSString *desc;
+
 
 @end

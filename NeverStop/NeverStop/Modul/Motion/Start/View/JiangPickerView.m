@@ -24,12 +24,12 @@
 - (void)setupDefault
 {
     // 1.设置数据的默认值
-    _title = nil;
-    _font = [UIFont systemFontOfSize:15];
-    _titleColor = [UIColor blackColor];
+    _title             = nil;
+    _font              = [UIFont systemFontOfSize:15];
+    _titleColor        = [UIColor blackColor];
     _borderButtonColor = [UIColor colorWithRed:205 / 255.f green:205 / 255.f blue:205 / 255.f alpha:1];
-    _heightPicker = 240;
-    _contentMode = JiangPickerContentModeBottom;
+    _heightPicker      = 240;
+    _contentMode       = STPickerContentModeBottom;
     
     // 2.设置自身的属性
     self.bounds = [UIScreen mainScreen].bounds;
@@ -54,7 +54,7 @@
 {
     [super layoutSubviews];
     
-    if (self.contentMode == JiangPickerContentModeBottom) {
+    if (self.contentMode == STPickerContentModeBottom) {
     }else {
         self.buttonLeft.y = self.lineViewDown.y + self.lineViewDown.height + 5;
         self.buttonRight.y = self.lineViewDown.y + self.lineViewDown.height + 5;
@@ -84,7 +84,7 @@
     [self setCenter:[UIApplication sharedApplication].keyWindow.center];
     [[UIApplication sharedApplication].keyWindow bringSubviewToFront:self];
     
-    if (self.contentMode == JiangPickerContentModeBottom) {
+    if (self.contentMode == STPickerContentModeBottom) {
         CGRect frameContent =  self.contentView.frame;
         frameContent.origin.y -= self.contentView.height;
         [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
@@ -105,7 +105,7 @@
 
 - (void)remove
 {
-    if (self.contentMode == JiangPickerContentModeBottom) {
+    if (self.contentMode == STPickerContentModeBottom) {
         CGRect frameContent =  self.contentView.frame;
         frameContent.origin.y += self.contentView.height;
         [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
@@ -114,7 +114,7 @@
         } completion:^(BOOL finished) {
             [self removeFromSuperview];
         }];
-    } else {
+    }else {
         CGRect frameContent =  self.contentView.frame;
         frameContent.origin.y += (SCREEN_HEIGHT + self.contentView.height) / 2;
         [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
@@ -177,12 +177,12 @@
     self.contentView.height = heightPicker;
 }
 
-- (void)setContentMode:(JiangPickerContentMode)contentMode
+- (void)setContentMode:(STPickerContentMode)contentMode
 {
     if (_contentMode != contentMode) {
         _contentMode = contentMode;
     }
-    if (contentMode == JiangPickerContentModeCenter) {
+    if (contentMode == STPickerContentModeCenter) {
         self.contentView.height += 44;
     }
 }
@@ -221,7 +221,7 @@
         CGFloat pickerX = 0;
         CGFloat pickerY = _lineView.y + _lineView.height;
         _pickerView = [[UIPickerView alloc]initWithFrame:CGRectMake(pickerX, pickerY, pickerW, pickerH)];
-        _pickerView.backgroundColor = [UIColor whiteColor];
+        [_pickerView setBackgroundColor:[UIColor whiteColor]];
     }
     return _pickerView;
 }

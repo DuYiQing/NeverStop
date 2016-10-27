@@ -579,9 +579,9 @@
 		E9956C7737EA787D34BD8143681D39F5 /* UIActivityIndicatorView+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIActivityIndicatorView+AFNetworking.h"; path = "UIKit+AFNetworking/UIActivityIndicatorView+AFNetworking.h"; sourceTree = "<group>"; };
 		EADA5B956754D8C6E8F26307FB914E0B /* SVProgressHUD-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SVProgressHUD-dummy.m"; sourceTree = "<group>"; };
 		EC741EE2C558B0F425E74EFC7FDECFA2 /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MAMapKit.framework; sourceTree = "<group>"; };
-		ED5AA80EFAD94AE02A0661CC6B15D924 /* UMMobClick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UMMobClick.framework; path = umsdk_IOS_analyics_idfa_v4.1.0/UMMobClick.framework; sourceTree = "<group>"; };
 		EE75754838C89B745D6FE81B2E23214C /* NSString+MJExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+MJExtension.h"; path = "MJExtension/NSString+MJExtension.h"; sourceTree = "<group>"; };
 		EFC3136B6334FC1C5C5636B7004E8162 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+AFNetworking.m"; path = "UIKit+AFNetworking/UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		F05AB7E3B77DAEFC5B43BCEA46D7BAA5 /* UMMobClick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UMMobClick.framework; path = umsdk_IOS_analyics_idfa_v4.1.2/UMMobClick.framework; sourceTree = "<group>"; };
 		F0DEFB7AEC38445B60AB3EBE4DCC1839 /* MBProgressHUD-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD-dummy.m"; sourceTree = "<group>"; };
 		F1F32A00D2CC4D82F8187E67FAE10A5E /* MAOfflineProvince.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MAOfflineProvince.h; path = MAMapKit.framework/Headers/MAOfflineProvince.h; sourceTree = "<group>"; };
 		F25DB59EE7F4A2516D2DE5A77FC05B00 /* AMapFoundationVersion.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AMapFoundationVersion.h; path = AMapFoundationKit.framework/Headers/AMapFoundationVersion.h; sourceTree = "<group>"; };
@@ -738,6 +738,14 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/CocoaLumberjack";
+			sourceTree = "<group>";
+		};
+		1398673099C9CB67187B13FBB00225AD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F05AB7E3B77DAEFC5B43BCEA46D7BAA5 /* UMMobClick.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		17269C52F3A5DC75C8158362688ECBBA /* Support Files */ = {
@@ -1300,17 +1308,9 @@
 		DDDDDBE14A1A9A625FDA84EC2BD92462 /* UMengAnalytics */ = {
 			isa = PBXGroup;
 			children = (
-				E4C815EB9527B59EBF24B97D20B580A6 /* Frameworks */,
+				1398673099C9CB67187B13FBB00225AD /* Frameworks */,
 			);
 			path = UMengAnalytics;
-			sourceTree = "<group>";
-		};
-		E4C815EB9527B59EBF24B97D20B580A6 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				ED5AA80EFAD94AE02A0661CC6B15D924 /* UMMobClick.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		E99CDBC8147071584F6285A2E5397792 /* Resources */ = {

@@ -10,6 +10,7 @@
 #import "SportView.h"
 #import "StepCountView.h"
 #import "StartViewController.h"
+#import "WeekRecordView.h"
 
 @interface MotionViewController ()
 <
@@ -29,6 +30,7 @@ UIScrollViewDelegate
 @property (nonatomic, strong) UIButton *stepCountButton;
 @property (nonatomic, strong) UIButton *sportButton;
 @property (nonatomic, strong) UIButton *startButton;
+@property (nonatomic, strong) WeekRecordView *weekRecordView;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) SQLiteDatabaseManager *SQLManager;
 
@@ -61,6 +63,15 @@ UIScrollViewDelegate
     [_SQLManager openSQLite];
     [_SQLManager createTable];
     
+    FTPopOverMenuConfiguration *configuration = [FTPopOverMenuConfiguration defaultConfiguration];
+//    configuration.menuRowHeight = 80;
+    configuration.menuWidth = 270;
+    configuration.textColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74/255.f alpha:1.0];
+    configuration.textFont = [UIFont boldSystemFontOfSize:14];
+    configuration.tintColor = [UIColor colorWithWhite:1.0 alpha:0.7];
+//    configuration.borderColor = [UIColor blackColor];
+//    configuration.borderWidth = 0.5;
+
     
 }
 
@@ -73,12 +84,13 @@ UIScrollViewDelegate
     [self.view addSubview:_modeButton];
     [_modeButton addTarget:self action:@selector(modeButtonAction) forControlEvents:UIControlEventTouchUpInside];
     
-    
+    // 白色View
     self.whiteView = [[UIView alloc] initWithFrame:CGRectMake(-(SCREEN_HEIGHT - SCREEN_WIDTH) / 2, 420, SCREEN_HEIGHT, (SCREEN_HEIGHT - 450) * 2)];
     _whiteView.layer.cornerRadius = SCREEN_HEIGHT / 2;
     _whiteView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_whiteView];
     
+    // 开始按钮
     self.startButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _startButton.frame = CGRectMake((_whiteView.width - 100) / 2, 60, 100, 100);
     _startButton.layer.cornerRadius = 50;
@@ -87,6 +99,15 @@ UIScrollViewDelegate
     _startButton.backgroundColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74/255.f alpha:1.0];
     [_whiteView addSubview:_startButton];
     [_startButton addTarget:self action:@selector(startButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    // 一周步行记录表
+    self.weekRecordView = [[WeekRecordView alloc] initWithFrame:CGRectMake((_whiteView.width - SCREEN_WIDTH) / 2, 0, SCREEN_WIDTH, _whiteView.height)];
+    _weekRecordView.hidden = YES;
+    _weekRecordView.count = 30;
+    _weekRecordView.backgroundColor = [UIColor clearColor];
+    [_whiteView addSubview:_weekRecordView];
+    
+    
     
     self.sportButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _sportButton.frame = CGRectMake(100, 30, 80, 40);
@@ -107,12 +128,12 @@ UIScrollViewDelegate
     [self.view addSubview:weatherImageView];
     
     // 天气
-    UILabel *weatherLabel = [[UILabel alloc] initWithFrame:CGRectMake(weatherImageView.frame.origin.x + weatherImageView.bounds.size.width + 5, _stepCountButton.frame.origin.y, 20, 40)];
-    weatherLabel.text = @"优";
-    weatherLabel.textColor = [UIColor whiteColor];
-    [self.view addSubview:weatherLabel];
-    UITapGestureRecognizer *tapWeatherLabel = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapWeatherLabelAction)];
-    
+    UIButton *weatherButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    weatherButton.frame = CGRectMake(weatherImageView.frame.origin.x + weatherImageView.bounds.size.width - 5, _stepCountButton.frame.origin.y, 40, 40);
+    [weatherButton setTitle:@"优" forState:UIControlStateNormal];
+    [weatherButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.view addSubview:weatherButton];
+    [weatherButton addTarget:self action:@selector(weatherButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
     
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 90, SCREEN_WIDTH, SCREEN_HEIGHT / 2)];
@@ -219,6 +240,7 @@ UIScrollViewDelegate
         }];
         if (scrollView.contentOffset.x == SCREEN_WIDTH) {
             _startButton.hidden = YES;
+            _weekRecordView.hidden = NO;
         }
     } else if (scrollView.contentOffset.x < SCREEN_WIDTH / 2) {
         [_sportButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -228,6 +250,7 @@ UIScrollViewDelegate
             _startButton.backgroundColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74/255.f alpha:1.0];
         } completion:^(BOOL finished) {
             _startButton.hidden = NO;
+            _weekRecordView.hidden = YES;
         }];
 
     }
@@ -256,9 +279,13 @@ UIScrollViewDelegate
     [self setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:startVC animated:YES];
 }
-#pragma mark - 天气label的手势事件
-- (void)tapWeatherLabelAction {
-    
+#pragma mark - 点击天气按钮显示
+- (void)weatherButtonAction:(UIButton *)button {
+    [FTPopOverMenu showForSender:button withMenu:@[@"aaaaaa"] doneBlock:^(NSInteger selectedIndex) {
+        NSLog(@"done");
+    } dismissBlock:^{
+        NSLog(@"dismiss");
+    }];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

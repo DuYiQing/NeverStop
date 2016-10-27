@@ -13,12 +13,11 @@
 @interface WeekRecordView ()
 
 @property (nonatomic, strong) NSTimer *timer;
-@property (nonatomic, strong) NSMutableArray *changeViewArray;
 @property (nonatomic, strong) SQLiteDatabaseManager *manager;
 @property (nonatomic, strong) NSMutableArray *selectStringArray;
 @property (nonatomic, strong) NSString *yearMonString;
 @property (nonatomic, strong) NSMutableArray *countArray;
-
+@property (nonatomic, assign) NSInteger maxCount;
 
 @end
 
@@ -29,12 +28,12 @@
     self = [super initWithFrame:frame];
     
     if (self) {
+        self.maxCount = 0;
         self.selectStringArray = [NSMutableArray array];
         self.countArray = [NSMutableArray array];
         
         self.yearMonString = [NSDate getSystemTimeStringWithFormat:@"yyyy-MM"];
         self.manager = [SQLiteDatabaseManager shareManager];
-        self.changeViewArray = [NSMutableArray array];
         NSString *dayString = [NSDate getSystemTimeStringWithFormat:@"dd"];
         NSInteger date = [dayString integerValue];
         
@@ -47,10 +46,10 @@
             [self addSubview:rectView];
         
             UIView *changeView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 7, 0)];
+            changeView.tag = 1300 + i;
             changeView.backgroundColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74/255.f alpha:1.0];
             changeView.layer.cornerRadius = 3;
             changeView.clipsToBounds = YES;
-            [_changeViewArray addObject:changeView];
             [rectView addSubview:changeView];
 
             
@@ -70,9 +69,7 @@
             NSLog(@"%@", _countArray);
         }
         
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(change) userInfo:nil repeats:YES];
-        
-        
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:0.03 target:self selector:@selector(change) userInfo:nil repeats:YES];
         
     }
     return self;
@@ -82,18 +79,24 @@
     
     for (int i = 0; i < 7; i++) {
 
-        UIView *changeView = _changeViewArray[i];
+        UIView *changeView = [self viewWithTag:1300 + i];
+        
         CGRect frame = changeView.frame;
-        frame.size.height += 1;
         changeView.frame = frame;
         
         StepCountModel *stepCountModel = _countArray[i];
         CGFloat count = [stepCountModel.stepCount integerValue] * 70 / 10000;
-        if (changeView.height == count) {
-            // 清楚定时器
+        self.maxCount = _maxCount > count ? _maxCount : count;
+        
+        if (frame.size.height> _maxCount) {
+            // 清除定时器
             [_timer invalidate];
         }
-    
+        frame.size.height = frame.size.height + 1;
+        if (frame.size.height > count) {
+            frame.size.height = count;
+        }
+        changeView.frame = CGRectMake(0, 70 - frame.size.height, frame.size.width, frame.size.height);
     }
     
     

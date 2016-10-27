@@ -70,7 +70,7 @@
             }
         }];
         [[StepManager shareManager] startWithStep];
-        timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(getStepNumber) userInfo:nil repeats:YES];
+        timer = [NSTimer scheduledTimerWithTimeInterval:1.f target:self selector:@selector(getStepNumber) userInfo:nil repeats:YES];
         [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
         
         

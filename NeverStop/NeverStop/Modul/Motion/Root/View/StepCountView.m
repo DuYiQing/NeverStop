@@ -14,11 +14,13 @@
 }
 
 
-@property (nonatomic, retain) UIView *roundView;
-@property (nonatomic, retain) UILabel *todyLabel;
-@property (nonatomic, retain) UILabel *stepCountLabel;
-@property (nonatomic, retain) UILabel *targetLabel;
+@property (nonatomic, strong) UIView *roundView;
+@property (nonatomic, strong) UILabel *todyLabel;
+@property (nonatomic, strong) UILabel *stepCountLabel;
+@property (nonatomic, strong) UILabel *targetLabel;
 @property (nonatomic, assign) long systemStep;
+@property (nonatomic, strong) SQLiteDatabaseManager *sqlManager;
+@property (nonatomic, strong) NSString *dateString;
 
 @end
 
@@ -29,6 +31,9 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.sqlManager = [SQLiteDatabaseManager shareManager];
+        self.dateString = [NSDate getSystemTimeStringWithFormat:@"yyyy-MM-dd"];
+        
         self.roundView = [[UIView alloc]initWithFrame:CGRectMake(70, 10, SCREEN_WIDTH - 140, SCREEN_WIDTH - 140)];
         _roundView.layer.cornerRadius = (SCREEN_WIDTH - 140) / 2;
         _roundView.layer.borderColor = [UIColor colorWithWhite:0.7 alpha:0.4].CGColor;
@@ -60,7 +65,6 @@
                 NSLog(@"error");
             } else {
                 dispatch_async(dispatch_get_main_queue(), ^{
-//                    _stepCountLabel.text = [NSString stringWithFormat:@"%f", value];
                     self.systemStep = value;
                 });
             }
@@ -77,6 +81,7 @@
 - (void)getStepNumber{
     long step = [StepManager shareManager].step;
     _stepCountLabel.text = [NSString stringWithFormat:@"%ld",step + _systemStep];
+    [_sqlManager updateStepCount:_stepCountLabel.text date:_dateString];
 }
 
 

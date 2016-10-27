@@ -30,17 +30,16 @@ UIPickerViewDelegate
 
 
 - (void)setupUI {
-    
     [self.rootArray enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [self.aimArray addObject:obj[@"aimName"]];
     }];
     self.font = kFONT_SIZE_18_BOLD;
-
+    
     self.settingArray = [self.rootArray firstObject][@"aimSetting"];
     
     self.aim = self.aimArray[0];
     self.setting = self.settingArray[0];
-  
+    
     
     // 2.设置视图的默认属性
     _heightPickerComponent = 32;
@@ -75,8 +74,8 @@ UIPickerViewDelegate
         
         [pickerView reloadComponent:1];
         
-        [pickerView selectRow:1 inComponent:1 animated:YES];
         self.row = row;
+        [pickerView selectRow:1 inComponent:1 animated:YES];
         
     } else {
         self.childRow = row;
@@ -91,9 +90,8 @@ UIPickerViewDelegate
     NSString *text;
     if (component == 0) {
         text = _aimArray[row];
-    
     } else {
-        
+        self.childRow = 1;
         text = self.settingArray[row];;
     }
     
@@ -119,11 +117,11 @@ UIPickerViewDelegate
     NSInteger index1 = [self.pickerView selectedRowInComponent:1];
     self.aim = self.aimArray[index0];
     self.setting = self.settingArray[index1];
-   
+    
     
     NSString *title = [NSString stringWithFormat:@"%@ %@", self.aim, self.setting];
     [self setTitle:title];
-
+    
 }
 
 #pragma mark - --- setters 属性 ---
@@ -159,6 +157,5 @@ UIPickerViewDelegate
     }
     return _selectedArray;
 }
-
 
 @end

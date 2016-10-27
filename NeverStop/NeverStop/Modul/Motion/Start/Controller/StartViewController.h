@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "BaseViewController.h"
 
+
 @interface StartViewController : BaseViewController
 
+@property (nonatomic, retain) UIButton *startButton;
+
 @end
+

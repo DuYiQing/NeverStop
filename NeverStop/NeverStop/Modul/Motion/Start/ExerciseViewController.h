@@ -11,4 +11,5 @@
 @interface ExerciseViewController : BaseViewController
 @property (nonatomic, retain) NSString *aim;
 @property (nonatomic, assign) NSInteger aimType;
+@property (nonatomic, retain) UIButton *endButton;
 @end

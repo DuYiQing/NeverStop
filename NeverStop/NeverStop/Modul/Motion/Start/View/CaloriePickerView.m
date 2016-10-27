@@ -90,7 +90,7 @@ UIPickerViewDelegate
 
 - (void)selectedOk
 {
-    NSString *selectTitle = [NSString stringWithFormat:@"%@大卡", self.selectedTitle];
+    NSString *selectTitle = [NSString stringWithFormat:@"%@", self.selectedTitle];
     [self.delegate caloriePicker:self selected:selectTitle];
     [super selectedOk];
 }

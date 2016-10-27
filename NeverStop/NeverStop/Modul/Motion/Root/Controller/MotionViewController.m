@@ -39,8 +39,13 @@ UIScrollViewDelegate
 
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBarHidden = YES;
-}
+    self.tabBarController.tabBar.hidden = NO;
 
+}
+- (void)viewDidDisappear:(BOOL)animated {
+    self.tabBarController.tabBar.hidden = YES;
+
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -248,6 +253,7 @@ UIScrollViewDelegate
 #pragma mark - 开始按钮点击事件
 - (void)startButtonAction {
     StartViewController *startVC = [[StartViewController alloc] init];
+    [self setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:startVC animated:YES];
 }
 #pragma mark - 天气label的手势事件

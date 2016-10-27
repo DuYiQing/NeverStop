@@ -12,6 +12,7 @@
 #import "CaloriePickerView.h"
 #import "CustomPickerView.h"
 #import "ExerciseViewController.h"
+#import "CustomAnimateTransitionPush.h"
 
 @interface StartViewController ()
 <
@@ -19,10 +20,10 @@ MAMapViewDelegate,
 AMapSearchDelegate,
 AimSettingPickerViewDelegate,
 CaloriePickerViewDelegate,
-CustomPickerViewDelegate
+CustomPickerViewDelegate,
+UINavigationControllerDelegate
 >
 @property (nonatomic, retain) MAMapView *mapView;
-@property (nonatomic, retain) UIButton *startButton;
 @property (nonatomic, retain) UIButton *settingButton;
 @property (nonatomic, retain) AMapSearchAPI *mapSearchAPI;
 @property (nonatomic, retain) JiangPickerView *aimPickerView;
@@ -34,9 +35,16 @@ CustomPickerViewDelegate
 @end
 
 @implementation StartViewController
+- (void)dealloc {
+
+    self.navigationController.delegate = nil;
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [self.mapView setUserTrackingMode:MAUserTrackingModeFollow animated:YES];
+    self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBarHidden = NO;
+    self.navigationController.delegate = self;
     
 }
 - (void)viewDidLoad {
@@ -46,18 +54,22 @@ CustomPickerViewDelegate
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     //消除阴影
     self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.view.backgroundColor = [UIColor whiteColor];
     [self creatMapView];
     
     // 设定目标按钮
     self.settingButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [_settingButton setTitle:@"设定单次目标" forState:UIControlStateNormal];
-    [_settingButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [_settingButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    _settingButton.titleLabel.font = kFONT_SIZE_18_BOLD;
     _settingButton.backgroundColor = [UIColor clearColor];
     CGFloat width = [_settingButton.titleLabel.text widthWithFont:_settingButton.titleLabel.font constrainedToHeight:50];
     _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width / 2, _mapView.y + _mapView.height, width, 50);
+    
+    __weak typeof(self) weakSelf = self;
     [_settingButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
         AimSettingPickerView *aimSettingPicker = [[AimSettingPickerView alloc]init];
-        aimSettingPicker.delegate = self;
+        aimSettingPicker.delegate = weakSelf;
         aimSettingPicker.contentMode = JiangPickerContentModeBottom;
         [aimSettingPicker show];
         
@@ -66,14 +78,14 @@ CustomPickerViewDelegate
     
     
     
-    // 缩放 开始按钮
+//     缩放 开始按钮
     
     self.startButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _startButton.frame = CGRectMake(SCREEN_WIDTH / 2 - 40, SCREEN_HEIGHT - 240, 80, 80);
     UIImage *startImage = [UIImage imageNamed:@"1"];
     startImage = [startImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [_startButton setBackgroundImage:startImage forState:UIControlStateNormal];
-//    [_startButton setBackgroundImage:startImage forState:UIControlStateHighlighted];
+    [_startButton setBackgroundImage:startImage forState:UIControlStateHighlighted];
   [_startButton setBackgroundImage:startImage forState:UIControlStateHighlighted];
     _startButton.backgroundColor = [UIColor greenColor];
     
@@ -106,7 +118,7 @@ CustomPickerViewDelegate
     caloriePicker.contentMode = JiangPickerContentModeBottom;
     
     switch (row) {
-      
+            
         case 0:
             [_settingButton setTitle:@"设定单次目标" forState:UIControlStateNormal];
             CGFloat width0 = [_settingButton.titleLabel.text widthWithFont:_settingButton.titleLabel.font constrainedToHeight:50];
@@ -125,8 +137,8 @@ CustomPickerViewDelegate
                 _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width2 / 2, _mapView.y + _mapView.height + 100, width2, 50);
                 
             } else {
-            customPicker.cus_ContentMode = CustomPickerContentModeDistance;
-            [customPicker show];
+                customPicker.cus_ContentMode = CustomPickerContentModeDistance;
+                [customPicker show];
             }
             break;
         case 3:
@@ -136,8 +148,8 @@ CustomPickerViewDelegate
                 CGFloat width3 = [_settingButton.titleLabel.text widthWithFont:_settingButton.titleLabel.font constrainedToHeight:50];
                 _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width3 / 2, _mapView.y + _mapView.height + 100, width3, 50);
             } else {
-            customPicker.cus_ContentMode = CustomPickerContentModeTime;
-            [customPicker show];
+                customPicker.cus_ContentMode = CustomPickerContentModeTime;
+                [customPicker show];
             }
             break;
         case 4:
@@ -147,13 +159,13 @@ CustomPickerViewDelegate
                 CGFloat width4 = [_settingButton.titleLabel.text widthWithFont:_settingButton.titleLabel.font constrainedToHeight:50];
                 _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width4 / 2, _mapView.y + _mapView.height + 100, width4, 50);
             } else {
-            [caloriePicker show];
+                [caloriePicker show];
             }
             break;
         default:
             break;
     }
-        
+    
  
     
   
@@ -175,6 +187,27 @@ CustomPickerViewDelegate
         [_settingButton setTitle:[NSString stringWithFormat:@"时间目标: %ld分钟", time] forState:UIControlStateNormal];
         CGFloat width = [_settingButton.titleLabel.text widthWithFont:_settingButton.titleLabel.font constrainedToHeight:50];
         _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width / 2, _mapView.y + _mapView.height + 100, width, 50);
+    }
+    
+}
+
+
+
+
+//用来自定义转场动画
+- (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC
+{
+    
+    if(operation == UINavigationControllerOperationPush)
+    {
+        CustomAnimateTransitionPush *animateTransitionPush=[CustomAnimateTransitionPush new];
+        animateTransitionPush.contentMode = JiangContentModeToExercise;
+        animateTransitionPush.button = self.startButton;
+        return animateTransitionPush;
+    }
+    else
+    {
+        return nil;
     }
     
 }
@@ -212,14 +245,14 @@ CustomPickerViewDelegate
         ExerciseViewController *exerciseVC = [[ExerciseViewController alloc] init];
         exerciseVC.aim = _startButton.currentTitle;
         exerciseVC.aimType = _row;
-        
+        [self.navigationController pushViewController:exerciseVC animated:YES];
         
     }];
 }
 
 
 - (void)creatMapView {
-    self.mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 300)];
+    self.mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 320)];
     [self.view addSubview:_mapView];
     _mapView.showsUserLocation = YES;
     _mapView.delegate = self;

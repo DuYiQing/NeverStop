@@ -21,7 +21,7 @@ UIPickerViewDelegate
 @property (nonatomic, retain) NSString *aim;
 @property (nonatomic, retain) NSString *setting;
 @property (nonatomic, assign) NSInteger row;
-@property (nonatomic, assign) NSInteger component;
+@property (nonatomic, assign) NSInteger childRow;
 @end
 @implementation AimSettingPickerView
 #pragma mark - --- init 视图初始化 ---
@@ -34,7 +34,7 @@ UIPickerViewDelegate
         [self.aimArray addObject:obj[@"aimName"]];
     }];
     self.font = kFONT_SIZE_18_BOLD;
-
+    
     self.settingArray = [self.rootArray firstObject][@"aimSetting"];
     
     self.aim = self.aimArray[0];
@@ -157,6 +157,5 @@ UIPickerViewDelegate
     }
     return _selectedArray;
 }
-
 
 @end

@@ -44,10 +44,7 @@ UIScrollViewDelegate
     self.tabBarController.tabBar.hidden = NO;
 
 }
-- (void)viewDidDisappear:(BOOL)animated {
-    self.tabBarController.tabBar.hidden = YES;
 
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

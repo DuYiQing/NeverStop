@@ -41,6 +41,7 @@ UIScrollViewDelegate
 
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBarHidden = YES;
+
 }
 
 - (void)viewDidLoad {
@@ -274,6 +275,7 @@ UIScrollViewDelegate
 #pragma mark - 开始按钮点击事件
 - (void)startButtonAction {
     StartViewController *startVC = [[StartViewController alloc] init];
+    [self setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:startVC animated:YES];
 }
 #pragma mark - 点击天气按钮显示

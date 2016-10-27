@@ -6,6 +6,7 @@
 //  Copyright © 2016年 JDT. All rights reserved.
 //
 
+
 #import "NearbyViewController.h"
 
 @interface NearbyViewController ()
@@ -18,7 +19,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor orangeColor];
+
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

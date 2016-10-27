@@ -21,7 +21,7 @@ UIPickerViewDelegate
 @property (nonatomic, retain) NSString *aim;
 @property (nonatomic, retain) NSString *setting;
 @property (nonatomic, assign) NSInteger row;
-@property (nonatomic, assign) NSInteger component;
+@property (nonatomic, assign) NSInteger childRow;
 @end
 @implementation AimSettingPickerView
 #pragma mark - --- init 视图初始化 ---
@@ -30,16 +30,16 @@ UIPickerViewDelegate
 
 
 - (void)setupUI {
-    
     [self.rootArray enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [self.aimArray addObject:obj[@"aimName"]];
     }];
+    self.font = kFONT_SIZE_18_BOLD;
     
     self.settingArray = [self.rootArray firstObject][@"aimSetting"];
     
     self.aim = self.aimArray[0];
     self.setting = self.settingArray[0];
-  
+    
     
     // 2.设置视图的默认属性
     _heightPickerComponent = 32;
@@ -73,11 +73,12 @@ UIPickerViewDelegate
         self.settingArray = self.rootArray[row][@"aimSetting"];
         
         [pickerView reloadComponent:1];
-        [pickerView selectRow:0 inComponent:1 animated:YES];
+        
+        self.row = row;
+        [pickerView selectRow:1 inComponent:1 animated:YES];
         
     } else {
-        self.row = row;
-        self.component = component;
+        self.childRow = row;
     }
     [self reloadData];
 }
@@ -89,23 +90,22 @@ UIPickerViewDelegate
     NSString *text;
     if (component == 0) {
         text = _aimArray[row];
-    
     } else {
-        
+        self.childRow = 1;
         text = self.settingArray[row];;
     }
     
     UILabel *label = [[UILabel alloc]init];
-    [label setTextAlignment:NSTextAlignmentCenter];
-    [label setFont:[UIFont systemFontOfSize:17]];
-    [label setText:text];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = kFONT_SIZE_18_BOLD;
+    label.text = text;
     return label;
 }
 #pragma mark - --- event response 事件相应 ---
 
 - (void)selectedOk
 {
-    [self.delegate aimSettingPicker:self setting:self.setting viewForRow:self.row forComponent:self.component];
+    [self.delegate aimSettingPicker:self setting:self.setting viewForRow:self.row forChildRow:self.childRow];
     [super selectedOk];
 }
 
@@ -117,11 +117,11 @@ UIPickerViewDelegate
     NSInteger index1 = [self.pickerView selectedRowInComponent:1];
     self.aim = self.aimArray[index0];
     self.setting = self.settingArray[index1];
-   
+    
     
     NSString *title = [NSString stringWithFormat:@"%@ %@", self.aim, self.setting];
     [self setTitle:title];
-
+    
 }
 
 #pragma mark - --- setters 属性 ---
@@ -157,6 +157,5 @@ UIPickerViewDelegate
     }
     return _selectedArray;
 }
-
 
 @end

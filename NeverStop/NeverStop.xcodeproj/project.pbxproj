@@ -83,13 +83,10 @@
 		EE56EAAE1DB8CE6D000B8082 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE56EAAC1DB8CE6D000B8082 /* Main.storyboard */; };
 		EE56EAB01DB8CE6D000B8082 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE56EAAF1DB8CE6D000B8082 /* Assets.xcassets */; };
 		EE56EAB31DB8CE6D000B8082 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE56EAB11DB8CE6D000B8082 /* LaunchScreen.storyboard */; };
-<<<<<<< HEAD
 		EE7420881DBD97100007F71E /* CaloriePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7420871DBD97100007F71E /* CaloriePickerView.m */; };
 		EE7420911DBDB49D0007F71E /* CustomPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7420901DBDB49D0007F71E /* CustomPickerView.m */; };
 		EE7420C91DBE0FBD0007F71E /* ExerciseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7420C81DBE0FBD0007F71E /* ExerciseViewController.m */; };
 		EEBA13F61DBF8AD60001F7A4 /* ExerciseDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = EEBA13F51DBF8AD60001F7A4 /* ExerciseDataView.m */; };
-=======
->>>>>>> 8365c7a728c184ba6ca5741dcfda43e76df300ef
 		EEC8E70D1DB8ED1500349793 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEC8E70C1DB8ED1500349793 /* HealthKit.framework */; };
 		EEE42A311DBF3F5A0055F1EB /* CustomAnimateTransitionPush.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE42A301DBF3F5A0055F1EB /* CustomAnimateTransitionPush.m */; };
 		EEE42A341DBF40380055F1EB /* CustomAnimateTransitionPop.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE42A331DBF40380055F1EB /* CustomAnimateTransitionPop.m */; };
@@ -241,7 +238,6 @@
 		EE56EAAF1DB8CE6D000B8082 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EE56EAB21DB8CE6D000B8082 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EE56EAB41DB8CE6D000B8082 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-<<<<<<< HEAD
 		EE7420861DBD97100007F71E /* CaloriePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaloriePickerView.h; sourceTree = "<group>"; };
 		EE7420871DBD97100007F71E /* CaloriePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaloriePickerView.m; sourceTree = "<group>"; };
 		EE74208F1DBDB49D0007F71E /* CustomPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPickerView.h; sourceTree = "<group>"; };
@@ -250,8 +246,6 @@
 		EE7420C81DBE0FBD0007F71E /* ExerciseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseViewController.m; sourceTree = "<group>"; };
 		EEBA13F41DBF8AD60001F7A4 /* ExerciseDataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseDataView.h; sourceTree = "<group>"; };
 		EEBA13F51DBF8AD60001F7A4 /* ExerciseDataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseDataView.m; sourceTree = "<group>"; };
-=======
->>>>>>> 8365c7a728c184ba6ca5741dcfda43e76df300ef
 		EEC8E70C1DB8ED1500349793 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		EEE42A2F1DBF3F5A0055F1EB /* CustomAnimateTransitionPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAnimateTransitionPush.h; sourceTree = "<group>"; };
 		EEE42A301DBF3F5A0055F1EB /* CustomAnimateTransitionPush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAnimateTransitionPush.m; sourceTree = "<group>"; };
@@ -284,15 +278,12 @@
 		405E48E51DBA4DBB004105F2 /* Start */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				EE1D81A51DC0CA4A00FA6CD5 /* Map */,
 				EE7420C31DBE0F8D0007F71E /* Exercise */,
 				EE7420C21DBE0F820007F71E /* Start */,
-=======
 				405E48E61DBA4DBB004105F2 /* Controller */,
 				405E492F1DBCDC00004105F2 /* Model */,
 				405E48EB1DBA4DBB004105F2 /* View */,
->>>>>>> 8365c7a728c184ba6ca5741dcfda43e76df300ef
 			);
 			path = Start;
 			sourceTree = "<group>";
@@ -315,7 +306,6 @@
 				405E48EF1DBA4DBB004105F2 /* AimSettingPickerView.m */,
 				405E48F01DBA4DBB004105F2 /* JiangPickerView.h */,
 				405E48F11DBA4DBB004105F2 /* JiangPickerView.m */,
-<<<<<<< HEAD
 				EE7420861DBD97100007F71E /* CaloriePickerView.h */,
 				EE7420871DBD97100007F71E /* CaloriePickerView.m */,
 				EE74208F1DBDB49D0007F71E /* CustomPickerView.h */,
@@ -324,8 +314,6 @@
 				EEE42A301DBF3F5A0055F1EB /* CustomAnimateTransitionPush.m */,
 				EEE42A321DBF40380055F1EB /* CustomAnimateTransitionPop.h */,
 				EEE42A331DBF40380055F1EB /* CustomAnimateTransitionPop.m */,
-=======
->>>>>>> 8365c7a728c184ba6ca5741dcfda43e76df300ef
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -764,7 +752,6 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
 		EE7420C21DBE0F820007F71E /* Start */ = {
 			isa = PBXGroup;
 			children = (
@@ -814,8 +801,6 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
-=======
->>>>>>> 8365c7a728c184ba6ca5741dcfda43e76df300ef
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -959,16 +944,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE1A002F1DB8CF610003762E /* NSArray+Categories.m in Sources */,
-<<<<<<< HEAD
 				EE1D81761DC0475300FA6CD5 /* JiangFlashLabel.m in Sources */,
 				405E49291DBCD0EB004105F2 /* RouteTableViewCell.m in Sources */,
 				EE7420881DBD97100007F71E /* CaloriePickerView.m in Sources */,
 				EEE42A341DBF40380055F1EB /* CustomAnimateTransitionPop.m in Sources */,
-=======
 				49060C471DBF8461003FE373 /* NearbyViewController.m in Sources */,
 				405E49291DBCD0EB004105F2 /* RouteTableViewCell.m in Sources */,
 				49704A8A1DBE217C0028DB2F /* DetailTableViewCell.m in Sources */,
->>>>>>> 8365c7a728c184ba6ca5741dcfda43e76df300ef
 				EE1A00441DB8CF610003762E /* UIImageView+XLWebCache.m in Sources */,
 				EE1A003B1DB8CF610003762E /* UIImage+Categories.m in Sources */,
 				405E48F41DBA4DBB004105F2 /* StartViewController.m in Sources */,
@@ -996,11 +978,8 @@
 				EE1A002B1DB8CF610003762E /* BaseViewController.m in Sources */,
 				409229C41DBFCACD00FDAD4E /* StepCountModel.m in Sources */,
 				EE1A00341DB8CF610003762E /* NSString+Categories.m in Sources */,
-<<<<<<< HEAD
 				EEBA13F61DBF8AD60001F7A4 /* ExerciseDataView.m in Sources */,
-=======
 				49704A871DBDF5560028DB2F /* Detail.m in Sources */,
->>>>>>> 8365c7a728c184ba6ca5741dcfda43e76df300ef
 				405E49251DBCD0EB004105F2 /* MatchViewController.m in Sources */,
 				EE1D81731DC046C700FA6CD5 /* GlideView.m in Sources */,
 				EE56EAA81DB8CE6D000B8082 /* AppDelegate.m in Sources */,

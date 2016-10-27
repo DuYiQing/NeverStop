@@ -33,11 +33,8 @@ UIPickerViewDelegate
     [self.rootArray enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [self.aimArray addObject:obj[@"aimName"]];
     }];
-<<<<<<< HEAD
     self.font = kFONT_SIZE_18_BOLD;
-=======
->>>>>>> 8365c7a728c184ba6ca5741dcfda43e76df300ef
-    
+
     self.settingArray = [self.rootArray firstObject][@"aimSetting"];
     
     self.aim = self.aimArray[0];
@@ -76,17 +73,12 @@ UIPickerViewDelegate
         self.settingArray = self.rootArray[row][@"aimSetting"];
         
         [pickerView reloadComponent:1];
-<<<<<<< HEAD
         
         self.row = row;
         [pickerView selectRow:1 inComponent:1 animated:YES];
-=======
-        [pickerView selectRow:0 inComponent:1 animated:YES];
->>>>>>> 8365c7a728c184ba6ca5741dcfda43e76df300ef
         
     } else {
-        self.row = row;
-        self.component = component;
+        self.childRow = row;
     }
     [self reloadData];
 }
@@ -104,16 +96,16 @@ UIPickerViewDelegate
     }
     
     UILabel *label = [[UILabel alloc]init];
-    [label setTextAlignment:NSTextAlignmentCenter];
-    [label setFont:[UIFont systemFontOfSize:17]];
-    [label setText:text];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = kFONT_SIZE_18_BOLD;
+    label.text = text;
     return label;
 }
 #pragma mark - --- event response 事件相应 ---
 
 - (void)selectedOk
 {
-    [self.delegate aimSettingPicker:self setting:self.setting viewForRow:self.row forComponent:self.component];
+    [self.delegate aimSettingPicker:self setting:self.setting viewForRow:self.row forChildRow:self.childRow];
     [super selectedOk];
 }
 
@@ -165,5 +157,6 @@ UIPickerViewDelegate
     }
     return _selectedArray;
 }
+
 
 @end

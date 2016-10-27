@@ -1,1 +1,0 @@
-../../../BubbleTransition-objc/Pod/Classes/YPBubbleTransition.h

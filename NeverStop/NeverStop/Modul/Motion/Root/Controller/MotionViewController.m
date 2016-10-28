@@ -11,10 +11,12 @@
 #import "StepCountView.h"
 #import "StartViewController.h"
 #import "WeekRecordView.h"
+#import "WeatherViewController.h"
 
 @interface MotionViewController ()
 <
-UIScrollViewDelegate
+UIScrollViewDelegate,
+AMapSearchDelegate
 >
 @property (nonatomic, strong) UIBlurEffect *blur;
 @property (nonatomic, strong) UIVisualEffectView *blurEffectView;
@@ -33,6 +35,10 @@ UIScrollViewDelegate
 @property (nonatomic, strong) WeekRecordView *weekRecordView;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) SQLiteDatabaseManager *SQLManager;
+@property (nonatomic, strong) AMapSearchAPI *mapSearchAPI;
+@property (nonatomic, strong) AMapLocalWeatherLive *live;
+@property (nonatomic, strong) AMapLocalWeatherForecast *forecast;
+@property (nonatomic, strong) AMapLocalDayWeatherForecast *dayForecast;
 
 
 @end
@@ -66,12 +72,13 @@ UIScrollViewDelegate
 
     FTPopOverMenuConfiguration *configuration = [FTPopOverMenuConfiguration defaultConfiguration];
 
-    configuration.menuWidth = 270;
+    configuration.menuWidth = 150;
     configuration.textColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74/255.f alpha:1.0];
-    configuration.textFont = [UIFont boldSystemFontOfSize:14];
-    configuration.tintColor = [UIColor colorWithWhite:1.0 alpha:0.7];
+    configuration.textFont = kFONT_SIZE_15_BOLD;
+    configuration.tintColor = [UIColor colorWithWhite:1.0 alpha:0.9];
 
     [self showRootView];
+    [self showWeatherInfo];
     
 }
 
@@ -280,11 +287,56 @@ UIScrollViewDelegate
 }
 #pragma mark - 点击天气按钮显示
 - (void)weatherButtonAction:(UIButton *)button {
-    [FTPopOverMenu showForSender:button withMenu:@[@"aaaaaa"] doneBlock:^(NSInteger selectedIndex) {
-        NSLog(@"done");
-    } dismissBlock:^{
-        NSLog(@"dismiss");
-    }];
+    
+    NSString *address = [NSString stringWithFormat:@"%@", _live.city];
+    NSString *weather = [NSString stringWithFormat:@"天气 : %@", _live.weather];
+    NSString *temperature = [NSString stringWithFormat:@"温度 : %@°", _live.temperature];
+    NSString *wind = [NSString stringWithFormat:@"%@风%@级", _live.windDirection, _live.windPower];
+    NSString *humidity = [NSString stringWithFormat:@"湿度 : %@%%", _live.humidity];
+    
+    [FTPopOverMenu showForSender:button withMenu:@[address, weather, temperature, wind, humidity] doneBlock:^(NSInteger selectedIndex) {
+        WeatherViewController *weatherVC = [[WeatherViewController alloc] init];
+        weatherVC.live = _live;
+        weatherVC.forecast = _forecast;
+        weatherVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:weatherVC animated:YES];
+    } dismissBlock:nil];
+
+}
+#pragma mark - 天气信息
+- (void)showWeatherInfo {
+    [AMapServices sharedServices].apiKey = @"7a51d2c58640778bd644ee3641609981";
+    self.mapSearchAPI = [[AMapSearchAPI alloc] init];
+    self.mapSearchAPI.delegate = self;
+    AMapWeatherSearchRequest *weatherRequest = [[AMapWeatherSearchRequest alloc] init];
+    weatherRequest.city = @"大连";
+    weatherRequest.type = AMapWeatherTypeLive;
+    [self.mapSearchAPI AMapWeatherSearch:weatherRequest];
+    
+    AMapWeatherSearchRequest *weatherRequest2 = [[AMapWeatherSearchRequest alloc] init];
+    weatherRequest2.city = @"大连";
+    weatherRequest2.type = AMapWeatherTypeForecast;
+    
+    [self.mapSearchAPI AMapWeatherSearch:weatherRequest2];
+}
+
+- (void)onWeatherSearchDone:(AMapWeatherSearchRequest *)request response:(AMapWeatherSearchResponse *)response {
+    if (request.type == AMapWeatherTypeLive) {
+        if (response.lives.count == 0) {
+            return;
+        }
+        for (AMapLocalWeatherLive *live in response.lives) {
+            self.live = live;
+        }
+    } else {
+        if(response.forecasts.count == 0)
+        {
+            return;
+        }
+        for (AMapLocalWeatherForecast *forecast in response.forecasts) {
+            self.forecast = forecast;
+        }
+    }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

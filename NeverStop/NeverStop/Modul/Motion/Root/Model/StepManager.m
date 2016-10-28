@@ -27,19 +27,26 @@
     NSDate *lastDate;
     
 }
-@property (nonatomic) NSInteger startStep;  // 计步器开始步数
-
-@property (nonatomic, retain) NSMutableArray *arrSteps;  // 步数数组
-@property (nonatomic, retain) NSMutableArray *arrStepsSave; // 数据库纪录步数数组
-
-@property (nonatomic) CGFloat gpsDistance; // GPS轨迹的移动距离（总计）
-@property (nonatomic) CGFloat agoGpsDistance; // GPS轨迹的移动距离（之前）
-@property (nonatomic) CGFloat agoActionDistance; // 实际运动的移动距离（之前）
-
-@property (nonatomic, retain) NSString *actionId; // 运动识别ID
-@property (nonatomic) CGFloat distance; // 运动里程（总计）
-@property (nonatomic) NSInteger calorie;  // 消耗卡路里（总计）
-@property (nonatomic) NSInteger second;  // 运动用时（总计）
+// 计步器开始步数
+@property (nonatomic) NSInteger startStep;
+// 步数数组
+@property (nonatomic, retain) NSMutableArray *arrSteps;
+// 数据库纪录步数数组
+@property (nonatomic, retain) NSMutableArray *arrStepsSave;
+// GPS轨迹的移动距离（总计）
+@property (nonatomic) CGFloat gpsDistance;
+// GPS轨迹的移动距离（之前）
+@property (nonatomic) CGFloat agoGpsDistance;
+// 实际运动的移动距离（之前）
+@property (nonatomic) CGFloat agoActionDistance;
+// 运动识别ID
+@property (nonatomic, retain) NSString *actionId;
+// 运动里程（总计）
+@property (nonatomic) CGFloat distance;
+// 消耗卡路里（总计）
+@property (nonatomic) NSInteger calorie;
+// 运动用时（总计）
+@property (nonatomic) NSInteger second;
 
 @end
 
@@ -180,7 +187,7 @@ static CMMotionManager *motionManager;
                             NSTimeInterval interval = [caidianCurrent.date timeIntervalSince1970];
                             NSNumber *numInter = [[NSNumber alloc] initWithDouble:interval*1000];
                             long long llInter = numInter.longLongValue;
-                            //运动识别id
+                            // 运动识别id
                             self.actionId = [NSString stringWithFormat:@"%lld",llInter];
                             
                             self.distance = 0.00f;
@@ -230,8 +237,6 @@ static CMMotionManager *motionManager;
                                     else {
                                         self.step ++;
                                     }
-                                    
-                                    
                                     
                                     //步数在这里
                                     NSLog(@"步数%ld",self.step);

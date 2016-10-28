@@ -11,6 +11,19 @@
 		40121E8A1DB9E6F8008BB927 /* ride.png in Resources */ = {isa = PBXBuildFile; fileRef = 40121E891DB9E6F8008BB927 /* ride.png */; };
 		40121E8C1DB9E6FD008BB927 /* walk.png in Resources */ = {isa = PBXBuildFile; fileRef = 40121E8B1DB9E6FD008BB927 /* walk.png */; };
 		40121E8E1DB9E702008BB927 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 40121E8D1DB9E702008BB927 /* back.png */; };
+		401B89D31DC21C7600AA92A9 /* WeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 401B89D21DC21C7600AA92A9 /* WeatherViewController.m */; };
+		401B89D91DC2242000AA92A9 /* TodayWeatherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 401B89D81DC2242000AA92A9 /* TodayWeatherView.m */; };
+		401B89DC1DC2248200AA92A9 /* FutureWeatherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 401B89DB1DC2248200AA92A9 /* FutureWeatherView.m */; };
+		401B89DE1DC226C400AA92A9 /* C.png in Resources */ = {isa = PBXBuildFile; fileRef = 401B89DD1DC226C400AA92A9 /* C.png */; };
+		401B89E01DC22B1500AA92A9 /* cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 401B89DF1DC22B1500AA92A9 /* cloud.png */; };
+		401B89E21DC22CA800AA92A9 /* humidity.png in Resources */ = {isa = PBXBuildFile; fileRef = 401B89E11DC22CA800AA92A9 /* humidity.png */; };
+		401B89E41DC22CB900AA92A9 /* wind.png in Resources */ = {isa = PBXBuildFile; fileRef = 401B89E31DC22CB900AA92A9 /* wind.png */; };
+		401B89E61DC2E57500AA92A9 /* bg_rain_night.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 401B89E51DC2E57500AA92A9 /* bg_rain_night.jpg */; };
+		405B7C871DC3545F0046BF0F /* sunny.png in Resources */ = {isa = PBXBuildFile; fileRef = 405B7C861DC3545F0046BF0F /* sunny.png */; };
+		405B7C891DC354640046BF0F /* yin.png in Resources */ = {isa = PBXBuildFile; fileRef = 405B7C881DC354640046BF0F /* yin.png */; };
+		405B7C8B1DC354690046BF0F /* mai.png in Resources */ = {isa = PBXBuildFile; fileRef = 405B7C8A1DC354690046BF0F /* mai.png */; };
+		405B7C911DC37BF80046BF0F /* rain.png in Resources */ = {isa = PBXBuildFile; fileRef = 405B7C901DC37BF80046BF0F /* rain.png */; };
+		405B7C931DC37C4F0046BF0F /* snow.png in Resources */ = {isa = PBXBuildFile; fileRef = 405B7C921DC37C4F0046BF0F /* snow.png */; };
 		405E48DB1DBA0579004105F2 /* leave.png in Resources */ = {isa = PBXBuildFile; fileRef = 405E48DA1DBA0579004105F2 /* leave.png */; };
 		405E49251DBCD0EB004105F2 /* MatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E491A1DBCD0EB004105F2 /* MatchViewController.m */; };
 		405E49261DBCD0EB004105F2 /* Recommend.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E491C1DBCD0EB004105F2 /* Recommend.m */; };
@@ -98,6 +111,22 @@
 		40121E891DB9E6F8008BB927 /* ride.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ride.png; sourceTree = "<group>"; };
 		40121E8B1DB9E6FD008BB927 /* walk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = walk.png; sourceTree = "<group>"; };
 		40121E8D1DB9E702008BB927 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		401B89D11DC21C7600AA92A9 /* WeatherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherViewController.h; sourceTree = "<group>"; };
+		401B89D21DC21C7600AA92A9 /* WeatherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherViewController.m; sourceTree = "<group>"; };
+		401B89D71DC2241F00AA92A9 /* TodayWeatherView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayWeatherView.h; sourceTree = "<group>"; };
+		401B89D81DC2242000AA92A9 /* TodayWeatherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayWeatherView.m; sourceTree = "<group>"; };
+		401B89DA1DC2248200AA92A9 /* FutureWeatherView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FutureWeatherView.h; sourceTree = "<group>"; };
+		401B89DB1DC2248200AA92A9 /* FutureWeatherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FutureWeatherView.m; sourceTree = "<group>"; };
+		401B89DD1DC226C400AA92A9 /* C.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = C.png; sourceTree = "<group>"; };
+		401B89DF1DC22B1500AA92A9 /* cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloud.png; sourceTree = "<group>"; };
+		401B89E11DC22CA800AA92A9 /* humidity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = humidity.png; sourceTree = "<group>"; };
+		401B89E31DC22CB900AA92A9 /* wind.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wind.png; sourceTree = "<group>"; };
+		401B89E51DC2E57500AA92A9 /* bg_rain_night.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_rain_night.jpg; sourceTree = "<group>"; };
+		405B7C861DC3545F0046BF0F /* sunny.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sunny.png; sourceTree = "<group>"; };
+		405B7C881DC354640046BF0F /* yin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yin.png; sourceTree = "<group>"; };
+		405B7C8A1DC354690046BF0F /* mai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mai.png; sourceTree = "<group>"; };
+		405B7C901DC37BF80046BF0F /* rain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rain.png; sourceTree = "<group>"; };
+		405B7C921DC37C4F0046BF0F /* snow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snow.png; sourceTree = "<group>"; };
 		405E48DA1DBA0579004105F2 /* leave.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leave.png; sourceTree = "<group>"; };
 		405E49191DBCD0EB004105F2 /* MatchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchViewController.h; sourceTree = "<group>"; };
 		405E491A1DBCD0EB004105F2 /* MatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchViewController.m; sourceTree = "<group>"; };
@@ -275,6 +304,46 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		401B89D01DC21C5A00AA92A9 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				401B89D61DC223F000AA92A9 /* View */,
+				401B89D51DC223E600AA92A9 /* Controller */,
+			);
+			name = Weather;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		401B89D41DC2223B00AA92A9 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				409229B21DBFC99D00FDAD4E /* View */,
+				409229AD1DBFC99D00FDAD4E /* Model */,
+				409229AA1DBFC99D00FDAD4E /* Controller */,
+			);
+			name = Root;
+			sourceTree = "<group>";
+		};
+		401B89D51DC223E600AA92A9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				401B89D11DC21C7600AA92A9 /* WeatherViewController.h */,
+				401B89D21DC21C7600AA92A9 /* WeatherViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		401B89D61DC223F000AA92A9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				401B89D71DC2241F00AA92A9 /* TodayWeatherView.h */,
+				401B89D81DC2242000AA92A9 /* TodayWeatherView.m */,
+				401B89DA1DC2248200AA92A9 /* FutureWeatherView.h */,
+				401B89DB1DC2248200AA92A9 /* FutureWeatherView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		405E48E51DBA4DBB004105F2 /* Start */ = {
 			isa = PBXGroup;
 			children = (
@@ -343,9 +412,8 @@
 		409229A91DBFC99D00FDAD4E /* Root */ = {
 			isa = PBXGroup;
 			children = (
-				409229AA1DBFC99D00FDAD4E /* Controller */,
-				409229AD1DBFC99D00FDAD4E /* Model */,
-				409229B21DBFC99D00FDAD4E /* View */,
+				401B89D41DC2223B00AA92A9 /* Root */,
+				401B89D01DC21C5A00AA92A9 /* Weather */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -447,6 +515,16 @@
 		494374171DB9B2A900FF641A /* 素材 */ = {
 			isa = PBXGroup;
 			children = (
+				405B7C8A1DC354690046BF0F /* mai.png */,
+				405B7C881DC354640046BF0F /* yin.png */,
+				405B7C861DC3545F0046BF0F /* sunny.png */,
+				405B7C921DC37C4F0046BF0F /* snow.png */,
+				405B7C901DC37BF80046BF0F /* rain.png */,
+				401B89E51DC2E57500AA92A9 /* bg_rain_night.jpg */,
+				401B89E11DC22CA800AA92A9 /* humidity.png */,
+				401B89E31DC22CB900AA92A9 /* wind.png */,
+				401B89DD1DC226C400AA92A9 /* C.png */,
+				401B89DF1DC22B1500AA92A9 /* cloud.png */,
 				494374181DB9B2A900FF641A /* 6.jpg */,
 				494374191DB9B2A900FF641A /* 7.jpg */,
 				40121E8D1DB9E702008BB927 /* back.png */,
@@ -871,17 +949,27 @@
 				49704A2E1DBDA1240028DB2F /* pl.png in Resources */,
 				49060C4B1DBF8E4A003FE373 /* w2.jpg in Resources */,
 				EE56EAB31DB8CE6D000B8082 /* LaunchScreen.storyboard in Resources */,
+				405B7C891DC354640046BF0F /* yin.png in Resources */,
+				401B89E01DC22B1500AA92A9 /* cloud.png in Resources */,
+				401B89DE1DC226C400AA92A9 /* C.png in Resources */,
+				401B89E61DC2E57500AA92A9 /* bg_rain_night.jpg in Resources */,
+				405B7C8B1DC354690046BF0F /* mai.png in Resources */,
 				40121E8A1DB9E6F8008BB927 /* ride.png in Resources */,
+				405B7C911DC37BF80046BF0F /* rain.png in Resources */,
 				40121E8E1DB9E702008BB927 /* back.png in Resources */,
 				40121E8C1DB9E6FD008BB927 /* walk.png in Resources */,
 				EE56EAB01DB8CE6D000B8082 /* Assets.xcassets in Resources */,
 				EEE3D7261DC1A1A9003D0CC5 /* 1.png in Resources */,
 				EEE3D7271DC1A1A9003D0CC5 /* 2.png in Resources */,
+				401B89E41DC22CB900AA92A9 /* wind.png in Resources */,
 				405E48DB1DBA0579004105F2 /* leave.png in Resources */,
 				40121E881DB9BCD2008BB927 /* run.png in Resources */,
 				4943741B1DB9B2A900FF641A /* 7.jpg in Resources */,
+				401B89E21DC22CA800AA92A9 /* humidity.png in Resources */,
+				405B7C931DC37C4F0046BF0F /* snow.png in Resources */,
 				4943741A1DB9B2A900FF641A /* 6.jpg in Resources */,
 				EE56EAAE1DB8CE6D000B8082 /* Main.storyboard in Resources */,
+				405B7C871DC3545F0046BF0F /* sunny.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -961,6 +1049,7 @@
 				EE1A003C1DB8CF610003762E /* UILabel+SizeToFit_W_H.m in Sources */,
 				EE1A003F1DB8CF610003762E /* HttpClient.m in Sources */,
 				EE56EAAB1DB8CE6D000B8082 /* ViewController.m in Sources */,
+				401B89D31DC21C7600AA92A9 /* WeatherViewController.m in Sources */,
 				405E49271DBCD0EB004105F2 /* RecommendTableViewCell.m in Sources */,
 				49060C151DBEE5F0003FE373 /* NearbyTableViewCell.m in Sources */,
 				EE1A003E1DB8CF610003762E /* DataBaseManager.m in Sources */,
@@ -987,6 +1076,7 @@
 				EE1A00411DB8CF610003762E /* FileManagerUtils.m in Sources */,
 				EE1A00301DB8CF610003762E /* NSDate+Categories.m in Sources */,
 				EE1A00451DB8CF610003762E /* XLImagePageDetailCell.m in Sources */,
+				401B89DC1DC2248200AA92A9 /* FutureWeatherView.m in Sources */,
 				409229C11DBFCA0500FDAD4E /* SQLiteDatabaseManager.m in Sources */,
 				EE1A00331DB8CF610003762E /* NSNumber+Extend.m in Sources */,
 				EEE3D72E1DC1A1A9003D0CC5 /* CustomPickerView.m in Sources */,
@@ -1004,6 +1094,7 @@
 				49704A311DBDA7CE0028DB2F /* DetailedViewController.m in Sources */,
 				EE1A00421DB8CF610003762E /* NSUserDefaultsUtils.m in Sources */,
 				EE1A004F1DB8CFC80003762E /* HealthManager.m in Sources */,
+				401B89D91DC2242000AA92A9 /* TodayWeatherView.m in Sources */,
 				EE1A00371DB8CF610003762E /* NSUserDefaults+Categories.m in Sources */,
 				405E492A1DBCD0EB004105F2 /* RouteViewController.m in Sources */,
 				409229BA1DBFC99D00FDAD4E /* StepManager.m in Sources */,

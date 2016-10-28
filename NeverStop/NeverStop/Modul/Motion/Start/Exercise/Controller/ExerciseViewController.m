@@ -12,10 +12,14 @@
 #import "CustomAnimateTransitionPush.h"
 #import "MapViewController.h"
 #import "CustomAnimateTransitionPop.h"
+#import "Location.h"
+#import "MapDataManager.h"
+#import "ExerciseData.h"
 
 @interface ExerciseViewController ()
 <
-UINavigationControllerDelegate
+UINavigationControllerDelegate,
+MAMapViewDelegate
 >
 @property (nonatomic, retain) UIButton *pauseButton;
 @property (nonatomic, retain) UIView *countDownView;
@@ -31,21 +35,76 @@ UINavigationControllerDelegate
 @property (nonatomic, assign) CGPoint glideCenter;
 @property (nonatomic, assign) CGFloat dy;
 @property (nonatomic, assign) BOOL isOffMark;
+@property (nonatomic, assign) BOOL isLock;
+@property (nonatomic, assign) BOOL isMoving;
 @property (nonatomic, retain) UIButton *mapButton;
+@property (nonatomic, retain) Location *location;
+
+
+@property (nonatomic, retain) MAMapView *mapView;
+@property (nonatomic, retain) Location *lastLocation;
+@property (nonatomic, assign) double allDistance;
+@property (nonatomic, retain) UILabel *distanceLabel;
+@property (nonatomic, retain) NSString *allDistanceStr;
+//@property (nonatomic, retain) MyKVO *myKVO;
+@property (nonatomic, retain) MAPolyline *commonPolyline;
+
+@property (nonatomic, retain) MapDataManager *mapManager;
+@property (nonatomic, retain) ExerciseData *exerciseDataKVO;
+@property (nonatomic, retain) NSTimer *timer;
+@property (nonatomic, assign) NSInteger a;
+@property (nonatomic, retain) NSArray *keyPathArray;
+@property (nonatomic, retain) NSMutableArray *locationArray;
+
 @end
 
 @implementation ExerciseViewController
 - (void)dealloc {
     self.navigationController.delegate = nil;
+//    [self.exerciseDataKVO removeObserver:self forKeyPath:@"distance" context:nil];
+//    [self.exerciseDataKVO removeObserver:self forKeyPath:@"duration" context:nil];
+//    [self.exerciseDataKVO removeObserver:self forKeyPath:@"speedPerHour" context:nil];
+//    [self.exerciseDataKVO removeObserver:self forKeyPath:@"averageSpeed" context:nil];
+    for (int i = 0; i < _keyPathArray.count; i++) {
+        [self.exerciseDataKVO removeObserver:self forKeyPath:_keyPathArray[i] context:nil];
+    }
+    
+
+
 }
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBarHidden = YES;
     self.navigationController.delegate = self;
-}
+    [_mapView setUserTrackingMode: MAUserTrackingModeFollow animated:YES];
 
+}
+- (void)initialValue {
+    self.isMoving = YES;
+    _a = 0;
+    self.keyPathArray = @[@"distance", @"duration", @"speedPerHour", @"averageSpeed", @"maxSpeed", @"calorie"];
+    self.lastLocation = [[Location alloc] init];
+    self.locationArray = [NSMutableArray array];
+    self.mapManager = [MapDataManager defaultManager];
+    self.exerciseDataKVO = [[ExerciseData alloc] init];
+    _exerciseDataKVO.distance = 0.00;
+    _exerciseDataKVO.duration = 0;
+    _exerciseDataKVO.speedPerHour = 0.00;
+    _exerciseDataKVO.averageSpeed = 0.00;
+    _exerciseDataKVO.maxSpeed = 0.00;
+    _exerciseDataKVO.calorie = 0.0;
+
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+   //    [self.exerciseDataKVO addObserver:self forKeyPath:@"exerciseData" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld  context:nil];
+//    [self.exerciseDataKVO addObserver:self forKeyPath:@"TIMETIME" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld  context:nil];
+//    [self.exerciseDataKVO addObserver:self forKeyPath:@"TIMETIME" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld  context:nil];
+//    [self.exerciseDataKVO addObserver:self forKeyPath:@"TIMETIME" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld  context:nil];
+    for (int i = 0; i < _keyPathArray.count; i++) {
+        [self.exerciseDataKVO addObserver:self forKeyPath:_keyPathArray[i] options: NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld  context:nil];
+    }
+    [self creatMapView];
 #pragma mark - 结束按钮
     self.view.backgroundColor = [UIColor cyanColor];
     self.endButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -58,6 +117,9 @@ UINavigationControllerDelegate
     [self.view addSubview:_endButton];
     __weak typeof(self) weakSelf = self;
     [_endButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
+        // 结束计时
+        [self endTimer];
+        [_mapManager.allLocationArray removeAllObjects];
         [weakSelf.navigationController popViewControllerAnimated:YES];
         
     }];
@@ -76,16 +138,22 @@ UINavigationControllerDelegate
     [_pauseButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
         [UIView animateWithDuration:0.5 animations:^{
             if (!_pauseButton.selected) {
+                // 暂停计时
+                [self pauseTimer];
                 _pauseButton.centerX = SCREEN_WIDTH / 2 - 70;
                 _endButton.centerX = SCREEN_WIDTH / 2 + 70;
                 _pauseButton.selected = !_pauseButton.selected;
                 [_pauseButton setBackgroundImage:[UIImage imageNamed:@"1"] forState:UIControlStateNormal];
+                
+                self.isMoving = NO;
             } else {
+                // 开始计时
+                [self createTimer];
                 _pauseButton.centerX = SCREEN_WIDTH / 2;
                 _endButton.centerX = SCREEN_WIDTH / 2;
                 _pauseButton.selected = !_pauseButton.selected;
                 [_pauseButton setBackgroundImage:[UIImage imageNamed:@"2"] forState:UIControlStateNormal];
-                
+                self.isMoving = YES;
             }
         }];
         
@@ -100,11 +168,153 @@ UINavigationControllerDelegate
         [self.navigationController pushViewController:mapVC animated:YES];
         
     }];
+    [self mapBtnAnimation];
     [self.view addSubview:_mapButton];
     [self createExerciseDataModules];
     [self createLockButton];
     [self createCountDownView];
 
+}
+#pragma mark - 创建计时器 开始计时
+- (void)createTimer {
+    if (_a == 0) {
+        
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.f target:self selector:@selector(timeFire) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
+    }
+    _a++;
+}
+#pragma mark - 暂停计时
+- (void)pauseTimer {
+        self.a = 0;
+        [_timer setFireDate:[NSDate distantFuture]];
+}
+
+-(void)timeFire {
+    _exerciseDataKVO.duration++;
+}
+#pragma mark - 结束计时
+- (void)endTimer{
+    _a = 0;
+    [_timer setFireDate:[NSDate distantFuture]];
+}
+
+
+
+#pragma mark - 创建地图
+- (void)creatMapView {
+    self.mapView = [[MAMapView alloc] initWithFrame:CGRectMake(-1, -1, 1, 1)];
+    [self.view addSubview:_mapView];
+    // 开启定位
+    _mapView.showsUserLocation = YES;
+    
+    _mapView.delegate = self;
+    
+    _mapView.pausesLocationUpdatesAutomatically = NO;
+    
+    _mapView.allowsBackgroundLocationUpdates = YES;//iOS9以上系统必须配置
+    
+    // 设置默认模式
+    [_mapView setUserTrackingMode: MAUserTrackingModeFollow animated:YES];
+}
+
+- (void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation {
+    if (updatingLocation) {
+        //        NSLog(@"lat: %f, long: %f", userLocation.coordinate.latitude, userLocation.coordinate.longitude);
+        // 取出当前位置的坐标
+        
+        Location *location = [[Location alloc] init];
+        location.latitude = userLocation.coordinate.latitude;
+        location.longitude = userLocation.coordinate.longitude;
+        if (self.isMoving == YES) {
+            location.isStart = YES;
+        } else {
+            location.isStart = NO;
+        }
+        // 添加到坐标数组中
+        [_locationArray addObject:location];
+//        [_locationArray addObject:location];
+        if (self.isMoving == YES) {
+            
+            if (_locationArray.count > 1) {
+                //1.将两个经纬度点转成投影点
+                MAMapPoint point1 = MAMapPointForCoordinate(CLLocationCoordinate2DMake(_lastLocation.latitude,_lastLocation.longitude));
+                MAMapPoint point2 = MAMapPointForCoordinate(CLLocationCoordinate2DMake(location.latitude,location.longitude));
+                //2.计算距离
+                NSLog(@"last : %f, %f", _lastLocation.latitude, _lastLocation.longitude);
+                NSLog(@"now : %f, %f", location.latitude, location.longitude);
+                CLLocationDistance distance = MAMetersBetweenMapPoints(point1,point2);
+                NSLog(@"distance : %f", distance);
+                _exerciseDataKVO.speedPerHour = distance / 1000 / ((8 / 60 ) / 60);
+                
+//                _exerciseDataKVO.distance += distance / 1000;
+                _exerciseDataKVO.distance += round(distance / 1000 * 100) / 100;
+                _exerciseDataKVO.maxSpeed = _exerciseDataKVO.maxSpeed > _exerciseDataKVO.speedPerHour ? _exerciseDataKVO.maxSpeed : _exerciseDataKVO.speedPerHour;
+                _exerciseDataKVO.averageSpeed = _exerciseDataKVO.distance / _exerciseDataKVO.duration;
+            }
+         
+            _lastLocation.latitude = location.latitude;
+            _lastLocation.longitude = location.longitude;
+        }
+
+      
+        
+    }
+    
+    
+    
+    
+    
+}
+#pragma mark - KVO
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"duration"] && object == self.exerciseDataKVO) {
+        
+        NSString *time = [change valueForKey:@"new"];
+        
+        NSInteger sec;
+        NSInteger minu;
+        NSInteger hour;
+        sec = [time integerValue] % 60;
+        minu = ([time integerValue] / 60)% 60;
+        hour = [time integerValue] / 3600;
+        
+        self.homeDataView.dataLabel.text = [NSString stringWithFormat:@"%.2ld:%.2ld:%.2ld", hour, minu, sec];
+        
+    } else if ([keyPath isEqualToString:@"distance"] && object == self.exerciseDataKVO) {
+         self.leftDataView.dataLabel.text = [NSString stringWithFormat:@"%@", [change valueForKey:@"new"]];
+    } else if ([keyPath isEqualToString:@"speedPerHour"] && object == self.exerciseDataKVO) {
+        self.leftDataView.dataLabel.text = [NSString stringWithFormat:@"%@", [change valueForKey:@"new"]];
+    } else if ([keyPath isEqualToString:@"averageSpeed"] && object == self.exerciseDataKVO) {
+       
+    } else if ([keyPath isEqualToString:@"maxSpeed"] && object == self.exerciseDataKVO) {
+       
+    } else if ([keyPath isEqualToString:@"calorie"] && object == self.exerciseDataKVO) {
+       
+    }
+
+
+
+
+   
+}
+
+
+
+
+
+
+
+#pragma mark - 右上地图button旋转动画
+- (void)mapBtnAnimation{
+    CABasicAnimation *rotationAnimation;
+    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
+    rotationAnimation.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
+    rotationAnimation.toValue = [ NSValue valueWithCATransform3D: CATransform3DMakeRotation(M_PI, 0.0, 0.0, 1.0) ];
+    rotationAnimation.duration = 1.0;
+    rotationAnimation.cumulative = YES;
+    rotationAnimation.repeatCount = MAXFLOAT;
+    [self.mapButton.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
 }
 #pragma mark - 创建倒计时视图
 - (void)createCountDownView {
@@ -139,7 +349,7 @@ UINavigationControllerDelegate
     
     self.leftDataView = [[ExerciseDataView alloc] initWithFrame:CGRectMake(0, _dataModulesView.height - 60, SCREEN_WIDTH / 2, 60)];
     _leftDataView.titleLabel.font = kFONT_SIZE_18_BOLD;
-    _leftDataView.titleLabel.text = @"时长";
+    _leftDataView.titleLabel.text = @"距离 (公里)";
     _leftDataView.dataLabel.font = kFONT_SIZE_24_BOLD;
     _leftDataView.dataLabel.text = @"01:22:17";
     [self.dataModulesView addSubview:_leftDataView];
@@ -147,7 +357,7 @@ UINavigationControllerDelegate
     
     self.rightDataView = [[ExerciseDataView alloc] initWithFrame:CGRectMake(_dataModulesView.width / 2, _dataModulesView.height - 60, _dataModulesView.width / 2, _leftDataView.height)];
     _rightDataView.titleLabel.font = kFONT_SIZE_18_BOLD;
-    _rightDataView.titleLabel.text = @"时长";
+    _rightDataView.titleLabel.text = @"时速 (公里时)";
     _rightDataView.dataLabel.font = kFONT_SIZE_24_BOLD;
     _rightDataView.dataLabel.text = @"01:22:17";
     [self.dataModulesView addSubview:_rightDataView];
@@ -163,11 +373,13 @@ UINavigationControllerDelegate
 
     [_lockButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
         [weakSelf createLockView];
+        self.isLock = YES;
         [weakSelf.view bringSubviewToFront:_lockButton];
         [weakSelf.view bringSubviewToFront:_dataModulesView];
     }];
     [self.view addSubview:_lockButton];
 }
+#pragma mark - 创建锁屏视图
 - (void)createLockView {
     self.glideView = [[GlideView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 40, SCREEN_HEIGHT - 200, 80, 100)];
     self.glideCenter = CGPointMake(_glideView.centerX, _glideView.centerY);
@@ -187,23 +399,25 @@ UINavigationControllerDelegate
         
         [effe sendSubviewToBack:_glideView];
         [effe addSubview:_glideView];
-        
+        _glideView.userInteractionEnabled = NO;
+
     }];
 
 }
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+     if (self.isLock == YES) {
     //保存触摸起始点位置
     CGPoint point = [[touches anyObject] locationInView:self.view];
     self.startPoint = point;
     [self.view bringSubviewToFront:_lockView];
     _isOffMark = NO;
-    //该view置于最前
+     }
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    
+     if (self.isLock == YES) {
   
     //计算位移 = 当前位置 - 起始位置
     CGPoint point = [[touches anyObject] locationInView:self.view];
@@ -227,21 +441,22 @@ UINavigationControllerDelegate
     if (_isOffMark == NO) {
         
         _glideView.center = newcenter;
+        _lockButton.center = CGPointMake(_glideView.center.x, _glideView.center.y - 70);
+
         if (_dy < -30) {
             [UIView animateWithDuration:0.5 animations:^{
                 _glideView.center = self.glideCenter;
+                _lockButton.center = CGPointMake(_lockButton.centerX, _glideView.y - 20);
                 _isOffMark = YES;
             }];
         }
     }
-    
-    //移动view
-    
-//    NSLog(@"%f", _dy);
+     }
 }
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
 
+    if (self.isLock == YES) {
 
     
      if (self.dy > 80) {
@@ -252,25 +467,29 @@ UINavigationControllerDelegate
             _dataModulesView.userInteractionEnabled = YES;
         } completion:^(BOOL finished) {
             [_lockButton setBackgroundImage:[UIImage imageNamed:@"unlock"] forState:UIControlStateNormal];
-            
+            self.isLock = NO;
             [_glideView.superview removeFromSuperview];
             
         }];
      } else {
          [UIView animateWithDuration:0.5 animations:^{
              _glideView.center = _glideCenter;
+             _lockButton.center = CGPointMake(_lockButton.centerX, _glideView.y - 20);
+     
          }];
      }
+
+    }
 }
 #pragma mark - 倒计时
 - (void)startTime {
     __block int timeout = 3; //倒计时时间
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
-    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0 * NSEC_PER_SEC, 0); //每秒执行
-    dispatch_source_set_event_handler(_timer, ^{
+    dispatch_source_t _timer1 = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+    dispatch_source_set_timer(_timer1,dispatch_walltime(NULL, 0),1.0 * NSEC_PER_SEC, 0); //每秒执行
+    dispatch_source_set_event_handler(_timer1, ^{
         if(timeout <= 0){ //倒计时结束，关闭
-            dispatch_source_cancel(_timer);
+            dispatch_source_cancel(_timer1);
             dispatch_async(dispatch_get_main_queue(), ^{
                 //设置界面的按钮显示 根据自己需求设置
                 [self.countDownView removeFromSuperview];
@@ -298,6 +517,7 @@ UINavigationControllerDelegate
                         _countDownLabel.transform = CGAffineTransformMakeScale(1.0, 1.0);
 //                        _countDownLabel.font = [UIFont boldSystemFontOfSize:150];
                         _countDownLabel.textColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.1];
+                        [self createTimer];
 
                     }];
                     
@@ -311,10 +531,10 @@ UINavigationControllerDelegate
         }
         
     });
-    dispatch_resume(_timer);
+    dispatch_resume(_timer1);
     
 }
-//用来自定义转场动画
+#pragma mark - 用来自定义转场动画
 -(id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC
 {
     

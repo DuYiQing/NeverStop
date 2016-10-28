@@ -89,6 +89,7 @@
 		EE56EAAE1DB8CE6D000B8082 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE56EAAC1DB8CE6D000B8082 /* Main.storyboard */; };
 		EE56EAB01DB8CE6D000B8082 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE56EAAF1DB8CE6D000B8082 /* Assets.xcassets */; };
 		EE56EAB31DB8CE6D000B8082 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE56EAB11DB8CE6D000B8082 /* LaunchScreen.storyboard */; };
+		EEADD65A1DC246B900A5EB52 /* MapDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EEADD6591DC246B900A5EB52 /* MapDataManager.m */; };
 		EEBA13F61DBF8AD60001F7A4 /* ExerciseDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = EEBA13F51DBF8AD60001F7A4 /* ExerciseDataView.m */; };
 		EEC8E70D1DB8ED1500349793 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEC8E70C1DB8ED1500349793 /* HealthKit.framework */; };
 		EEE3D70F1DC199E8003D0CC5 /* ExerciseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE3D70E1DC199E8003D0CC5 /* ExerciseViewController.m */; };
@@ -103,6 +104,8 @@
 		EEE3D72D1DC1A1A9003D0CC5 /* CustomAnimateTransitionPush.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE3D7211DC1A1A9003D0CC5 /* CustomAnimateTransitionPush.m */; };
 		EEE3D72E1DC1A1A9003D0CC5 /* CustomPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE3D7231DC1A1A9003D0CC5 /* CustomPickerView.m */; };
 		EEE3D72F1DC1A1A9003D0CC5 /* JiangPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE3D7251DC1A1A9003D0CC5 /* JiangPickerView.m */; };
+		EEE3D7651DC215EF003D0CC5 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE3D7641DC215EF003D0CC5 /* Location.m */; };
+		EEE3D76B1DC220E3003D0CC5 /* ExerciseData.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE3D76A1DC220E3003D0CC5 /* ExerciseData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -258,6 +261,8 @@
 		EE56EAB21DB8CE6D000B8082 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EE56EAB41DB8CE6D000B8082 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EE7420C71DBE0FBD0007F71E /* ExerciseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseViewController.h; sourceTree = "<group>"; };
+		EEADD6581DC246B900A5EB52 /* MapDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapDataManager.h; sourceTree = "<group>"; };
+		EEADD6591DC246B900A5EB52 /* MapDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapDataManager.m; sourceTree = "<group>"; };
 		EEBA13F41DBF8AD60001F7A4 /* ExerciseDataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseDataView.h; sourceTree = "<group>"; };
 		EEBA13F51DBF8AD60001F7A4 /* ExerciseDataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseDataView.m; sourceTree = "<group>"; };
 		EEC8E70C1DB8ED1500349793 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -280,6 +285,10 @@
 		EEE3D7231DC1A1A9003D0CC5 /* CustomPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPickerView.m; sourceTree = "<group>"; };
 		EEE3D7241DC1A1A9003D0CC5 /* JiangPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JiangPickerView.h; sourceTree = "<group>"; };
 		EEE3D7251DC1A1A9003D0CC5 /* JiangPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JiangPickerView.m; sourceTree = "<group>"; };
+		EEE3D7631DC215EF003D0CC5 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
+		EEE3D7641DC215EF003D0CC5 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
+		EEE3D7691DC220E3003D0CC5 /* ExerciseData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseData.h; sourceTree = "<group>"; };
+		EEE3D76A1DC220E3003D0CC5 /* ExerciseData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseData.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -349,6 +358,7 @@
 			children = (
 				EE7420C31DBE0F8D0007F71E /* Exercise */,
 				EE1D81A51DC0CA4A00FA6CD5 /* Map */,
+				EEE3D7591DC1E169003D0CC5 /* MapBase */,
 				EE7420C21DBE0F820007F71E /* Start */,
 			);
 			path = Start;
@@ -833,6 +843,12 @@
 		EE7420C61DBE0FA90007F71E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EEADD6581DC246B900A5EB52 /* MapDataManager.h */,
+				EEADD6591DC246B900A5EB52 /* MapDataManager.m */,
+				EEE3D7691DC220E3003D0CC5 /* ExerciseData.h */,
+				EEE3D76A1DC220E3003D0CC5 /* ExerciseData.m */,
+				EEE3D7631DC215EF003D0CC5 /* Location.h */,
+				EEE3D7641DC215EF003D0CC5 /* Location.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -874,6 +890,13 @@
 				EEE3D7251DC1A1A9003D0CC5 /* JiangPickerView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		EEE3D7591DC1E169003D0CC5 /* MapBase */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MapBase;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1032,6 +1055,7 @@
 				EE1A002F1DB8CF610003762E /* NSArray+Categories.m in Sources */,
 				EE1D81761DC0475300FA6CD5 /* JiangFlashLabel.m in Sources */,
 				EEE3D72C1DC1A1A9003D0CC5 /* CustomAnimateTransitionPop.m in Sources */,
+				EEE3D76B1DC220E3003D0CC5 /* ExerciseData.m in Sources */,
 				49060C471DBF8461003FE373 /* NearbyViewController.m in Sources */,
 				49704A8A1DBE217C0028DB2F /* DetailTableViewCell.m in Sources */,
 				EEE3D7281DC1A1A9003D0CC5 /* StartViewController.m in Sources */,
@@ -1066,6 +1090,7 @@
 				EEBA13F61DBF8AD60001F7A4 /* ExerciseDataView.m in Sources */,
 				EEE3D72B1DC1A1A9003D0CC5 /* CaloriePickerView.m in Sources */,
 				49704A871DBDF5560028DB2F /* Detail.m in Sources */,
+				EEE3D7651DC215EF003D0CC5 /* Location.m in Sources */,
 				405E49251DBCD0EB004105F2 /* MatchViewController.m in Sources */,
 				EEE3D72D1DC1A1A9003D0CC5 /* CustomAnimateTransitionPush.m in Sources */,
 				EE1D81731DC046C700FA6CD5 /* GlideView.m in Sources */,
@@ -1095,6 +1120,7 @@
 				EE1A00421DB8CF610003762E /* NSUserDefaultsUtils.m in Sources */,
 				EE1A004F1DB8CFC80003762E /* HealthManager.m in Sources */,
 				401B89D91DC2242000AA92A9 /* TodayWeatherView.m in Sources */,
+				EEADD65A1DC246B900A5EB52 /* MapDataManager.m in Sources */,
 				EE1A00371DB8CF610003762E /* NSUserDefaults+Categories.m in Sources */,
 				405E492A1DBCD0EB004105F2 /* RouteViewController.m in Sources */,
 				409229BA1DBFC99D00FDAD4E /* StepManager.m in Sources */,

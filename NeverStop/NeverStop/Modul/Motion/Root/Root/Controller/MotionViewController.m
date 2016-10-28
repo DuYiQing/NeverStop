@@ -300,7 +300,8 @@ AMapSearchDelegate
         weatherVC.forecast = _forecast;
         weatherVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:weatherVC animated:YES];
-    } dismissBlock:nil];-
+    } dismissBlock:nil];
+
 }
 #pragma mark - 天气信息
 - (void)showWeatherInfo {

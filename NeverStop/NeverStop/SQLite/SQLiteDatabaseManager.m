@@ -34,7 +34,7 @@
     }
     
     NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    NSString *stepDBPath = [documentsPath stringByAppendingPathComponent:@"StepCountModel.db"];
+    NSString *stepDBPath = [documentsPath stringByAppendingPathComponent:@"StepCount.db"];
     NSLog(@"path : %@", stepDBPath);
     // 打开数据库(如果没有就先创建,后打开,如果有,就直接打开)
     // 参数1:数据库文件路径
@@ -58,7 +58,7 @@
     // primary key:主键,只能是唯一的,不存在重复出现的情况,不推荐主动存,推荐计算机生成
     // autoincrement:自增
     // not null:不为空
-    NSString *createTableSQL = @"create table if not exists StepCount (step_id integer primary key autoincrement, date text not null, stepCount integer)";
+    NSString *createTableSQL = @"create table if not exists StepCount (id integer primary key autoincrement, date text not null unique, stepCount integer)";
     // 执行SQL语句
     // 参数1 : 数据库指针
     // 参数2 : 执行的SQL语句
@@ -72,36 +72,29 @@
     return [self isSuccessWithResult:result alert:@"创建表"];
 }
 
-- (BOOL)insertIntoWithStepCountModel:(StepCountModel *)stepCountModel {
-    // 插入 : insert into 表名 (字段名, 字段名) values (值, 值)
-    // (字段名, 字段名)可省略
-    // 自增字段null为从1开始累加
-    // 文本类型使用''引起来
-    NSString *insertSQL = [NSString stringWithFormat:@"insert into StepCount values (null, '%@', %@)", stepCountModel.date, stepCountModel.stepCount];
-    
+- (BOOL)insertIntoWithStepCountModel:(NSString *)date {
+    NSString *insertSQL = [NSString stringWithFormat:@"insert into StepCount values (null, '%@', '0')", date];
     char *error = NULL;
     
     int result = sqlite3_exec(dbPointer, [insertSQL UTF8String], NULL, NULL, &error);
     [self logErrorMessage:error];
     return [self isSuccessWithResult:result alert:@"插入"];
+
 }
 
-- (BOOL)updateOldStepCount:(NSString *)oldStepCount newStepCount:(NSString *)newStepCount {
-    // update 表名 set 字段名 = 新值 where 字段名 = 旧值
-    // where代表一个约束条件
-    NSString *updateSQL = [NSString stringWithFormat:@"update StepCount set date = '%@' where date = '%@'", newStepCount, oldStepCount];
+- (BOOL)updateStepCount:(NSString *)StepCount date:(NSString *)date {
+    NSString *updateSQL = [NSString stringWithFormat:@"update StepCount set stepCount = '%@' where date = '%@'", StepCount, date];
     char *error = NULL;
     int result = sqlite3_exec(dbPointer, [updateSQL UTF8String], NULL, NULL, &error);
     [self logErrorMessage:error];
     return [self isSuccessWithResult:result alert:@"更新"];
-
 }
 
-- (NSArray *)selectAllStepCount {
+- (StepCountModel *)selectStepCountWithDate:(NSString *)date {
     // 查询所有的数据
     // select *from 表名
     // 如果需要查询固定条件的数据需要使用where
-    NSString *selectSQL = @"select *from StepCount";
+    NSString *selectSQL = [NSString stringWithFormat:@"select * from StepCount where date = '%@'", date];
     
     // 准备执行SQL
     // 参数1:数据库指针
@@ -113,28 +106,26 @@
     
     int result = sqlite3_prepare(dbPointer, [selectSQL UTF8String], -1, &stmt, NULL);
     
-    NSMutableArray *resultArray = [NSMutableArray array];
+//    NSMutableArray *resultArray = [NSMutableArray array];
+    StepCountModel *stepCountModel = [[StepCountModel alloc] init];
     
     if (result == SQLITE_OK) {
         // sqlite3_step(stmt) 等于 SQLITE_ROW 代表有数据  等于 SQLITE_DONE代表已经没有其他数据
         while (sqlite3_step(stmt) == SQLITE_ROW) {
-            // 获取数据
-            // 获取第0列数据(stu_id)
-            //           NSInteger stu_id = sqlite3_column_int(stmt, 0);
+            
             // 获取第1列数据 (date)
             const unsigned char *date =  sqlite3_column_text(stmt, 1);
             // 获取第2列数据 (stepCount)
             const unsigned char *stepCount = sqlite3_column_text(stmt, 2);
             
-            StepCountModel *step = [[StepCountModel alloc] init];
-            step.date = [NSString stringWithUTF8String:(const char *)date];
-            step.stepCount = [NSString stringWithUTF8String:(const char *)stepCount];
-            [resultArray addObject:step];
+            stepCountModel.date = [NSString stringWithUTF8String:(const char *)date];
+            stepCountModel.stepCount = [NSString stringWithUTF8String:(const char *)stepCount];
+//            [resultArray addObject:step];
         }
     }
     // 销毁替身
     sqlite3_finalize(stmt);
-    return resultArray;
+    return stepCountModel;
 
 }
 

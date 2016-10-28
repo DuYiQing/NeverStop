@@ -41,33 +41,37 @@ UIScrollViewDelegate
 
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBarHidden = YES;
-
+//    self.tabBarController.tabBar.hidden = NO;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+       
     self.view.backgroundColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74/255.f alpha:1.0];
     // 定义毛玻璃效果
     self.blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
     self.blurEffectView = [[UIVisualEffectView alloc] initWithEffect:_blur];
     _blurEffectView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     
-    [self showRootView];
     
     self.SQLManager = [SQLiteDatabaseManager shareManager];
     [_SQLManager openSQLite];
     [_SQLManager createTable];
     
+    // 插入数据库
+    NSString *dateString = [NSDate getSystemTimeStringWithFormat:@"yyyy-MM-dd"];
+    [_SQLManager insertIntoWithStepCountModel:dateString];
+    
+
     FTPopOverMenuConfiguration *configuration = [FTPopOverMenuConfiguration defaultConfiguration];
-//    configuration.menuRowHeight = 80;
+
     configuration.menuWidth = 270;
     configuration.textColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74/255.f alpha:1.0];
     configuration.textFont = [UIFont boldSystemFontOfSize:14];
     configuration.tintColor = [UIColor colorWithWhite:1.0 alpha:0.7];
-//    configuration.borderColor = [UIColor blackColor];
-//    configuration.borderWidth = 0.5;
 
+    [self showRootView];
     
 }
 
@@ -98,9 +102,8 @@ UIScrollViewDelegate
     
     // 一周步行记录表
     self.weekRecordView = [[WeekRecordView alloc] initWithFrame:CGRectMake((_whiteView.width - SCREEN_WIDTH) / 2, 0, SCREEN_WIDTH, _whiteView.height)];
-    _weekRecordView.hidden = YES;
-    _weekRecordView.count = 30;
     _weekRecordView.backgroundColor = [UIColor clearColor];
+    _weekRecordView.hidden = YES;
     [_whiteView addSubview:_weekRecordView];
     
     
@@ -272,7 +275,7 @@ UIScrollViewDelegate
 #pragma mark - 开始按钮点击事件
 - (void)startButtonAction {
     StartViewController *startVC = [[StartViewController alloc] init];
-    [self setHidesBottomBarWhenPushed:YES];
+    startVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:startVC animated:YES];
 }
 #pragma mark - 点击天气按钮显示

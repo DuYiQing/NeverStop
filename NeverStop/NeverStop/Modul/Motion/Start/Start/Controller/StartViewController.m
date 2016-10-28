@@ -42,6 +42,7 @@ UINavigationControllerDelegate
 
 - (void)viewWillAppear:(BOOL)animated {
     [self.mapView setUserTrackingMode:MAUserTrackingModeFollow animated:YES];
+    
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.delegate = self;

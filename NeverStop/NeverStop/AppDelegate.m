@@ -149,6 +149,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     UITabBarController *rootTabBarController = [[UITabBarController alloc] init];
     rootTabBarController.viewControllers = @[scNavigationController,maNavigationController,moNavigationController,meNavigationController,myNavigationController];
     rootTabBarController.delegate = self;
+    rootTabBarController.selectedIndex = 2;
     self.window.rootViewController = rootTabBarController;
 
     

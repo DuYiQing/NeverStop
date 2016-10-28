@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface WeekRecordView : UIView
-@property (nonatomic, assign) NSInteger count;;
+//@property (nonatomic, assign) NSInteger count;
 
 @end

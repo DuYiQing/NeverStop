@@ -50,11 +50,11 @@ UITableViewDataSource
     [self createScrollView];
     [self recommendScrollView];
     [self button];
-    self.REB = YES;
+    self.REB = NO;
     self.NEB = NO;
     [self recommendTableView];
     [self recommendJX];
-//    [self nearbyTableView];
+    [self nearbyTableView];
     self.Array = [NSMutableArray array];
     self.neArray = [NSMutableArray array];
     
@@ -111,12 +111,11 @@ UITableViewDataSource
         [_nearbyButton setTitleColor:[UIColor colorWithRed:37/255.f green:54/255.f blue:74/255.f alpha:1.0]forState:UIControlStateNormal];
         
     }
-    
-    
+ 
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    [self nearbyTableView];
+    [self nearbyJX];
 }
 
 - (void)segmentedAction:(NSInteger)index {
@@ -174,8 +173,8 @@ UITableViewDataSource
 // 推荐button的点击方法
 - (void)recommendButtonAction {
     
-    if (_REB == YES) {
-     _REB = NO;
+    if (_REB == NO) {
+     //_REB = NO;
         [_recommendButton setTitleColor:[UIColor whiteColor]forState:UIControlStateNormal];
         _recommendButton.backgroundColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74/255.f alpha:1.0];
         
@@ -238,7 +237,7 @@ UITableViewDataSource
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (_RSV.contentOffset.x == SCREEN_WIDTH) {
+    if (_reTV !=  tableView) {
         NearbyTableViewCell *neCell = [tableView dequeueReusableCellWithIdentifier:@"neCell"];
         if (neCell == nil) {
             neCell = [[NearbyTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"neCell"];
@@ -248,7 +247,7 @@ UITableViewDataSource
         neCell.nearby = nearbyModel;
         return neCell;
         
-    } else if (_RSV.contentOffset.x == 0) {
+    } else  {
     RecommendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (cell == nil) {
         cell = [[RecommendTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
@@ -275,20 +274,6 @@ UITableViewDataSource
 
 - (void) recommendJX {
     
-
-        NSString *nearby = @"http://www.imxingzhe.com/api/v4/lushu_search?lat=38.88267204674046&limit=20&lng=121.5393655619539&page=0&type=3&xingzhe_timestamp=1476844257.990716";
-        [HttpClient GET:nearby body:nil headerFile:nil response:JYX_JSON success:^(id result) {
-            for (NSDictionary *neDIc in result) {
-                Nearby *neModel = [Nearby modelWithDic:neDIc];
-                [_neArray addObject:neModel];
-            }
-            [_neTV reloadData];
-        } failure:^(NSError *error) {
-            
-        }];
- 
-
-
     NSString *recommendJx = @"http://www.imxingzhe.com/api/v4/collection_list/?lat=38.88268844181218&limit=20&lng=121.5394275381143&page=0&province_id=0&type=0&xingzhe_timestamp=1476843880.032672";
     
 [HttpClient GET:recommendJx body:nil headerFile:nil response:JYX_JSON success:^(id result) {
@@ -304,17 +289,31 @@ UITableViewDataSource
 } failure:^(NSError *error) {
     NSLog(@"error");
 }];
-    
-    
-    
+ 
 }
+
+- (void)nearbyJX {
+
+    NSString *nearby = @"http://www.imxingzhe.com/api/v4/lushu_search?lat=38.88267204674046&limit=20&lng=121.5393655619539&page=0&type=3&xingzhe_timestamp=1476844257.990716";
+    [HttpClient GET:nearby body:nil headerFile:nil response:JYX_JSON success:^(id result) {
+        for (NSDictionary *neDIc in result) {
+            Nearby *neModel = [Nearby modelWithDic:neDIc];
+            [_neArray addObject:neModel];
+        }
+        [_neTV reloadData];
+    } failure:^(NSError *error) {
+        
+    }];
+
+}
+
 
 
 // 附近的tabelView
 - (void) nearbyTableView {
     
     self.neTV = [[UITableView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
-    _neTV.backgroundColor = [UIColor redColor];
+    _neTV.backgroundColor = [UIColor whiteColor];
     _neTV.rowHeight = 160.f;
     _neTV.delegate = self;
     _neTV.dataSource = self;

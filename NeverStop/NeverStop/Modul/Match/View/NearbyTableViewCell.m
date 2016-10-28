@@ -62,12 +62,12 @@
     self.titleLabel.frame = CGRectMake(32, 5, 500, 20);
     self.commentLabel.frame = CGRectMake(22, 35, 15, 10);
     self.commentImageView.frame = CGRectMake(5, 35, 10, 10);
-    self.imageViewD.frame = CGRectMake(0, 5, self.contentView.width, self.contentView.frame.size.height *0.9);
+    self.imageViewD.frame = CGRectMake(0, 0, self.contentView.width, self.contentView.frame.size.height *0.9);
     self.userImabeView.frame = CGRectMake(5, 5, 25, 25);
     self.routeView.frame = CGRectMake(0, self.contentView.height - 50 , self.imageViewD.width, 45);
     self.distance.frame = CGRectMake(0, 5, SCREEN_WIDTH - 10, 20);
     
-    self.noPic.frame = CGRectMake(_imageViewD.x, _imageViewD.y, _imageViewD.width, _imageViewD.height);
+    self.noPic.frame = CGRectMake(0, 5, self.contentView.width, self.contentView.frame.size.height *0.9);
     
     
 }

@@ -41,25 +41,37 @@
 
  @return 是否插入成功
  */
-- (BOOL)insertIntoWithStepCountModel:(StepCountModel *)stepCountModel;
+- (BOOL)insertIntoWithStepCountModel:(NSString *)date;
+
 
 /**
- 更新步数
+ 更新
 
- @param oldStepCount 旧步数
- @param newStepCount 新步数
+ @param StepCount 步数
+ @param date      日期
 
  @return 是否更新成功
  */
-- (BOOL)updateOldStepCount:(NSString *)oldStepCount newStepCount:(NSString *)newStepCount;
+- (BOOL)updateStepCount:(NSString *)StepCount date:(NSString *)date;
+
 
 /**
  查询
 
- @return 数组
- */
-- (NSArray *)selectAllStepCount;
+ @param date 日期
 
+ @return Model
+ */
+- (StepCountModel *)selectStepCountWithDate:(NSString *)date;
+
+
+/**
+ 删除
+
+ @param Date 日期
+
+ @return 是否删除成功
+ */
 - (BOOL)deleteStepCountWithDate:(NSString *)Date;
 
 @end

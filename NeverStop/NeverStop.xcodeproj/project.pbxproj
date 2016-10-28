@@ -316,21 +316,20 @@
 		401B89D01DC21C5A00AA92A9 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
-				401B89D61DC223F000AA92A9 /* View */,
 				401B89D51DC223E600AA92A9 /* Controller */,
+				401B89D61DC223F000AA92A9 /* View */,
 			);
-			name = Weather;
-			path = ..;
+			path = Weather;
 			sourceTree = "<group>";
 		};
 		401B89D41DC2223B00AA92A9 /* Root */ = {
 			isa = PBXGroup;
 			children = (
-				409229B21DBFC99D00FDAD4E /* View */,
-				409229AD1DBFC99D00FDAD4E /* Model */,
 				409229AA1DBFC99D00FDAD4E /* Controller */,
+				409229AD1DBFC99D00FDAD4E /* Model */,
+				409229B21DBFC99D00FDAD4E /* View */,
 			);
-			name = Root;
+			path = Root;
 			sourceTree = "<group>";
 		};
 		401B89D51DC223E600AA92A9 /* Controller */ = {
@@ -339,18 +338,18 @@
 				401B89D11DC21C7600AA92A9 /* WeatherViewController.h */,
 				401B89D21DC21C7600AA92A9 /* WeatherViewController.m */,
 			);
-			name = Controller;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		401B89D61DC223F000AA92A9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				401B89D71DC2241F00AA92A9 /* TodayWeatherView.h */,
-				401B89D81DC2242000AA92A9 /* TodayWeatherView.m */,
 				401B89DA1DC2248200AA92A9 /* FutureWeatherView.h */,
 				401B89DB1DC2248200AA92A9 /* FutureWeatherView.m */,
+				401B89D71DC2241F00AA92A9 /* TodayWeatherView.h */,
+				401B89D81DC2242000AA92A9 /* TodayWeatherView.m */,
 			);
-			name = View;
+			path = View;
 			sourceTree = "<group>";
 		};
 		405E48E51DBA4DBB004105F2 /* Start */ = {
@@ -525,25 +524,25 @@
 		494374171DB9B2A900FF641A /* 素材 */ = {
 			isa = PBXGroup;
 			children = (
-				405B7C8A1DC354690046BF0F /* mai.png */,
-				405B7C881DC354640046BF0F /* yin.png */,
-				405B7C861DC3545F0046BF0F /* sunny.png */,
-				405B7C921DC37C4F0046BF0F /* snow.png */,
-				405B7C901DC37BF80046BF0F /* rain.png */,
-				401B89E51DC2E57500AA92A9 /* bg_rain_night.jpg */,
-				401B89E11DC22CA800AA92A9 /* humidity.png */,
-				401B89E31DC22CB900AA92A9 /* wind.png */,
-				401B89DD1DC226C400AA92A9 /* C.png */,
-				401B89DF1DC22B1500AA92A9 /* cloud.png */,
 				494374181DB9B2A900FF641A /* 6.jpg */,
 				494374191DB9B2A900FF641A /* 7.jpg */,
+				401B89DD1DC226C400AA92A9 /* C.png */,
 				40121E8D1DB9E702008BB927 /* back.png */,
+				401B89E51DC2E57500AA92A9 /* bg_rain_night.jpg */,
+				401B89DF1DC22B1500AA92A9 /* cloud.png */,
+				401B89E11DC22CA800AA92A9 /* humidity.png */,
 				405E48DA1DBA0579004105F2 /* leave.png */,
+				405B7C8A1DC354690046BF0F /* mai.png */,
 				49704A2D1DBDA1240028DB2F /* pl.png */,
+				405B7C901DC37BF80046BF0F /* rain.png */,
 				40121E891DB9E6F8008BB927 /* ride.png */,
 				40121E871DB9BCD2008BB927 /* run.png */,
+				405B7C921DC37C4F0046BF0F /* snow.png */,
+				405B7C861DC3545F0046BF0F /* sunny.png */,
 				49060C4A1DBF8E4A003FE373 /* w2.jpg */,
 				40121E8B1DB9E6FD008BB927 /* walk.png */,
+				401B89E31DC22CB900AA92A9 /* wind.png */,
+				405B7C881DC354640046BF0F /* yin.png */,
 			);
 			path = "素材";
 			sourceTree = "<group>";
@@ -843,12 +842,12 @@
 		EE7420C61DBE0FA90007F71E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				EEADD6581DC246B900A5EB52 /* MapDataManager.h */,
-				EEADD6591DC246B900A5EB52 /* MapDataManager.m */,
 				EEE3D7691DC220E3003D0CC5 /* ExerciseData.h */,
 				EEE3D76A1DC220E3003D0CC5 /* ExerciseData.m */,
 				EEE3D7631DC215EF003D0CC5 /* Location.h */,
 				EEE3D7641DC215EF003D0CC5 /* Location.m */,
+				EEADD6581DC246B900A5EB52 /* MapDataManager.h */,
+				EEADD6591DC246B900A5EB52 /* MapDataManager.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";

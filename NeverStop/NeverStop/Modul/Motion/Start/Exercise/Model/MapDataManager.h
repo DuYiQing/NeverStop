@@ -11,5 +11,6 @@
 @interface MapDataManager : NSObject
 + (instancetype)defaultManager;
 @property (nonatomic, retain) NSMutableArray *allLocationArray;
+@property (nonatomic, assign) NSInteger count;
 
 @end

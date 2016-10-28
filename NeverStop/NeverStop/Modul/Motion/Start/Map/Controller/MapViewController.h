@@ -9,5 +9,5 @@
 #import "BaseViewController.h"
 
 @interface MapViewController : BaseViewController
-
+@property (nonatomic, retain) NSMutableArray *arrayLocation;
 @end

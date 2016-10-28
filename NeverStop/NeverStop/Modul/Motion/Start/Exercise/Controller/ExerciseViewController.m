@@ -46,15 +46,14 @@ MAMapViewDelegate
 @property (nonatomic, assign) double allDistance;
 @property (nonatomic, retain) UILabel *distanceLabel;
 @property (nonatomic, retain) NSString *allDistanceStr;
-//@property (nonatomic, retain) MyKVO *myKVO;
 @property (nonatomic, retain) MAPolyline *commonPolyline;
 
 @property (nonatomic, retain) MapDataManager *mapManager;
 @property (nonatomic, retain) ExerciseData *exerciseDataKVO;
 @property (nonatomic, retain) NSTimer *timer;
 @property (nonatomic, assign) NSInteger a;
+@property (nonatomic, assign) NSInteger lastTime;
 @property (nonatomic, retain) NSArray *keyPathArray;
-@property (nonatomic, retain) NSMutableArray *locationArray;
 
 @end
 
@@ -75,17 +74,20 @@ MAMapViewDelegate
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBarHidden = YES;
     self.navigationController.delegate = self;
+    [self mapBtnAnimation];
+
     [_mapView setUserTrackingMode: MAUserTrackingModeFollow animated:YES];
 
 }
 - (void)initialValue {
     self.isMoving = YES;
-    _a = 0;
-    self.keyPathArray = @[@"distance", @"duration", @"speedPerHour", @"averageSpeed", @"maxSpeed", @"calorie"];
+    self.a = 0;
+    self.lastTime = 0;
+    self.keyPathArray = @[@"distance", @"duration", @"speedPerHour", @"averageSpeed", @"maxSpeed", @"calorie", @"count"];
     self.lastLocation = [[Location alloc] init];
-    self.locationArray = [NSMutableArray array];
     self.mapManager = [MapDataManager defaultManager];
     self.exerciseDataKVO = [[ExerciseData alloc] init];
+
     _exerciseDataKVO.distance = 0.00;
     _exerciseDataKVO.duration = 0;
     _exerciseDataKVO.speedPerHour = 0.00;
@@ -96,6 +98,7 @@ MAMapViewDelegate
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self initialValue];
     // Do any additional setup after loading the view.
    //    [self.exerciseDataKVO addObserver:self forKeyPath:@"exerciseData" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld  context:nil];
 //    [self.exerciseDataKVO addObserver:self forKeyPath:@"TIMETIME" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld  context:nil];
@@ -106,7 +109,10 @@ MAMapViewDelegate
     }
     [self creatMapView];
 #pragma mark - 结束按钮
-    self.view.backgroundColor = [UIColor cyanColor];
+    self.view.backgroundColor = [UIColor whiteColor];
+    UIImageView *backImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    backImageView.image = [UIImage imageNamed:@"background.jpg"];
+    [self.view addSubview:backImageView];
     self.endButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _endButton.frame = CGRectMake(SCREEN_WIDTH / 2 - 40, SCREEN_HEIGHT - 240, 80, 80);
     UIImage *endImage = [UIImage imageNamed:@"2"];
@@ -220,6 +226,7 @@ MAMapViewDelegate
 
 - (void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation {
     if (updatingLocation) {
+
         //        NSLog(@"lat: %f, long: %f", userLocation.coordinate.latitude, userLocation.coordinate.longitude);
         // 取出当前位置的坐标
         
@@ -232,36 +239,45 @@ MAMapViewDelegate
             location.isStart = NO;
         }
         // 添加到坐标数组中
-        [_locationArray addObject:location];
+        [_mapManager.allLocationArray addObject:location];
+        _mapManager.count = _mapManager.allLocationArray.count;
 //        [_locationArray addObject:location];
         if (self.isMoving == YES) {
-            
-            if (_locationArray.count > 1) {
+
+            if (_mapManager.allLocationArray.count > 1) {
                 //1.将两个经纬度点转成投影点
                 MAMapPoint point1 = MAMapPointForCoordinate(CLLocationCoordinate2DMake(_lastLocation.latitude,_lastLocation.longitude));
                 MAMapPoint point2 = MAMapPointForCoordinate(CLLocationCoordinate2DMake(location.latitude,location.longitude));
                 //2.计算距离
-                NSLog(@"last : %f, %f", _lastLocation.latitude, _lastLocation.longitude);
-                NSLog(@"now : %f, %f", location.latitude, location.longitude);
+//                NSLog(@"last : %f, %f", _lastLocation.latitude, _lastLocation.longitude);
+//                NSLog(@"now : %f, %f", location.latitude, location.longitude);
                 CLLocationDistance distance = MAMetersBetweenMapPoints(point1,point2);
-                NSLog(@"distance : %f", distance);
-                _exerciseDataKVO.speedPerHour = distance / 1000 / ((8 / 60 ) / 60);
+//                NSLog(@"distance : %f", distance);
+                ;
+                CGFloat time = ((_exerciseDataKVO.duration - _lastTime) / 60.0) / 60.0;
+                if (time != 0) {
+                    
+                NSLog(@"%ld", _exerciseDataKVO.duration - _lastTime);
+                _exerciseDataKVO.speedPerHour = (distance / 1000) / time;
                 
-//                _exerciseDataKVO.distance += distance / 1000;
-                _exerciseDataKVO.distance += round(distance / 1000 * 100) / 100;
+                _exerciseDataKVO.distance += distance / 1000;
+//                _exerciseDataKVO.distance += round(distance / 1000 * 100) / 100;
                 _exerciseDataKVO.maxSpeed = _exerciseDataKVO.maxSpeed > _exerciseDataKVO.speedPerHour ? _exerciseDataKVO.maxSpeed : _exerciseDataKVO.speedPerHour;
                 _exerciseDataKVO.averageSpeed = _exerciseDataKVO.distance / _exerciseDataKVO.duration;
+                }
             }
          
             _lastLocation.latitude = location.latitude;
             _lastLocation.longitude = location.longitude;
+            self.lastTime = _exerciseDataKVO.duration;
         }
 
       
         
     }
     
-    
+//    NSLog(@"%@", _mapManager.allLocationArray);
+//    NSLog(@"%lu", (unsigned long)_mapManager.allLocationArray.count);
     
     
     
@@ -282,9 +298,9 @@ MAMapViewDelegate
         self.homeDataView.dataLabel.text = [NSString stringWithFormat:@"%.2ld:%.2ld:%.2ld", hour, minu, sec];
         
     } else if ([keyPath isEqualToString:@"distance"] && object == self.exerciseDataKVO) {
-         self.leftDataView.dataLabel.text = [NSString stringWithFormat:@"%@", [change valueForKey:@"new"]];
+         self.leftDataView.dataLabel.text = [NSString stringWithFormat:@"%.2f", _exerciseDataKVO.distance];
     } else if ([keyPath isEqualToString:@"speedPerHour"] && object == self.exerciseDataKVO) {
-        self.leftDataView.dataLabel.text = [NSString stringWithFormat:@"%@", [change valueForKey:@"new"]];
+        self.rightDataView.dataLabel.text = [NSString stringWithFormat:@"%.2f", _exerciseDataKVO.speedPerHour];
     } else if ([keyPath isEqualToString:@"averageSpeed"] && object == self.exerciseDataKVO) {
        
     } else if ([keyPath isEqualToString:@"maxSpeed"] && object == self.exerciseDataKVO) {

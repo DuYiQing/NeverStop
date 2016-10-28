@@ -8,6 +8,7 @@
 
 #import "StepCountView.h"
 #import "StepManager.h"
+#import "StepCountModel.h"
 
 @interface StepCountView () {
     NSTimer *timer;
@@ -65,7 +66,12 @@
                 NSLog(@"error");
             } else {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    self.systemStep = value;
+                    NSString *stepCountFromSQL = [_sqlManager selectStepCountWithDate:_dateString].stepCount;
+                    if (value > [stepCountFromSQL integerValue]) {
+                        self.systemStep = value;
+                    } else {
+                        self.systemStep = [stepCountFromSQL integerValue];
+                    }
                 });
             }
         }];

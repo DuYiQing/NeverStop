@@ -42,9 +42,6 @@
     if (_titleText != titleText) {
         _titleText = titleText;
         _distanceLabel.text = [NSString stringWithFormat:@"%@总里程(公里)", titleText];
-//        if ([_titleText isEqualToString:@"走路"]) {
-//            _numberLabel.text =
-//        }
     }
     
 }

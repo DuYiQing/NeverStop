@@ -66,7 +66,6 @@
             [_selectStringArray addObject:selectString];
             StepCountModel *stepCountModel = [_manager selectStepCountWithDate:_selectStringArray[i]];
             [_countArray addObject:stepCountModel];
-            NSLog(@"%@", _countArray);
         }
         
         self.timer = [NSTimer scheduledTimerWithTimeInterval:0.03 target:self selector:@selector(change) userInfo:nil repeats:YES];

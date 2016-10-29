@@ -68,7 +68,7 @@
             default:
                 break;
         }
-        _tempLabel.text = [NSString stringWithFormat:@"%@° / %@°", dayForecast.dayTemp, dayForecast.nightTemp];
+        _tempLabel.text = [NSString stringWithFormat:@"%@° /  %@°", dayForecast.dayTemp, dayForecast.nightTemp];
         
         NSString *weather = dayForecast.dayWeather;
         

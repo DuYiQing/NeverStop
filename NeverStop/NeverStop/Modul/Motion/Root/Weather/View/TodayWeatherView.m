@@ -37,7 +37,8 @@
         cImageView.image = [UIImage imageNamed:@"C.png"];
         [self addSubview:cImageView];
         
-        self.weatherLabel = [[UILabel alloc]initWithFrame:CGRectMake(_tempLabel.x, _tempLabel.y + _tempLabel.height + 10, 50, 50)];
+        self.weatherLabel = [[UILabel alloc]initWithFrame:CGRectMake(_tempLabel.x, _tempLabel.y + _tempLabel.height + 10, 100, 50)];
+        
         _weatherLabel.textAlignment = NSTextAlignmentLeft;
         _weatherLabel.textColor = [UIColor whiteColor];
         _weatherLabel.font = kFONT_SIZE_18_BOLD;
@@ -70,7 +71,7 @@
         windIMageView.image = [UIImage imageNamed:@"wind.png"];
         [self addSubview:windIMageView];
         
-        self.windLabel = [[UILabel alloc] initWithFrame:CGRectMake(windIMageView.x + windIMageView.width + 7, windIMageView.y, 70, 30)];
+        self.windLabel = [[UILabel alloc] initWithFrame:CGRectMake(windIMageView.x + windIMageView.width + 7, windIMageView.y, 100, 30)];
         _windLabel.textColor = [UIColor whiteColor];
         _windLabel.textAlignment = NSTextAlignmentCenter;
         _windLabel.font = kFONT_SIZE_15_BOLD;
@@ -85,6 +86,8 @@
         _live = live;
         _tempLabel.text = live.temperature;
         _weatherLabel.text = live.weather;
+        _weatherLabel.numberOfLines = 0;
+        [_weatherLabel sizeToFit];
         if ([_weatherLabel.text containsString:@"晴"]) {
             _weatherImageView.image = [UIImage imageNamed:@"sunny"];
         } else if ([_weatherLabel.text containsString:@"多云"]) {
@@ -101,6 +104,7 @@
         _humidityLabel.text = [NSString stringWithFormat:@"%@%%", live.humidity];
         _windLabel.text = [NSString stringWithFormat:@"%@风 %@级", live.windDirection, live.windPower];
 
+       
     }
 }
 

@@ -16,6 +16,6 @@ typedef NS_ENUM(NSInteger, JiangContentMode) {
 
 @interface CustomAnimateTransitionPush : NSObject<UIViewControllerAnimatedTransitioning>
 @property (nonatomic, assign) JiangContentMode contentMode;
-@property (nonatomic, retain) UIButton *button;
+@property (nonatomic, strong) UIButton *button;
 @end
 NS_ASSUME_NONNULL_END

@@ -13,15 +13,15 @@
 UIPickerViewDataSource,
 UIPickerViewDelegate
 >
-@property (nonatomic, retain) NSArray *rootArray;
-@property (nonatomic, retain) NSMutableArray *hourArray;
-@property (nonatomic, retain) NSMutableArray *minuteArray;
+@property (nonatomic, strong) NSArray *rootArray;
+@property (nonatomic, strong) NSMutableArray *hourArray;
+@property (nonatomic, strong) NSMutableArray *minuteArray;
 
-@property (nonatomic, retain) NSMutableArray *integerArray;
-@property (nonatomic, retain) NSMutableArray *decimalsArray;
+@property (nonatomic, strong) NSMutableArray *integerArray;
+@property (nonatomic, strong) NSMutableArray *decimalsArray;
 
-//@property (nonatomic, retain) NSString *selectedStr;
-//@property (nonatomic, retain) NSString *childSelectedStr;
+//@property (nonatomic, strong) NSString *selectedStr;
+//@property (nonatomic, strong) NSString *childSelectedStr;
 @property (nonatomic, assign) NSInteger row;
 @property (nonatomic, assign) NSInteger childRow;
 @property (nonatomic, assign) NSInteger count;

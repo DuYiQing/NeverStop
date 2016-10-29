@@ -12,12 +12,11 @@
 
 
 @interface WeatherViewController ()
-
 <
 AMapSearchDelegate
 >
 
-@property (nonatomic, retain) AMapSearchAPI *mapSearchAPI;
+@property (nonatomic, strong) AMapSearchAPI *mapSearchAPI;
 
 
 

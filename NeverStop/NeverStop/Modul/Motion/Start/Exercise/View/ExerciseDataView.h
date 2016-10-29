@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ExerciseDataView : UIView
-@property (nonatomic, retain) UILabel *titleLabel;
-@property (nonatomic, retain) UILabel *dataLabel;
+@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UILabel *dataLabel;
 @end

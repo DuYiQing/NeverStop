@@ -136,7 +136,8 @@ AMapSearchDelegate
     // 天气
     UIButton *weatherButton = [UIButton buttonWithType:UIButtonTypeCustom];
     weatherButton.frame = CGRectMake(weatherImageView.frame.origin.x + weatherImageView.bounds.size.width - 5, _stepCountButton.frame.origin.y, 40, 40);
-    [weatherButton setTitle:@"优" forState:UIControlStateNormal];
+    [weatherButton setTitle:@"天气" forState:UIControlStateNormal];
+    weatherButton.titleLabel.font = kFONT_SIZE_12_BOLD;
     [weatherButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.view addSubview:weatherButton];
     [weatherButton addTarget:self action:@selector(weatherButtonAction:) forControlEvents:UIControlEventTouchUpInside];

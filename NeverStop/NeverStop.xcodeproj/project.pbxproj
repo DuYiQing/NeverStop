@@ -32,6 +32,7 @@
 		49704A871DBDF5560028DB2F /* Detail.m in Sources */ = {isa = PBXBuildFile; fileRef = 49704A861DBDF5560028DB2F /* Detail.m */; };
 		49704A8A1DBE217C0028DB2F /* DetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49704A891DBE217C0028DB2F /* DetailTableViewCell.m */; };
 		51A099F404C6DE66F7A2C786 /* libPods-NeverStop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBA9E162BB3BD86CD3202020 /* libPods-NeverStop.a */; };
+		EE0115271DC425ED001B44AD /* VerticalButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EE0115261DC425ED001B44AD /* VerticalButton.m */; };
 		EE1A002B1DB8CF610003762E /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1AFFE71DB8CF610003762E /* BaseViewController.m */; };
 		EE1A002C1DB8CF610003762E /* DYQBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1AFFEA1DB8CF610003762E /* DYQBaseModel.m */; };
 		EE1A002D1DB8CF610003762E /* DYQBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1AFFED1DB8CF610003762E /* DYQBaseView.m */; };
@@ -87,7 +88,6 @@
 		EEE3D76B1DC220E3003D0CC5 /* ExerciseData.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE3D76A1DC220E3003D0CC5 /* ExerciseData.m */; };
 		EEECBC811DC2EB750037BA0B /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EEECBC801DC2EB750037BA0B /* background.jpg */; };
 		EEECBCB31DC3839B0037BA0B /* 18r.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EEECBCB21DC3839B0037BA0B /* 18r.jpg */; };
-		EEECBCB61DC389C60037BA0B /* VerticalButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EEECBCB51DC389C60037BA0B /* VerticalButton.m */; };
 		EEECBD1A1DC3908F0037BA0B /* MotionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEECBD001DC3908E0037BA0B /* MotionViewController.m */; };
 		EEECBD1B1DC3908F0037BA0B /* HealthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EEECBD031DC3908E0037BA0B /* HealthManager.m */; };
 		EEECBD1C1DC3908F0037BA0B /* StepCountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EEECBD051DC3908E0037BA0B /* StepCountModel.m */; };
@@ -146,6 +146,8 @@
 		49704A891DBE217C0028DB2F /* DetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailTableViewCell.m; sourceTree = "<group>"; };
 		6FF5020B15B17A794E56E0B5 /* Pods-NeverStop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeverStop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NeverStop/Pods-NeverStop.debug.xcconfig"; sourceTree = "<group>"; };
 		EBA9E162BB3BD86CD3202020 /* libPods-NeverStop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NeverStop.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE0115251DC425ED001B44AD /* VerticalButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerticalButton.h; sourceTree = "<group>"; };
+		EE0115261DC425ED001B44AD /* VerticalButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerticalButton.m; sourceTree = "<group>"; };
 		EE1A00001DB8CF610003762E /* NSString+Size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Size.h"; sourceTree = "<group>"; };
 		EE1A00011DB8CF610003762E /* NSString+Size.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Size.m"; sourceTree = "<group>"; };
 		EE1A00021DB8CF610003762E /* NSUserDefaults+Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+Categories.h"; sourceTree = "<group>"; };
@@ -252,8 +254,6 @@
 		EEE3D76A1DC220E3003D0CC5 /* ExerciseData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseData.m; sourceTree = "<group>"; };
 		EEECBC801DC2EB750037BA0B /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
 		EEECBCB21DC3839B0037BA0B /* 18r.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 18r.jpg; sourceTree = "<group>"; };
-		EEECBCB41DC389C60037BA0B /* VerticalButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VerticalButton.h; path = ../../../../../../../../Desktop/xiangmu/FMDB/FMDB/VerticalButton.h; sourceTree = "<group>"; };
-		EEECBCB51DC389C60037BA0B /* VerticalButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VerticalButton.m; path = ../../../../../../../../Desktop/xiangmu/FMDB/FMDB/VerticalButton.m; sourceTree = "<group>"; };
 		EEECBCFF1DC3908E0037BA0B /* MotionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MotionViewController.h; sourceTree = "<group>"; };
 		EEECBD001DC3908E0037BA0B /* MotionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MotionViewController.m; sourceTree = "<group>"; };
 		EEECBD021DC3908E0037BA0B /* HealthManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthManager.h; sourceTree = "<group>"; };
@@ -305,7 +305,6 @@
 			children = (
 				EE7420C31DBE0F8D0007F71E /* Exercise */,
 				EE1D81A51DC0CA4A00FA6CD5 /* Map */,
-				EEE3D7591DC1E169003D0CC5 /* MapBase */,
 				EE7420C21DBE0F820007F71E /* Start */,
 			);
 			path = Start;
@@ -631,8 +630,8 @@
 		EE1D81AA1DC0CA6500FA6CD5 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EEECBCB41DC389C60037BA0B /* VerticalButton.h */,
-				EEECBCB51DC389C60037BA0B /* VerticalButton.m */,
+				EE0115251DC425ED001B44AD /* VerticalButton.h */,
+				EE0115261DC425ED001B44AD /* VerticalButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -785,13 +784,6 @@
 				EEE3D7251DC1A1A9003D0CC5 /* JiangPickerView.m */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		EEE3D7591DC1E169003D0CC5 /* MapBase */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = MapBase;
 			sourceTree = "<group>";
 		};
 		EEECBCFC1DC3908E0037BA0B /* Root */ = {
@@ -1038,6 +1030,7 @@
 				EE1A00381DB8CF610003762E /* UIBarButtonItem+ButtonImage.m in Sources */,
 				EE1A00401DB8CF610003762E /* AppStoreUtils.m in Sources */,
 				494374131DB9B29800FF641A /* MessageViewController.m in Sources */,
+				EE0115271DC425ED001B44AD /* VerticalButton.m in Sources */,
 				EE1A002D1DB8CF610003762E /* DYQBaseView.m in Sources */,
 				494374161DB9B29800FF641A /* ScopeViewController.m in Sources */,
 				EE1A00311DB8CF610003762E /* NSDate+EasyExtend.mm in Sources */,
@@ -1079,7 +1072,6 @@
 				EE1A00301DB8CF610003762E /* NSDate+Categories.m in Sources */,
 				EE1A00451DB8CF610003762E /* XLImagePageDetailCell.m in Sources */,
 				409229C11DBFCA0500FDAD4E /* SQLiteDatabaseManager.m in Sources */,
-				EEECBCB61DC389C60037BA0B /* VerticalButton.m in Sources */,
 				EE1A00331DB8CF610003762E /* NSNumber+Extend.m in Sources */,
 				EEE3D72E1DC1A1A9003D0CC5 /* CustomPickerView.m in Sources */,
 				EE1A00461DB8CF610003762E /* XLImagePageView.m in Sources */,

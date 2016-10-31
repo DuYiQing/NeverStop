@@ -154,30 +154,30 @@ UIScrollViewDelegate
 - (void)modeButtonAction {
     [self.view addSubview:_blurEffectView];
     self.backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _backButton.frame = CGRectMake(20, 35, 20, 20);
+    _backButton.frame = CGRectMake(20, 35, 30, 30);
     _backButton.tag = 1111;
-    [_backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+    [_backButton setImage:[UIImage imageNamed:@"back1.png"] forState:UIControlStateNormal];
     [_blurEffectView addSubview:_backButton];
     [_backButton addTarget:self action:@selector(backButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
     self.runButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _runButton.frame = CGRectMake(_backButton.x, _backButton.y + _backButton.height + 20, 30, 30);
     _runButton.tag = 1112;
-    [_runButton setImage:[UIImage imageNamed:@"run.png"] forState:UIControlStateNormal];
+    [_runButton setImage:[UIImage imageNamed:@"run1.png"] forState:UIControlStateNormal];
     [_blurEffectView addSubview:_runButton];
     [_runButton addTarget:self action:@selector(backButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
     self.walkButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _walkButton.frame = CGRectMake(_runButton.x, _runButton.y + _runButton.height + 20, _runButton.width, _runButton.height);
     _walkButton.tag = 1113;
-    [_walkButton setImage:[UIImage imageNamed:@"walk.png"] forState:UIControlStateNormal];
+    [_walkButton setImage:[UIImage imageNamed:@"walk1.png"] forState:UIControlStateNormal];
     [_blurEffectView addSubview:_walkButton];
     [_walkButton addTarget:self action:@selector(backButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
     self.rideButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _rideButton.frame = CGRectMake(_walkButton.x, _walkButton.y + _walkButton.height + 20, _walkButton.width, _walkButton.height);
     _rideButton.tag = 1114;
-    [_rideButton setImage:[UIImage imageNamed:@"ride.png"] forState:UIControlStateNormal];
+    [_rideButton setImage:[UIImage imageNamed:@"ride1.png"] forState:UIControlStateNormal];
     [_blurEffectView addSubview:_rideButton];
     [_rideButton addTarget:self action:@selector(backButtonAction:) forControlEvents:UIControlEventTouchUpInside];
 }

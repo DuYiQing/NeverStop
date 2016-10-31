@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class Nearby;
 @interface NearbyViewController : UIViewController
-
+@property (nonatomic, strong) Nearby *neModel;
+@property (nonatomic, strong) UIImageView *noPic;
 @end

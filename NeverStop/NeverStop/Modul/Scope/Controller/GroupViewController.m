@@ -1,22 +1,27 @@
 //
-//  ScopeViewController.m
-//  Never Stop
+//  GroupViewController.m
+//  NeverStop
 //
-//  Created by dllo on 16/10/20.
+//  Created by dllo on 16/10/31.
 //  Copyright © 2016年 JDT. All rights reserved.
 //
 
-#import "ScopeViewController.h"
+#import "GroupViewController.h"
 
-@interface ScopeViewController ()
+@interface GroupViewController ()
 
 @end
 
-@implementation ScopeViewController
+@implementation GroupViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor redColor];
+    
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

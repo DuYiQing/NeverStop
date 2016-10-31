@@ -11,8 +11,8 @@
 
 
 @interface StartViewController : BaseViewController
-
-@property (nonatomic, retain) UIButton *startButton;
+@property (nonatomic, strong) NSString *exerciseType;
+@property (nonatomic, strong) UIButton *startButton;
 
 @end
 

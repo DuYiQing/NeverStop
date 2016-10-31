@@ -9,7 +9,8 @@
 #import "JiangFlashLabel.h"
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-@interface JiangFlashLabel(){
+@interface JiangFlashLabel()
+{
     UIColor*        _spotlightColor;
     
     NSTimer*        _timer;
@@ -92,7 +93,7 @@
 }
 
 - (void)updateSpotlight {
-    _spotlightPoint += 1.3/32;
+    _spotlightPoint += 1.3 / 32;
     if (_spotlightPoint > 2) {
         _spotlightPoint = -0.5;
     }
@@ -151,8 +152,7 @@
 
 - (void)startAnimating {
     if (!_timer) {
-        _timer = [NSTimer scheduledTimerWithTimeInterval:1.0/32 target:self
-                                                selector:@selector(updateSpotlight) userInfo:nil repeats:YES];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:1.0 / 32 target:self selector:@selector(updateSpotlight) userInfo:nil repeats:YES];
         _spotlightPoint = -0.5;
         [self newMask];
     }

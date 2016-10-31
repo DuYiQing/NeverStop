@@ -9,7 +9,8 @@
 #import "BaseViewController.h"
 
 @interface ExerciseViewController : BaseViewController
-@property (nonatomic, retain) NSString *aim;
+@property (nonatomic, strong) NSString *aim;
 @property (nonatomic, assign) NSInteger aimType;
-@property (nonatomic, retain) UIButton *endButton;
+@property (nonatomic, strong) UIButton *endButton;
+@property (nonatomic, strong) NSString *exerciseType;
 @end

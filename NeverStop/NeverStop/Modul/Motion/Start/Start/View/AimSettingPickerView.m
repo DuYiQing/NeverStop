@@ -14,12 +14,12 @@
 UIPickerViewDataSource,
 UIPickerViewDelegate
 >
-@property (nonatomic, retain) NSArray *rootArray;
-@property (nonatomic, retain) NSMutableArray *aimArray;
-@property (nonatomic, retain) NSMutableArray *settingArray;
+@property (nonatomic, strong) NSArray *rootArray;
+@property (nonatomic, strong) NSMutableArray *aimArray;
+@property (nonatomic, strong) NSMutableArray *settingArray;
 @property (nonatomic, strong) NSMutableArray *selectedArray;
-@property (nonatomic, retain) NSString *aim;
-@property (nonatomic, retain) NSString *setting;
+@property (nonatomic, strong) NSString *aim;
+@property (nonatomic, strong) NSString *setting;
 @property (nonatomic, assign) NSInteger row;
 @property (nonatomic, assign) NSInteger childRow;
 @end

@@ -9,7 +9,7 @@
 #import "GlideView.h"
 #import "JiangFlashLabel.h"
 @interface GlideView ()
-@property (nonatomic, retain) JiangFlashLabel *flashLabel;
+@property (nonatomic, strong) JiangFlashLabel *flashLabel;
 @end
 @implementation GlideView
 

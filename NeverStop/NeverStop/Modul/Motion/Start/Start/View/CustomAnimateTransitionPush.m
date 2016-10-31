@@ -11,7 +11,7 @@
 #import "ExerciseViewController.h"
 #import "MapViewController.h"
 @interface CustomAnimateTransitionPush ()
-//<CAAnimationDelegate>
+<CAAnimationDelegate>
 @property (nonatomic,strong)id<UIViewControllerContextTransitioning> transitionContext;
 
 @end

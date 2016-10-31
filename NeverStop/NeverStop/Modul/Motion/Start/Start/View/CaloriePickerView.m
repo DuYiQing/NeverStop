@@ -15,7 +15,7 @@ UIPickerViewDelegate
 >
 /** 1.选中的字符串 */
 @property (nonatomic, strong, nullable)NSString *selectedTitle;
-@property (nonatomic, retain) UILabel *calorieLabel;
+@property (nonatomic, strong) UILabel *calorieLabel;
 
 @end
 @implementation CaloriePickerView

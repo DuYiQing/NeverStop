@@ -239,7 +239,7 @@ static CMMotionManager *motionManager;
                                     }
                                     
                                     //步数在这里
-                                    NSLog(@"步数%ld",self.step);
+//                                    NSLog(@"步数%ld",self.step);
                                     
                                     int intervalMillSecond = [caidianCurrent.date timeIntervalSinceDate:[[self.arrSteps lastObject] date]] * 1000;
                                     if (intervalMillSecond >= 1000) {
@@ -263,7 +263,7 @@ static CMMotionManager *motionManager;
                                         caidianCurrent.record_no = record_no_save;
                                         [self.arrStepsSave addObject:caidianCurrent];
                                         
-                                        NSLog(@"---***%ld",self.step);
+//                                        NSLog(@"---***%ld",self.step);
                                         // 备份当前运动数据至文件中，以备APP异常退出时数据也不会丢失
                                         // [self bkRunningData];
                                         

@@ -17,21 +17,26 @@
 UINavigationControllerDelegate,
 MAMapViewDelegate
 >
-@property (nonatomic, retain) UIButton *backButton;
-@property (nonatomic, retain) MAMapView *mapView;
-@property (nonatomic, retain) MapDataManager *mapManager;
-@property (nonatomic, retain) Location *location;
-@property (nonatomic, retain) Location *userLocation;
-@property (nonatomic, retain) MAPolyline *commonPolyline;
-@property (nonatomic, retain) ExerciseDataView *leftDataView;
-@property (nonatomic, retain) ExerciseDataView *rightDataView;
-@property (nonatomic, retain) UIButton *menuButton;
+@property (nonatomic, strong) UIButton *backButton;
+@property (nonatomic, strong) MAMapView *mapView;
+@property (nonatomic, strong) MapDataManager *mapManager;
+@property (nonatomic, strong) Location *location;
+@property (nonatomic, strong) Location *userLocation;
+@property (nonatomic, strong) MAPolyline *commonPolyline;
+@property (nonatomic, strong) ExerciseDataView *leftDataView;
+@property (nonatomic, strong) ExerciseDataView *rightDataView;
+@property (nonatomic, strong) NSArray *keyPathArray;
+@property (nonatomic, strong) UIButton *menuButton;
+@property (nonatomic, strong) UIButton *locationButton;
+@property (nonatomic, strong) UIVisualEffectView *menuEffectView;
 @end
 
 @implementation MapViewController
 - (void)dealloc {
     self.navigationController.delegate = nil;
-    [_mapManager removeObserver:self forKeyPath:@"count" context:nil];
+    for (int i = 0; i < _keyPathArray.count; i++) {
+        [self.mapManager removeObserver:self forKeyPath:_keyPathArray[i] context:nil];
+    }
 }
 - (void)viewWillAppear:(BOOL)animated {
        self.navigationController.delegate = self;
@@ -47,8 +52,11 @@ MAMapViewDelegate
     // Do any additional setup after loading the view.
     self.location = [[Location alloc] init];
     [self creatMapView];
-    
-   [_mapManager addObserver:self forKeyPath:@"count" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+    self.keyPathArray = @[@"distance", @"duration", @"speedPerHour", @"averageSpeed", @"maxSpeed", @"calorie", @"count"];
+    for (int i = 0; i < _keyPathArray.count; i++) {
+        [self.mapManager addObserver:self forKeyPath:_keyPathArray[i] options: NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld  context:nil];
+    }
+
     self.backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _backButton.frame =  CGRectMake(SCREEN_WIDTH - 50, 32, 30, 30);
     _backButton.layer.cornerRadius = 15;
@@ -92,35 +100,57 @@ MAMapViewDelegate
     _menuButton.frame = CGRectMake(20, effectView.y - 50, 30, 30);
     _menuButton.layer.cornerRadius = 15;
     [_menuButton setBackgroundImage:[UIImage imageNamed:@"map_btn_menu_normal"] forState:UIControlStateNormal];
+    [_menuButton setBackgroundImage:[UIImage imageNamed:@"map_btn_menu_select"] forState:UIControlStateSelected];
     _menuButton.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.3];
+    [weakSelf mapType];
     [_menuButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
-        [_menuButton setBackgroundImage:[UIImage imageNamed:@"map_btn_menu_select"] forState:UIControlStateNormal];
-        [weakSelf mapType];
+        _menuButton.selected = !_menuButton.selected;
+        if (_menuButton.selected) {
+            _menuEffectView.alpha = 1;
+        } else {
+            _menuEffectView.alpha = 0;
+        }
     }];
     [self.view addSubview:_menuButton];
 
-    
+    self.locationButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _locationButton.frame = CGRectMake(SCREEN_WIDTH - 50, effectView.y - 50, 30, 30);
+    _locationButton.layer.cornerRadius = 15;
+    [_locationButton setBackgroundImage:[UIImage imageNamed:@"map_btn_location"] forState:UIControlStateNormal];
+    _locationButton.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.3];
+    [_locationButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
+        Location *currentLocation = [_mapManager.allLocationArray lastObject];
+        CLLocationCoordinate2D centerCoordinate = CLLocationCoordinate2DMake(currentLocation.latitude, currentLocation.longitude);
+        [weakSelf.mapView setCenterCoordinate:centerCoordinate animated:YES];
+    }];
+    [self.view addSubview:_locationButton];
     
     
 
     
 }
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    _menuEffectView.alpha = 0;
+//    [_menuEffectView removeFromSuperview];
+}
+#pragma mark - 改变地图类型
 - (void)mapType {
-    
     UIBlurEffect * blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-    UIVisualEffectView * effectView = [[UIVisualEffectView alloc]initWithEffect:blur];
-    effectView.frame = CGRectMake(_menuButton.x, _menuButton.y - 160, 250, 140);
-    [self.view addSubview:effectView];
+    self.menuEffectView = [[UIVisualEffectView alloc]initWithEffect:blur];
+    _menuEffectView.frame = CGRectMake(_menuButton.x, _menuButton.y - 160, 250, 140);
+    _menuEffectView.alpha = 0;
+
+    [self.view addSubview:_menuEffectView];
     
     VerticalButton *planeButton = [VerticalButton buttonWithType:UIButtonTypeCustom];
     
-    [planeButton setImage:[UIImage imageNamed:@"18r.jpg"] forState:UIControlStateNormal];
+    [planeButton setImage:[UIImage imageNamed:@"map_type_plane"] forState:UIControlStateNormal];
 //
-    [planeButton setImage:[UIImage imageNamed:@"18r.jpg"] forState:UIControlStateSelected];
+    [planeButton setImage:[UIImage imageNamed:@"map_type_plane"] forState:UIControlStateSelected];
     [planeButton setTitle:@"平面地图" forState:UIControlStateNormal];
     [planeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [planeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-    planeButton.titleLabel.font = [UIFont systemFontOfSize:20];
+    planeButton.titleLabel.font = [UIFont systemFontOfSize:18];
     
     planeButton.backgroundColor = [UIColor whiteColor];
     planeButton.layer.borderWidth = 0.5;
@@ -128,43 +158,82 @@ MAMapViewDelegate
     [planeButton setTitle:@"平面地图" forState:UIControlStateSelected];
     if (self.mapView.mapType == MAMapTypeStandard) {
         planeButton.selected = YES;
-        planeButton.backgroundColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74/255.f alpha:1.0];
-        planeButton.layer.borderColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74/255.f alpha:1.0].CGColor;
+        planeButton.backgroundColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74 / 255.f alpha:1.0];
+        planeButton.layer.borderColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74 / 255.f alpha:1.0].CGColor;
     }
-    planeButton.layer.cornerRadius = 4;
+    planeButton.layer.cornerRadius = 6;
     planeButton.clipsToBounds = YES;
     planeButton.frame = CGRectMake(20, 20, 90, 90);
-    [effectView addSubview:planeButton];
+    [_menuEffectView addSubview:planeButton];
   
-    
-    
-    
-    
-//    self.femaleButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    UIImage *femaleImage = [UIImage imageNamed:@"me_sex_nv"];
-//    _femaleButton.tintColor = [UIColor colorWithRed:1.0 green:0.4353 blue:0.8118 alpha:1.0];
-//    femaleImage = [femaleImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-//    [_femaleButton setImage:femaleImage forState:UIControlStateNormal];
-//    
-//    UIImage *femaleSelectImage = [UIImage imageNamed:@"me_sex_nv"];
-//    [_femaleButton setImage:femaleSelectImage forState:UIControlStateSelected];
-//    
-//    [_femaleButton setTitle:@"女" forState:UIControlStateNormal];
-//    [_femaleButton setTitleColor:[UIColor colorWithRed:1.0 green:0.4353 blue:0.8118 alpha:1.0] forState:UIControlStateNormal];
-//    [_femaleButton setTitle:@"女" forState:UIControlStateSelected];
-//    [_femaleButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-//    
-//    
-//    _femaleButton.titleLabel.font = [UIFont systemFontOfSize:20];
-//    _femaleButton.backgroundColor = [UIColor clearColor];
-//    _femaleButton.layer.borderWidth = 1;
-//    _femaleButton.layer.borderColor = [UIColor colorWithRed:1.0 green:0.4353 blue:0.8118 alpha:1.0].CGColor;
-//    _femaleButton.layer.cornerRadius = 10;
-
-    
-    
     VerticalButton *satelliteButton = [VerticalButton buttonWithType:UIButtonTypeCustom];
+    
+    [satelliteButton setImage:[UIImage imageNamed:@"map_type_satellite"] forState:UIControlStateNormal];
+    //
+    [satelliteButton setImage:[UIImage imageNamed:@"map_type_satellite"] forState:UIControlStateSelected];
+    [satelliteButton setTitle:@"卫星地图" forState:UIControlStateNormal];
+    [satelliteButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [satelliteButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    satelliteButton.titleLabel.font = [UIFont systemFontOfSize:18];
+    
+    satelliteButton.backgroundColor = [UIColor whiteColor];
+    satelliteButton.layer.borderWidth = 0.5;
+    satelliteButton.layer.borderColor = [UIColor whiteColor].CGColor;
+    [satelliteButton setTitle:@"卫星地图" forState:UIControlStateSelected];
+    if (self.mapView.mapType == MAMapTypeSatellite) {
+        satelliteButton.selected = YES;
+        satelliteButton.backgroundColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74 / 255.f alpha:1.0];
+        satelliteButton.layer.borderColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74 / 255.f alpha:1.0].CGColor;
+    }
+    satelliteButton.layer.cornerRadius = 6;
+    satelliteButton.clipsToBounds = YES;
+    satelliteButton.frame = CGRectMake(planeButton.x + planeButton.width + 10, 20, 90, 90);
+    [_menuEffectView addSubview:satelliteButton];
+    
+    [planeButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
+        if (!planeButton.selected) {
+            planeButton.backgroundColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74 / 255.f alpha:1.0];
+            planeButton.layer.borderColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74 / 255.f alpha:1.0].CGColor;
+          
+            planeButton.selected = !planeButton.selected;
+            if (satelliteButton.selected) {
+                satelliteButton.selected = !satelliteButton.selected;
+                satelliteButton.backgroundColor = [UIColor whiteColor];
+                
+                //                _femaleButton.imageView.backgroundColor = [UIColor whiteColor];
+            }
+        }
+        _mapView.maxZoomLevel = 20;
+
+        _mapView.mapType = MAMapTypeStandard;
+        
+    }];
+    [satelliteButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
+        if (!satelliteButton.selected) {
+            _menuEffectView.alpha = 0;
+            satelliteButton.backgroundColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74 / 255.f alpha:1.0];
+            satelliteButton.layer.borderColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74 / 255.f alpha:1.0].CGColor;
+          
+            satelliteButton.selected = !satelliteButton.selected;
+            if (planeButton.selected) {
+                planeButton.selected = !planeButton.selected;
+                planeButton.backgroundColor = [UIColor whiteColor];
+                
+                //                _femaleButton.imageView.backgroundColor = [UIColor whiteColor];
+            }
+        }
+        _mapView.maxZoomLevel = 18;
+
+        _mapView.mapType = MAMapTypeSatellite;
+
+        
+    }];
+    
+    
+    
+    
 }
+#pragma mark - 创建地图
 - (void)creatMapView {
     
 
@@ -179,15 +248,18 @@ MAMapViewDelegate
     _mapView.allowsBackgroundLocationUpdates = YES;
     // Do any additional setup after loading the view.
     // 默认模式
-    
+//    _mapView.showsLabels = NO;
     [_mapView setUserTrackingMode: MAUserTrackingModeFollow animated:YES];
     // 比例尺
     _mapView.showsScale = NO;
     // 罗盘
     _mapView.showsCompass = NO;
     // 缩放级别
-    [_mapView setZoomLevel:16.5 animated:NO];
-    
+    [_mapView setZoomLevel:18 animated:NO];
+    // 天空模式
+    _mapView.skyModelEnable = NO;
+    // 相机旋转
+    _mapView.rotateCameraEnabled = NO;
     // 楼块
 //    _mapView.showsBuildings = NO;
     
@@ -218,11 +290,33 @@ MAMapViewDelegate
              [_mapView removeOverlay:_commonPolyline];
          }
          self.commonPolyline = [MAPolyline polylineWithCoordinates:commonPolylineCoords count:_mapManager.allLocationArray.count];
-         
          //在地图上添加折线对象
          [_mapView addOverlay: _commonPolyline];
 
+     }  if ([keyPath isEqualToString:@"duration"] && object == self.mapManager) {
+         
+         NSString *time = [change valueForKey:@"new"];
+         
+         NSInteger sec;
+         NSInteger minu;
+         NSInteger hour;
+         sec = [time integerValue] % 60;
+         minu = ([time integerValue] / 60)% 60;
+         hour = [time integerValue] / 3600;
+         
+         self.rightDataView.dataLabel.text = [NSString stringWithFormat:@"%.2ld:%.2ld:%.2ld", hour, minu, sec];
+         
+     } else if ([keyPath isEqualToString:@"distance"] && object == self.mapManager) {
+         self.leftDataView.dataLabel.text = [NSString stringWithFormat:@"%.2f", _mapManager.distance];
+     } else if ([keyPath isEqualToString:@"speedPerHour"] && object == self.mapManager) {
+     } else if ([keyPath isEqualToString:@"averageSpeed"] && object == self.mapManager) {
+         
+     } else if ([keyPath isEqualToString:@"maxSpeed"] && object == self.mapManager) {
+         
+     } else if ([keyPath isEqualToString:@"calorie"] && object == self.mapManager) {
+         
      }
+
 }
 
 - (MAOverlayRenderer *)mapView:(MAMapView *)mapView rendererForOverlay:(id<MAOverlay>)overlay {

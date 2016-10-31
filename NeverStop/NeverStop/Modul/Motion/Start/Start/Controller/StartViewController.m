@@ -23,12 +23,12 @@ CaloriePickerViewDelegate,
 CustomPickerViewDelegate,
 UINavigationControllerDelegate
 >
-@property (nonatomic, retain) MAMapView *mapView;
-@property (nonatomic, retain) UIButton *settingButton;
-@property (nonatomic, retain) AMapSearchAPI *mapSearchAPI;
-@property (nonatomic, retain) JiangPickerView *aimPickerView;
+@property (nonatomic, strong) MAMapView *mapView;
+@property (nonatomic, strong) UIButton *settingButton;
+@property (nonatomic, strong) AMapSearchAPI *mapSearchAPI;
+@property (nonatomic, strong) JiangPickerView *aimPickerView;
 
-@property (nonatomic, retain) NSString *setting;
+@property (nonatomic, strong) NSString *setting;
 @property (nonatomic, assign) NSInteger row;
 
 
@@ -55,7 +55,6 @@ UINavigationControllerDelegate
     __weak typeof(self) weakSelf = self;
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem getBarButtonItemWithImageName:@"map" HighLightedImageName:@"map" targetBlock:^{
         [weakSelf.navigationController popViewControllerAnimated:YES];
-
     }];
     //消除阴影
     self.navigationController.navigationBar.shadowImage = [UIImage new];
@@ -82,8 +81,7 @@ UINavigationControllerDelegate
     
     
     
-    //     缩放 开始按钮
-    
+    // 缩放 开始按钮
     self.startButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _startButton.frame = CGRectMake(SCREEN_WIDTH / 2 - 40, SCREEN_HEIGHT - 240, 80, 80);
     UIImage *startImage = [UIImage imageNamed:@"1"];
@@ -112,7 +110,7 @@ UINavigationControllerDelegate
 
 - (void)aimSettingPicker:(AimSettingPickerView *)aimSettingPicker setting:(NSString *)setting viewForRow:(NSInteger)row forChildRow:(NSInteger)childRow {
     
-    NSLog(@"%ld %ld", (long)childRow, (long)row);
+//    NSLog(@"%ld %ld", (long)childRow, (long)row);
     self.row = row;
     CustomPickerView *customPicker = [[CustomPickerView alloc] init];
     customPicker.delegate = self;
@@ -122,7 +120,6 @@ UINavigationControllerDelegate
     caloriePicker.contentMode = JiangPickerContentModeBottom;
     
     switch (row) {
-            
         case 0:
             [_settingButton setTitle:@"设定单次目标" forState:UIControlStateNormal];
             CGFloat width0 = [_settingButton.titleLabel.text widthWithFont:_settingButton.titleLabel.font constrainedToHeight:50];
@@ -250,7 +247,7 @@ UINavigationControllerDelegate
         btn.transform = CGAffineTransformMakeScale(1.0, 1.0);
     } completion:^(BOOL finished) {
         ExerciseViewController *exerciseVC = [[ExerciseViewController alloc] init];
-        exerciseVC.aim = _startButton.currentTitle;
+        exerciseVC.aim = _settingButton.currentTitle;
         exerciseVC.aimType = _row;
         [self.navigationController pushViewController:exerciseVC animated:YES];
         

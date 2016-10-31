@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface JiangFlashLabel : UILabel
-@property (nonatomic, retain) UIColor *spotlightColor;
+@property (nonatomic, strong) UIColor *spotlightColor;
 
 - (void)startAnimating;
 

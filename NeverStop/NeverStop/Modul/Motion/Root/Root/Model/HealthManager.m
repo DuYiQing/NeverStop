@@ -164,7 +164,7 @@
                     double usersHeight = [quantity doubleValueForUnit:heightUnit];
                     totleSteps += usersHeight;
                 }
-                NSLog(@"当天行走步数 = %ld",totleSteps);
+//                NSLog(@"当天行走步数 = %ld",totleSteps);
                 handler(totleSteps,error);
             }
         }];
@@ -207,7 +207,7 @@
             HKQuantity *sum = [result sumQuantity];
             
             double value = [sum doubleValueForUnit:[HKUnit kilocalorieUnit]];
-            NSLog(@"%@卡路里 ---> %.2lf",quantityType.identifier,value);
+//            NSLog(@"%@卡路里 ---> %.2lf",quantityType.identifier,value);
             if(handler)
             {
                 handler(value,error);

@@ -16,7 +16,7 @@ typedef NS_ENUM(NSInteger, JiangContentModeBack) {
 };
 @interface CustomAnimateTransitionPop : NSObject<UIViewControllerAnimatedTransitioning>
 @property (nonatomic, assign) JiangContentModeBack contentMode;
-@property (nonatomic, retain) UIButton *button;
+@property (nonatomic, strong) UIButton *button;
 @property(nonatomic,strong)id<UIViewControllerContextTransitioning>transitionContext;
 
 @end

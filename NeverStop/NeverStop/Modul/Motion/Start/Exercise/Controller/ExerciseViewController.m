@@ -14,47 +14,48 @@
 #import "CustomAnimateTransitionPop.h"
 #import "Location.h"
 #import "MapDataManager.h"
-#import "ExerciseData.h"
+#import "ProgressAimView.h"
+//#import "ExerciseData.h"
 
 @interface ExerciseViewController ()
 <
 UINavigationControllerDelegate,
 MAMapViewDelegate
 >
-@property (nonatomic, retain) UIButton *pauseButton;
-@property (nonatomic, retain) UIView *countDownView;
-@property (nonatomic, retain) UILabel *countDownLabel;
-@property (nonatomic, retain) UIView *dataModulesView;
-@property (nonatomic, retain) ExerciseDataView *homeDataView;
-@property (nonatomic, retain) ExerciseDataView *leftDataView;
-@property (nonatomic, retain) ExerciseDataView *rightDataView;
-@property (nonatomic, retain) UIButton *lockButton;
-@property (nonatomic, retain) UIView *lockView;
-@property (nonatomic, retain) GlideView *glideView;
+@property (nonatomic, strong) UIButton *pauseButton;
+@property (nonatomic, strong) UIView *countDownView;
+@property (nonatomic, strong) UILabel *countDownLabel;
+@property (nonatomic, strong) UIView *dataModulesView;
+@property (nonatomic, strong) ExerciseDataView *homeDataView;
+@property (nonatomic, strong) ExerciseDataView *leftDataView;
+@property (nonatomic, strong) ExerciseDataView *rightDataView;
+@property (nonatomic, strong) UIButton *lockButton;
+@property (nonatomic, strong) UIView *lockView;
+@property (nonatomic, strong) GlideView *glideView;
 @property (nonatomic, assign) CGPoint startPoint;
 @property (nonatomic, assign) CGPoint glideCenter;
 @property (nonatomic, assign) CGFloat dy;
 @property (nonatomic, assign) BOOL isOffMark;
 @property (nonatomic, assign) BOOL isLock;
 @property (nonatomic, assign) BOOL isMoving;
-@property (nonatomic, retain) UIButton *mapButton;
-@property (nonatomic, retain) Location *location;
+@property (nonatomic, strong) UIButton *mapButton;
+@property (nonatomic, strong) Location *location;
 
 
-@property (nonatomic, retain) MAMapView *mapView;
-@property (nonatomic, retain) Location *lastLocation;
+@property (nonatomic, strong) MAMapView *mapView;
+@property (nonatomic, strong) Location *lastLocation;
 @property (nonatomic, assign) double allDistance;
-@property (nonatomic, retain) UILabel *distanceLabel;
-@property (nonatomic, retain) NSString *allDistanceStr;
-@property (nonatomic, retain) MAPolyline *commonPolyline;
+@property (nonatomic, strong) UILabel *distanceLabel;
+@property (nonatomic, strong) NSString *allDistanceStr;
+@property (nonatomic, strong) MAPolyline *commonPolyline;
 
-@property (nonatomic, retain) MapDataManager *mapManager;
-@property (nonatomic, retain) ExerciseData *exerciseDataKVO;
-@property (nonatomic, retain) NSTimer *timer;
+@property (nonatomic, strong) MapDataManager *mapManager;
+//@property (nonatomic, strong) ExerciseData *exerciseDataKVO;
+@property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, assign) NSInteger a;
 @property (nonatomic, assign) NSInteger lastTime;
-@property (nonatomic, retain) NSArray *keyPathArray;
-
+@property (nonatomic, strong) NSArray *keyPathArray;
+@property (nonatomic, strong) ProgressAimView *progressAimView;
 @end
 
 @implementation ExerciseViewController
@@ -65,8 +66,9 @@ MAMapViewDelegate
 //    [self.exerciseDataKVO removeObserver:self forKeyPath:@"speedPerHour" context:nil];
 //    [self.exerciseDataKVO removeObserver:self forKeyPath:@"averageSpeed" context:nil];
     for (int i = 0; i < _keyPathArray.count; i++) {
-        [self.exerciseDataKVO removeObserver:self forKeyPath:_keyPathArray[i] context:nil];
+        [self.mapManager removeObserver:self forKeyPath:_keyPathArray[i] context:nil];
     }
+    
     
 
 
@@ -77,6 +79,8 @@ MAMapViewDelegate
     [self mapBtnAnimation];
 
     [_mapView setUserTrackingMode: MAUserTrackingModeFollow animated:YES];
+    
+    
 
 }
 - (void)initialValue {
@@ -86,33 +90,36 @@ MAMapViewDelegate
     self.keyPathArray = @[@"distance", @"duration", @"speedPerHour", @"averageSpeed", @"maxSpeed", @"calorie", @"count"];
     self.lastLocation = [[Location alloc] init];
     self.mapManager = [MapDataManager defaultManager];
-    self.exerciseDataKVO = [[ExerciseData alloc] init];
+//    self.exerciseDataKVO = [[ExerciseData alloc] init];
 
-    _exerciseDataKVO.distance = 0.00;
-    _exerciseDataKVO.duration = 0;
-    _exerciseDataKVO.speedPerHour = 0.00;
-    _exerciseDataKVO.averageSpeed = 0.00;
-    _exerciseDataKVO.maxSpeed = 0.00;
-    _exerciseDataKVO.calorie = 0.0;
+    _mapManager.distance = 0.00;
+    _mapManager.duration = 0;
+    _mapManager.speedPerHour = 0.00;
+    _mapManager.averageSpeed = 0.00;
+    _mapManager.maxSpeed = 0.00;
+    _mapManager.calorie = 0.0;
 
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initialValue];
-    // Do any additional setup after loading the view.
-   //    [self.exerciseDataKVO addObserver:self forKeyPath:@"exerciseData" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld  context:nil];
-//    [self.exerciseDataKVO addObserver:self forKeyPath:@"TIMETIME" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld  context:nil];
-//    [self.exerciseDataKVO addObserver:self forKeyPath:@"TIMETIME" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld  context:nil];
-//    [self.exerciseDataKVO addObserver:self forKeyPath:@"TIMETIME" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld  context:nil];
-    for (int i = 0; i < _keyPathArray.count; i++) {
-        [self.exerciseDataKVO addObserver:self forKeyPath:_keyPathArray[i] options: NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld  context:nil];
+      for (int i = 0; i < _keyPathArray.count; i++) {
+        [self.mapManager addObserver:self forKeyPath:_keyPathArray[i] options: NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld  context:nil];
     }
     [self creatMapView];
-#pragma mark - 结束按钮
+    
+    
+    
     self.view.backgroundColor = [UIColor whiteColor];
     UIImageView *backImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     backImageView.image = [UIImage imageNamed:@"background.jpg"];
     [self.view addSubview:backImageView];
+    
+    
+    self.progressAimView = [[ProgressAimView alloc] initWithFrame:CGRectMake(15, 64 + 5, SCREEN_WIDTH - 30, 30) aim:self.aim aimType:self.aimType];
+    [self.view addSubview:_progressAimView];
+
+#pragma mark - 结束按钮
     self.endButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _endButton.frame = CGRectMake(SCREEN_WIDTH / 2 - 40, SCREEN_HEIGHT - 240, 80, 80);
     UIImage *endImage = [UIImage imageNamed:@"2"];
@@ -124,8 +131,8 @@ MAMapViewDelegate
     __weak typeof(self) weakSelf = self;
     [_endButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
         // 结束计时
-        [self endTimer];
-        [_mapManager.allLocationArray removeAllObjects];
+        [weakSelf endTimer];
+        [weakSelf.mapManager.allLocationArray removeAllObjects];
         [weakSelf.navigationController popViewControllerAnimated:YES];
         
     }];
@@ -143,23 +150,23 @@ MAMapViewDelegate
     
     [_pauseButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
         [UIView animateWithDuration:0.5 animations:^{
-            if (!_pauseButton.selected) {
+            if (!weakSelf.pauseButton.selected) {
                 // 暂停计时
-                [self pauseTimer];
-                _pauseButton.centerX = SCREEN_WIDTH / 2 - 70;
-                _endButton.centerX = SCREEN_WIDTH / 2 + 70;
-                _pauseButton.selected = !_pauseButton.selected;
-                [_pauseButton setBackgroundImage:[UIImage imageNamed:@"1"] forState:UIControlStateNormal];
+                [weakSelf pauseTimer];
+                weakSelf.pauseButton.centerX = SCREEN_WIDTH / 2 - 70;
+                weakSelf.endButton.centerX = SCREEN_WIDTH / 2 + 70;
+               weakSelf.pauseButton.selected = !weakSelf.pauseButton.selected;
+                [weakSelf.pauseButton setBackgroundImage:[UIImage imageNamed:@"1"] forState:UIControlStateNormal];
                 
-                self.isMoving = NO;
+                weakSelf.isMoving = NO;
             } else {
                 // 开始计时
-                [self createTimer];
-                _pauseButton.centerX = SCREEN_WIDTH / 2;
-                _endButton.centerX = SCREEN_WIDTH / 2;
-                _pauseButton.selected = !_pauseButton.selected;
-                [_pauseButton setBackgroundImage:[UIImage imageNamed:@"2"] forState:UIControlStateNormal];
-                self.isMoving = YES;
+                [weakSelf createTimer];
+                weakSelf.pauseButton.centerX = SCREEN_WIDTH / 2;
+                weakSelf.endButton.centerX = SCREEN_WIDTH / 2;
+                weakSelf.pauseButton.selected = !weakSelf.pauseButton.selected;
+                [weakSelf.pauseButton setBackgroundImage:[UIImage imageNamed:@"2"] forState:UIControlStateNormal];
+                weakSelf.isMoving = YES;
             }
         }];
         
@@ -171,8 +178,7 @@ MAMapViewDelegate
     _mapButton.frame = CGRectMake(SCREEN_WIDTH - 50, 32, 30, 30);
     [_mapButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
         MapViewController *mapVC = [[MapViewController alloc] init];
-        [self.navigationController pushViewController:mapVC animated:YES];
-        
+        [weakSelf.navigationController pushViewController:mapVC animated:YES];
     }];
     [self mapBtnAnimation];
     [self.view addSubview:_mapButton];
@@ -181,6 +187,9 @@ MAMapViewDelegate
     [self createCountDownView];
 
 }
+
+
+
 #pragma mark - 创建计时器 开始计时
 - (void)createTimer {
     if (_a == 0) {
@@ -197,7 +206,7 @@ MAMapViewDelegate
 }
 
 -(void)timeFire {
-    _exerciseDataKVO.duration++;
+    _mapManager.duration++;
 }
 #pragma mark - 结束计时
 - (void)endTimer{
@@ -254,22 +263,22 @@ MAMapViewDelegate
                 CLLocationDistance distance = MAMetersBetweenMapPoints(point1,point2);
 //                NSLog(@"distance : %f", distance);
                 ;
-                CGFloat time = ((_exerciseDataKVO.duration - _lastTime) / 60.0) / 60.0;
+                CGFloat time = ((_mapManager.duration - _lastTime) / 60.0) / 60.0;
                 if (time != 0) {
                     
-                NSLog(@"%ld", _exerciseDataKVO.duration - _lastTime);
-                _exerciseDataKVO.speedPerHour = (distance / 1000) / time;
+//                NSLog(@"%ld", _mapManager.duration - _lastTime);
+                _mapManager.speedPerHour = (distance / 1000) / time;
                 
-                _exerciseDataKVO.distance += distance / 1000;
+                _mapManager.distance += distance / 1000;
 //                _exerciseDataKVO.distance += round(distance / 1000 * 100) / 100;
-                _exerciseDataKVO.maxSpeed = _exerciseDataKVO.maxSpeed > _exerciseDataKVO.speedPerHour ? _exerciseDataKVO.maxSpeed : _exerciseDataKVO.speedPerHour;
-                _exerciseDataKVO.averageSpeed = _exerciseDataKVO.distance / _exerciseDataKVO.duration;
+                _mapManager.maxSpeed = _mapManager.maxSpeed > _mapManager.speedPerHour ? _mapManager.maxSpeed : _mapManager.speedPerHour;
+                _mapManager.averageSpeed = _mapManager.distance / _mapManager.duration;
                 }
             }
          
             _lastLocation.latitude = location.latitude;
             _lastLocation.longitude = location.longitude;
-            self.lastTime = _exerciseDataKVO.duration;
+            self.lastTime = _mapManager.duration;
         }
 
       
@@ -284,7 +293,7 @@ MAMapViewDelegate
 }
 #pragma mark - KVO
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
-    if ([keyPath isEqualToString:@"duration"] && object == self.exerciseDataKVO) {
+    if ([keyPath isEqualToString:@"duration"] && object == self.mapManager) {
         
         NSString *time = [change valueForKey:@"new"];
         
@@ -296,16 +305,27 @@ MAMapViewDelegate
         hour = [time integerValue] / 3600;
         
         self.homeDataView.dataLabel.text = [NSString stringWithFormat:@"%.2ld:%.2ld:%.2ld", hour, minu, sec];
+        NSLog(@"%ld", (long)_mapManager.duration);
+        if (self.aimType == 3) {
+            _progressAimView.currentNumber = _mapManager.duration;
+            
+        }
         
-    } else if ([keyPath isEqualToString:@"distance"] && object == self.exerciseDataKVO) {
-         self.leftDataView.dataLabel.text = [NSString stringWithFormat:@"%.2f", _exerciseDataKVO.distance];
-    } else if ([keyPath isEqualToString:@"speedPerHour"] && object == self.exerciseDataKVO) {
-        self.rightDataView.dataLabel.text = [NSString stringWithFormat:@"%.2f", _exerciseDataKVO.speedPerHour];
-    } else if ([keyPath isEqualToString:@"averageSpeed"] && object == self.exerciseDataKVO) {
+    } else if ([keyPath isEqualToString:@"distance"] && object == self.mapManager) {
+         self.leftDataView.dataLabel.text = [NSString stringWithFormat:@"%.2f", _mapManager.distance];
+        if (self.aimType == 3) {
+            _progressAimView.currentNumber = _mapManager.distance;
+        }
+    } else if ([keyPath isEqualToString:@"speedPerHour"] && object == self.mapManager) {
+        self.rightDataView.dataLabel.text = [NSString stringWithFormat:@"%.2f", _mapManager.speedPerHour];
+    } else if ([keyPath isEqualToString:@"averageSpeed"] && object == self.mapManager) {
        
-    } else if ([keyPath isEqualToString:@"maxSpeed"] && object == self.exerciseDataKVO) {
+    } else if ([keyPath isEqualToString:@"maxSpeed"] && object == self.mapManager) {
        
-    } else if ([keyPath isEqualToString:@"calorie"] && object == self.exerciseDataKVO) {
+    } else if ([keyPath isEqualToString:@"calorie"] && object == self.mapManager) {
+        if (self.aimType == 4) {
+            _progressAimView.currentNumber = _mapManager.calorie;
+        }
        
     }
 
@@ -389,9 +409,10 @@ MAMapViewDelegate
 
     [_lockButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
         [weakSelf createLockView];
-        self.isLock = YES;
-        [weakSelf.view bringSubviewToFront:_lockButton];
-        [weakSelf.view bringSubviewToFront:_dataModulesView];
+        weakSelf.isLock = YES;
+        [weakSelf.view bringSubviewToFront:weakSelf.progressAimView];
+        [weakSelf.view bringSubviewToFront:weakSelf.lockButton];
+        [weakSelf.view bringSubviewToFront:weakSelf.dataModulesView];
     }];
     [self.view addSubview:_lockButton];
 }

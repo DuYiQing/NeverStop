@@ -16,7 +16,8 @@
 @interface MotionViewController ()
 <
 UIScrollViewDelegate,
-AMapSearchDelegate
+AMapSearchDelegate,
+MAMapViewDelegate
 >
 @property (nonatomic, strong) UIBlurEffect *blur;
 @property (nonatomic, strong) UIVisualEffectView *blurEffectView;
@@ -39,7 +40,10 @@ AMapSearchDelegate
 @property (nonatomic, strong) AMapLocalWeatherLive *live;
 @property (nonatomic, strong) AMapLocalWeatherForecast *forecast;
 @property (nonatomic, strong) AMapLocalDayWeatherForecast *dayForecast;
-
+@property (nonatomic, strong) MAMapView *mapView;
+@property (nonatomic, strong) MAUserLocation *userLocation;
+@property (nonatomic, strong) AMapReGeocodeSearchRequest *regeo;
+@property (nonatomic, strong) NSString *address;
 
 @end
 
@@ -48,6 +52,7 @@ AMapSearchDelegate
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBarHidden = YES;
 //    self.tabBarController.tabBar.hidden = NO;
+    
 }
 
 - (void)viewDidLoad {
@@ -55,6 +60,23 @@ AMapSearchDelegate
     // Do any additional setup after loading the view.
        
     self.view.backgroundColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74/255.f alpha:1.0];
+    
+    // 地图定位
+    self.mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
+    _mapView.showsUserLocation = YES;
+   
+    _mapView.userTrackingMode = MAUserTrackingModeFollow;
+    _mapView.delegate = self;
+    [self.view addSubview:_mapView];
+    
+    [AMapServices sharedServices].apiKey = @"7a51d2c58640778bd644ee3641609981";
+    self.mapSearchAPI = [[AMapSearchAPI alloc] init];
+    _mapSearchAPI.delegate = self;
+
+ 
+    self.regeo = [[AMapReGeocodeSearchRequest alloc] init];
+    
+    
     // 定义毛玻璃效果
     self.blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
     self.blurEffectView = [[UIVisualEffectView alloc] initWithEffect:_blur];
@@ -78,8 +100,27 @@ AMapSearchDelegate
     configuration.tintColor = [UIColor colorWithWhite:1.0 alpha:0.9];
 
     [self showRootView];
-    [self showWeatherInfo];
     
+    
+}
+// 实时更新定位
+- (void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation {
+    self.userLocation = userLocation;
+    // 参数1 : 纬度   参数2 : 经度
+    _regeo.location = [AMapGeoPoint locationWithLatitude:_mapView.userLocation.coordinate.latitude longitude:_mapView.userLocation.coordinate.longitude];
+    // 是否返回扩展信息
+    _regeo.requireExtension = YES;
+    [self.mapSearchAPI AMapReGoecodeSearch:_regeo];
+    
+}
+
+// 逆地理编码回调
+- (void)onReGeocodeSearchDone:(AMapReGeocodeSearchRequest *)request response:(AMapReGeocodeSearchResponse *)response {
+    if (response.regeocode != nil) {
+        AMapReGeocode *reGeocode = response.regeocode;
+        self.address = reGeocode.addressComponent.adcode;
+        [self showWeatherInfo];
+    }
 }
 
 // 里程.步数页面
@@ -306,16 +347,13 @@ AMapSearchDelegate
 }
 #pragma mark - 天气信息
 - (void)showWeatherInfo {
-    [AMapServices sharedServices].apiKey = @"7a51d2c58640778bd644ee3641609981";
-    self.mapSearchAPI = [[AMapSearchAPI alloc] init];
-    self.mapSearchAPI.delegate = self;
     AMapWeatherSearchRequest *weatherRequest = [[AMapWeatherSearchRequest alloc] init];
-    weatherRequest.city = @"大连";
+    weatherRequest.city = _address;
     weatherRequest.type = AMapWeatherTypeLive;
     [self.mapSearchAPI AMapWeatherSearch:weatherRequest];
     
     AMapWeatherSearchRequest *weatherRequest2 = [[AMapWeatherSearchRequest alloc] init];
-    weatherRequest2.city = @"大连";
+    weatherRequest2.city = _address;
     weatherRequest2.type = AMapWeatherTypeForecast;
     
     [self.mapSearchAPI AMapWeatherSearch:weatherRequest2];

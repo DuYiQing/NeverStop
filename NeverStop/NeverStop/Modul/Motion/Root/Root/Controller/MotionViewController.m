@@ -205,7 +205,7 @@ MAMapViewDelegate
     self.backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _backButton.frame = CGRectMake(20, 35, 20, 20);
     _backButton.tag = 1111;
-    [_backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+    [_backButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
     [_blurEffectView addSubview:_backButton];
     [_backButton addTarget:self action:@selector(backButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     

@@ -8,6 +8,8 @@
 
 #import "MyViewController.h"
 #import "MyInfoTableViewCell.h"
+#import "ScoreViewController.h"
+#import "PlanViewController.h"
 
 @interface MyViewController ()
 <
@@ -57,6 +59,12 @@ UITableViewDataSource
     userImageView.image = [UIImage imageNamed:@"userImage"];
     [userView addSubview:userImageView];
     
+    UILabel *userNameLabel = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 300) / 2, userView.y + userView.height, 300, 50)];
+    userNameLabel.text = @"JDT";
+    userNameLabel.textAlignment = NSTextAlignmentCenter;
+    userNameLabel.font = kFONT_SIZE_24;
+    [_myInfoTableView addSubview:userNameLabel];
+    
     
     [[UIImage imageNamed:@"userImage"] imageByScalingProportionallyToSize:CGSizeMake(45, 45)];
 }
@@ -104,6 +112,35 @@ UITableViewDataSource
     }
 
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    switch (indexPath.row) {
+        case 1: {
+            ScoreViewController *scoreVC = [[ScoreViewController alloc] init];
+            [self.navigationController pushViewController:scoreVC animated:YES];
+        }
+            break;
+        case 2: {
+            PlanViewController *planVC = [[PlanViewController alloc] init];
+            [self.navigationController pushViewController:planVC animated:YES];
+        }
+            break;
+        case 3: {
+            ScoreViewController *scoreVC = [[ScoreViewController alloc] init];
+            [self.navigationController pushViewController:scoreVC animated:YES];
+        }
+            break;
+        case 4: {
+            ScoreViewController *scoreVC = [[ScoreViewController alloc] init];
+            [self.navigationController pushViewController:scoreVC animated:YES];
+        }
+            break;
+
+            
+        default:
+            break;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

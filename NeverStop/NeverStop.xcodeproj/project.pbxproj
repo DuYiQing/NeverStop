@@ -34,12 +34,19 @@
 		40022F5E1DC6D5150062CA94 /* walk.png in Resources */ = {isa = PBXBuildFile; fileRef = 40022F451DC6D5150062CA94 /* walk.png */; };
 		40022F5F1DC6D5150062CA94 /* wind.png in Resources */ = {isa = PBXBuildFile; fileRef = 40022F461DC6D5150062CA94 /* wind.png */; };
 		40022F601DC6D5150062CA94 /* yin.png in Resources */ = {isa = PBXBuildFile; fileRef = 40022F471DC6D5150062CA94 /* yin.png */; };
+		40022F661DC6DCC70062CA94 /* ScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40022F651DC6DCC70062CA94 /* ScoreViewController.m */; };
+		40022F691DC6DD190062CA94 /* ScoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40022F681DC6DD190062CA94 /* ScoreTableViewCell.m */; };
+		40022F7A1DC6EE780062CA94 /* PlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40022F791DC6EE780062CA94 /* PlanViewController.m */; };
+		40022F7D1DC6EE8E0062CA94 /* PlanModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 40022F7C1DC6EE8E0062CA94 /* PlanModel.m */; };
+		40022F801DC6F5BF0062CA94 /* PlanTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40022F7F1DC6F5BF0062CA94 /* PlanTableViewCell.m */; };
 		405E49251DBCD0EB004105F2 /* MatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E491A1DBCD0EB004105F2 /* MatchViewController.m */; };
 		405E49261DBCD0EB004105F2 /* Recommend.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E491C1DBCD0EB004105F2 /* Recommend.m */; };
 		405E49271DBCD0EB004105F2 /* RecommendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E491E1DBCD0EB004105F2 /* RecommendTableViewCell.m */; };
 		405E49281DBCD0EB004105F2 /* Route.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E49201DBCD0EB004105F2 /* Route.m */; };
 		405E492A1DBCD0EB004105F2 /* RouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E49241DBCD0EB004105F2 /* RouteViewController.m */; };
 		409229C11DBFCA0500FDAD4E /* SQLiteDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 409229C01DBFCA0500FDAD4E /* SQLiteDatabaseManager.m */; };
+		40E5A42B1DC73826001AD41F /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E5A42A1DC73826001AD41F /* UserManager.m */; };
+		40E5A4311DC739EE001AD41F /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E5A4301DC739EE001AD41F /* UserModel.m */; };
 		49060C151DBEE5F0003FE373 /* NearbyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49060C141DBEE5F0003FE373 /* NearbyTableViewCell.m */; };
 		49060C1B1DBEE971003FE373 /* Nearby.m in Sources */ = {isa = PBXBuildFile; fileRef = 49060C1A1DBEE971003FE373 /* Nearby.m */; };
 		49060C471DBF8461003FE373 /* NearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49060C461DBF8461003FE373 /* NearbyViewController.m */; };
@@ -150,6 +157,16 @@
 		40022F451DC6D5150062CA94 /* walk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = walk.png; sourceTree = "<group>"; };
 		40022F461DC6D5150062CA94 /* wind.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wind.png; sourceTree = "<group>"; };
 		40022F471DC6D5150062CA94 /* yin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yin.png; sourceTree = "<group>"; };
+		40022F641DC6DCC70062CA94 /* ScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreViewController.h; sourceTree = "<group>"; };
+		40022F651DC6DCC70062CA94 /* ScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreViewController.m; sourceTree = "<group>"; };
+		40022F671DC6DD190062CA94 /* ScoreTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreTableViewCell.h; sourceTree = "<group>"; };
+		40022F681DC6DD190062CA94 /* ScoreTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreTableViewCell.m; sourceTree = "<group>"; };
+		40022F781DC6EE780062CA94 /* PlanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanViewController.h; sourceTree = "<group>"; };
+		40022F791DC6EE780062CA94 /* PlanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanViewController.m; sourceTree = "<group>"; };
+		40022F7B1DC6EE8E0062CA94 /* PlanModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanModel.h; sourceTree = "<group>"; };
+		40022F7C1DC6EE8E0062CA94 /* PlanModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanModel.m; sourceTree = "<group>"; };
+		40022F7E1DC6F5BF0062CA94 /* PlanTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanTableViewCell.h; sourceTree = "<group>"; };
+		40022F7F1DC6F5BF0062CA94 /* PlanTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanTableViewCell.m; sourceTree = "<group>"; };
 		405E49191DBCD0EB004105F2 /* MatchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchViewController.h; sourceTree = "<group>"; };
 		405E491A1DBCD0EB004105F2 /* MatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchViewController.m; sourceTree = "<group>"; };
 		405E491B1DBCD0EB004105F2 /* Recommend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recommend.h; sourceTree = "<group>"; };
@@ -164,6 +181,10 @@
 		405E49241DBCD0EB004105F2 /* RouteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteViewController.m; sourceTree = "<group>"; };
 		409229BF1DBFCA0500FDAD4E /* SQLiteDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLiteDatabaseManager.h; sourceTree = "<group>"; };
 		409229C01DBFCA0500FDAD4E /* SQLiteDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLiteDatabaseManager.m; sourceTree = "<group>"; };
+		40E5A4291DC73826001AD41F /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
+		40E5A42A1DC73826001AD41F /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
+		40E5A42F1DC739EE001AD41F /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
+		40E5A4301DC739EE001AD41F /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		49060C131DBEE5F0003FE373 /* NearbyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyTableViewCell.h; sourceTree = "<group>"; };
 		49060C141DBEE5F0003FE373 /* NearbyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyTableViewCell.m; sourceTree = "<group>"; };
 		49060C191DBEE971003FE373 /* Nearby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Nearby.h; sourceTree = "<group>"; };
@@ -341,6 +362,8 @@
 		40022F251DC6C9A00062CA94 /* My */ = {
 			isa = PBXGroup;
 			children = (
+				40022F741DC6EE4E0062CA94 /* Plan */,
+				40022F611DC6DC880062CA94 /* Score */,
 				40022F261DC6C9A00062CA94 /* Controller */,
 				40022F291DC6C9A00062CA94 /* View */,
 			);
@@ -395,6 +418,70 @@
 				40022F471DC6D5150062CA94 /* yin.png */,
 			);
 			path = "素材";
+			sourceTree = "<group>";
+		};
+		40022F611DC6DC880062CA94 /* Score */ = {
+			isa = PBXGroup;
+			children = (
+				40022F631DC6DCA70062CA94 /* Controller */,
+				40022F621DC6DC9F0062CA94 /* View */,
+			);
+			name = Score;
+			sourceTree = "<group>";
+		};
+		40022F621DC6DC9F0062CA94 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				40022F671DC6DD190062CA94 /* ScoreTableViewCell.h */,
+				40022F681DC6DD190062CA94 /* ScoreTableViewCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		40022F631DC6DCA70062CA94 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				40022F641DC6DCC70062CA94 /* ScoreViewController.h */,
+				40022F651DC6DCC70062CA94 /* ScoreViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		40022F741DC6EE4E0062CA94 /* Plan */ = {
+			isa = PBXGroup;
+			children = (
+				40022F771DC6EE660062CA94 /* Controller */,
+				40022F761DC6EE610062CA94 /* View */,
+				40022F751DC6EE5B0062CA94 /* Model */,
+			);
+			name = Plan;
+			sourceTree = "<group>";
+		};
+		40022F751DC6EE5B0062CA94 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				40022F7B1DC6EE8E0062CA94 /* PlanModel.h */,
+				40022F7C1DC6EE8E0062CA94 /* PlanModel.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		40022F761DC6EE610062CA94 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				40022F7E1DC6F5BF0062CA94 /* PlanTableViewCell.h */,
+				40022F7F1DC6F5BF0062CA94 /* PlanTableViewCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		40022F771DC6EE660062CA94 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				40022F781DC6EE780062CA94 /* PlanViewController.h */,
+				40022F791DC6EE780062CA94 /* PlanViewController.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		405E48E51DBA4DBB004105F2 /* Start */ = {
@@ -467,6 +554,10 @@
 			children = (
 				409229BF1DBFCA0500FDAD4E /* SQLiteDatabaseManager.h */,
 				409229C01DBFCA0500FDAD4E /* SQLiteDatabaseManager.m */,
+				40E5A4291DC73826001AD41F /* UserManager.h */,
+				40E5A42A1DC73826001AD41F /* UserManager.m */,
+				40E5A42F1DC739EE001AD41F /* UserModel.h */,
+				40E5A4301DC739EE001AD41F /* UserModel.m */,
 			);
 			path = SQLite;
 			sourceTree = "<group>";
@@ -1127,6 +1218,7 @@
 				EE1A003C1DB8CF610003762E /* UILabel+SizeToFit_W_H.m in Sources */,
 				EE1A003F1DB8CF610003762E /* HttpClient.m in Sources */,
 				40022F2D1DC6C9A00062CA94 /* MyInfoTableViewCell.m in Sources */,
+				40022F661DC6DCC70062CA94 /* ScoreViewController.m in Sources */,
 				EEECBD231DC3908F0037BA0B /* FutureWeatherView.m in Sources */,
 				EE56EAAB1DB8CE6D000B8082 /* ViewController.m in Sources */,
 				405E49271DBCD0EB004105F2 /* RecommendTableViewCell.m in Sources */,
@@ -1154,6 +1246,7 @@
 				EE1D81731DC046C700FA6CD5 /* GlideView.m in Sources */,
 				EEE3D72F1DC1A1A9003D0CC5 /* JiangPickerView.m in Sources */,
 				EEECBD1B1DC3908F0037BA0B /* HealthManager.m in Sources */,
+				40022F7D1DC6EE8E0062CA94 /* PlanModel.m in Sources */,
 				EE56EAA81DB8CE6D000B8082 /* AppDelegate.m in Sources */,
 				EE1A003A1DB8CF610003762E /* UIColor+Categories.m in Sources */,
 				EE1A002E1DB8CF610003762E /* HKHealthStore+AAPLExtensions.m in Sources */,
@@ -1162,20 +1255,25 @@
 				EE1A00301DB8CF610003762E /* NSDate+Categories.m in Sources */,
 				EE1A00451DB8CF610003762E /* XLImagePageDetailCell.m in Sources */,
 				409229C11DBFCA0500FDAD4E /* SQLiteDatabaseManager.m in Sources */,
+				40022F7A1DC6EE780062CA94 /* PlanViewController.m in Sources */,
+				40022F691DC6DD190062CA94 /* ScoreTableViewCell.m in Sources */,
 				EE1A00331DB8CF610003762E /* NSNumber+Extend.m in Sources */,
 				EEE3D72E1DC1A1A9003D0CC5 /* CustomPickerView.m in Sources */,
 				EE1A00461DB8CF610003762E /* XLImagePageView.m in Sources */,
 				EE1A002C1DB8CF610003762E /* DYQBaseModel.m in Sources */,
 				49060C1B1DBEE971003FE373 /* Nearby.m in Sources */,
+				40E5A42B1DC73826001AD41F /* UserManager.m in Sources */,
 				EE1A00391DB8CF610003762E /* UIButton+Block.m in Sources */,
 				405E49261DBCD0EB004105F2 /* Recommend.m in Sources */,
 				EEECBD201DC3908F0037BA0B /* StepCountView.m in Sources */,
+				40E5A4311DC739EE001AD41F /* UserModel.m in Sources */,
 				EEE3D70F1DC199E8003D0CC5 /* ExerciseViewController.m in Sources */,
 				EE56EAA51DB8CE6D000B8082 /* main.m in Sources */,
 				405E49281DBCD0EB004105F2 /* Route.m in Sources */,
 				49704A311DBDA7CE0028DB2F /* DetailedViewController.m in Sources */,
 				EE01152A1DC4963E001B44AD /* ProgressAimView.m in Sources */,
 				40022F2C1DC6C9A00062CA94 /* MyViewController.m in Sources */,
+				40022F801DC6F5BF0062CA94 /* PlanTableViewCell.m in Sources */,
 				EE1A00421DB8CF610003762E /* NSUserDefaultsUtils.m in Sources */,
 				EEECBD1D1DC3908F0037BA0B /* StepManager.m in Sources */,
 				EEADD65A1DC246B900A5EB52 /* MapDataManager.m in Sources */,

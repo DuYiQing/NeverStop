@@ -8,29 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		40022F2C1DC6C9A00062CA94 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40022F281DC6C9A00062CA94 /* MyViewController.m */; };
-		40022F481DC6D5150062CA94 /* 6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40022F2F1DC6D5150062CA94 /* 6.jpg */; };
-		40022F491DC6D5150062CA94 /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40022F301DC6D5150062CA94 /* 7.jpg */; };
-		40022F4B1DC6D5150062CA94 /* bg_rain_night.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40022F321DC6D5150062CA94 /* bg_rain_night.jpg */; };
-		40022F4C1DC6D5150062CA94 /* C.png in Resources */ = {isa = PBXBuildFile; fileRef = 40022F331DC6D5150062CA94 /* C.png */; };
-		40022F4D1DC6D5150062CA94 /* cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 40022F341DC6D5150062CA94 /* cloud.png */; };
-		40022F4E1DC6D5150062CA94 /* hist.png in Resources */ = {isa = PBXBuildFile; fileRef = 40022F351DC6D5150062CA94 /* hist.png */; };
-		40022F4F1DC6D5150062CA94 /* humidity.png in Resources */ = {isa = PBXBuildFile; fileRef = 40022F361DC6D5150062CA94 /* humidity.png */; };
-		40022F501DC6D5150062CA94 /* leave.png in Resources */ = {isa = PBXBuildFile; fileRef = 40022F371DC6D5150062CA94 /* leave.png */; };
-		40022F511DC6D5150062CA94 /* mai.png in Resources */ = {isa = PBXBuildFile; fileRef = 40022F381DC6D5150062CA94 /* mai.png */; };
-		40022F521DC6D5150062CA94 /* pl.png in Resources */ = {isa = PBXBuildFile; fileRef = 40022F391DC6D5150062CA94 /* pl.png */; };
-		40022F531DC6D5150062CA94 /* plane.png in Resources */ = {isa = PBXBuildFile; fileRef = 40022F3A1DC6D5150062CA94 /* plane.png */; };
-		40022F541DC6D5150062CA94 /* rain.png in Resources */ = {isa = PBXBuildFile; fileRef = 40022F3B1DC6D5150062CA94 /* rain.png */; };
-		40022F551DC6D5150062CA94 /* recode.png in Resources */ = {isa = PBXBuildFile; fileRef = 40022F3C1DC6D5150062CA94 /* recode.png */; };
-		40022F571DC6D5150062CA94 /* run.png in Resources */ = {isa = PBXBuildFile; fileRef = 40022F3E1DC6D5150062CA94 /* run.png */; };
-		40022F581DC6D5150062CA94 /* set.png in Resources */ = {isa = PBXBuildFile; fileRef = 40022F3F1DC6D5150062CA94 /* set.png */; };
-		40022F591DC6D5150062CA94 /* snow.png in Resources */ = {isa = PBXBuildFile; fileRef = 40022F401DC6D5150062CA94 /* snow.png */; };
-		40022F5A1DC6D5150062CA94 /* sunny.png in Resources */ = {isa = PBXBuildFile; fileRef = 40022F411DC6D5150062CA94 /* sunny.png */; };
-		40022F5B1DC6D5150062CA94 /* top.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40022F421DC6D5150062CA94 /* top.jpg */; };
-		40022F5C1DC6D5150062CA94 /* userImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 40022F431DC6D5150062CA94 /* userImage.png */; };
-		40022F5D1DC6D5150062CA94 /* w2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40022F441DC6D5150062CA94 /* w2.jpg */; };
-		40022F5E1DC6D5150062CA94 /* walk.png in Resources */ = {isa = PBXBuildFile; fileRef = 40022F451DC6D5150062CA94 /* walk.png */; };
-		40022F5F1DC6D5150062CA94 /* wind.png in Resources */ = {isa = PBXBuildFile; fileRef = 40022F461DC6D5150062CA94 /* wind.png */; };
-		40022F601DC6D5150062CA94 /* yin.png in Resources */ = {isa = PBXBuildFile; fileRef = 40022F471DC6D5150062CA94 /* yin.png */; };
 		40022F661DC6DCC70062CA94 /* ScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40022F651DC6DCC70062CA94 /* ScoreViewController.m */; };
 		40022F691DC6DD190062CA94 /* ScoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40022F681DC6DD190062CA94 /* ScoreTableViewCell.m */; };
 		40022F7A1DC6EE780062CA94 /* PlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40022F791DC6EE780062CA94 /* PlanViewController.m */; };
@@ -128,29 +105,6 @@
 		364DA3B93C758159869B6031 /* Pods-NeverStop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeverStop.release.xcconfig"; path = "Pods/Target Support Files/Pods-NeverStop/Pods-NeverStop.release.xcconfig"; sourceTree = "<group>"; };
 		40022F271DC6C9A00062CA94 /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
 		40022F281DC6C9A00062CA94 /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
-		40022F2F1DC6D5150062CA94 /* 6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 6.jpg; sourceTree = "<group>"; };
-		40022F301DC6D5150062CA94 /* 7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7.jpg; sourceTree = "<group>"; };
-		40022F321DC6D5150062CA94 /* bg_rain_night.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_rain_night.jpg; sourceTree = "<group>"; };
-		40022F331DC6D5150062CA94 /* C.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = C.png; sourceTree = "<group>"; };
-		40022F341DC6D5150062CA94 /* cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloud.png; sourceTree = "<group>"; };
-		40022F351DC6D5150062CA94 /* hist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hist.png; sourceTree = "<group>"; };
-		40022F361DC6D5150062CA94 /* humidity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = humidity.png; sourceTree = "<group>"; };
-		40022F371DC6D5150062CA94 /* leave.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leave.png; sourceTree = "<group>"; };
-		40022F381DC6D5150062CA94 /* mai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mai.png; sourceTree = "<group>"; };
-		40022F391DC6D5150062CA94 /* pl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pl.png; sourceTree = "<group>"; };
-		40022F3A1DC6D5150062CA94 /* plane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plane.png; sourceTree = "<group>"; };
-		40022F3B1DC6D5150062CA94 /* rain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rain.png; sourceTree = "<group>"; };
-		40022F3C1DC6D5150062CA94 /* recode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recode.png; sourceTree = "<group>"; };
-		40022F3E1DC6D5150062CA94 /* run.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = run.png; sourceTree = "<group>"; };
-		40022F3F1DC6D5150062CA94 /* set.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = set.png; sourceTree = "<group>"; };
-		40022F401DC6D5150062CA94 /* snow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snow.png; sourceTree = "<group>"; };
-		40022F411DC6D5150062CA94 /* sunny.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sunny.png; sourceTree = "<group>"; };
-		40022F421DC6D5150062CA94 /* top.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = top.jpg; sourceTree = "<group>"; };
-		40022F431DC6D5150062CA94 /* userImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userImage.png; sourceTree = "<group>"; };
-		40022F441DC6D5150062CA94 /* w2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = w2.jpg; sourceTree = "<group>"; };
-		40022F451DC6D5150062CA94 /* walk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = walk.png; sourceTree = "<group>"; };
-		40022F461DC6D5150062CA94 /* wind.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wind.png; sourceTree = "<group>"; };
-		40022F471DC6D5150062CA94 /* yin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yin.png; sourceTree = "<group>"; };
 		40022F641DC6DCC70062CA94 /* ScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreViewController.h; sourceTree = "<group>"; };
 		40022F651DC6DCC70062CA94 /* ScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreViewController.m; sourceTree = "<group>"; };
 		40022F671DC6DD190062CA94 /* ScoreTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreTableViewCell.h; sourceTree = "<group>"; };
@@ -373,36 +327,6 @@
 				40022F281DC6C9A00062CA94 /* MyViewController.m */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		40022F2E1DC6D5150062CA94 /* 素材 */ = {
-			isa = PBXGroup;
-			children = (
-				40022F2F1DC6D5150062CA94 /* 6.jpg */,
-				40022F301DC6D5150062CA94 /* 7.jpg */,
-				40022F331DC6D5150062CA94 /* C.png */,
-				40022F321DC6D5150062CA94 /* bg_rain_night.jpg */,
-				40022F341DC6D5150062CA94 /* cloud.png */,
-				40022F351DC6D5150062CA94 /* hist.png */,
-				40022F361DC6D5150062CA94 /* humidity.png */,
-				40022F371DC6D5150062CA94 /* leave.png */,
-				40022F381DC6D5150062CA94 /* mai.png */,
-				40022F391DC6D5150062CA94 /* pl.png */,
-				40022F3A1DC6D5150062CA94 /* plane.png */,
-				40022F3B1DC6D5150062CA94 /* rain.png */,
-				40022F3C1DC6D5150062CA94 /* recode.png */,
-				40022F3E1DC6D5150062CA94 /* run.png */,
-				40022F3F1DC6D5150062CA94 /* set.png */,
-				40022F401DC6D5150062CA94 /* snow.png */,
-				40022F411DC6D5150062CA94 /* sunny.png */,
-				40022F421DC6D5150062CA94 /* top.jpg */,
-				40022F431DC6D5150062CA94 /* userImage.png */,
-				40022F441DC6D5150062CA94 /* w2.jpg */,
-				40022F451DC6D5150062CA94 /* walk.png */,
-				40022F461DC6D5150062CA94 /* wind.png */,
-				40022F471DC6D5150062CA94 /* yin.png */,
-			);
-			path = "素材";
 			sourceTree = "<group>";
 		};
 		40022F611DC6DC880062CA94 /* Score */ = {
@@ -799,7 +723,6 @@
 				EE56EAA21DB8CE6D000B8082 /* NeverStop */,
 				04369AE15D5EDDE5CE8D5782 /* Pods */,
 				EE56EAA11DB8CE6D000B8082 /* Products */,
-				40022F2E1DC6D5150062CA94 /* 素材 */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1104,32 +1027,9 @@
 				EE8953A21DC75DEC00F4AB3C /* 18r.jpg in Resources */,
 				EE8953A31DC75DEC00F4AB3C /* background.jpg in Resources */,
 				EE8953A51DC75DEC00F4AB3C /* Assets.xcassets in Resources */,
-				40022F5D1DC6D5150062CA94 /* w2.jpg in Resources */,
-				40022F5F1DC6D5150062CA94 /* wind.png in Resources */,
-				40022F591DC6D5150062CA94 /* snow.png in Resources */,
-				40022F551DC6D5150062CA94 /* recode.png in Resources */,
-				40022F541DC6D5150062CA94 /* rain.png in Resources */,
-				40022F5A1DC6D5150062CA94 /* sunny.png in Resources */,
-				40022F481DC6D5150062CA94 /* 6.jpg in Resources */,
-				40022F601DC6D5150062CA94 /* yin.png in Resources */,
-				40022F581DC6D5150062CA94 /* set.png in Resources */,
-				40022F5B1DC6D5150062CA94 /* top.jpg in Resources */,
-				40022F4C1DC6D5150062CA94 /* C.png in Resources */,
-				40022F571DC6D5150062CA94 /* run.png in Resources */,
-				40022F5C1DC6D5150062CA94 /* userImage.png in Resources */,
 				EEE3D7261DC1A1A9003D0CC5 /* 1.png in Resources */,
-				40022F491DC6D5150062CA94 /* 7.jpg in Resources */,
-				40022F501DC6D5150062CA94 /* leave.png in Resources */,
-				40022F4E1DC6D5150062CA94 /* hist.png in Resources */,
-				40022F4B1DC6D5150062CA94 /* bg_rain_night.jpg in Resources */,
-				40022F4F1DC6D5150062CA94 /* humidity.png in Resources */,
-				40022F531DC6D5150062CA94 /* plane.png in Resources */,
-				40022F511DC6D5150062CA94 /* mai.png in Resources */,
-				40022F4D1DC6D5150062CA94 /* cloud.png in Resources */,
-				40022F5E1DC6D5150062CA94 /* walk.png in Resources */,
 				EEE3D7271DC1A1A9003D0CC5 /* 2.png in Resources */,
 				EE56EAAE1DB8CE6D000B8082 /* Main.storyboard in Resources */,
-				40022F521DC6D5150062CA94 /* pl.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1210,7 +1110,6 @@
 				EE1A00311DB8CF610003762E /* NSDate+EasyExtend.mm in Sources */,
 				EE1A003C1DB8CF610003762E /* UILabel+SizeToFit_W_H.m in Sources */,
 				EE1A003F1DB8CF610003762E /* HttpClient.m in Sources */,
-				40022F2D1DC6C9A00062CA94 /* MyInfoTableViewCell.m in Sources */,
 				40022F661DC6DCC70062CA94 /* ScoreViewController.m in Sources */,
 				EEECBD231DC3908F0037BA0B /* FutureWeatherView.m in Sources */,
 				EE56EAAB1DB8CE6D000B8082 /* ViewController.m in Sources */,

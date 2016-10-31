@@ -54,7 +54,6 @@ UITableViewDataSource
     [_myInfoTableView addSubview:userView];
     
     UIImageView *userImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 60, 60)];
-//    userImageView.center = userView.center;
     userImageView.image = [UIImage imageNamed:@"userImage"];
     [userView addSubview:userImageView];
     

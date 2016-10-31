@@ -8,10 +8,11 @@
 
 #import "MapViewController.h"
 #import "CustomAnimateTransitionPop.h"
-#import "MapDataManager.h"
+//#import "MapDataManager.h"
 #import "Location.h"
 #import "ExerciseDataView.h"
 #import "VerticalButton.h"
+#import "ExerciseData.h"
 @interface MapViewController ()
 <
 UINavigationControllerDelegate,
@@ -19,7 +20,7 @@ MAMapViewDelegate
 >
 @property (nonatomic, strong) UIButton *backButton;
 @property (nonatomic, strong) MAMapView *mapView;
-@property (nonatomic, strong) MapDataManager *mapManager;
+//@property (nonatomic, strong) MapDataManager *mapManager;
 @property (nonatomic, strong) Location *location;
 @property (nonatomic, strong) Location *userLocation;
 @property (nonatomic, strong) MAPolyline *commonPolyline;
@@ -29,24 +30,27 @@ MAMapViewDelegate
 @property (nonatomic, strong) UIButton *menuButton;
 @property (nonatomic, strong) UIButton *locationButton;
 @property (nonatomic, strong) UIVisualEffectView *menuEffectView;
+@property (nonatomic, strong) ExerciseData *exerciseData;
 @end
 
 @implementation MapViewController
 - (void)dealloc {
     self.navigationController.delegate = nil;
     for (int i = 0; i < _keyPathArray.count; i++) {
-        [self.mapManager removeObserver:self forKeyPath:_keyPathArray[i] context:nil];
+        [self.exerciseData removeObserver:self forKeyPath:_keyPathArray[i] context:nil];
     }
 }
 - (void)viewWillAppear:(BOOL)animated {
+
        self.navigationController.delegate = self;
 }
 - (void)loadView {
     [super loadView];
-    self.mapManager = [MapDataManager defaultManager];
+    self.exerciseData = [ExerciseData shareData];
    
 
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -54,7 +58,7 @@ MAMapViewDelegate
     [self creatMapView];
     self.keyPathArray = @[@"distance", @"duration", @"speedPerHour", @"averageSpeed", @"maxSpeed", @"calorie", @"count"];
     for (int i = 0; i < _keyPathArray.count; i++) {
-        [self.mapManager addObserver:self forKeyPath:_keyPathArray[i] options: NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld  context:nil];
+        [self.exerciseData addObserver:self forKeyPath:_keyPathArray[i] options: NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld  context:nil];
     }
 
     self.backButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -94,21 +98,21 @@ MAMapViewDelegate
     _rightDataView.dataLabel.font = kFONT_SIZE_24_BOLD;
     _rightDataView.dataLabel.text = @"01:22:17";
     [effectView addSubview:_rightDataView];
-
-    
+//
+//    
     self.menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _menuButton.frame = CGRectMake(20, effectView.y - 50, 30, 30);
     _menuButton.layer.cornerRadius = 15;
     [_menuButton setBackgroundImage:[UIImage imageNamed:@"map_btn_menu_normal"] forState:UIControlStateNormal];
     [_menuButton setBackgroundImage:[UIImage imageNamed:@"map_btn_menu_select"] forState:UIControlStateSelected];
     _menuButton.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.3];
-    [weakSelf mapType];
+    [self mapType];
     [_menuButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
-        _menuButton.selected = !_menuButton.selected;
-        if (_menuButton.selected) {
-            _menuEffectView.alpha = 1;
+        weakSelf.menuButton.selected = !weakSelf.menuButton.selected;
+        if (weakSelf.menuButton.selected) {
+            weakSelf.menuEffectView.alpha = 1;
         } else {
-            _menuEffectView.alpha = 0;
+            weakSelf.menuEffectView.alpha = 0;
         }
     }];
     [self.view addSubview:_menuButton];
@@ -119,7 +123,7 @@ MAMapViewDelegate
     [_locationButton setBackgroundImage:[UIImage imageNamed:@"map_btn_location"] forState:UIControlStateNormal];
     _locationButton.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.3];
     [_locationButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
-        Location *currentLocation = [_mapManager.allLocationArray lastObject];
+        Location *currentLocation = [weakSelf.exerciseData.allLocationArray lastObject];
         CLLocationCoordinate2D centerCoordinate = CLLocationCoordinate2DMake(currentLocation.latitude, currentLocation.longitude);
         [weakSelf.mapView setCenterCoordinate:centerCoordinate animated:YES];
     }];
@@ -131,6 +135,7 @@ MAMapViewDelegate
 }
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     _menuEffectView.alpha = 0;
+    _menuButton.selected = !_menuButton.selected;
 //    [_menuEffectView removeFromSuperview];
 }
 #pragma mark - 改变地图类型
@@ -203,14 +208,16 @@ MAMapViewDelegate
                 //                _femaleButton.imageView.backgroundColor = [UIColor whiteColor];
             }
         }
-        _mapView.maxZoomLevel = 20;
+        __weak typeof(self) weakSelf = self;
+        weakSelf.mapView.maxZoomLevel = 20;
 
-        _mapView.mapType = MAMapTypeStandard;
+        weakSelf.mapView.mapType = MAMapTypeStandard;
         
     }];
     [satelliteButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
+        __weak typeof(self) weakSelf = self;
+
         if (!satelliteButton.selected) {
-            _menuEffectView.alpha = 0;
             satelliteButton.backgroundColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74 / 255.f alpha:1.0];
             satelliteButton.layer.borderColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74 / 255.f alpha:1.0].CGColor;
           
@@ -222,9 +229,9 @@ MAMapViewDelegate
                 //                _femaleButton.imageView.backgroundColor = [UIColor whiteColor];
             }
         }
-        _mapView.maxZoomLevel = 18;
+        weakSelf.mapView.maxZoomLevel = 18;
 
-        _mapView.mapType = MAMapTypeSatellite;
+        weakSelf.mapView.mapType = MAMapTypeSatellite;
 
         
     }];
@@ -238,7 +245,7 @@ MAMapViewDelegate
     
 
     self.mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    self.userLocation = [self.mapManager.allLocationArray lastObject];
+    self.userLocation = [self.exerciseData.allLocationArray lastObject];
     [self.view addSubview:_mapView];
     _mapView.showsUserLocation = YES;
     _mapView.delegate = self;
@@ -274,12 +281,12 @@ MAMapViewDelegate
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
-     if ([keyPath isEqualToString:@"count"] && object == _mapManager) {
-         CLLocationCoordinate2D commonPolylineCoords[_mapManager.allLocationArray.count];
+     if ([keyPath isEqualToString:@"count"] && object == _exerciseData) {
+         CLLocationCoordinate2D commonPolylineCoords[_exerciseData.allLocationArray.count];
          
          
-         for (int i = 0; i < _mapManager.allLocationArray.count; i++) {
-             self.location  = _mapManager.allLocationArray[i];
+         for (int i = 0; i < _exerciseData.allLocationArray.count; i++) {
+             self.location  = _exerciseData.allLocationArray[i];
              commonPolylineCoords[i].latitude = self.location.latitude;
              commonPolylineCoords[i].longitude = self.location.longitude;
          }
@@ -289,11 +296,11 @@ MAMapViewDelegate
              
              [_mapView removeOverlay:_commonPolyline];
          }
-         self.commonPolyline = [MAPolyline polylineWithCoordinates:commonPolylineCoords count:_mapManager.allLocationArray.count];
+         self.commonPolyline = [MAPolyline polylineWithCoordinates:commonPolylineCoords count:_exerciseData.allLocationArray.count];
          //在地图上添加折线对象
          [_mapView addOverlay: _commonPolyline];
 
-     }  if ([keyPath isEqualToString:@"duration"] && object == self.mapManager) {
+     }  if ([keyPath isEqualToString:@"duration"] && object == _exerciseData) {
          
          NSString *time = [change valueForKey:@"new"];
          
@@ -306,25 +313,24 @@ MAMapViewDelegate
          
          self.rightDataView.dataLabel.text = [NSString stringWithFormat:@"%.2ld:%.2ld:%.2ld", hour, minu, sec];
          
-     } else if ([keyPath isEqualToString:@"distance"] && object == self.mapManager) {
-         self.leftDataView.dataLabel.text = [NSString stringWithFormat:@"%.2f", _mapManager.distance];
-     } else if ([keyPath isEqualToString:@"speedPerHour"] && object == self.mapManager) {
-     } else if ([keyPath isEqualToString:@"averageSpeed"] && object == self.mapManager) {
+     } else if ([keyPath isEqualToString:@"distance"] && object == _exerciseData) {
+         self.leftDataView.dataLabel.text = [NSString stringWithFormat:@"%.2f", _exerciseData.distance];
+     } else if ([keyPath isEqualToString:@"speedPerHour"] && object == _exerciseData) {
+     } else if ([keyPath isEqualToString:@"averageSpeed"] && object == _exerciseData) {
          
-     } else if ([keyPath isEqualToString:@"maxSpeed"] && object == self.mapManager) {
+     } else if ([keyPath isEqualToString:@"maxSpeed"] && object == _exerciseData) {
          
-     } else if ([keyPath isEqualToString:@"calorie"] && object == self.mapManager) {
+     } else if ([keyPath isEqualToString:@"calorie"] && object == _exerciseData) {
          
      }
 
 }
-
 - (MAOverlayRenderer *)mapView:(MAMapView *)mapView rendererForOverlay:(id<MAOverlay>)overlay {
     if ([overlay isKindOfClass:[MAPolyline class]])
     {
         MAPolylineRenderer *polylineRenderer = [[MAPolylineRenderer alloc] initWithPolyline:(MAPolyline *)overlay];
         
-        polylineRenderer.lineWidth = 10.f;
+        polylineRenderer.lineWidth = 7.5f;
         polylineRenderer.strokeColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:1.0];
         // 连接类型
         polylineRenderer.lineJoinType = kMALineJoinRound;

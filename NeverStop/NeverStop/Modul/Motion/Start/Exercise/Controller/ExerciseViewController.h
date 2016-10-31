@@ -12,4 +12,5 @@
 @property (nonatomic, strong) NSString *aim;
 @property (nonatomic, assign) NSInteger aimType;
 @property (nonatomic, strong) UIButton *endButton;
+@property (nonatomic, strong) NSString *exerciseType;
 @end

@@ -13,9 +13,9 @@
 #import "MapViewController.h"
 #import "CustomAnimateTransitionPop.h"
 #import "Location.h"
-#import "MapDataManager.h"
+//#import "MapDataManager.h"
 #import "ProgressAimView.h"
-//#import "ExerciseData.h"
+#import "ExerciseData.h"
 
 @interface ExerciseViewController ()
 <
@@ -49,13 +49,14 @@ MAMapViewDelegate
 @property (nonatomic, strong) NSString *allDistanceStr;
 @property (nonatomic, strong) MAPolyline *commonPolyline;
 
-@property (nonatomic, strong) MapDataManager *mapManager;
-//@property (nonatomic, strong) ExerciseData *exerciseDataKVO;
+//@property (nonatomic, strong) MapDataManager *mapManager;
+@property (nonatomic, strong) ExerciseData *exerciseData;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, assign) NSInteger a;
 @property (nonatomic, assign) NSInteger lastTime;
 @property (nonatomic, strong) NSArray *keyPathArray;
 @property (nonatomic, strong) ProgressAimView *progressAimView;
+@property (nonatomic, assign) NSInteger secondPauseLocation;
 @end
 
 @implementation ExerciseViewController
@@ -66,7 +67,7 @@ MAMapViewDelegate
 //    [self.exerciseDataKVO removeObserver:self forKeyPath:@"speedPerHour" context:nil];
 //    [self.exerciseDataKVO removeObserver:self forKeyPath:@"averageSpeed" context:nil];
     for (int i = 0; i < _keyPathArray.count; i++) {
-        [self.mapManager removeObserver:self forKeyPath:_keyPathArray[i] context:nil];
+        [self.exerciseData removeObserver:self forKeyPath:_keyPathArray[i] context:nil];
     }
     
     
@@ -77,7 +78,7 @@ MAMapViewDelegate
     self.navigationController.navigationBarHidden = YES;
     self.navigationController.delegate = self;
     [self mapBtnAnimation];
-
+    
     [_mapView setUserTrackingMode: MAUserTrackingModeFollow animated:YES];
     
     
@@ -89,101 +90,32 @@ MAMapViewDelegate
     self.lastTime = 0;
     self.keyPathArray = @[@"distance", @"duration", @"speedPerHour", @"averageSpeed", @"maxSpeed", @"calorie", @"count"];
     self.lastLocation = [[Location alloc] init];
-    self.mapManager = [MapDataManager defaultManager];
+    self.exerciseData = [ExerciseData shareData];
 //    self.exerciseDataKVO = [[ExerciseData alloc] init];
-
-    _mapManager.distance = 0.00;
-    _mapManager.duration = 0;
-    _mapManager.speedPerHour = 0.00;
-    _mapManager.averageSpeed = 0.00;
-    _mapManager.maxSpeed = 0.00;
-    _mapManager.calorie = 0.0;
-
+    self.secondPauseLocation = 1;
+    _exerciseData.distance = 0.00;
+    _exerciseData.duration = 0;
+    _exerciseData.speedPerHour = 0.00;
+    _exerciseData.averageSpeed = 0.00;
+    _exerciseData.maxSpeed = 0.00;
+    _exerciseData.calorie = 0.0;
+    _exerciseData.exerciseType = self.exerciseType;
+    NSLog(@"%@", _exerciseData.exerciseType);
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initialValue];
       for (int i = 0; i < _keyPathArray.count; i++) {
-        [self.mapManager addObserver:self forKeyPath:_keyPathArray[i] options: NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld  context:nil];
+        [self.exerciseData addObserver:self forKeyPath:_keyPathArray[i] options: NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld  context:nil];
     }
-    [self creatMapView];
     
-    
+    self.navigationItem.title = @"运动";
     
     self.view.backgroundColor = [UIColor whiteColor];
     UIImageView *backImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     backImageView.image = [UIImage imageNamed:@"background.jpg"];
     [self.view addSubview:backImageView];
     
-    
-    self.progressAimView = [[ProgressAimView alloc] initWithFrame:CGRectMake(15, 64 + 5, SCREEN_WIDTH - 30, 30) aim:self.aim aimType:self.aimType];
-    [self.view addSubview:_progressAimView];
-
-#pragma mark - 结束按钮
-    self.endButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _endButton.frame = CGRectMake(SCREEN_WIDTH / 2 - 40, SCREEN_HEIGHT - 240, 80, 80);
-    UIImage *endImage = [UIImage imageNamed:@"2"];
-    [_endButton setBackgroundImage:endImage forState:UIControlStateNormal];
-    _endButton.backgroundColor = [UIColor redColor];
-    _endButton.layer.cornerRadius = 40;
-    _endButton.clipsToBounds = YES;
-    [self.view addSubview:_endButton];
-    __weak typeof(self) weakSelf = self;
-    [_endButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
-        // 结束计时
-        [weakSelf endTimer];
-        [weakSelf.mapManager.allLocationArray removeAllObjects];
-        [weakSelf.navigationController popViewControllerAnimated:YES];
-        
-    }];
-#pragma mark - 开始暂停按钮
-    self.pauseButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _pauseButton.frame = CGRectMake(SCREEN_WIDTH / 2 - 40, SCREEN_HEIGHT - 240, 80, 80);
-    UIImage *pauseImage = [UIImage imageNamed:@"2"];
-    [_pauseButton setBackgroundImage:pauseImage forState:UIControlStateNormal];
-    
-    _pauseButton.backgroundColor = [UIColor greenColor];
-    _pauseButton.layer.cornerRadius = 40;
-    _pauseButton.clipsToBounds = YES;
-    
-    [self.view addSubview:_pauseButton];
-    
-    [_pauseButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
-        [UIView animateWithDuration:0.5 animations:^{
-            if (!weakSelf.pauseButton.selected) {
-                // 暂停计时
-                [weakSelf pauseTimer];
-                weakSelf.pauseButton.centerX = SCREEN_WIDTH / 2 - 70;
-                weakSelf.endButton.centerX = SCREEN_WIDTH / 2 + 70;
-               weakSelf.pauseButton.selected = !weakSelf.pauseButton.selected;
-                [weakSelf.pauseButton setBackgroundImage:[UIImage imageNamed:@"1"] forState:UIControlStateNormal];
-                
-                weakSelf.isMoving = NO;
-            } else {
-                // 开始计时
-                [weakSelf createTimer];
-                weakSelf.pauseButton.centerX = SCREEN_WIDTH / 2;
-                weakSelf.endButton.centerX = SCREEN_WIDTH / 2;
-                weakSelf.pauseButton.selected = !weakSelf.pauseButton.selected;
-                [weakSelf.pauseButton setBackgroundImage:[UIImage imageNamed:@"2"] forState:UIControlStateNormal];
-                weakSelf.isMoving = YES;
-            }
-        }];
-        
-        
-    }];
-#pragma mark - 地图按钮
-    self.mapButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_mapButton setBackgroundImage:[UIImage imageNamed:@"map1"] forState:UIControlStateNormal];
-    _mapButton.frame = CGRectMake(SCREEN_WIDTH - 50, 32, 30, 30);
-    [_mapButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
-        MapViewController *mapVC = [[MapViewController alloc] init];
-        [weakSelf.navigationController pushViewController:mapVC animated:YES];
-    }];
-    [self mapBtnAnimation];
-    [self.view addSubview:_mapButton];
-    [self createExerciseDataModules];
-    [self createLockButton];
     [self createCountDownView];
 
 }
@@ -193,25 +125,29 @@ MAMapViewDelegate
 #pragma mark - 创建计时器 开始计时
 - (void)createTimer {
     if (_a == 0) {
-        
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.f target:self selector:@selector(timeFire) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(timeFire) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
     }
     _a++;
 }
 #pragma mark - 暂停计时
 - (void)pauseTimer {
+
         self.a = 0;
-        [_timer setFireDate:[NSDate distantFuture]];
+        [self.timer setFireDate:[NSDate distantFuture]];
 }
 
 -(void)timeFire {
-    _mapManager.duration++;
+
+    self.exerciseData.duration += 0.1;
 }
 #pragma mark - 结束计时
 - (void)endTimer{
-    _a = 0;
-    [_timer setFireDate:[NSDate distantFuture]];
+    
+
+    self.a = 0;
+    [self.timer setFireDate:[NSDate distantFuture]];
+    [_timer invalidate];
 }
 
 
@@ -244,16 +180,25 @@ MAMapViewDelegate
         location.longitude = userLocation.coordinate.longitude;
         if (self.isMoving == YES) {
             location.isStart = YES;
+            [_exerciseData.allLocationArray addObject:location];
+            _exerciseData.count = _exerciseData.allLocationArray.count;
         } else {
-            location.isStart = NO;
+            if (_secondPauseLocation <= 2) {
+                location.isStart = NO;
+                [_exerciseData.allLocationArray addObject:location];
+                _exerciseData.count = _exerciseData.allLocationArray.count;
+            } else {
+                [_exerciseData.allLocationArray replaceObjectAtIndex:_exerciseData.allLocationArray.count - 1 withObject:location];
+                _exerciseData.count = _exerciseData.allLocationArray.count;
+            }
+            _secondPauseLocation++;
         }
         // 添加到坐标数组中
-        [_mapManager.allLocationArray addObject:location];
-        _mapManager.count = _mapManager.allLocationArray.count;
+       
 //        [_locationArray addObject:location];
         if (self.isMoving == YES) {
 
-            if (_mapManager.allLocationArray.count > 1) {
+            if (_exerciseData.allLocationArray.count > 1) {
                 //1.将两个经纬度点转成投影点
                 MAMapPoint point1 = MAMapPointForCoordinate(CLLocationCoordinate2DMake(_lastLocation.latitude,_lastLocation.longitude));
                 MAMapPoint point2 = MAMapPointForCoordinate(CLLocationCoordinate2DMake(location.latitude,location.longitude));
@@ -263,25 +208,26 @@ MAMapViewDelegate
                 CLLocationDistance distance = MAMetersBetweenMapPoints(point1,point2);
 //                NSLog(@"distance : %f", distance);
                 ;
-                CGFloat time = ((_mapManager.duration - _lastTime) / 60.0) / 60.0;
+                CGFloat time = ((_exerciseData.duration - _lastTime) / 60.0) / 60.0;
                 if (time != 0) {
                     
 //                NSLog(@"%ld", _mapManager.duration - _lastTime);
-                _mapManager.speedPerHour = (distance / 1000) / time;
+                _exerciseData.speedPerHour = (distance / 1000) / time;
                 
-                _mapManager.distance += distance / 1000;
+                _exerciseData.distance += distance / 1000;
 //                _exerciseDataKVO.distance += round(distance / 1000 * 100) / 100;
-                _mapManager.maxSpeed = _mapManager.maxSpeed > _mapManager.speedPerHour ? _mapManager.maxSpeed : _mapManager.speedPerHour;
-                _mapManager.averageSpeed = _mapManager.distance / _mapManager.duration;
+                _exerciseData.maxSpeed = _exerciseData.maxSpeed > _exerciseData.speedPerHour ? _exerciseData.maxSpeed : _exerciseData.speedPerHour;
+                _exerciseData.averageSpeed = _exerciseData.distance / _exerciseData.duration;
                 }
             }
          
             _lastLocation.latitude = location.latitude;
             _lastLocation.longitude = location.longitude;
-            self.lastTime = _mapManager.duration;
+            self.lastTime = _exerciseData.duration;
         }
-
-      
+        
+    
+    
         
     }
     
@@ -293,7 +239,7 @@ MAMapViewDelegate
 }
 #pragma mark - KVO
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
-    if ([keyPath isEqualToString:@"duration"] && object == self.mapManager) {
+    if ([keyPath isEqualToString:@"duration"] && object == _exerciseData) {
         
         NSString *time = [change valueForKey:@"new"];
         
@@ -305,26 +251,26 @@ MAMapViewDelegate
         hour = [time integerValue] / 3600;
         
         self.homeDataView.dataLabel.text = [NSString stringWithFormat:@"%.2ld:%.2ld:%.2ld", hour, minu, sec];
-        NSLog(@"%ld", (long)_mapManager.duration);
+//        NSLog(@"%ld", (long)_exerciseData);
         if (self.aimType == 3) {
-            _progressAimView.currentNumber = _mapManager.duration;
+            _progressAimView.currentNumber = _exerciseData.duration;
             
         }
         
-    } else if ([keyPath isEqualToString:@"distance"] && object == self.mapManager) {
-         self.leftDataView.dataLabel.text = [NSString stringWithFormat:@"%.2f", _mapManager.distance];
+    } else if ([keyPath isEqualToString:@"distance"] && object == _exerciseData) {
+         self.leftDataView.dataLabel.text = [NSString stringWithFormat:@"%.2f", _exerciseData.distance];
         if (self.aimType == 3) {
-            _progressAimView.currentNumber = _mapManager.distance;
+            _progressAimView.currentNumber = _exerciseData.distance;
         }
-    } else if ([keyPath isEqualToString:@"speedPerHour"] && object == self.mapManager) {
-        self.rightDataView.dataLabel.text = [NSString stringWithFormat:@"%.2f", _mapManager.speedPerHour];
-    } else if ([keyPath isEqualToString:@"averageSpeed"] && object == self.mapManager) {
+    } else if ([keyPath isEqualToString:@"speedPerHour"] && object == _exerciseData) {
+        self.rightDataView.dataLabel.text = [NSString stringWithFormat:@"%.2f", _exerciseData.speedPerHour];
+    } else if ([keyPath isEqualToString:@"averageSpeed"] && object == _exerciseData) {
        
-    } else if ([keyPath isEqualToString:@"maxSpeed"] && object == self.mapManager) {
+    } else if ([keyPath isEqualToString:@"maxSpeed"] && object == _exerciseData) {
        
-    } else if ([keyPath isEqualToString:@"calorie"] && object == self.mapManager) {
+    } else if ([keyPath isEqualToString:@"calorie"] && object == _exerciseData) {
         if (self.aimType == 4) {
-            _progressAimView.currentNumber = _mapManager.calorie;
+            _progressAimView.currentNumber = _exerciseData.calorie;
         }
        
     }
@@ -531,6 +477,50 @@ MAMapViewDelegate
                 //设置界面的按钮显示 根据自己需求设置
                 [self.countDownView removeFromSuperview];
                 
+                [self creatMapView];
+                
+                self.progressAimView = [[ProgressAimView alloc] initWithFrame:CGRectMake(15, 64 + 5, SCREEN_WIDTH - 30, 30) aim:self.aim aimType:self.aimType];
+                [self.view addSubview:_progressAimView];
+                
+#pragma mark - 结束按钮
+                self.endButton = [UIButton buttonWithType:UIButtonTypeCustom];
+                _endButton.frame = CGRectMake(SCREEN_WIDTH / 2 - 40, SCREEN_HEIGHT - 240, 80, 80);
+                UIImage *endImage = [UIImage imageNamed:@"2"];
+                [_endButton setBackgroundImage:endImage forState:UIControlStateNormal];
+                _endButton.backgroundColor = [UIColor redColor];
+                _endButton.layer.cornerRadius = 40;
+                _endButton.clipsToBounds = YES;
+                [self.view addSubview:_endButton];
+                __weak typeof(self) weakSelf = self;
+                [_endButton addTarget:self action:@selector(endButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+#pragma mark - 开始暂停按钮
+                self.pauseButton = [UIButton buttonWithType:UIButtonTypeCustom];
+                _pauseButton.frame = CGRectMake(SCREEN_WIDTH / 2 - 40, SCREEN_HEIGHT - 240, 80, 80);
+                UIImage *pauseImage = [UIImage imageNamed:@"2"];
+                [_pauseButton setBackgroundImage:pauseImage forState:UIControlStateNormal];
+                
+                _pauseButton.backgroundColor = [UIColor greenColor];
+                _pauseButton.layer.cornerRadius = 40;
+                _pauseButton.clipsToBounds = YES;
+                
+                [self.view addSubview:_pauseButton];
+                
+                [_pauseButton addTarget:self action:@selector(pauseButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+#pragma mark - 地图按钮
+    self.mapButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_mapButton setBackgroundImage:[UIImage imageNamed:@"map1"] forState:UIControlStateNormal];
+    _mapButton.frame = CGRectMake(SCREEN_WIDTH - 50, 32, 30, 30);
+    [_mapButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
+        MapViewController *mapVC = [[MapViewController alloc] init];
+        [weakSelf.navigationController pushViewController:mapVC animated:YES];
+    
+    }];
+                [self mapBtnAnimation];
+                [self.view addSubview:_mapButton];
+                [self createExerciseDataModules];
+                [self createLockButton];
+                [self createTimer];
+
             });
         }else{
             //            int minutes = timeout / 60;
@@ -554,7 +544,7 @@ MAMapViewDelegate
                         _countDownLabel.transform = CGAffineTransformMakeScale(1.0, 1.0);
 //                        _countDownLabel.font = [UIFont boldSystemFontOfSize:150];
                         _countDownLabel.textColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.1];
-                        [self createTimer];
+                        
 
                     }];
                     
@@ -562,14 +552,46 @@ MAMapViewDelegate
 //                [UIView beginAnimations:nil context:nil];
 //                [UIView setAnimationDuration:1];
 //                [UIView commitAnimations];
-             
+//
             });
             timeout--;
         }
         
     });
     dispatch_resume(_timer1);
+
+}
+
+- (void)endButtonAction:(UIButton *)button {
+    [self endTimer];
+    [_exerciseData.allLocationArray removeAllObjects];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)pauseButtonAction:(UIButton *)button {
     
+    [UIView animateWithDuration:0.5 animations:^{
+        if (!self.pauseButton.selected) {
+            // 暂停计时
+            [self pauseTimer];
+            self.pauseButton.centerX = SCREEN_WIDTH / 2 - 70;
+            self.endButton.centerX = SCREEN_WIDTH / 2 + 70;
+            self.pauseButton.selected = !self.pauseButton.selected;
+            [self.pauseButton setBackgroundImage:[UIImage imageNamed:@"1"] forState:UIControlStateNormal];
+            
+            self.isMoving = NO;
+        } else {
+            // 开始计时
+            [self createTimer];
+            _secondPauseLocation = 0;
+            self.pauseButton.centerX = SCREEN_WIDTH / 2;
+            self.endButton.centerX = SCREEN_WIDTH / 2;
+            self.pauseButton.selected = !self.pauseButton.selected;
+            [self.pauseButton setBackgroundImage:[UIImage imageNamed:@"2"] forState:UIControlStateNormal];
+            self.isMoving = YES;
+        }
+    }];
+
 }
 #pragma mark - 用来自定义转场动画
 -(id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC

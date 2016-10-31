@@ -44,7 +44,7 @@ MAMapViewDelegate
 @property (nonatomic, strong) MAUserLocation *userLocation;
 @property (nonatomic, strong) AMapReGeocodeSearchRequest *regeo;
 @property (nonatomic, strong) NSString *address;
-
+@property (nonatomic, strong) NSString *exerciseType;
 @end
 
 @implementation MotionViewController
@@ -58,9 +58,9 @@ MAMapViewDelegate
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-       
     self.view.backgroundColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74/255.f alpha:1.0];
-    
+    self.exerciseType = @"run";
+
     // 地图定位
     self.mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
     _mapView.showsUserLocation = YES;
@@ -234,12 +234,17 @@ MAMapViewDelegate
     if (button.tag == 1114) {
         [_modeButton setImage:[UIImage imageNamed:@"ride.png"] forState:UIControlStateNormal];
         _sportView.titleText = @"骑行";
+        self.exerciseType = @"riding";
     } else if (button.tag == 1113) {
         [_modeButton setImage:[UIImage imageNamed:@"walk.png"] forState:UIControlStateNormal];
         _sportView.titleText = @"走路";
+        self.exerciseType = @"walk";
+
     } else if (button.tag == 1112) {
         [_modeButton setImage:[UIImage imageNamed:@"run.png"] forState:UIControlStateNormal];
         _sportView.titleText = @"跑步";
+        self.exerciseType = @"run";
+
     }
     [UIView animateWithDuration:0.2 animations:^{
         _runButton.frame = _backButton.frame;
@@ -324,6 +329,7 @@ MAMapViewDelegate
 #pragma mark - 开始按钮点击事件
 - (void)startButtonAction {
     StartViewController *startVC = [[StartViewController alloc] init];
+    startVC.exerciseType = self.exerciseType;
     startVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:startVC animated:YES];
 }

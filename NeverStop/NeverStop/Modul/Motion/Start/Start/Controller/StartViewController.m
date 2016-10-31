@@ -52,6 +52,8 @@ UINavigationControllerDelegate
     [super viewDidLoad];
     //自定义一个NaVigationBar
     self.row = 0;
+    self.navigationItem.title = @"运动";
+
     __weak typeof(self) weakSelf = self;
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem getBarButtonItemWithImageName:@"map" HighLightedImageName:@"map" targetBlock:^{
         [weakSelf.navigationController popViewControllerAnimated:YES];
@@ -248,6 +250,7 @@ UINavigationControllerDelegate
     } completion:^(BOOL finished) {
         ExerciseViewController *exerciseVC = [[ExerciseViewController alloc] init];
         exerciseVC.aim = _settingButton.currentTitle;
+        exerciseVC.exerciseType = self.exerciseType;
         exerciseVC.aimType = _row;
         [self.navigationController pushViewController:exerciseVC animated:YES];
         

@@ -9,6 +9,21 @@
 #import "ExerciseData.h"
 
 @implementation ExerciseData
++ (instancetype)shareData {
+    static ExerciseData *data = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        data = [[ExerciseData alloc] init];
+    });
+    return data;
+}
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.allLocationArray = [NSMutableArray array];
 
-
+    }
+    return self;
+}
 @end

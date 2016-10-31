@@ -9,7 +9,7 @@
 #import "ScopeTableViewCell.h"
 #import "Scope.h"
 #import "Info.h"
-#import "Location.h"
+#import "LocationModel.h"
 @implementation ScopeTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {

@@ -205,11 +205,7 @@ MAMapViewDelegate
     self.backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _backButton.frame = CGRectMake(20, 35, 30, 30);
     _backButton.tag = 1111;
-<<<<<<< HEAD:NeverStop/NeverStop/Modul/Motion/Root/Controller/MotionViewController.m
-    [_backButton setImage:[UIImage imageNamed:@"back1.png"] forState:UIControlStateNormal];
-=======
     [_backButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
->>>>>>> 51dc90da11f54d8907ec88c6179be70c10a84240:NeverStop/NeverStop/Modul/Motion/Root/Root/Controller/MotionViewController.m
     [_blurEffectView addSubview:_backButton];
     [_backButton addTarget:self action:@selector(backButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     

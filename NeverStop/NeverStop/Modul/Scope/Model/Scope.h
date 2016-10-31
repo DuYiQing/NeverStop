@@ -8,8 +8,8 @@
 
 #import "DYQBaseModel.h"
 @class Info;
-@class Location;
+@class LocationModel;
 @interface Scope : DYQBaseModel
 @property (nonatomic, strong) Info *info;
-@property (nonatomic, strong) Location *location;
+@property (nonatomic, strong) LocationModel *location;
 @end

@@ -34,6 +34,10 @@
 		49060C471DBF8461003FE373 /* NearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49060C461DBF8461003FE373 /* NearbyViewController.m */; };
 		494374131DB9B29800FF641A /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 494374081DB9B29800FF641A /* MessageViewController.m */; };
 		49677B0E1DC6F92A00F23B6B /* GroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49677B0D1DC6F92A00F23B6B /* GroupViewController.m */; };
+		49677B381DC76B4A00F23B6B /* LocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49677B371DC76B4A00F23B6B /* LocationModel.m */; };
+		49677B391DC76ED700F23B6B /* ExerciseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE3D70E1DC199E8003D0CC5 /* ExerciseViewController.m */; };
+		49677B3A1DC76EF000F23B6B /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1D81A71DC0CA5E00FA6CD5 /* MapViewController.m */; };
+		49677B3B1DC76F1300F23B6B /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1AFFE71DB8CF610003762E /* BaseViewController.m */; };
 		49704A311DBDA7CE0028DB2F /* DetailedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49704A301DBDA7CE0028DB2F /* DetailedViewController.m */; };
 		49704A871DBDF5560028DB2F /* Detail.m in Sources */ = {isa = PBXBuildFile; fileRef = 49704A861DBDF5560028DB2F /* Detail.m */; };
 		49704A8A1DBE217C0028DB2F /* DetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49704A891DBE217C0028DB2F /* DetailTableViewCell.m */; };
@@ -85,13 +89,11 @@
 		EE56EAAE1DB8CE6D000B8082 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE56EAAC1DB8CE6D000B8082 /* Main.storyboard */; };
 		EE8953A21DC75DEC00F4AB3C /* 18r.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EEECBCB21DC3839B0037BA0B /* 18r.jpg */; };
 		EE8953A31DC75DEC00F4AB3C /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EEECBC801DC2EB750037BA0B /* background.jpg */; };
-		EE8953A41DC75DEC00F4AB3C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE56EAB11DB8CE6D000B8082 /* LaunchScreen.storyboard */; };
 		EE8953A51DC75DEC00F4AB3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE56EAAF1DB8CE6D000B8082 /* Assets.xcassets */; };
 		EE8953AA1DC75FFB00F4AB3C /* MyInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE8953A81DC75E4700F4AB3C /* MyInfoTableViewCell.m */; };
 		EEADD65A1DC246B900A5EB52 /* MapDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EEADD6591DC246B900A5EB52 /* MapDataManager.m */; };
 		EEBA13F61DBF8AD60001F7A4 /* ExerciseDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = EEBA13F51DBF8AD60001F7A4 /* ExerciseDataView.m */; };
 		EEC8E70D1DB8ED1500349793 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEC8E70C1DB8ED1500349793 /* HealthKit.framework */; };
-		EEE3D70F1DC199E8003D0CC5 /* ExerciseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE3D70E1DC199E8003D0CC5 /* ExerciseViewController.m */; };
 		EEE3D7101DC19A26003D0CC5 /* RouteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E49221DBCD0EB004105F2 /* RouteTableViewCell.m */; };
 		EEE3D7261DC1A1A9003D0CC5 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = EEE3D7121DC1A1A9003D0CC5 /* 1.png */; };
 		EEE3D7271DC1A1A9003D0CC5 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = EEE3D7131DC1A1A9003D0CC5 /* 2.png */; };
@@ -172,6 +174,8 @@
 		494374081DB9B29800FF641A /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 		49677B0C1DC6F92A00F23B6B /* GroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupViewController.h; sourceTree = "<group>"; };
 		49677B0D1DC6F92A00F23B6B /* GroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupViewController.m; sourceTree = "<group>"; };
+		49677B361DC76B4A00F23B6B /* LocationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationModel.h; sourceTree = "<group>"; };
+		49677B371DC76B4A00F23B6B /* LocationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationModel.m; sourceTree = "<group>"; };
 		49704A2F1DBDA7CE0028DB2F /* DetailedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailedViewController.h; sourceTree = "<group>"; };
 		49704A301DBDA7CE0028DB2F /* DetailedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailedViewController.m; sourceTree = "<group>"; };
 		49704A851DBDF5560028DB2F /* Detail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Detail.h; sourceTree = "<group>"; };
@@ -658,6 +662,8 @@
 			children = (
 				49FEA0171DC4CD1E00E0FB2D /* Info.h */,
 				49FEA0181DC4CD1E00E0FB2D /* Info.m */,
+				49677B361DC76B4A00F23B6B /* LocationModel.h */,
+				49677B371DC76B4A00F23B6B /* LocationModel.m */,
 				49FEA0141DC4C51700E0FB2D /* Scope.h */,
 				49FEA0151DC4C51700E0FB2D /* Scope.m */,
 				40E5A4321DC774F6001AD41F /* LocationModel.h */,
@@ -1255,6 +1261,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49677B3B1DC76F1300F23B6B /* BaseViewController.m in Sources */,
+				49677B3A1DC76EF000F23B6B /* MapViewController.m in Sources */,
+				49677B391DC76ED700F23B6B /* ExerciseViewController.m in Sources */,
 				40E5A4361DC77672001AD41F /* BaseViewController.m in Sources */,
 				40E5A4351DC7763A001AD41F /* MapViewController.m in Sources */,
 				49FEA0161DC4C51700E0FB2D /* Scope.m in Sources */,
@@ -1298,6 +1307,7 @@
 				4995E3C81DC3007300442618 /* TCH_Run.m in Sources */,
 				4995E3B61DC2F19000442618 /* NearbyDetailedTableViewCell.m in Sources */,
 				EE1A003D1DB8CF610003762E /* UIView+Frame.m in Sources */,
+				49677B381DC76B4A00F23B6B /* LocationModel.m in Sources */,
 				40E5A4341DC774F6001AD41F /* LocationModel.m in Sources */,
 				EE1A00341DB8CF610003762E /* NSString+Categories.m in Sources */,
 				EEE3D72A1DC1A1A9003D0CC5 /* AimSettingPickerView.m in Sources */,
@@ -1339,7 +1349,6 @@
 				405E49261DBCD0EB004105F2 /* Recommend.m in Sources */,
 				EEECBD201DC3908F0037BA0B /* StepCountView.m in Sources */,
 				40E5A4311DC739EE001AD41F /* UserModel.m in Sources */,
-				EEE3D70F1DC199E8003D0CC5 /* ExerciseViewController.m in Sources */,
 				EE56EAA51DB8CE6D000B8082 /* main.m in Sources */,
 				405E49281DBCD0EB004105F2 /* Route.m in Sources */,
 				40E5A4491DC8471E001AD41F /* AboutViewController.m in Sources */,

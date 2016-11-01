@@ -1,22 +1,30 @@
 //
-//  ScopeViewController.m
-//  Never Stop
+//  Tch_RunDataileViewController.m
+//  NeverStop
 //
-//  Created by dllo on 16/10/20.
+//  Created by dllo on 16/10/29.
 //  Copyright © 2016年 JDT. All rights reserved.
 //
 
-#import "ScopeViewController.h"
-
-@interface ScopeViewController ()
+#import "Tch_RunDataileViewController.h"
+#import "TCH_Run.h"
+@interface Tch_RunDataileViewController ()
 
 @end
 
-@implementation ScopeViewController
+@implementation Tch_RunDataileViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor blueColor];
+    NSURL *url = [NSURL URLWithString:_runModel.article_url];
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [self.view addSubview:webView];
+    [webView loadRequest:request];
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

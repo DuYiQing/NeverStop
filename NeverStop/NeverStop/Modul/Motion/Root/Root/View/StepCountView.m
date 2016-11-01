@@ -9,6 +9,7 @@
 #import "StepCountView.h"
 #import "StepManager.h"
 #import "StepCountModel.h"
+#import "TargetViewController.h"
 
 @interface StepCountView () {
     NSTimer *timer;
@@ -60,6 +61,7 @@
         _targetLabel.textColor = [UIColor whiteColor];
         _targetLabel.font = kFONT_SIZE_18;
         [_roundView addSubview:_targetLabel];
+
         
         [[HealthManager shareInstance] getStepCount:[HealthManager predicateForSamplesToday] completionHandler:^(double value, NSError *error) {
             if (error) {
@@ -84,11 +86,18 @@
     return self;
 }
 
+
 - (void)getStepNumber{
     long step = [StepManager shareManager].step;
     _stepCountLabel.text = [NSString stringWithFormat:@"%ld",step + _systemStep];
     [_sqlManager updateStepCount:_stepCountLabel.text date:_dateString];
 }
 
+- (void)setTarget:(NSString *)target {
+    if (_target != target) {
+        _target = target;
+        _targetLabel.text = target;
+    }
+}
 
 @end

@@ -12,12 +12,14 @@
 #import "StartViewController.h"
 #import "WeekRecordView.h"
 #import "WeatherViewController.h"
+#import "TargetViewController.h"
 
 @interface MotionViewController ()
 <
 UIScrollViewDelegate,
 AMapSearchDelegate,
-MAMapViewDelegate
+MAMapViewDelegate,
+TargetVCDelegate
 >
 @property (nonatomic, strong) UIBlurEffect *blur;
 @property (nonatomic, strong) UIVisualEffectView *blurEffectView;
@@ -51,13 +53,16 @@ MAMapViewDelegate
 
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBarHidden = YES;
-//    self.tabBarController.tabBar.hidden = NO;
     
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+
+    TargetViewController *targetVC = [[TargetViewController alloc] init];
+    targetVC.delegate = self;
+    
     self.view.backgroundColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74/255.f alpha:1.0];
     self.exerciseType = @"run";
 
@@ -203,7 +208,7 @@ MAMapViewDelegate
 - (void)modeButtonAction {
     [self.view addSubview:_blurEffectView];
     self.backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _backButton.frame = CGRectMake(20, 35, 20, 20);
+    _backButton.frame = CGRectMake(20, 35, 30, 30);
     _backButton.tag = 1111;
     [_backButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
     [_blurEffectView addSubview:_backButton];
@@ -212,36 +217,37 @@ MAMapViewDelegate
     self.runButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _runButton.frame = CGRectMake(_backButton.x, _backButton.y + _backButton.height + 20, 30, 30);
     _runButton.tag = 1112;
-    [_runButton setImage:[UIImage imageNamed:@"run.png"] forState:UIControlStateNormal];
+    [_runButton setImage:[UIImage imageNamed:@"run1"] forState:UIControlStateNormal];
     [_blurEffectView addSubview:_runButton];
     [_runButton addTarget:self action:@selector(backButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
     self.walkButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _walkButton.frame = CGRectMake(_runButton.x, _runButton.y + _runButton.height + 20, _runButton.width, _runButton.height);
     _walkButton.tag = 1113;
-    [_walkButton setImage:[UIImage imageNamed:@"walk.png"] forState:UIControlStateNormal];
+    [_walkButton setImage:[UIImage imageNamed:@"walk1"] forState:UIControlStateNormal];
     [_blurEffectView addSubview:_walkButton];
     [_walkButton addTarget:self action:@selector(backButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
     self.rideButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _rideButton.frame = CGRectMake(_walkButton.x, _walkButton.y + _walkButton.height + 20, _walkButton.width, _walkButton.height);
     _rideButton.tag = 1114;
-    [_rideButton setImage:[UIImage imageNamed:@"ride.png"] forState:UIControlStateNormal];
+    [_rideButton setImage:[UIImage imageNamed:@"ride1"] forState:UIControlStateNormal];
+    
     [_blurEffectView addSubview:_rideButton];
     [_rideButton addTarget:self action:@selector(backButtonAction:) forControlEvents:UIControlEventTouchUpInside];
 }
 - (void)backButtonAction:(UIButton *)button {
     if (button.tag == 1114) {
-        [_modeButton setImage:[UIImage imageNamed:@"ride.png"] forState:UIControlStateNormal];
+        [_modeButton setImage:[UIImage imageNamed:@"ride"] forState:UIControlStateNormal];
         _sportView.titleText = @"骑行";
         self.exerciseType = @"riding";
     } else if (button.tag == 1113) {
-        [_modeButton setImage:[UIImage imageNamed:@"walk.png"] forState:UIControlStateNormal];
+        [_modeButton setImage:[UIImage imageNamed:@"walk"] forState:UIControlStateNormal];
         _sportView.titleText = @"走路";
         self.exerciseType = @"walk";
 
     } else if (button.tag == 1112) {
-        [_modeButton setImage:[UIImage imageNamed:@"run.png"] forState:UIControlStateNormal];
+        [_modeButton setImage:[UIImage imageNamed:@"run"] forState:UIControlStateNormal];
         _sportView.titleText = @"跑步";
         self.exerciseType = @"run";
 
@@ -383,6 +389,11 @@ MAMapViewDelegate
         }
     }
 }
+
+- (void)targetChanged:(NSString *)target {
+    _stepCountView.target = target;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

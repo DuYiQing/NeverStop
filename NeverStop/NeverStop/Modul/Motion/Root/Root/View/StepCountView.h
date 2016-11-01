@@ -10,4 +10,6 @@
 
 @interface StepCountView : UIView
 
+@property (nonatomic, strong) NSString *target;
+
 @end

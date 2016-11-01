@@ -41,7 +41,7 @@
     _userPic.layer.cornerRadius = 8;
     _userPic.clipsToBounds = YES;
     self.nameLabel.frame = CGRectMake(45, 10, 200, 20);
-    self.content.frame = CGRectMake(45, 40, 200, 50);
+    self.content.frame = CGRectMake(45, 40, self.contentView.frame.size.width- 50, 50);
     
 }
 

@@ -10,6 +10,8 @@
 #import "MyInfoTableViewCell.h"
 #import "ScoreViewController.h"
 #import "PlanViewController.h"
+#import "HistoryViewController.h"
+#import "OthersViewController.h"
 
 @interface MyViewController ()
 <
@@ -127,13 +129,13 @@ UITableViewDataSource
         }
             break;
         case 3: {
-            ScoreViewController *scoreVC = [[ScoreViewController alloc] init];
-            [self.navigationController pushViewController:scoreVC animated:YES];
+            HistoryViewController *historyVC = [[HistoryViewController alloc] init];
+            [self.navigationController pushViewController:historyVC animated:YES];
         }
             break;
         case 4: {
-            ScoreViewController *scoreVC = [[ScoreViewController alloc] init];
-            [self.navigationController pushViewController:scoreVC animated:YES];
+            OthersViewController *othersVC = [[OthersViewController alloc] init];
+            [self.navigationController pushViewController:othersVC animated:YES];
         }
             break;
 

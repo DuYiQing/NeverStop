@@ -10,6 +10,10 @@
 #import "Scope.h"
 #import "Info.h"
 #import "LocationModel.h"
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4a4b8f67321f56f04ebfe8b06a341b6dfa972d89
 @implementation ScopeTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {

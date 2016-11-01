@@ -12,12 +12,14 @@
 #import "StartViewController.h"
 #import "WeekRecordView.h"
 #import "WeatherViewController.h"
+#import "TargetViewController.h"
 
 @interface MotionViewController ()
 <
 UIScrollViewDelegate,
 AMapSearchDelegate,
-MAMapViewDelegate
+MAMapViewDelegate,
+TargetVCDelegate
 >
 @property (nonatomic, strong) UIBlurEffect *blur;
 @property (nonatomic, strong) UIVisualEffectView *blurEffectView;
@@ -51,13 +53,16 @@ MAMapViewDelegate
 
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBarHidden = YES;
-//    self.tabBarController.tabBar.hidden = NO;
     
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+
+    TargetViewController *targetVC = [[TargetViewController alloc] init];
+    targetVC.delegate = self;
+    
     self.view.backgroundColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74/255.f alpha:1.0];
     self.exerciseType = @"run";
 
@@ -384,6 +389,11 @@ MAMapViewDelegate
         }
     }
 }
+
+- (void)targetChanged:(NSString *)target {
+    _stepCountView.target = target;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -24,6 +24,11 @@
 		40E5A4341DC774F6001AD41F /* LocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E5A4331DC774F6001AD41F /* LocationModel.m */; };
 		40E5A4351DC7763A001AD41F /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1D81A71DC0CA5E00FA6CD5 /* MapViewController.m */; };
 		40E5A4361DC77672001AD41F /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1AFFE71DB8CF610003762E /* BaseViewController.m */; };
+		40E5A43C1DC81E57001AD41F /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E5A43B1DC81E57001AD41F /* HistoryViewController.m */; };
+		40E5A43F1DC81EED001AD41F /* HistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E5A43E1DC81EED001AD41F /* HistoryTableViewCell.m */; };
+		40E5A4441DC82B2D001AD41F /* OthersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E5A4431DC82B2D001AD41F /* OthersViewController.m */; };
+		40E5A4491DC8471E001AD41F /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E5A4481DC8471E001AD41F /* AboutViewController.m */; };
+		40E5A44C1DC8473E001AD41F /* TargetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E5A44B1DC8473E001AD41F /* TargetViewController.m */; };
 		49060C151DBEE5F0003FE373 /* NearbyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49060C141DBEE5F0003FE373 /* NearbyTableViewCell.m */; };
 		49060C1B1DBEE971003FE373 /* Nearby.m in Sources */ = {isa = PBXBuildFile; fileRef = 49060C1A1DBEE971003FE373 /* Nearby.m */; };
 		49060C471DBF8461003FE373 /* NearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49060C461DBF8461003FE373 /* NearbyViewController.m */; };
@@ -147,6 +152,16 @@
 		40E5A4301DC739EE001AD41F /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		40E5A4321DC774F6001AD41F /* LocationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationModel.h; sourceTree = "<group>"; };
 		40E5A4331DC774F6001AD41F /* LocationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationModel.m; sourceTree = "<group>"; };
+		40E5A43A1DC81E57001AD41F /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
+		40E5A43B1DC81E57001AD41F /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
+		40E5A43D1DC81EED001AD41F /* HistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryTableViewCell.h; sourceTree = "<group>"; };
+		40E5A43E1DC81EED001AD41F /* HistoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryTableViewCell.m; sourceTree = "<group>"; };
+		40E5A4421DC82B2D001AD41F /* OthersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OthersViewController.h; sourceTree = "<group>"; };
+		40E5A4431DC82B2D001AD41F /* OthersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OthersViewController.m; sourceTree = "<group>"; };
+		40E5A4471DC8471E001AD41F /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		40E5A4481DC8471E001AD41F /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		40E5A44A1DC8473E001AD41F /* TargetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TargetViewController.h; sourceTree = "<group>"; };
+		40E5A44B1DC8473E001AD41F /* TargetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TargetViewController.m; sourceTree = "<group>"; };
 		49060C131DBEE5F0003FE373 /* NearbyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyTableViewCell.h; sourceTree = "<group>"; };
 		49060C141DBEE5F0003FE373 /* NearbyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyTableViewCell.m; sourceTree = "<group>"; };
 		49060C191DBEE971003FE373 /* Nearby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Nearby.h; sourceTree = "<group>"; };
@@ -348,6 +363,8 @@
 		40022F251DC6C9A00062CA94 /* My */ = {
 			isa = PBXGroup;
 			children = (
+				40E5A4401DC82925001AD41F /* Others */,
+				40E5A4371DC81DCD001AD41F /* History */,
 				40022F741DC6EE4E0062CA94 /* Plan */,
 				40022F611DC6DC880062CA94 /* Score */,
 				EE8953A61DC75E4700F4AB3C /* View */,
@@ -519,6 +536,70 @@
 				40E5A4301DC739EE001AD41F /* UserModel.m */,
 			);
 			path = SQLite;
+			sourceTree = "<group>";
+		};
+		40E5A4371DC81DCD001AD41F /* History */ = {
+			isa = PBXGroup;
+			children = (
+				40E5A4391DC81DEF001AD41F /* Controller */,
+				40E5A4381DC81DE7001AD41F /* View */,
+			);
+			name = History;
+			sourceTree = "<group>";
+		};
+		40E5A4381DC81DE7001AD41F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				40E5A43D1DC81EED001AD41F /* HistoryTableViewCell.h */,
+				40E5A43E1DC81EED001AD41F /* HistoryTableViewCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		40E5A4391DC81DEF001AD41F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				40E5A43A1DC81E57001AD41F /* HistoryViewController.h */,
+				40E5A43B1DC81E57001AD41F /* HistoryViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		40E5A4401DC82925001AD41F /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				40E5A4461DC84702001AD41F /* About */,
+				40E5A4451DC846EA001AD41F /* Target */,
+				40E5A4411DC82AEE001AD41F /* Controller */,
+			);
+			name = Others;
+			sourceTree = "<group>";
+		};
+		40E5A4411DC82AEE001AD41F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				40E5A4421DC82B2D001AD41F /* OthersViewController.h */,
+				40E5A4431DC82B2D001AD41F /* OthersViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		40E5A4451DC846EA001AD41F /* Target */ = {
+			isa = PBXGroup;
+			children = (
+				40E5A44A1DC8473E001AD41F /* TargetViewController.h */,
+				40E5A44B1DC8473E001AD41F /* TargetViewController.m */,
+			);
+			name = Target;
+			sourceTree = "<group>";
+		};
+		40E5A4461DC84702001AD41F /* About */ = {
+			isa = PBXGroup;
+			children = (
+				40E5A4471DC8471E001AD41F /* AboutViewController.h */,
+				40E5A4481DC8471E001AD41F /* AboutViewController.m */,
+			);
+			name = About;
 			sourceTree = "<group>";
 		};
 		494374021DB9B29800FF641A /* Modul */ = {
@@ -1178,6 +1259,8 @@
 				40E5A4351DC7763A001AD41F /* MapViewController.m in Sources */,
 				49FEA0161DC4C51700E0FB2D /* Scope.m in Sources */,
 				EE8953AA1DC75FFB00F4AB3C /* MyInfoTableViewCell.m in Sources */,
+				40E5A44C1DC8473E001AD41F /* TargetViewController.m in Sources */,
+				40E5A43C1DC81E57001AD41F /* HistoryViewController.m in Sources */,
 				EEE3D7101DC19A26003D0CC5 /* RouteTableViewCell.m in Sources */,
 				EEECBD1C1DC3908F0037BA0B /* StepCountModel.m in Sources */,
 				EE1A002F1DB8CF610003762E /* NSArray+Categories.m in Sources */,
@@ -1205,6 +1288,7 @@
 				405E49271DBCD0EB004105F2 /* RecommendTableViewCell.m in Sources */,
 				EEECBD241DC3908F0037BA0B /* TodayWeatherView.m in Sources */,
 				49060C151DBEE5F0003FE373 /* NearbyTableViewCell.m in Sources */,
+				40E5A43F1DC81EED001AD41F /* HistoryTableViewCell.m in Sources */,
 				EE1A003E1DB8CF610003762E /* DataBaseManager.m in Sources */,
 				EE1A00361DB8CF610003762E /* NSString+Size.m in Sources */,
 				EE1A00321DB8CF610003762E /* NSDictionary+Categories.m in Sources */,
@@ -1226,6 +1310,7 @@
 				EEECBD211DC3908F0037BA0B /* WeekRecordView.m in Sources */,
 				EEE3D72D1DC1A1A9003D0CC5 /* CustomAnimateTransitionPush.m in Sources */,
 				EEECBD1E1DC3908F0037BA0B /* StepModel.m in Sources */,
+				40E5A4441DC82B2D001AD41F /* OthersViewController.m in Sources */,
 				EEECBD1A1DC3908F0037BA0B /* MotionViewController.m in Sources */,
 				EE1D81731DC046C700FA6CD5 /* GlideView.m in Sources */,
 				EEE3D72F1DC1A1A9003D0CC5 /* JiangPickerView.m in Sources */,
@@ -1257,6 +1342,7 @@
 				EEE3D70F1DC199E8003D0CC5 /* ExerciseViewController.m in Sources */,
 				EE56EAA51DB8CE6D000B8082 /* main.m in Sources */,
 				405E49281DBCD0EB004105F2 /* Route.m in Sources */,
+				40E5A4491DC8471E001AD41F /* AboutViewController.m in Sources */,
 				4995E3BF1DC2FCCD00442618 /* TCH_RunViewController.m in Sources */,
 				49704A311DBDA7CE0028DB2F /* DetailedViewController.m in Sources */,
 				EE01152A1DC4963E001B44AD /* ProgressAimView.m in Sources */,

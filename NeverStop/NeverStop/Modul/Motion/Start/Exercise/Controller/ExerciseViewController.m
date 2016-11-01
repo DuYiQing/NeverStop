@@ -259,7 +259,7 @@ MAMapViewDelegate
         
     } else if ([keyPath isEqualToString:@"distance"] && object == _exerciseData) {
          self.leftDataView.dataLabel.text = [NSString stringWithFormat:@"%.2f", _exerciseData.distance];
-        if (self.aimType == 3) {
+        if (self.aimType == 2) {
             _progressAimView.currentNumber = _exerciseData.distance;
         }
     } else if ([keyPath isEqualToString:@"speedPerHour"] && object == _exerciseData) {

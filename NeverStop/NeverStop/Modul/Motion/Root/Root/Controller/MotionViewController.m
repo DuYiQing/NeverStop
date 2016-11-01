@@ -203,7 +203,7 @@ MAMapViewDelegate
 - (void)modeButtonAction {
     [self.view addSubview:_blurEffectView];
     self.backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _backButton.frame = CGRectMake(20, 35, 20, 20);
+    _backButton.frame = CGRectMake(20, 35, 30, 30);
     _backButton.tag = 1111;
     [_backButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
     [_blurEffectView addSubview:_backButton];
@@ -227,6 +227,7 @@ MAMapViewDelegate
     _rideButton.frame = CGRectMake(_walkButton.x, _walkButton.y + _walkButton.height + 20, _walkButton.width, _walkButton.height);
     _rideButton.tag = 1114;
     [_rideButton setImage:[UIImage imageNamed:@"ride1"] forState:UIControlStateNormal];
+    
     [_blurEffectView addSubview:_rideButton];
     [_rideButton addTarget:self action:@selector(backButtonAction:) forControlEvents:UIControlEventTouchUpInside];
 }

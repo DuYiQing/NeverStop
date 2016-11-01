@@ -1,17 +1,16 @@
 //
-//  DetailTableViewCell.m
+//  NearbyDetailedTableViewCell.m
 //  NeverStop
 //
-//  Created by dllo on 16/10/24.
+//  Created by dllo on 16/10/28.
 //  Copyright © 2016年 JDT. All rights reserved.
 //
 
-#import "DetailTableViewCell.h"
+#import "NearbyDetailedTableViewCell.h"
 
-@implementation DetailTableViewCell
-
+@implementation NearbyDetailedTableViewCell
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-
+    
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.userPic = [[UIImageView alloc] init];
@@ -25,14 +24,15 @@
     return self;
 }
 
-- (void)setDetail:(Detail *)detail {
-    if (_detail != detail) {
-        _detail = detail;
+- (void)setNearbyDetailed:(NearbyDatail *)nearbyDetailed {
+    if (_nearbyDetailed != nearbyDetailed) {
+        _nearbyDetailed = nearbyDetailed;
     }
-    NSURL *url = [NSURL URLWithString:detail.user_pic];
-    [_userPic sd_setImageWithURL:url];
-    self.nameLabel.text = detail.user_name;
-    self.content.text = detail.content;
+    NSURL *url = [NSURL URLWithString:nearbyDetailed.user_pic];
+        [_userPic sd_setImageWithURL:url];
+        self.nameLabel.text = nearbyDetailed.user_name;
+        self.content.text = nearbyDetailed.content;
+
 }
 
 - (void)layoutSubviews {
@@ -44,11 +44,6 @@
     self.content.frame = CGRectMake(45, 40, self.contentView.frame.size.width- 50, 50);
     
 }
-
-
-
-
-
 
 - (void)awakeFromNib {
     [super awakeFromNib];

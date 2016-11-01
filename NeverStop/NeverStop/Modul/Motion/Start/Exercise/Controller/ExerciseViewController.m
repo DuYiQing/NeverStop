@@ -13,7 +13,7 @@
 #import "MapViewController.h"
 #import "CustomAnimateTransitionPop.h"
 #import "Location.h"
-//#import "MapDataManager.h"
+#import "MapDataManager.h"
 #import "ProgressAimView.h"
 #import "ExerciseData.h"
 
@@ -49,7 +49,7 @@ MAMapViewDelegate
 @property (nonatomic, strong) NSString *allDistanceStr;
 @property (nonatomic, strong) MAPolyline *commonPolyline;
 
-//@property (nonatomic, strong) MapDataManager *mapManager;
+@property (nonatomic, strong) MapDataManager *mapManager;
 @property (nonatomic, strong) ExerciseData *exerciseData;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, assign) NSInteger a;
@@ -62,10 +62,6 @@ MAMapViewDelegate
 @implementation ExerciseViewController
 - (void)dealloc {
     self.navigationController.delegate = nil;
-//    [self.exerciseDataKVO removeObserver:self forKeyPath:@"distance" context:nil];
-//    [self.exerciseDataKVO removeObserver:self forKeyPath:@"duration" context:nil];
-//    [self.exerciseDataKVO removeObserver:self forKeyPath:@"speedPerHour" context:nil];
-//    [self.exerciseDataKVO removeObserver:self forKeyPath:@"averageSpeed" context:nil];
     for (int i = 0; i < _keyPathArray.count; i++) {
         [self.exerciseData removeObserver:self forKeyPath:_keyPathArray[i] context:nil];
     }
@@ -91,7 +87,6 @@ MAMapViewDelegate
     self.keyPathArray = @[@"distance", @"duration", @"speedPerHour", @"averageSpeed", @"maxSpeed", @"calorie", @"count"];
     self.lastLocation = [[Location alloc] init];
     self.exerciseData = [ExerciseData shareData];
-//    self.exerciseDataKVO = [[ExerciseData alloc] init];
     self.secondPauseLocation = 1;
     _exerciseData.distance = 0.00;
     _exerciseData.duration = 0;
@@ -183,8 +178,8 @@ MAMapViewDelegate
             [_exerciseData.allLocationArray addObject:location];
             _exerciseData.count = _exerciseData.allLocationArray.count;
         } else {
+            location.isStart = NO;
             if (_secondPauseLocation <= 2) {
-                location.isStart = NO;
                 [_exerciseData.allLocationArray addObject:location];
                 _exerciseData.count = _exerciseData.allLocationArray.count;
             } else {
@@ -199,30 +194,34 @@ MAMapViewDelegate
         if (self.isMoving == YES) {
 
             if (_exerciseData.allLocationArray.count > 1) {
-                //1.将两个经纬度点转成投影点
-                MAMapPoint point1 = MAMapPointForCoordinate(CLLocationCoordinate2DMake(_lastLocation.latitude,_lastLocation.longitude));
-                MAMapPoint point2 = MAMapPointForCoordinate(CLLocationCoordinate2DMake(location.latitude,location.longitude));
-                //2.计算距离
-//                NSLog(@"last : %f, %f", _lastLocation.latitude, _lastLocation.longitude);
-//                NSLog(@"now : %f, %f", location.latitude, location.longitude);
-                CLLocationDistance distance = MAMetersBetweenMapPoints(point1,point2);
-//                NSLog(@"distance : %f", distance);
-                ;
-                CGFloat time = ((_exerciseData.duration - _lastTime) / 60.0) / 60.0;
-                if (time != 0) {
+                // 1.将两个经纬度点转成投影点
+                if (_lastLocation.isStart != NO) {
                     
-//                NSLog(@"%ld", _mapManager.duration - _lastTime);
-                _exerciseData.speedPerHour = (distance / 1000) / time;
-                
-                _exerciseData.distance += distance / 1000;
-//                _exerciseDataKVO.distance += round(distance / 1000 * 100) / 100;
-                _exerciseData.maxSpeed = _exerciseData.maxSpeed > _exerciseData.speedPerHour ? _exerciseData.maxSpeed : _exerciseData.speedPerHour;
-                _exerciseData.averageSpeed = _exerciseData.distance / _exerciseData.duration;
+                    MAMapPoint point1 = MAMapPointForCoordinate(CLLocationCoordinate2DMake(_lastLocation.latitude,_lastLocation.longitude));
+                    MAMapPoint point2 = MAMapPointForCoordinate(CLLocationCoordinate2DMake(location.latitude,location.longitude));
+                    // 2.计算距离
+                    //                NSLog(@"last : %f, %f", _lastLocation.latitude, _lastLocation.longitude);
+                    //                NSLog(@"now : %f, %f", location.latitude, location.longitude);
+                    CLLocationDistance distance = MAMetersBetweenMapPoints(point1,point2);
+                    //                NSLog(@"distance : %f", distance);
+                    ;
+                    CGFloat time = ((_exerciseData.duration - _lastTime) / 60.0) / 60.0;
+                    if (time != 0) {
+                        
+                        //                NSLog(@"%ld", _mapManager.duration - _lastTime);
+                        _exerciseData.speedPerHour = (distance / 1000) / time;
+                        
+                        _exerciseData.distance += distance / 1000;
+                        //                _exerciseDataKVO.distance += round(distance / 1000 * 100) / 100;
+                        _exerciseData.maxSpeed = _exerciseData.maxSpeed > _exerciseData.speedPerHour ? _exerciseData.maxSpeed : _exerciseData.speedPerHour;
+                        _exerciseData.averageSpeed = _exerciseData.distance / _exerciseData.duration;
+                }
                 }
             }
          
             _lastLocation.latitude = location.latitude;
             _lastLocation.longitude = location.longitude;
+            _lastLocation.isStart = location.isStart;
             self.lastTime = _exerciseData.duration;
         }
         
@@ -251,15 +250,20 @@ MAMapViewDelegate
         hour = [time integerValue] / 3600;
         
         self.homeDataView.dataLabel.text = [NSString stringWithFormat:@"%.2ld:%.2ld:%.2ld", hour, minu, sec];
+        
 //        NSLog(@"%ld", (long)_exerciseData);
         if (self.aimType == 3) {
-            _progressAimView.currentNumber = _exerciseData.duration;
+        
+            if (_exerciseData.duration != 0) {
+                
+                _progressAimView.currentNumber = _exerciseData.duration;
+            }
             
         }
         
     } else if ([keyPath isEqualToString:@"distance"] && object == _exerciseData) {
          self.leftDataView.dataLabel.text = [NSString stringWithFormat:@"%.2f", _exerciseData.distance];
-        if (self.aimType == 3) {
+        if (self.aimType == 2) {
             _progressAimView.currentNumber = _exerciseData.distance;
         }
     } else if ([keyPath isEqualToString:@"speedPerHour"] && object == _exerciseData) {
@@ -564,6 +568,13 @@ MAMapViewDelegate
 
 - (void)endButtonAction:(UIButton *)button {
     [self endTimer];
+    self.mapManager = [MapDataManager shareDataManager];
+    [_mapManager openDB];
+    [_mapManager createTable];
+    [_mapManager insertExerciseData:_exerciseData];
+    NSArray *array = [_mapManager selectAll];
+    NSLog(@"%@", array);
+//    [_mapManager deleteExerciseData];
     [_exerciseData.allLocationArray removeAllObjects];
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -583,7 +594,7 @@ MAMapViewDelegate
         } else {
             // 开始计时
             [self createTimer];
-            _secondPauseLocation = 0;
+            _secondPauseLocation = 1;
             self.pauseButton.centerX = SCREEN_WIDTH / 2;
             self.endButton.centerX = SCREEN_WIDTH / 2;
             self.pauseButton.selected = !self.pauseButton.selected;

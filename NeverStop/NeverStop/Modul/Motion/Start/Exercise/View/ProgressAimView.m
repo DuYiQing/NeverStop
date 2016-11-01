@@ -82,6 +82,9 @@
             
             frame.size.width = currentNumber / self.aimCount * _rectView.width;
 //            NSLog(@"%.f", _changingView.width);
+            if (frame.size.width == 0) {
+                NSLog(@"%f", frame.size.width);
+            }
             self.changingView.frame = frame;
         } else {
             self.aimLabel.text = [_aimLabel.text stringByAppendingString:@" 已完成"];

@@ -89,16 +89,12 @@
 		EE56EAA81DB8CE6D000B8082 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EE56EAA71DB8CE6D000B8082 /* AppDelegate.m */; };
 		EE56EAAB1DB8CE6D000B8082 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE56EAAA1DB8CE6D000B8082 /* ViewController.m */; };
 		EE56EAAE1DB8CE6D000B8082 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE56EAAC1DB8CE6D000B8082 /* Main.storyboard */; };
-		EE8953A21DC75DEC00F4AB3C /* 18r.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EEECBCB21DC3839B0037BA0B /* 18r.jpg */; };
-		EE8953A31DC75DEC00F4AB3C /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EEECBC801DC2EB750037BA0B /* background.jpg */; };
 		EE8953A51DC75DEC00F4AB3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE56EAAF1DB8CE6D000B8082 /* Assets.xcassets */; };
 		EE8953AA1DC75FFB00F4AB3C /* MyInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE8953A81DC75E4700F4AB3C /* MyInfoTableViewCell.m */; };
 		EEADD65A1DC246B900A5EB52 /* MapDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EEADD6591DC246B900A5EB52 /* MapDataManager.m */; };
 		EEBA13F61DBF8AD60001F7A4 /* ExerciseDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = EEBA13F51DBF8AD60001F7A4 /* ExerciseDataView.m */; };
 		EEC8E70D1DB8ED1500349793 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEC8E70C1DB8ED1500349793 /* HealthKit.framework */; };
 		EEE3D7101DC19A26003D0CC5 /* RouteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E49221DBCD0EB004105F2 /* RouteTableViewCell.m */; };
-		EEE3D7261DC1A1A9003D0CC5 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = EEE3D7121DC1A1A9003D0CC5 /* 1.png */; };
-		EEE3D7271DC1A1A9003D0CC5 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = EEE3D7131DC1A1A9003D0CC5 /* 2.png */; };
 		EEE3D7281DC1A1A9003D0CC5 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE3D7151DC1A1A9003D0CC5 /* StartViewController.m */; };
 		EEE3D7291DC1A1A9003D0CC5 /* AimModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE3D7181DC1A1A9003D0CC5 /* AimModel.m */; };
 		EEE3D72A1DC1A1A9003D0CC5 /* AimSettingPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE3D71B1DC1A1A9003D0CC5 /* AimSettingPickerView.m */; };
@@ -304,8 +300,6 @@
 		EEBA13F51DBF8AD60001F7A4 /* ExerciseDataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseDataView.m; sourceTree = "<group>"; };
 		EEC8E70C1DB8ED1500349793 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		EEE3D70E1DC199E8003D0CC5 /* ExerciseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseViewController.m; sourceTree = "<group>"; };
-		EEE3D7121DC1A1A9003D0CC5 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
-		EEE3D7131DC1A1A9003D0CC5 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		EEE3D7141DC1A1A9003D0CC5 /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
 		EEE3D7151DC1A1A9003D0CC5 /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
 		EEE3D7171DC1A1A9003D0CC5 /* AimModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AimModel.h; sourceTree = "<group>"; };
@@ -326,8 +320,6 @@
 		EEE3D7641DC215EF003D0CC5 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		EEE3D7691DC220E3003D0CC5 /* ExerciseData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseData.h; sourceTree = "<group>"; };
 		EEE3D76A1DC220E3003D0CC5 /* ExerciseData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseData.m; sourceTree = "<group>"; };
-		EEECBC801DC2EB750037BA0B /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
-		EEECBCB21DC3839B0037BA0B /* 18r.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 18r.jpg; sourceTree = "<group>"; };
 		EEECBCFF1DC3908E0037BA0B /* MotionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MotionViewController.h; sourceTree = "<group>"; };
 		EEECBD001DC3908E0037BA0B /* MotionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MotionViewController.m; sourceTree = "<group>"; };
 		EEECBD021DC3908E0037BA0B /* HealthManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthManager.h; sourceTree = "<group>"; };
@@ -881,7 +873,6 @@
 		EE1D81A91DC0CA6300FA6CD5 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				EEECBCB21DC3839B0037BA0B /* 18r.jpg */,
 				EE1D81A61DC0CA5E00FA6CD5 /* MapViewController.h */,
 				EE1D81A71DC0CA5E00FA6CD5 /* MapViewController.m */,
 			);
@@ -976,7 +967,6 @@
 			children = (
 				EE7420C71DBE0FBD0007F71E /* ExerciseViewController.h */,
 				EEE3D70E1DC199E8003D0CC5 /* ExerciseViewController.m */,
-				EEECBC801DC2EB750037BA0B /* background.jpg */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1021,8 +1011,6 @@
 		EEE3D7111DC1A1A9003D0CC5 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				EEE3D7121DC1A1A9003D0CC5 /* 1.png */,
-				EEE3D7131DC1A1A9003D0CC5 /* 2.png */,
 				EEE3D7141DC1A1A9003D0CC5 /* StartViewController.h */,
 				EEE3D7151DC1A1A9003D0CC5 /* StartViewController.m */,
 			);
@@ -1212,13 +1200,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EEE3D7261DC1A1A9003D0CC5 /* 1.png in Resources */,
-				EEE3D7271DC1A1A9003D0CC5 /* 2.png in Resources */,
-				EE8953A21DC75DEC00F4AB3C /* 18r.jpg in Resources */,
-				EE8953A31DC75DEC00F4AB3C /* background.jpg in Resources */,
 				EE8953A51DC75DEC00F4AB3C /* Assets.xcassets in Resources */,
-				EEE3D7261DC1A1A9003D0CC5 /* 1.png in Resources */,
-				EEE3D7271DC1A1A9003D0CC5 /* 2.png in Resources */,
 				EE56EAAE1DB8CE6D000B8082 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

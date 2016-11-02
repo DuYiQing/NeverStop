@@ -7,8 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
-
+@class ExerciseData;
 @interface MapDataManager : NSObject
-+ (instancetype)defaultManager;
++ (MapDataManager *)shareDataManager;
 
+- (void)createTable;
+- (void)openDB;
+
+- (void)insertExerciseData:(ExerciseData *)exerciseData;
+
+
+- (void)deleteExerciseData;
+
+- (NSMutableArray *)selectAll;
 @end

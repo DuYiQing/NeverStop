@@ -47,6 +47,7 @@
 #import "TargetManager.h"
 #import "TargetModel.h"
 
+#import <FMDB/FMDB.h>
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import <MAMapKit/MAMapKit.h>
 #import <AMapFoundationKit/AMapFoundationKit.h>

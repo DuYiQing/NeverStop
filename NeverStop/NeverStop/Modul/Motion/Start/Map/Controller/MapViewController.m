@@ -135,7 +135,9 @@ MAMapViewDelegate
 }
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     _menuEffectView.alpha = 0;
-    _menuButton.selected = !_menuButton.selected;
+    if (_menuButton.selected == YES) {
+        _menuButton.selected = NO;
+    }
 //    [_menuEffectView removeFromSuperview];
 }
 #pragma mark - 改变地图类型
@@ -195,6 +197,7 @@ MAMapViewDelegate
     satelliteButton.frame = CGRectMake(planeButton.x + planeButton.width + 10, 20, 90, 90);
     [_menuEffectView addSubview:satelliteButton];
     
+    __weak typeof(self) weakSelf = self;
     [planeButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
         if (!planeButton.selected) {
             planeButton.backgroundColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74 / 255.f alpha:1.0];
@@ -208,14 +211,12 @@ MAMapViewDelegate
                 //                _femaleButton.imageView.backgroundColor = [UIColor whiteColor];
             }
         }
-        __weak typeof(self) weakSelf = self;
         weakSelf.mapView.maxZoomLevel = 20;
 
         weakSelf.mapView.mapType = MAMapTypeStandard;
         
     }];
     [satelliteButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
-        __weak typeof(self) weakSelf = self;
 
         if (!satelliteButton.selected) {
             satelliteButton.backgroundColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74 / 255.f alpha:1.0];
@@ -311,6 +312,8 @@ MAMapViewDelegate
          minu = ([time integerValue] / 60)% 60;
          hour = [time integerValue] / 3600;
          
+      
+         
          self.rightDataView.dataLabel.text = [NSString stringWithFormat:@"%.2ld:%.2ld:%.2ld", hour, minu, sec];
          
      } else if ([keyPath isEqualToString:@"distance"] && object == _exerciseData) {
@@ -344,7 +347,7 @@ MAMapViewDelegate
 
 
 //用来自定义转场动画
--(id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC
+- (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC
 {
     
     if(operation == UINavigationControllerOperationPop)

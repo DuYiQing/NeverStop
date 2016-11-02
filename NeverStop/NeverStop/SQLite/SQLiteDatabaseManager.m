@@ -35,7 +35,7 @@
     
     NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     NSString *stepDBPath = [documentsPath stringByAppendingPathComponent:@"StepCount.db"];
-    NSLog(@"path : %@", stepDBPath);
+//    NSLog(@"path : %@", stepDBPath);
     // 打开数据库(如果没有就先创建,后打开,如果有,就直接打开)
     // 参数1:数据库文件路径
     // 参数2:数据库指针地址

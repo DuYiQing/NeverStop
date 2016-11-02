@@ -8,14 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol TargetVCDelegate <NSObject>
-
-- (void)targetChanged:(NSString *)target;
-
-@end
-
 @interface TargetViewController : UIViewController
 
-@property (nonatomic, assign) id<TargetVCDelegate>delegate;
 
 @end

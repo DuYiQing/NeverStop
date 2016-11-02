@@ -56,7 +56,6 @@
         [_roundView addSubview:_stepCountLabel];
         
         self.targetLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _stepCountLabel.y + _stepCountLabel.height + 5, _roundView.width, 35)];
-        _targetLabel.text = @"目标10000";
         _targetLabel.textAlignment = NSTextAlignmentCenter;
         _targetLabel.textColor = [UIColor whiteColor];
         _targetLabel.font = kFONT_SIZE_18;
@@ -68,7 +67,9 @@
                 NSLog(@"error");
             } else {
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    [_sqlManager openSQLite];
                     NSString *stepCountFromSQL = [_sqlManager selectStepCountWithDate:_dateString].stepCount;
+                    [_sqlManager closeSQLite];
                     if (value > [stepCountFromSQL integerValue]) {
                         self.systemStep = value;
                     } else {
@@ -90,7 +91,9 @@
 - (void)getStepNumber{
     long step = [StepManager shareManager].step;
     _stepCountLabel.text = [NSString stringWithFormat:@"%ld",step + _systemStep];
+    [_sqlManager openSQLite];
     [_sqlManager updateStepCount:_stepCountLabel.text date:_dateString];
+    [_sqlManager closeSQLite];
 }
 
 - (void)setTarget:(NSString *)target {

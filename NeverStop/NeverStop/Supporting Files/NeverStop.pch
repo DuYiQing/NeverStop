@@ -44,6 +44,8 @@
 #import <UIKit/UIDevice.h>
 #import "SQLiteDatabaseManager.h"
 #import <FTPopOverMenu.h>
+#import "TargetManager.h"
+#import "TargetModel.h"
 
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import <MAMapKit/MAMapKit.h>

@@ -29,6 +29,11 @@
 		40E5A4501DC8B748001AD41F /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1AFFE71DB8CF610003762E /* BaseViewController.m */; };
 		40E5A4511DC8B771001AD41F /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1D81A71DC0CA5E00FA6CD5 /* MapViewController.m */; };
 		40E5A4521DC8B7B3001AD41F /* LocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E5A4331DC774F6001AD41F /* LocationModel.m */; };
+		40E5A4551DC8BF4B001AD41F /* CategoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E5A4541DC8BF4B001AD41F /* CategoriesViewController.m */; };
+		40E5A4581DC8C352001AD41F /* CategoriesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E5A4571DC8C352001AD41F /* CategoriesModel.m */; };
+		40E5A45B1DC8C693001AD41F /* CategoriesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E5A45A1DC8C693001AD41F /* CategoriesTableViewCell.m */; };
+		40E5A45E1DC97525001AD41F /* TargetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E5A45D1DC97525001AD41F /* TargetManager.m */; };
+		40E5A4611DC97BC1001AD41F /* TargetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E5A4601DC97BC1001AD41F /* TargetModel.m */; };
 		49060C151DBEE5F0003FE373 /* NearbyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49060C141DBEE5F0003FE373 /* NearbyTableViewCell.m */; };
 		49060C1B1DBEE971003FE373 /* Nearby.m in Sources */ = {isa = PBXBuildFile; fileRef = 49060C1A1DBEE971003FE373 /* Nearby.m */; };
 		49060C471DBF8461003FE373 /* NearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49060C461DBF8461003FE373 /* NearbyViewController.m */; };
@@ -161,6 +166,16 @@
 		40E5A4481DC8471E001AD41F /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		40E5A44A1DC8473E001AD41F /* TargetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TargetViewController.h; sourceTree = "<group>"; };
 		40E5A44B1DC8473E001AD41F /* TargetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TargetViewController.m; sourceTree = "<group>"; };
+		40E5A4531DC8BF4B001AD41F /* CategoriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoriesViewController.h; sourceTree = "<group>"; };
+		40E5A4541DC8BF4B001AD41F /* CategoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoriesViewController.m; sourceTree = "<group>"; };
+		40E5A4561DC8C352001AD41F /* CategoriesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoriesModel.h; sourceTree = "<group>"; };
+		40E5A4571DC8C352001AD41F /* CategoriesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoriesModel.m; sourceTree = "<group>"; };
+		40E5A4591DC8C693001AD41F /* CategoriesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoriesTableViewCell.h; sourceTree = "<group>"; };
+		40E5A45A1DC8C693001AD41F /* CategoriesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoriesTableViewCell.m; sourceTree = "<group>"; };
+		40E5A45C1DC97525001AD41F /* TargetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TargetManager.h; sourceTree = "<group>"; };
+		40E5A45D1DC97525001AD41F /* TargetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TargetManager.m; sourceTree = "<group>"; };
+		40E5A45F1DC97BC1001AD41F /* TargetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TargetModel.h; sourceTree = "<group>"; };
+		40E5A4601DC97BC1001AD41F /* TargetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TargetModel.m; sourceTree = "<group>"; };
 		49060C131DBEE5F0003FE373 /* NearbyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyTableViewCell.h; sourceTree = "<group>"; };
 		49060C141DBEE5F0003FE373 /* NearbyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyTableViewCell.m; sourceTree = "<group>"; };
 		49060C191DBEE971003FE373 /* Nearby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Nearby.h; sourceTree = "<group>"; };
@@ -362,12 +377,12 @@
 		40022F251DC6C9A00062CA94 /* My */ = {
 			isa = PBXGroup;
 			children = (
-				40E5A4401DC82925001AD41F /* Others */,
+				40022F261DC6C9A00062CA94 /* Controller */,
 				40E5A4371DC81DCD001AD41F /* History */,
+				40E5A4401DC82925001AD41F /* Others */,
 				40022F741DC6EE4E0062CA94 /* Plan */,
 				40022F611DC6DC880062CA94 /* Score */,
 				EE8953A61DC75E4700F4AB3C /* View */,
-				40022F261DC6C9A00062CA94 /* Controller */,
 			);
 			path = My;
 			sourceTree = "<group>";
@@ -387,7 +402,7 @@
 				40022F631DC6DCA70062CA94 /* Controller */,
 				40022F621DC6DC9F0062CA94 /* View */,
 			);
-			name = Score;
+			path = Score;
 			sourceTree = "<group>";
 		};
 		40022F621DC6DC9F0062CA94 /* View */ = {
@@ -396,7 +411,7 @@
 				40022F671DC6DD190062CA94 /* ScoreTableViewCell.h */,
 				40022F681DC6DD190062CA94 /* ScoreTableViewCell.m */,
 			);
-			name = View;
+			path = View;
 			sourceTree = "<group>";
 		};
 		40022F631DC6DCA70062CA94 /* Controller */ = {
@@ -405,44 +420,50 @@
 				40022F641DC6DCC70062CA94 /* ScoreViewController.h */,
 				40022F651DC6DCC70062CA94 /* ScoreViewController.m */,
 			);
-			name = Controller;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		40022F741DC6EE4E0062CA94 /* Plan */ = {
 			isa = PBXGroup;
 			children = (
 				40022F771DC6EE660062CA94 /* Controller */,
-				40022F761DC6EE610062CA94 /* View */,
 				40022F751DC6EE5B0062CA94 /* Model */,
+				40022F761DC6EE610062CA94 /* View */,
 			);
-			name = Plan;
+			path = Plan;
 			sourceTree = "<group>";
 		};
 		40022F751DC6EE5B0062CA94 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				40E5A4561DC8C352001AD41F /* CategoriesModel.h */,
+				40E5A4571DC8C352001AD41F /* CategoriesModel.m */,
 				40022F7B1DC6EE8E0062CA94 /* PlanModel.h */,
 				40022F7C1DC6EE8E0062CA94 /* PlanModel.m */,
 			);
-			name = Model;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		40022F761DC6EE610062CA94 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				40E5A4591DC8C693001AD41F /* CategoriesTableViewCell.h */,
+				40E5A45A1DC8C693001AD41F /* CategoriesTableViewCell.m */,
 				40022F7E1DC6F5BF0062CA94 /* PlanTableViewCell.h */,
 				40022F7F1DC6F5BF0062CA94 /* PlanTableViewCell.m */,
 			);
-			name = View;
+			path = View;
 			sourceTree = "<group>";
 		};
 		40022F771DC6EE660062CA94 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				40E5A4531DC8BF4B001AD41F /* CategoriesViewController.h */,
+				40E5A4541DC8BF4B001AD41F /* CategoriesViewController.m */,
 				40022F781DC6EE780062CA94 /* PlanViewController.h */,
 				40022F791DC6EE780062CA94 /* PlanViewController.m */,
 			);
-			name = Controller;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		405E48E51DBA4DBB004105F2 /* Start */ = {
@@ -529,6 +550,10 @@
 			children = (
 				409229BF1DBFCA0500FDAD4E /* SQLiteDatabaseManager.h */,
 				409229C01DBFCA0500FDAD4E /* SQLiteDatabaseManager.m */,
+				40E5A45C1DC97525001AD41F /* TargetManager.h */,
+				40E5A45D1DC97525001AD41F /* TargetManager.m */,
+				40E5A45F1DC97BC1001AD41F /* TargetModel.h */,
+				40E5A4601DC97BC1001AD41F /* TargetModel.m */,
 				40E5A4291DC73826001AD41F /* UserManager.h */,
 				40E5A42A1DC73826001AD41F /* UserManager.m */,
 				40E5A42F1DC739EE001AD41F /* UserModel.h */,
@@ -543,7 +568,7 @@
 				40E5A4391DC81DEF001AD41F /* Controller */,
 				40E5A4381DC81DE7001AD41F /* View */,
 			);
-			name = History;
+			path = History;
 			sourceTree = "<group>";
 		};
 		40E5A4381DC81DE7001AD41F /* View */ = {
@@ -552,7 +577,7 @@
 				40E5A43D1DC81EED001AD41F /* HistoryTableViewCell.h */,
 				40E5A43E1DC81EED001AD41F /* HistoryTableViewCell.m */,
 			);
-			name = View;
+			path = View;
 			sourceTree = "<group>";
 		};
 		40E5A4391DC81DEF001AD41F /* Controller */ = {
@@ -561,17 +586,17 @@
 				40E5A43A1DC81E57001AD41F /* HistoryViewController.h */,
 				40E5A43B1DC81E57001AD41F /* HistoryViewController.m */,
 			);
-			name = Controller;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		40E5A4401DC82925001AD41F /* Others */ = {
 			isa = PBXGroup;
 			children = (
 				40E5A4461DC84702001AD41F /* About */,
-				40E5A4451DC846EA001AD41F /* Target */,
 				40E5A4411DC82AEE001AD41F /* Controller */,
+				40E5A4451DC846EA001AD41F /* Target */,
 			);
-			name = Others;
+			path = Others;
 			sourceTree = "<group>";
 		};
 		40E5A4411DC82AEE001AD41F /* Controller */ = {
@@ -580,7 +605,7 @@
 				40E5A4421DC82B2D001AD41F /* OthersViewController.h */,
 				40E5A4431DC82B2D001AD41F /* OthersViewController.m */,
 			);
-			name = Controller;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		40E5A4451DC846EA001AD41F /* Target */ = {
@@ -589,7 +614,7 @@
 				40E5A44A1DC8473E001AD41F /* TargetViewController.h */,
 				40E5A44B1DC8473E001AD41F /* TargetViewController.m */,
 			);
-			name = Target;
+			path = Target;
 			sourceTree = "<group>";
 		};
 		40E5A4461DC84702001AD41F /* About */ = {
@@ -598,7 +623,7 @@
 				40E5A4471DC8471E001AD41F /* AboutViewController.h */,
 				40E5A4481DC8471E001AD41F /* AboutViewController.m */,
 			);
-			name = About;
+			path = About;
 			sourceTree = "<group>";
 		};
 		494374021DB9B29800FF641A /* Modul */ = {
@@ -657,10 +682,10 @@
 			children = (
 				49FEA0171DC4CD1E00E0FB2D /* Info.h */,
 				49FEA0181DC4CD1E00E0FB2D /* Info.m */,
-				49FEA0141DC4C51700E0FB2D /* Scope.h */,
-				49FEA0151DC4C51700E0FB2D /* Scope.m */,
 				40E5A4321DC774F6001AD41F /* LocationModel.h */,
 				40E5A4331DC774F6001AD41F /* LocationModel.m */,
+				49FEA0141DC4C51700E0FB2D /* Scope.h */,
+				49FEA0151DC4C51700E0FB2D /* Scope.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1253,6 +1278,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40E5A4611DC97BC1001AD41F /* TargetModel.m in Sources */,
 				40E5A4521DC8B7B3001AD41F /* LocationModel.m in Sources */,
 				40E5A4511DC8B771001AD41F /* MapViewController.m in Sources */,
 				40E5A4501DC8B748001AD41F /* BaseViewController.m in Sources */,
@@ -1274,6 +1300,9 @@
 				EE1A003B1DB8CF610003762E /* UIImage+Categories.m in Sources */,
 				EEE3D7291DC1A1A9003D0CC5 /* AimModel.m in Sources */,
 				EE1A00381DB8CF610003762E /* UIBarButtonItem+ButtonImage.m in Sources */,
+				40E5A45B1DC8C693001AD41F /* CategoriesTableViewCell.m in Sources */,
+				40E5A45E1DC97525001AD41F /* TargetManager.m in Sources */,
+				40E5A4581DC8C352001AD41F /* CategoriesModel.m in Sources */,
 				EE1A00401DB8CF610003762E /* AppStoreUtils.m in Sources */,
 				494374131DB9B29800FF641A /* MessageViewController.m in Sources */,
 				EE0115271DC425ED001B44AD /* VerticalButton.m in Sources */,
@@ -1317,6 +1346,7 @@
 				40022F7D1DC6EE8E0062CA94 /* PlanModel.m in Sources */,
 				EE56EAA81DB8CE6D000B8082 /* AppDelegate.m in Sources */,
 				EE1A003A1DB8CF610003762E /* UIColor+Categories.m in Sources */,
+				40E5A4551DC8BF4B001AD41F /* CategoriesViewController.m in Sources */,
 				49FEA0011DC43F5100E0FB2D /* TCH_RootViewController.m in Sources */,
 				EE1A002E1DB8CF610003762E /* HKHealthStore+AAPLExtensions.m in Sources */,
 				EEECBD221DC3908F0037BA0B /* WeatherViewController.m in Sources */,

@@ -33,7 +33,8 @@
     
     
     [self createInfoView];
-    
+
+    [_userManager closeSQLite];
 }
 
 - (void)createInfoView {

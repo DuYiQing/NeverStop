@@ -14,12 +14,12 @@
 #import "WeatherViewController.h"
 #import "TargetViewController.h"
 
+
 @interface MotionViewController ()
 <
 UIScrollViewDelegate,
 AMapSearchDelegate,
-MAMapViewDelegate,
-TargetVCDelegate
+MAMapViewDelegate
 >
 @property (nonatomic, strong) UIBlurEffect *blur;
 @property (nonatomic, strong) UIVisualEffectView *blurEffectView;
@@ -47,24 +47,42 @@ TargetVCDelegate
 @property (nonatomic, strong) AMapReGeocodeSearchRequest *regeo;
 @property (nonatomic, strong) NSString *address;
 @property (nonatomic, strong) NSString *exerciseType;
+@property (nonatomic, strong) TargetManager *targetManager;
+@property (nonatomic, strong) NSArray *getTargetArr;
+
 @end
 
 @implementation MotionViewController
 
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBarHidden = YES;
-    
+    [_targetManager openSQLite];
+    self.getTargetArr = [_targetManager selectTarget];
+    if (_getTargetArr.count != 0) {
+        TargetModel *targetModel = [_getTargetArr lastObject];
+        _stepCountView.target = targetModel.target;
+    }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
-    TargetViewController *targetVC = [[TargetViewController alloc] init];
-    targetVC.delegate = self;
-    
     self.view.backgroundColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74/255.f alpha:1.0];
     self.exerciseType = @"run";
+
+    self.targetManager = [TargetManager shareTargetManager];
+    [_targetManager openSQLite];
+    [_targetManager createTable];
+    self.getTargetArr = [_targetManager selectTarget];
+
+    if (_getTargetArr.count != 0) {
+        TargetModel *targetModel = [_getTargetArr lastObject];
+        _stepCountView.target = targetModel.target;
+    } else {
+        _stepCountView.target = @"10000步";
+    }
+
 
     // 地图定位
     self.mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
@@ -95,7 +113,7 @@ TargetVCDelegate
     // 插入数据库
     NSString *dateString = [NSDate getSystemTimeStringWithFormat:@"yyyy-MM-dd"];
     [_SQLManager insertIntoWithStepCountModel:dateString];
-    
+    [_SQLManager closeSQLite];
 
     FTPopOverMenuConfiguration *configuration = [FTPopOverMenuConfiguration defaultConfiguration];
 
@@ -106,6 +124,7 @@ TargetVCDelegate
 
     [self showRootView];
     
+    [_targetManager closeSQLite];
     
 }
 // 实时更新定位
@@ -390,8 +409,8 @@ TargetVCDelegate
     }
 }
 
-- (void)targetChanged:(NSString *)target {
-    _stepCountView.target = target;
+- (void)viewDidDisappear:(BOOL)animated {
+    [_targetManager closeSQLite];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -177,7 +177,7 @@ MAMapViewDelegate
     
     // 一周步行记录表
     self.weekRecordView = [[WeekRecordView alloc] initWithFrame:CGRectMake((_whiteView.width - SCREEN_WIDTH) / 2, 0, SCREEN_WIDTH, _whiteView.height)];
-    _weekRecordView.count =
+//    _weekRecordView.count =
     _weekRecordView.backgroundColor = [UIColor clearColor];
     _weekRecordView.hidden = YES;
     [_whiteView addSubview:_weekRecordView];
@@ -226,6 +226,7 @@ MAMapViewDelegate
     
     // 计步
     self.stepCountView = [[StepCountView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH, 25, SCREEN_WIDTH, _scrollView.height / 3 * 2)];
+    
     [_scrollView addSubview:_stepCountView];
     
 }
@@ -295,7 +296,7 @@ MAMapViewDelegate
 #pragma mark - 切换运动和计步
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-
+    
     CGFloat lenth = scrollView.contentOffset.x / 180;
     CGAffineTransform trans = CGAffineTransformRotate(_startButton.transform, -lenth * 35/ 180.0 * M_PI);
     _sportView.transform = CGAffineTransformIdentity;
@@ -314,13 +315,16 @@ MAMapViewDelegate
         _startButton.height = _startButton.width;
         _startButton.x = (_whiteView.width - _startButton.width) / 2;
         _startButton.layer.cornerRadius = _startButton.width / 2;
+
     }
     if (scrollView.contentOffset.x > SCREEN_WIDTH / 2) {
         [_stepCountButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_sportButton setTitleColor:[UIColor colorWithWhite:0.7 alpha:0.4] forState:UIControlStateNormal];
         _modeButton.hidden = YES;
         [UIView animateWithDuration:0.2f animations:^{
-            _startButton.backgroundColor = [UIColor whiteColor];
+            _startButton.userInteractionEnabled = NO;
+            _startButton.backgroundColor = [UIColor clearColor];
+            
         }];
         if (scrollView.contentOffset.x == SCREEN_WIDTH) {
             _startButton.hidden = YES;
@@ -334,10 +338,25 @@ MAMapViewDelegate
             _startButton.backgroundColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74/255.f alpha:1.0];
         } completion:^(BOOL finished) {
             _startButton.hidden = NO;
+            _startButton.userInteractionEnabled = YES;
             _weekRecordView.hidden = YES;
         }];
 
     }
+}
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [UIView animateWithDuration:0.3f animations:^{
+        _stepCountView.todyLabel.alpha = 0;
+        _stepCountView.targetLabel.alpha = 0;
+        _sportView.distanceLabel.alpha = 0;
+    }];
+}
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    [UIView animateWithDuration:0.3f animations:^{
+        _stepCountView.todyLabel.alpha = 1;
+        _stepCountView.targetLabel.alpha = 1;
+        _sportView.distanceLabel.alpha = 1;
+    }];
 }
 - (void)sportButtonAction {
     [UIView animateWithDuration:0.5f animations:^{

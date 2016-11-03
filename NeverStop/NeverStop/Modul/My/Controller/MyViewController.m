@@ -42,7 +42,7 @@ UITableViewDataSource
     self.myInfoTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
     _myInfoTableView.delegate = self;
     _myInfoTableView.dataSource = self;
-    _myInfoTableView.rowHeight = 100.f;
+//    _myInfoTableView.rowHeight = 100.f;
     _myInfoTableView.contentInset = UIEdgeInsetsMake(SCREEN_HEIGHT / 3, 0, 44, 0);
     [self.view addSubview:_myInfoTableView];
     
@@ -82,7 +82,13 @@ UITableViewDataSource
     return 5;
     
 }
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (3 == indexPath.row | 4 == indexPath.row) {
+        return 80;
+    }
+    return 100.f;
+    
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MyInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (nil == cell) {
@@ -102,12 +108,12 @@ UITableViewDataSource
         case 3:
             cell.imageName = @"hist";
             cell.title = @"历史记录";
-            cell.subtitle = @"";
+//            cell.subtitle = @"";
             break;
         case 4:
             cell.imageName = @"set";
             cell.title = @"设置";
-            cell.subtitle = @"";
+//            cell.subtitle = @"";
             break;
         default:
             break;

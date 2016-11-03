@@ -10,7 +10,6 @@
 
 @interface SportView ()
 
-@property (nonatomic, strong) UILabel *distanceLabel;
 @property (nonatomic, strong) UILabel *numberLabel;
 
 @end

@@ -91,9 +91,7 @@
 }
 
 - (StepCountModel *)selectStepCountWithDate:(NSString *)date {
-    // 查询所有的数据
-    // select *from 表名
-    // 如果需要查询固定条件的数据需要使用where
+    
     NSString *selectSQL = [NSString stringWithFormat:@"select * from StepCount where date = '%@'", date];
     
     // 准备执行SQL

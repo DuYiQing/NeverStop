@@ -61,6 +61,7 @@ MAMapViewDelegate
     if (_getTargetArr.count != 0) {
         TargetModel *targetModel = [_getTargetArr lastObject];
         _stepCountView.target = targetModel.target;
+        _weekRecordView.count = [targetModel.target integerValue];
     }
 }
 
@@ -79,8 +80,10 @@ MAMapViewDelegate
     if (_getTargetArr.count != 0) {
         TargetModel *targetModel = [_getTargetArr lastObject];
         _stepCountView.target = targetModel.target;
+        _weekRecordView.count = [targetModel.target integerValue];
     } else {
         _stepCountView.target = @"10000步";
+        _weekRecordView.count = 10000;
     }
 
 
@@ -174,6 +177,7 @@ MAMapViewDelegate
     
     // 一周步行记录表
     self.weekRecordView = [[WeekRecordView alloc] initWithFrame:CGRectMake((_whiteView.width - SCREEN_WIDTH) / 2, 0, SCREEN_WIDTH, _whiteView.height)];
+    _weekRecordView.count =
     _weekRecordView.backgroundColor = [UIColor clearColor];
     _weekRecordView.hidden = YES;
     [_whiteView addSubview:_weekRecordView];
@@ -216,9 +220,11 @@ MAMapViewDelegate
     _scrollView.contentSize = CGSizeMake(SCREEN_WIDTH * 2, _scrollView.height);
     [self.view addSubview:_scrollView];
     
+    // 运动
     self.sportView = [[SportView alloc]initWithFrame:CGRectMake(0, 55, SCREEN_WIDTH, _scrollView.height / 3 * 2)];
     [_scrollView addSubview:_sportView];
     
+    // 计步
     self.stepCountView = [[StepCountView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH, 25, SCREEN_WIDTH, _scrollView.height / 3 * 2)];
     [_scrollView addSubview:_stepCountView];
     

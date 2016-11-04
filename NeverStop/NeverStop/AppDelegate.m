@@ -154,18 +154,18 @@ void uncaughtExceptionHandler(NSException *exception) {
     
     
     // 使用NSUserDefaults 读取用户数据
-    NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+//    NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
     // 判断是否第一次进入应用
-    if (![userDef boolForKey:@"notFirst"]) {
+//    if (![userDef boolForKey:@"notFirst"]) {
         // 如果是第一次,进入引导页
         ViewController *viewController = [[ViewController alloc] init];
         viewController.rootTabBarController = rootTabBarController;
         self.window.rootViewController = viewController;
-    } else {
+//    } else {
         // 否则直接进入应用
-        self.window.rootViewController = rootTabBarController;
+//        self.window.rootViewController = rootTabBarController;
        
-    }
+//    }
 
     
     

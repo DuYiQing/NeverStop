@@ -7,11 +7,13 @@
 //
 
 #import "SportView.h"
-
+#import "MapDataManager.h"
+#import "ExerciseData.h"
 @interface SportView ()
 
 @property (nonatomic, strong) UILabel *distanceLabel;
 @property (nonatomic, strong) UILabel *numberLabel;
+@property (nonatomic, strong) MapDataManager *manager;
 
 @end
 
@@ -29,10 +31,22 @@
         [self addSubview:_distanceLabel];
         
         self.numberLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _distanceLabel.y + _distanceLabel.height + 20, SCREEN_WIDTH, 120)];
-        _numberLabel.text = @"0.00";
+        
         _numberLabel.textColor = [UIColor whiteColor];
         _numberLabel.textAlignment = NSTextAlignmentCenter;
         _numberLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:120];
+        self.manager = [MapDataManager shareDataManager];
+        [_manager openDB];
+        [_manager createTable];
+        CGFloat sum = 0;
+        NSArray *array = [_manager selectAll];
+        for (ExerciseData *data in array) {
+            if ([data.exerciseType isEqualToString:@"run"]) {
+                sum += data.distance;
+            }
+        }
+        _numberLabel.text = [NSString stringWithFormat:@"%.2f", sum];
+
         [self addSubview:_numberLabel];
     }
     return self;
@@ -45,4 +59,12 @@
     }
     
 }
+- (void)setContent:(NSString *)content {
+    if (_content != content) {
+        _content = content;
+        _numberLabel.text = content;
+    }
+}
+
+
 @end

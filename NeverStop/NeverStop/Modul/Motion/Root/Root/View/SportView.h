@@ -11,5 +11,5 @@
 @interface SportView : UIView
 
 @property (nonatomic, strong) NSString *titleText;
-
+@property (nonatomic, strong) NSString *content;
 @end

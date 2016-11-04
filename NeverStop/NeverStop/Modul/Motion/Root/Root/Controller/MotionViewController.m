@@ -13,7 +13,8 @@
 #import "WeekRecordView.h"
 #import "WeatherViewController.h"
 #import "TargetViewController.h"
-
+#import "ExerciseData.h"
+#import "MapDataManager.h"
 @interface MotionViewController ()
 <
 UIScrollViewDelegate,
@@ -47,13 +48,28 @@ TargetVCDelegate
 @property (nonatomic, strong) AMapReGeocodeSearchRequest *regeo;
 @property (nonatomic, strong) NSString *address;
 @property (nonatomic, strong) NSString *exerciseType;
+
+@property (nonatomic, strong) MapDataManager *mapDataManager;
+
 @end
 
 @implementation MotionViewController
 
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBarHidden = YES;
-    
+    self.mapDataManager = [MapDataManager shareDataManager];
+    [_mapDataManager openDB];
+    [_mapDataManager createTable];
+    NSArray *array = [_mapDataManager selectAll];
+    CGFloat sum = 0;
+    if (_exerciseType) {
+        for (ExerciseData *data in array) {
+            if ([data.exerciseType isEqualToString:_exerciseType]) {
+                sum += data.distance;
+                _sportView.content = [NSString stringWithFormat:@"%.2f", sum];
+            }
+        }
+    }
 }
 
 - (void)viewDidLoad {
@@ -237,21 +253,39 @@ TargetVCDelegate
     [_rideButton addTarget:self action:@selector(backButtonAction:) forControlEvents:UIControlEventTouchUpInside];
 }
 - (void)backButtonAction:(UIButton *)button {
+    
+    
     if (button.tag == 1114) {
         [_modeButton setImage:[UIImage imageNamed:@"ride"] forState:UIControlStateNormal];
         _sportView.titleText = @"骑行";
-        self.exerciseType = @"riding";
+        self.exerciseType = @"ride";
     } else if (button.tag == 1113) {
         [_modeButton setImage:[UIImage imageNamed:@"walk"] forState:UIControlStateNormal];
         _sportView.titleText = @"走路";
+
         self.exerciseType = @"walk";
 
     } else if (button.tag == 1112) {
         [_modeButton setImage:[UIImage imageNamed:@"run"] forState:UIControlStateNormal];
         _sportView.titleText = @"跑步";
+
         self.exerciseType = @"run";
 
     }
+    self.mapDataManager = [MapDataManager shareDataManager];
+    [_mapDataManager openDB];
+    [_mapDataManager createTable];
+    NSArray *array = [_mapDataManager selectAll];
+    CGFloat sum = 0;
+    if (_exerciseType) {
+        for (ExerciseData *data in array) {
+            if ([data.exerciseType isEqualToString:_exerciseType]) {
+                sum += data.distance;
+                _sportView.content = [NSString stringWithFormat:@"%.2f", sum];
+            }
+        }
+    }
+
     [UIView animateWithDuration:0.2 animations:^{
         _runButton.frame = _backButton.frame;
         _walkButton.frame = _backButton.frame;

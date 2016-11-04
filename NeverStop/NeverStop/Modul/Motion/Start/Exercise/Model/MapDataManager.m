@@ -159,9 +159,10 @@
             a++;
             [array addObject:exerciseData];
         }
-        
+        [db close];
         
     }];
+    
     return array;
 }
 

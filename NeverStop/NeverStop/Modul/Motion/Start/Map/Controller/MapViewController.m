@@ -13,6 +13,7 @@
 #import "ExerciseDataView.h"
 #import "VerticalButton.h"
 #import "ExerciseData.h"
+#import "StatusArrayModel.h"
 @interface MapViewController ()
 <
 UINavigationControllerDelegate,
@@ -31,6 +32,10 @@ MAMapViewDelegate
 @property (nonatomic, strong) UIButton *locationButton;
 @property (nonatomic, strong) UIVisualEffectView *menuEffectView;
 @property (nonatomic, strong) ExerciseData *exerciseData;
+@property (nonatomic, strong) Location *lastLocation;
+@property (nonatomic, strong) NSMutableArray *statusArray;
+
+@property (nonatomic, strong) NSMutableArray *overlayArray;
 @end
 
 @implementation MapViewController
@@ -55,6 +60,7 @@ MAMapViewDelegate
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.location = [[Location alloc] init];
+    self.overlayArray = [NSMutableArray array];
     [self creatMapView];
     self.keyPathArray = @[@"distance", @"duration", @"speedPerHour", @"averageSpeed", @"maxSpeed", @"calorie", @"count"];
     for (int i = 0; i < _keyPathArray.count; i++) {
@@ -106,13 +112,12 @@ MAMapViewDelegate
     [_menuButton setBackgroundImage:[UIImage imageNamed:@"map_btn_menu_normal"] forState:UIControlStateNormal];
     [_menuButton setBackgroundImage:[UIImage imageNamed:@"map_btn_menu_select"] forState:UIControlStateSelected];
     _menuButton.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.3];
-    [self mapType];
     [_menuButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
         weakSelf.menuButton.selected = !weakSelf.menuButton.selected;
         if (weakSelf.menuButton.selected) {
-            weakSelf.menuEffectView.alpha = 1;
+            [weakSelf mapType];
         } else {
-            weakSelf.menuEffectView.alpha = 0;
+            [weakSelf.menuEffectView removeFromSuperview];
         }
     }];
     [self.view addSubview:_menuButton];
@@ -134,7 +139,7 @@ MAMapViewDelegate
     
 }
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    _menuEffectView.alpha = 0;
+    [_menuEffectView removeFromSuperview];
     if (_menuButton.selected == YES) {
         _menuButton.selected = NO;
     }
@@ -145,8 +150,6 @@ MAMapViewDelegate
     UIBlurEffect * blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
     self.menuEffectView = [[UIVisualEffectView alloc]initWithEffect:blur];
     _menuEffectView.frame = CGRectMake(_menuButton.x, _menuButton.y - 160, 250, 140);
-    _menuEffectView.alpha = 0;
-
     [self.view addSubview:_menuEffectView];
     
     VerticalButton *planeButton = [VerticalButton buttonWithType:UIButtonTypeCustom];
@@ -279,27 +282,82 @@ MAMapViewDelegate
     // 中心位置
     CLLocationCoordinate2D centerCoordinate = CLLocationCoordinate2DMake(_userLocation.latitude, _userLocation.longitude);
     [_mapView setCenterCoordinate:centerCoordinate animated:NO];
+    [self drawlocus];
+    MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
+    Location *location = [_exerciseData.allLocationArray firstObject];
+    pointAnnotation.coordinate = CLLocationCoordinate2DMake(location.latitude, location.longitude);
+    
+    [_mapView addAnnotation:pointAnnotation];
 }
+#pragma mark - 绘画运动轨迹
+- (void)drawlocus {
+    // 开始暂停状态及位置数组模型
+    StatusArrayModel *statusArrayModel = [[StatusArrayModel alloc] init];
+    // 记录上一次定位
+    self.lastLocation = [[Location alloc] init];
+    // 存 StatusArrayModel 开始暂停状态及位置数组模型
+    self.statusArray = [NSMutableArray array];
+    // 遍历
+    for (Location *location in _exerciseData.allLocationArray) {
+        // 两次定位的运动状态不同时执行条件语句
+        if (location.isStart != _lastLocation.isStart) {
+            // 拷贝内容
+            StatusArrayModel *statusModelArr = [statusArrayModel copy];
+            if (location.isStart) {
+                statusArrayModel.isStart = YES;
+            } else {
+                statusArrayModel.isStart = NO;
+            }
+            // 当分段数组个数大于0的时候把最后一个元素替换为 深拷贝
+            if (_statusArray.count > 0) {
+                [_statusArray replaceObjectAtIndex:_statusArray.count - 1 withObject:statusModelArr];
+            }
+            
+            [_statusArray addObject:statusArrayModel];
+            // 移除本次状态所有位置信息
+            [statusArrayModel.array removeAllObjects];
+        }
+        // 记录
+        _lastLocation = location;
+        // 状态模型数组添加本次位置
+        [statusArrayModel.array addObject:location];
+    }
+    
+    NSLog(@"%@", _statusArray);
+    
+    if (_mapView.overlays) {
+        [_mapView removeOverlays:_overlayArray];
+    }
+    if (_overlayArray.count > 0) {
+        [_overlayArray removeAllObjects];
+    }
+    for (StatusArrayModel *temp in _statusArray) {
+        
+        CLLocationCoordinate2D commonPolylineCoords[temp.array.count];
+        
+        for (int i = 0; i < temp.array.count; i++) {
+            self.location  = temp.array[i];
+            commonPolylineCoords[i].latitude = self.location.latitude;
+            commonPolylineCoords[i].longitude = self.location.longitude;
+        }
+        //构造折线对象
+        
+        MAPolyline *commonPolyline = [MAPolyline polylineWithCoordinates:commonPolylineCoords count:temp.array.count];
+        if (temp.isStart == YES) {
+            commonPolyline.title = @"1";
+        } else {
+            commonPolyline.title = @"2";
+        }
+        [_overlayArray addObject:commonPolyline];
+        //在地图上添加折线对象
+        [_mapView addOverlay: commonPolyline];
+    }
 
+}
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    
      if ([keyPath isEqualToString:@"count"] && object == _exerciseData) {
-         CLLocationCoordinate2D commonPolylineCoords[_exerciseData.allLocationArray.count];
-         
-         
-         for (int i = 0; i < _exerciseData.allLocationArray.count; i++) {
-             self.location  = _exerciseData.allLocationArray[i];
-             commonPolylineCoords[i].latitude = self.location.latitude;
-             commonPolylineCoords[i].longitude = self.location.longitude;
-         }
-         
-         //构造折线对象
-         if (_mapView.overlays) {
-             
-             [_mapView removeOverlay:_commonPolyline];
-         }
-         self.commonPolyline = [MAPolyline polylineWithCoordinates:commonPolylineCoords count:_exerciseData.allLocationArray.count];
-         //在地图上添加折线对象
-         [_mapView addOverlay: _commonPolyline];
+         [self drawlocus];
 
      }  if ([keyPath isEqualToString:@"duration"] && object == _exerciseData) {
          
@@ -333,17 +391,59 @@ MAMapViewDelegate
     {
         MAPolylineRenderer *polylineRenderer = [[MAPolylineRenderer alloc] initWithPolyline:(MAPolyline *)overlay];
         
-        polylineRenderer.lineWidth = 7.5f;
-        polylineRenderer.strokeColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:1.0];
-        // 连接类型
-        polylineRenderer.lineJoinType = kMALineJoinRound;
-        // 端点类型
-        polylineRenderer.lineCapType = kMALineCapRound;
+      
+
+        if ([overlay.title isEqualToString:@"1"]) {
+            
+            polylineRenderer.lineWidth = 7.5f;
+            // 连接类型
+            polylineRenderer.lineJoinType = kMALineJoinMiter;
+            // 端点类型
+            polylineRenderer.lineCapType = kMALineCapButt;
+            polylineRenderer.strokeColor = [UIColor colorWithRed:0.185 green:1.0 blue:0.6866 alpha:1.0];
+            polylineRenderer.lineDash = NO;
         
+        } else if ([overlay.title isEqualToString:@"2"]) {
+            
+            polylineRenderer.lineWidth = 7.5f;
+            // 连接类型
+            polylineRenderer.lineJoinType = kMALineJoinMiter;
+            // 端点类型
+            polylineRenderer.lineCapType = kMALineCapButt;
+            polylineRenderer.strokeColor  = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0];
+            polylineRenderer.lineDash = YES;
+        }
+
         return polylineRenderer;
     }
     return nil;
 }
+
+- (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id <MAAnnotation>)annotation
+{
+    if ([annotation isKindOfClass:[MAPointAnnotation class]])
+    {
+        static NSString *pointReuseIndentifier = @"pointReuseIndentifier";
+        MAPinAnnotationView*annotationView = (MAPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:pointReuseIndentifier];
+        if (annotationView == nil)
+        {
+            annotationView = [[MAPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pointReuseIndentifier];
+        }
+        annotationView.annotation = annotation;
+        
+        annotationView.canShowCallout = NO;       //设置气泡可以弹出，默认为NO
+        annotationView.animatesDrop = NO;        //设置标注动画显示，默认为NO
+        annotationView.draggable = NO;        //设置标注可以拖动，默认为NO
+//        annotationView.pinColor = MAPinAnnotationColorPurple;
+        
+        annotationView.image = [UIImage imageNamed:@"map_startPoint"];
+        annotationView.centerOffset = CGPointMake(0, -16);
+        
+        return annotationView;
+    }
+    return nil;
+}
+
 
 
 //用来自定义转场动画

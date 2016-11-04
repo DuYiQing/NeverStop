@@ -87,6 +87,10 @@
             }
             self.changingView.frame = frame;
         } else {
+            CGRect frame = self.changingView.frame;
+            
+            frame.size.width = self.width;
+            self.changingView.frame = frame;
             self.aimLabel.text = [_aimLabel.text stringByAppendingString:@" 已完成"];
             CGFloat width = [_aimLabel.text widthWithFont:_aimLabel.font constrainedToHeight:20];
             

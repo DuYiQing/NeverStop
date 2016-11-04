@@ -98,7 +98,6 @@ MAMapViewDelegate
     _exerciseData.calorie = 0.0;
     _exerciseData.exerciseType = self.exerciseType;
     self.isChange = NO;
-    NSLog(@"%@", _exerciseData.exerciseType);
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -504,7 +503,9 @@ MAMapViewDelegate
                 
                 self.progressAimView = [[ProgressAimView alloc] initWithFrame:CGRectMake(15, 64 + 5, SCREEN_WIDTH - 30, 30) aim:self.aim aimType:self.aimType];
                 [self.view addSubview:_progressAimView];
-                
+                if (self.aimType == 0) {
+                    _progressAimView.alpha = 0;
+                }
 #pragma mark - 结束按钮
                 self.endButton = [UIButton buttonWithType:UIButtonTypeCustom];
                 _endButton.frame = CGRectMake(SCREEN_WIDTH / 2 - 40, SCREEN_HEIGHT - 240, 80, 80);
@@ -586,16 +587,49 @@ MAMapViewDelegate
 }
 
 - (void)endButtonAction:(UIButton *)button {
-    [self endTimer];
-    self.mapManager = [MapDataManager shareDataManager];
-    [_mapManager openDB];
-    [_mapManager createTable];
-    [_mapManager insertExerciseData:_exerciseData];
-    NSArray *array = [_mapManager selectAll];
-    NSLog(@"%@", array);
-//    [_mapManager deleteExerciseData];
-    [_exerciseData.allLocationArray removeAllObjects];
-    [self.navigationController popViewControllerAnimated:YES];
+    if (_exerciseData.distance >= 1.0f) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否结束本次运动?" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *destructiveAction = [UIAlertAction actionWithTitle:@"结束" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            [self endTimer];
+            _exerciseData.aim = self.aim;
+            _exerciseData.aimType = self.aimType;
+            self.mapManager = [MapDataManager shareDataManager];
+            [_mapManager openDB];
+            [_mapManager createTable];
+            [_mapManager insertExerciseData:_exerciseData];
+            NSArray *array = [_mapManager selectAll];
+            NSLog(@"%@", array);
+            //    [_mapManager deleteExerciseData];
+            [_exerciseData.allLocationArray removeAllObjects];
+
+            [self.navigationController popViewControllerAnimated:YES];
+            
+          
+            
+        }];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"继续" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:cancelAction];
+        [alert addAction:destructiveAction];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        
+        
+    } else {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"本次运动距离过短, 无法保存。\n是否结束本次运动?" preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *destructiveAction = [UIAlertAction actionWithTitle:@"结束运动" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            [self endTimer];
+            [_exerciseData.allLocationArray removeAllObjects];
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"继续" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+           
+
+        }];
+        [alert addAction:cancelAction];
+        [alert addAction:destructiveAction];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    }
 }
 
 - (void)pauseButtonAction:(UIButton *)button {

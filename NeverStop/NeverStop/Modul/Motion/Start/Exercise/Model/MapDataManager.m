@@ -27,7 +27,7 @@
 - (void)openDB{
     NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
     NSLog(@"%@",path);
-    NSString *dataPath = [path stringByAppendingPathComponent:@"dataBase.sqlite"];
+    NSString *dataPath = [path stringByAppendingPathComponent:@"ExerciseData.sqlite"];
     
     
     //获取数据库的路径     //这是考虑钱的时候,如同时注册   不管几个线程访问他,他会自己安排顺序
@@ -51,7 +51,7 @@
 - (void)createTable{
     
     [self.myQueue inDatabase:^(FMDatabase *db) {
-        BOOL result = [db executeUpdate:@"create table if not exists ExerciseData (exercise_id integer primary key autoincrement, exerciseType text not null, count integer, distance real, duration real, speedPerHour real, averageSpeed real, maxSpeed real, calorie real)"];
+        BOOL result = [db executeUpdate:@"create table if not exists ExerciseData (exercise_id integer primary key autoincrement, exerciseType text not null, count integer, distance real, duration real, speedPerHour real, averageSpeed real, maxSpeed real, calorie real, aim text not null, aimType integer)"];
         BOOL resultChild = [db executeUpdate:@"create table if not exists AllLocationArray (location_id integer primary key, longitude real, latitude real, isStart integer, exercise_id integer)"];
         if (result && resultChild) {
             
@@ -68,7 +68,7 @@
 //插入数据
 - (void)insertExerciseData:(ExerciseData *)exerciseData {
 //    NSError *error = nil;
-    NSString *sql = [NSString stringWithFormat:@"insert into ExerciseData values (null, '%@', %ld, %.2f, %.2f, %.2f, %.2f, %.2f, %.2f)", exerciseData.exerciseType, exerciseData.count, exerciseData.distance, exerciseData.duration, exerciseData.speedPerHour, exerciseData.averageSpeed, exerciseData.maxSpeed, exerciseData.calorie];
+    NSString *sql = [NSString stringWithFormat:@"insert into ExerciseData values (null, '%@', %ld, %.2f, %.2f, %.2f, %.2f, %.2f, %.2f, '%@', %ld)", exerciseData.exerciseType, exerciseData.count, exerciseData.distance, exerciseData.duration, exerciseData.speedPerHour, exerciseData.averageSpeed, exerciseData.maxSpeed, exerciseData.calorie, exerciseData.aim, exerciseData.aimType];
     
 
     [self.myQueue inDatabase:^(FMDatabase *db) {
@@ -92,6 +92,7 @@
             NSLog(@"插入失败");
         }
     }];
+    
     
 }
 - (void)deleteExerciseData {
@@ -142,6 +143,8 @@
             exerciseData.averageSpeed = [result doubleForColumn:@"averageSpeed"];
             exerciseData.maxSpeed = [result doubleForColumn:@"maxSpeed"];
             exerciseData.calorie = [result doubleForColumn:@"calorie"];
+            exerciseData.aim = [result objectForColumnName:@"aim"];
+            exerciseData.aimType = [result intForColumn:@"aimType"];
             NSString *sqlChild = [NSString stringWithFormat:@"select *from AllLocationArray where exercise_id = %d", a];
             FMResultSet *resultChild = [db executeQuery:sqlChild];
             while ([resultChild next]) {

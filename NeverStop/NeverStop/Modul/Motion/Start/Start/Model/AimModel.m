@@ -8,16 +8,33 @@
 
 #import "AimModel.h"
 
+
+@interface AimModel ()
+@end
+
 @implementation AimModel
+
 + (NSArray *) creatAimData {
    
     NSMutableArray *defaultSettingArray = [NSMutableArray arrayWithObjects:@"普通运动", nil];
     NSMutableDictionary *defaultAimDic = [NSMutableDictionary dictionary];
     [defaultAimDic setValue:@"不设目标" forKey:@"aimName"];
     [defaultAimDic setValue:defaultSettingArray forKey:@"aimSetting"];
+    [[MapDataManager shareDataManager] openDB];
+    [[MapDataManager shareDataManager] createTable];
+   NSArray *array = [[MapDataManager shareDataManager] selectAll];
+    NSMutableArray *lastSettingArray = [NSMutableArray array];
+    if (array.count > 0) {
+        ExerciseData *exerciseData = [array lastObject];
+        if (exerciseData.aimType == 0) {
+            [lastSettingArray addObject:@"无"];
+        } else {
+            [lastSettingArray addObject:exerciseData.aim];
+        }
+    } else {
+        [lastSettingArray addObject:@"无"];
+    }
     
-    
-    NSMutableArray *lastSettingArray = [NSMutableArray arrayWithObjects:@"无", nil];
     NSMutableDictionary *lastAimDic = [NSMutableDictionary dictionary];
     [lastAimDic setValue:@"上次选择" forKey:@"aimName"];
     [lastAimDic setValue:lastSettingArray forKey:@"aimSetting"];
@@ -44,7 +61,7 @@
     [calorieAimDic setValue:calorieSettingArray forKey:@"aimSetting"];
     
     
-    NSMutableArray *array = [NSMutableArray arrayWithObjects:defaultAimDic, lastAimDic, distanceAimDic, timeAimDic, calorieAimDic, nil];
-    return array;
+    NSMutableArray *allArray = [NSMutableArray arrayWithObjects:defaultAimDic, lastAimDic, distanceAimDic, timeAimDic, calorieAimDic, nil];
+    return allArray;
 }
 @end

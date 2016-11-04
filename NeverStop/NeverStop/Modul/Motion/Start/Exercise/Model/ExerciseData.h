@@ -19,4 +19,6 @@
 @property (nonatomic, assign) CGFloat maxSpeed;
 @property (nonatomic, assign) CGFloat calorie;
 @property (nonatomic, strong) NSString *exerciseType;
+@property (nonatomic, strong) NSString *aim;
+@property (nonatomic, assign) NSInteger aimType;
 @end

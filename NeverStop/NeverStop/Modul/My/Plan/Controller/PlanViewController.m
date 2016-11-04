@@ -9,6 +9,7 @@
 #import "PlanViewController.h"
 #import "PlanModel.h"
 #import "PlanTableViewCell.h"
+#import "CategoriesViewController.h"
 
 @interface PlanViewController ()
 <
@@ -74,6 +75,15 @@ UITableViewDataSource
         NSLog(@"error : %@", error);
         
     }];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    CategoriesViewController *categoriesVC = [[CategoriesViewController alloc] init];
+    PlanModel *planModel = _planModelArr[indexPath.row];
+    categoriesVC.trainId = planModel.trainId;
+    [self.navigationController pushViewController:categoriesVC animated:YES];
+
+
 }
 
 - (void)didReceiveMemoryWarning {

@@ -16,6 +16,7 @@ UITableViewDataSource,
 UITableViewDelegate
 >
 @property (nonatomic, strong) UITableView *othersTableView;
+@property (nonatomic, strong) UILabel *cachesLabel;
 
 @end
 
@@ -23,11 +24,13 @@ UITableViewDelegate
 
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBarHidden = NO;
+    self.cachesLabel.text = [NSString stringWithFormat:@"%.2fM", [self folderSize]];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     [self createOthersTableView];
     
 }
@@ -37,6 +40,66 @@ UITableViewDelegate
     _othersTableView.delegate = self;
     _othersTableView.dataSource = self;
     [self.view addSubview:_othersTableView];
+    
+    self.cachesLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 100, 44, 80, 40)];
+    _cachesLabel.textAlignment = NSTextAlignmentRight;
+    _cachesLabel.textColor = [UIColor lightGrayColor];
+    _cachesLabel.font = kFONT_SIZE_15;
+    [self.view addSubview:_cachesLabel];
+    
+}
+// 计算缓存
+- (CGFloat)folderSize{
+    CGFloat folderSize;
+    
+    //获取路径
+    NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory,NSUserDomainMask,YES)firstObject];
+    
+    //获取所有文件的数组
+    NSArray *files = [[NSFileManager defaultManager] subpathsAtPath:cachePath];
+    
+    for(NSString *path in files) {
+        
+        NSString*filePath = [cachePath stringByAppendingString:[NSString stringWithFormat:@"/%@",path]];
+        
+        //累加
+        folderSize += [[NSFileManager defaultManager]attributesOfItemAtPath:filePath error:nil].fileSize;
+    }
+    //转换为M为单位
+    CGFloat sizeM = folderSize /1024.0/1024.0;
+    // 缓存大于20M时自动清除缓存
+    if (sizeM > 20) {
+        [self removeCache];
+    }
+    
+    return sizeM;
+}
+
+// 清除缓存
+- (void)removeCache{
+    //===============清除缓存==============
+    //获取路径
+    NSString*cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory,NSUserDomainMask,YES)objectAtIndex:0];
+    
+    //返回路径中的文件数组
+    NSArray*files = [[NSFileManager defaultManager]subpathsAtPath:cachePath];
+    
+    NSLog(@"文件数：%ld",[files count]);
+    for(NSString *p in files){
+        NSError*error;
+        
+        NSString*path = [cachePath stringByAppendingString:[NSString stringWithFormat:@"/%@",p]];
+        
+        if([[NSFileManager defaultManager]fileExistsAtPath:path])
+        {
+            BOOL isRemove = [[NSFileManager defaultManager]removeItemAtPath:path error:&error];
+            if(isRemove) {
+                _cachesLabel.text = [NSString stringWithFormat:@"%.2fM", [self folderSize]];
+            }else{
+                NSLog(@"清除失败");
+            } 
+        }
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -73,7 +136,7 @@ UITableViewDelegate
         }
             break;
         case 1:{
-            NSLog(@"清除缓存");
+            [self removeCache];
         }
             break;
         case 2:{

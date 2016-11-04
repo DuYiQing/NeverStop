@@ -11,7 +11,6 @@
 #import "ExerciseData.h"
 @interface SportView ()
 
-@property (nonatomic, strong) UILabel *distanceLabel;
 @property (nonatomic, strong) UILabel *numberLabel;
 @property (nonatomic, strong) MapDataManager *manager;
 

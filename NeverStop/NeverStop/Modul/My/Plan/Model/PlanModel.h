@@ -10,6 +10,7 @@
 
 @interface PlanModel : NSObject
 
+@property (nonatomic, strong) NSNumber *trainId;
 @property (nonatomic, strong) NSString *cover;
 
 @end

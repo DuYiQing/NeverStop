@@ -12,4 +12,5 @@
 
 @property (nonatomic, strong) NSString *titleText;
 @property (nonatomic, strong) NSString *content;
+@property (nonatomic, strong) UILabel *distanceLabel;
 @end

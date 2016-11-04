@@ -15,9 +15,11 @@
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) SQLiteDatabaseManager *manager;
 @property (nonatomic, strong) NSMutableArray *selectStringArray;
-@property (nonatomic, strong) NSString *yearMonString;
+@property (nonatomic, strong) NSString *yearString;
+@property (nonatomic, strong) NSString *monthString;
 @property (nonatomic, strong) NSMutableArray *countArray;
 @property (nonatomic, assign) NSInteger maxCount;
+@property (nonatomic, strong) NSArray *dayArr;
 
 @end
 
@@ -28,14 +30,20 @@
     self = [super initWithFrame:frame];
     
     if (self) {
+
         self.maxCount = 0;
         self.selectStringArray = [NSMutableArray array];
         self.countArray = [NSMutableArray array];
         
-        self.yearMonString = [NSDate getSystemTimeStringWithFormat:@"yyyy-MM"];
+        self.yearString = [NSDate getSystemTimeStringWithFormat:@"yyyy"];
+        self.monthString = [NSDate getSystemTimeStringWithFormat:@"MM"];
         self.manager = [SQLiteDatabaseManager shareManager];
         NSString *dayString = [NSDate getSystemTimeStringWithFormat:@"dd"];
-        NSInteger date = [dayString integerValue];
+        NSString *dateString = [NSString stringWithFormat:@"%@-%@-%@", _yearString, _monthString, dayString];
+        NSDate *date = [NSDate dateWithString:dateString format:@"yyyy-MM-dd"];
+        
+        
+
         
         for (int i = 0; i < 7; i++) {
             
@@ -52,24 +60,28 @@
             changeView.clipsToBounds = YES;
             [rectView addSubview:changeView];
 
+            // 秒数
+            NSTimeInterval time = (6 - i) * 24 * 60 * 60;
+            // 下周就把"-"去掉
+            NSDate *lastWeek = [date dateByAddingTimeInterval:-time];
+            NSString *startDate =  [lastWeek stringWithDateFormat:@"yyyy-MM-dd"];
+            [_selectStringArray addObject:startDate];
+
             
             UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(rectView.x - 10, rectView.y + rectView.height + 5, 30, 20)];
-            dateLabel.text = [NSString stringWithFormat:@"%ld日", date - 6 + i];
+            dateLabel.text = [NSString stringWithFormat:@"%@日", [startDate substringWithRange:NSMakeRange(8, 2)]];
             dateLabel.font = kFONT_SIZE_10_BOLD;
             dateLabel.textAlignment = NSTextAlignmentCenter;
             dateLabel.textColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74/255.f alpha:1.0];
             [self addSubview:dateLabel];
-            
-            // 查询条件 yearMonString 拼接 datelabel
-            NSString *dayString = [dateLabel.text substringToIndex:2];
-            NSString *selectString = [NSString stringWithFormat:@"%@-%@", _yearMonString, dayString];
-            [_selectStringArray addObject:selectString];
+            [_manager openSQLite];
+
             StepCountModel *stepCountModel = [_manager selectStepCountWithDate:_selectStringArray[i]];
             [_countArray addObject:stepCountModel];
+            [_manager closeSQLite];
         }
         
         self.timer = [NSTimer scheduledTimerWithTimeInterval:0.03 target:self selector:@selector(change) userInfo:nil repeats:YES];
-        
     }
     return self;
 }
@@ -84,7 +96,7 @@
         changeView.frame = frame;
         
         StepCountModel *stepCountModel = _countArray[i];
-        CGFloat count = [stepCountModel.stepCount integerValue] * 70 / 10000;
+        CGFloat count = [stepCountModel.stepCount integerValue] * 70 / _count;
         self.maxCount = _maxCount > count ? _maxCount : count;
         
         if (frame.size.height> _maxCount) {

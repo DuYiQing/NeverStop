@@ -15,12 +15,12 @@
 #import "TargetViewController.h"
 #import "ExerciseData.h"
 #import "MapDataManager.h"
+
 @interface MotionViewController ()
 <
 UIScrollViewDelegate,
 AMapSearchDelegate,
-MAMapViewDelegate,
-TargetVCDelegate
+MAMapViewDelegate
 >
 @property (nonatomic, strong) UIBlurEffect *blur;
 @property (nonatomic, strong) UIVisualEffectView *blurEffectView;
@@ -50,6 +50,8 @@ TargetVCDelegate
 @property (nonatomic, strong) NSString *exerciseType;
 
 @property (nonatomic, strong) MapDataManager *mapDataManager;
+@property (nonatomic, strong) TargetManager *targetManager;
+@property (nonatomic, strong) NSArray *getTargetArr;
 
 @end
 
@@ -69,6 +71,13 @@ TargetVCDelegate
                 _sportView.content = [NSString stringWithFormat:@"%.2f", sum];
             }
         }
+    [_targetManager openSQLite];
+    self.getTargetArr = [_targetManager selectTarget];
+    if (_getTargetArr.count != 0) {
+        TargetModel *targetModel = [_getTargetArr lastObject];
+        _stepCountView.target = targetModel.target;
+        _weekRecordView.count = [targetModel.target integerValue];
+    }
     }
 }
 
@@ -76,11 +85,11 @@ TargetVCDelegate
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
-    TargetViewController *targetVC = [[TargetViewController alloc] init];
-    targetVC.delegate = self;
-    
     self.view.backgroundColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74/255.f alpha:1.0];
     self.exerciseType = @"run";
+
+   
+
 
     // 地图定位
     self.mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
@@ -111,7 +120,7 @@ TargetVCDelegate
     // 插入数据库
     NSString *dateString = [NSDate getSystemTimeStringWithFormat:@"yyyy-MM-dd"];
     [_SQLManager insertIntoWithStepCountModel:dateString];
-    
+    [_SQLManager closeSQLite];
 
     FTPopOverMenuConfiguration *configuration = [FTPopOverMenuConfiguration defaultConfiguration];
 
@@ -121,7 +130,21 @@ TargetVCDelegate
     configuration.tintColor = [UIColor colorWithWhite:1.0 alpha:0.9];
 
     [self showRootView];
+    self.targetManager = [TargetManager shareTargetManager];
+    [_targetManager openSQLite];
+    [_targetManager createTable];
+    self.getTargetArr = [_targetManager selectTarget];
     
+    if (_getTargetArr.count != 0) {
+        TargetModel *targetModel = [_getTargetArr lastObject];
+        _stepCountView.target = targetModel.target;
+        _weekRecordView.count = [targetModel.target integerValue];
+    } else {
+        _stepCountView.target = @"10000步";
+        _weekRecordView.count = 10000;
+    }
+    
+    [_targetManager closeSQLite];
     
 }
 // 实时更新定位
@@ -171,6 +194,7 @@ TargetVCDelegate
     
     // 一周步行记录表
     self.weekRecordView = [[WeekRecordView alloc] initWithFrame:CGRectMake((_whiteView.width - SCREEN_WIDTH) / 2, 0, SCREEN_WIDTH, _whiteView.height)];
+//    _weekRecordView.count =
     _weekRecordView.backgroundColor = [UIColor clearColor];
     _weekRecordView.hidden = YES;
     [_whiteView addSubview:_weekRecordView];
@@ -213,10 +237,13 @@ TargetVCDelegate
     _scrollView.contentSize = CGSizeMake(SCREEN_WIDTH * 2, _scrollView.height);
     [self.view addSubview:_scrollView];
     
+    // 运动
     self.sportView = [[SportView alloc]initWithFrame:CGRectMake(0, 55, SCREEN_WIDTH, _scrollView.height / 3 * 2)];
     [_scrollView addSubview:_sportView];
     
+    // 计步
     self.stepCountView = [[StepCountView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH, 25, SCREEN_WIDTH, _scrollView.height / 3 * 2)];
+    
     [_scrollView addSubview:_stepCountView];
     
 }
@@ -304,7 +331,7 @@ TargetVCDelegate
 #pragma mark - 切换运动和计步
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-
+    
     CGFloat lenth = scrollView.contentOffset.x / 180;
     CGAffineTransform trans = CGAffineTransformRotate(_startButton.transform, -lenth * 35/ 180.0 * M_PI);
     _sportView.transform = CGAffineTransformIdentity;
@@ -323,13 +350,16 @@ TargetVCDelegate
         _startButton.height = _startButton.width;
         _startButton.x = (_whiteView.width - _startButton.width) / 2;
         _startButton.layer.cornerRadius = _startButton.width / 2;
+
     }
     if (scrollView.contentOffset.x > SCREEN_WIDTH / 2) {
         [_stepCountButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_sportButton setTitleColor:[UIColor colorWithWhite:0.7 alpha:0.4] forState:UIControlStateNormal];
         _modeButton.hidden = YES;
         [UIView animateWithDuration:0.2f animations:^{
-            _startButton.backgroundColor = [UIColor whiteColor];
+            _startButton.userInteractionEnabled = NO;
+            _startButton.backgroundColor = [UIColor clearColor];
+            
         }];
         if (scrollView.contentOffset.x == SCREEN_WIDTH) {
             _startButton.hidden = YES;
@@ -343,10 +373,25 @@ TargetVCDelegate
             _startButton.backgroundColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74/255.f alpha:1.0];
         } completion:^(BOOL finished) {
             _startButton.hidden = NO;
+            _startButton.userInteractionEnabled = YES;
             _weekRecordView.hidden = YES;
         }];
 
     }
+}
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [UIView animateWithDuration:0.3f animations:^{
+        _stepCountView.todyLabel.alpha = 0;
+        _stepCountView.targetLabel.alpha = 0;
+        _sportView.distanceLabel.alpha = 0;
+    }];
+}
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    [UIView animateWithDuration:0.3f animations:^{
+        _stepCountView.todyLabel.alpha = 1;
+        _stepCountView.targetLabel.alpha = 1;
+        _sportView.distanceLabel.alpha = 1;
+    }];
 }
 - (void)sportButtonAction {
     [UIView animateWithDuration:0.5f animations:^{
@@ -424,8 +469,8 @@ TargetVCDelegate
     }
 }
 
-- (void)targetChanged:(NSString *)target {
-    _stepCountView.target = target;
+- (void)viewDidDisappear:(BOOL)animated {
+    [_targetManager closeSQLite];
 }
 
 - (void)didReceiveMemoryWarning {

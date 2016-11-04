@@ -79,8 +79,6 @@
         _targetLabel.textColor = [UIColor whiteColor];
         _targetLabel.font = kFONT_SIZE_18;
         [_roundView addSubview:_targetLabel];
-
-        
         [[HealthManager shareInstance] getStepCount:[HealthManager predicateForSamplesToday] completionHandler:^(double value, NSError *error) {
             if (error) {
                 NSLog(@"error");
@@ -97,12 +95,12 @@
                     
                     self.percent = _systemStep / [_targetLabel.text floatValue];
                     [_stepProgressView setProgress:_percent Animated:YES];
-
+                    
                 });
             }
         }];
         
-//        [[StepManager shareManager] startWithStep];
+        //        [[StepManager shareManager] startWithStep];
         timer = [NSTimer scheduledTimerWithTimeInterval:1.f target:self selector:@selector(getStepNumber) userInfo:nil repeats:YES];
         [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
         
@@ -113,7 +111,7 @@
 
 
 - (void)getStepNumber{
-//    long step = [StepManager shareManager].step;
+    //    long step = [StepManager shareManager].step;
     _stepCountLabel.text = [NSString stringWithFormat:@"%ld",_step + _systemStep];
     [_sqlManager openSQLite];
     [_sqlManager updateStepCount:_stepCountLabel.text date:_dateString];
@@ -127,5 +125,4 @@
         _targetLabel.text = target;
     }
 }
-
 @end

@@ -57,6 +57,8 @@ MAMapViewDelegate
 @property (nonatomic, strong) NSArray *keyPathArray;
 @property (nonatomic, strong) ProgressAimView *progressAimView;
 @property (nonatomic, assign) NSInteger secondPauseLocation;
+
+@property (nonatomic, assign) BOOL isChange;
 @end
 
 @implementation ExerciseViewController
@@ -95,6 +97,7 @@ MAMapViewDelegate
     _exerciseData.maxSpeed = 0.00;
     _exerciseData.calorie = 0.0;
     _exerciseData.exerciseType = self.exerciseType;
+    self.isChange = NO;
     NSLog(@"%@", _exerciseData.exerciseType);
 }
 - (void)viewDidLoad {
@@ -175,18 +178,34 @@ MAMapViewDelegate
         location.longitude = userLocation.coordinate.longitude;
         if (self.isMoving == YES) {
             location.isStart = YES;
+            if (_isChange == YES) {
+                Location *lastLoc = [location copy];
+                lastLoc.isStart = NO;
+                [_exerciseData.allLocationArray replaceObjectAtIndex:_exerciseData.allLocationArray.count - 1 withObject:lastLoc];
+                _exerciseData.count = _exerciseData.allLocationArray.count;
+            }
+            _isChange = NO;
             [_exerciseData.allLocationArray addObject:location];
             _exerciseData.count = _exerciseData.allLocationArray.count;
         } else {
+            Location *lastLoc = [_lastLocation copy];
+            lastLoc.isStart = NO;
             location.isStart = NO;
             if (_secondPauseLocation <= 2) {
-                [_exerciseData.allLocationArray addObject:location];
-                _exerciseData.count = _exerciseData.allLocationArray.count;
+                if (_secondPauseLocation == 1) {
+                    [_exerciseData.allLocationArray addObject:lastLoc];
+                    _exerciseData.count = _exerciseData.allLocationArray.count;
+                    
+                } else {
+                    [_exerciseData.allLocationArray addObject:location];
+                    _exerciseData.count = _exerciseData.allLocationArray.count;
+                }
             } else {
                 [_exerciseData.allLocationArray replaceObjectAtIndex:_exerciseData.allLocationArray.count - 1 withObject:location];
                 _exerciseData.count = _exerciseData.allLocationArray.count;
             }
             _secondPauseLocation++;
+            _isChange = YES;
         }
         // 添加到坐标数组中
        
@@ -219,12 +238,12 @@ MAMapViewDelegate
                 }
             }
          
-            _lastLocation.latitude = location.latitude;
-            _lastLocation.longitude = location.longitude;
-            _lastLocation.isStart = location.isStart;
-            self.lastTime = _exerciseData.duration;
         }
         
+        self.lastTime = _exerciseData.duration;
+        _lastLocation.isStart = location.isStart;
+        _lastLocation.latitude = location.latitude;
+        _lastLocation.longitude = location.longitude;
     
     
         

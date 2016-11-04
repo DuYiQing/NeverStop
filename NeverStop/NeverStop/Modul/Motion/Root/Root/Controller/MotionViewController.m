@@ -13,7 +13,8 @@
 #import "WeekRecordView.h"
 #import "WeatherViewController.h"
 #import "TargetViewController.h"
-
+#import "ExerciseData.h"
+#import "MapDataManager.h"
 
 @interface MotionViewController ()
 <
@@ -47,6 +48,8 @@ MAMapViewDelegate
 @property (nonatomic, strong) AMapReGeocodeSearchRequest *regeo;
 @property (nonatomic, strong) NSString *address;
 @property (nonatomic, strong) NSString *exerciseType;
+
+@property (nonatomic, strong) MapDataManager *mapDataManager;
 @property (nonatomic, strong) TargetManager *targetManager;
 @property (nonatomic, strong) NSArray *getTargetArr;
 
@@ -56,12 +59,25 @@ MAMapViewDelegate
 
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBarHidden = YES;
+    self.mapDataManager = [MapDataManager shareDataManager];
+    [_mapDataManager openDB];
+    [_mapDataManager createTable];
+    NSArray *array = [_mapDataManager selectAll];
+    CGFloat sum = 0;
+    if (_exerciseType) {
+        for (ExerciseData *data in array) {
+            if ([data.exerciseType isEqualToString:_exerciseType]) {
+                sum += data.distance;
+                _sportView.content = [NSString stringWithFormat:@"%.2f", sum];
+            }
+        }
     [_targetManager openSQLite];
     self.getTargetArr = [_targetManager selectTarget];
     if (_getTargetArr.count != 0) {
         TargetModel *targetModel = [_getTargetArr lastObject];
         _stepCountView.target = targetModel.target;
         _weekRecordView.count = [targetModel.target integerValue];
+    }
     }
 }
 
@@ -72,19 +88,7 @@ MAMapViewDelegate
     self.view.backgroundColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74/255.f alpha:1.0];
     self.exerciseType = @"run";
 
-    self.targetManager = [TargetManager shareTargetManager];
-    [_targetManager openSQLite];
-    [_targetManager createTable];
-    self.getTargetArr = [_targetManager selectTarget];
-
-    if (_getTargetArr.count != 0) {
-        TargetModel *targetModel = [_getTargetArr lastObject];
-        _stepCountView.target = targetModel.target;
-        _weekRecordView.count = [targetModel.target integerValue];
-    } else {
-        _stepCountView.target = @"10000步";
-        _weekRecordView.count = 10000;
-    }
+   
 
 
     // 地图定位
@@ -126,6 +130,19 @@ MAMapViewDelegate
     configuration.tintColor = [UIColor colorWithWhite:1.0 alpha:0.9];
 
     [self showRootView];
+    self.targetManager = [TargetManager shareTargetManager];
+    [_targetManager openSQLite];
+    [_targetManager createTable];
+    self.getTargetArr = [_targetManager selectTarget];
+    
+    if (_getTargetArr.count != 0) {
+        TargetModel *targetModel = [_getTargetArr lastObject];
+        _stepCountView.target = targetModel.target;
+        _weekRecordView.count = [targetModel.target integerValue];
+    } else {
+        _stepCountView.target = @"10000步";
+        _weekRecordView.count = 10000;
+    }
     
     [_targetManager closeSQLite];
     
@@ -263,21 +280,39 @@ MAMapViewDelegate
     [_rideButton addTarget:self action:@selector(backButtonAction:) forControlEvents:UIControlEventTouchUpInside];
 }
 - (void)backButtonAction:(UIButton *)button {
+    
+    
     if (button.tag == 1114) {
         [_modeButton setImage:[UIImage imageNamed:@"ride"] forState:UIControlStateNormal];
         _sportView.titleText = @"骑行";
-        self.exerciseType = @"riding";
+        self.exerciseType = @"ride";
     } else if (button.tag == 1113) {
         [_modeButton setImage:[UIImage imageNamed:@"walk"] forState:UIControlStateNormal];
         _sportView.titleText = @"走路";
+
         self.exerciseType = @"walk";
 
     } else if (button.tag == 1112) {
         [_modeButton setImage:[UIImage imageNamed:@"run"] forState:UIControlStateNormal];
         _sportView.titleText = @"跑步";
+
         self.exerciseType = @"run";
 
     }
+    self.mapDataManager = [MapDataManager shareDataManager];
+    [_mapDataManager openDB];
+    [_mapDataManager createTable];
+    NSArray *array = [_mapDataManager selectAll];
+    CGFloat sum = 0;
+    if (_exerciseType) {
+        for (ExerciseData *data in array) {
+            if ([data.exerciseType isEqualToString:_exerciseType]) {
+                sum += data.distance;
+                _sportView.content = [NSString stringWithFormat:@"%.2f", sum];
+            }
+        }
+    }
+
     [UIView animateWithDuration:0.2 animations:^{
         _runButton.frame = _backButton.frame;
         _walkButton.frame = _backButton.frame;

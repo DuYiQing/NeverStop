@@ -75,7 +75,6 @@
 		EE1A003A1DB8CF610003762E /* UIColor+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A00091DB8CF610003762E /* UIColor+Categories.m */; };
 		EE1A003B1DB8CF610003762E /* UIImage+Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A000B1DB8CF610003762E /* UIImage+Categories.m */; };
 		EE1A003C1DB8CF610003762E /* UILabel+SizeToFit_W_H.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A000D1DB8CF610003762E /* UILabel+SizeToFit_W_H.m */; };
-		EE1A003D1DB8CF610003762E /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A000F1DB8CF610003762E /* UIView+Frame.m */; };
 		EE1A003E1DB8CF610003762E /* DataBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A00121DB8CF610003762E /* DataBaseManager.m */; };
 		EE1A003F1DB8CF610003762E /* HttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A00161DB8CF610003762E /* HttpClient.m */; };
 		EE1A00401DB8CF610003762E /* AppStoreUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A00191DB8CF610003762E /* AppStoreUtils.m */; };
@@ -93,6 +92,8 @@
 		EE8953A51DC75DEC00F4AB3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE56EAAF1DB8CE6D000B8082 /* Assets.xcassets */; };
 		EE8953AA1DC75FFB00F4AB3C /* MyInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE8953A81DC75E4700F4AB3C /* MyInfoTableViewCell.m */; };
 		EEADD65A1DC246B900A5EB52 /* MapDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EEADD6591DC246B900A5EB52 /* MapDataManager.m */; };
+		EEADE9251DC97ED70060209D /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A000F1DB8CF610003762E /* UIView+Frame.m */; };
+		EEADE92F1DC994F20060209D /* StatusArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EEADE92E1DC994F20060209D /* StatusArrayModel.m */; };
 		EEBA13F61DBF8AD60001F7A4 /* ExerciseDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = EEBA13F51DBF8AD60001F7A4 /* ExerciseDataView.m */; };
 		EEC8E70D1DB8ED1500349793 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEC8E70C1DB8ED1500349793 /* HealthKit.framework */; };
 		EEE3D7101DC19A26003D0CC5 /* RouteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E49221DBCD0EB004105F2 /* RouteTableViewCell.m */; };
@@ -299,6 +300,8 @@
 		EE8953A81DC75E4700F4AB3C /* MyInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyInfoTableViewCell.m; sourceTree = "<group>"; };
 		EEADD6581DC246B900A5EB52 /* MapDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapDataManager.h; sourceTree = "<group>"; };
 		EEADD6591DC246B900A5EB52 /* MapDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapDataManager.m; sourceTree = "<group>"; };
+		EEADE92D1DC994F20060209D /* StatusArrayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusArrayModel.h; sourceTree = "<group>"; };
+		EEADE92E1DC994F20060209D /* StatusArrayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusArrayModel.m; sourceTree = "<group>"; };
 		EEBA13F41DBF8AD60001F7A4 /* ExerciseDataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseDataView.h; sourceTree = "<group>"; };
 		EEBA13F51DBF8AD60001F7A4 /* ExerciseDataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseDataView.m; sourceTree = "<group>"; };
 		EEC8E70C1DB8ED1500349793 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -866,8 +869,8 @@
 		EE1D81A51DC0CA4A00FA6CD5 /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				EEADE9291DC994500060209D /* Model */,
 				EE1D81A91DC0CA6300FA6CD5 /* Controller */,
-				EE1D81AB1DC0CA6700FA6CD5 /* Model */,
 				EE1D81AA1DC0CA6500FA6CD5 /* View */,
 			);
 			path = Map;
@@ -889,13 +892,6 @@
 				EE0115261DC425ED001B44AD /* VerticalButton.m */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		EE1D81AB1DC0CA6700FA6CD5 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		EE56EA971DB8CE6D000B8082 = {
@@ -1009,6 +1005,15 @@
 				EE8953A81DC75E4700F4AB3C /* MyInfoTableViewCell.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		EEADE9291DC994500060209D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EEADE92D1DC994F20060209D /* StatusArrayModel.h */,
+				EEADE92E1DC994F20060209D /* StatusArrayModel.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		EEE3D7111DC1A1A9003D0CC5 /* Controller */ = {
@@ -1281,6 +1286,7 @@
 				EEE3D72C1DC1A1A9003D0CC5 /* CustomAnimateTransitionPop.m in Sources */,
 				EEE3D76B1DC220E3003D0CC5 /* ExerciseData.m in Sources */,
 				49060C471DBF8461003FE373 /* NearbyViewController.m in Sources */,
+				EEADE92F1DC994F20060209D /* StatusArrayModel.m in Sources */,
 				49704A8A1DBE217C0028DB2F /* DetailTableViewCell.m in Sources */,
 				EEE3D7281DC1A1A9003D0CC5 /* StartViewController.m in Sources */,
 				EE1A00441DB8CF610003762E /* UIImageView+XLWebCache.m in Sources */,
@@ -1311,10 +1317,9 @@
 				EE1A00321DB8CF610003762E /* NSDictionary+Categories.m in Sources */,
 				EE1A00351DB8CF610003762E /* NSString+Regex.m in Sources */,
 				49677B0E1DC6F92A00F23B6B /* GroupViewController.m in Sources */,
-				EE1A003D1DB8CF610003762E /* UIView+Frame.m in Sources */,
+				EEADE9251DC97ED70060209D /* UIView+Frame.m in Sources */,
 				4995E3C81DC3007300442618 /* TCH_Run.m in Sources */,
 				4995E3B61DC2F19000442618 /* NearbyDetailedTableViewCell.m in Sources */,
-				EE1A003D1DB8CF610003762E /* UIView+Frame.m in Sources */,
 				EE1A00341DB8CF610003762E /* NSString+Categories.m in Sources */,
 				EEE3D72A1DC1A1A9003D0CC5 /* AimSettingPickerView.m in Sources */,
 				EEBA13F61DBF8AD60001F7A4 /* ExerciseDataView.m in Sources */,

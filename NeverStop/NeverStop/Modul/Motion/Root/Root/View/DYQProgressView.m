@@ -85,12 +85,7 @@
         if (angle >= M_PI *2) {
             angle = M_PI *2;
         }
-        UIBezierPath *path1 = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.center.x - self.frame.origin.x,
-                                                                                self.center.y - self.frame.origin.y)
-                                                             radius:(self.bounds.size.width - _backgourndLineWidth)/ 2 - _offset
-                                                         startAngle:-M_PI_2 +(i *_GapWidth * M_PI / 180.0)
-                                                           endAngle:-M_PI_2 + angle
-                                                          clockwise:YES];
+        UIBezierPath *path1 = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.center.x - self.frame.origin.x, self.center.y - self.frame.origin.y) radius:(self.bounds.size.width - _backgourndLineWidth)/ 2 - _offset startAngle:-M_PI_2 +(i *_GapWidth * M_PI / 180.0) endAngle:-M_PI_2 + angle clockwise:YES];
         
         [path appendPath:path1];
         
@@ -102,7 +97,7 @@
 -(void)setProgressCircleLine {
     UIBezierPath *path = [UIBezierPath bezierPath];
     static float minAngle = 0.0081;
-    for (int i = 0; i < ceil(360 / _GapWidth *_Percentage)+1; i++) {
+    for (int i = 0; i < ceil(360 / _GapWidth * _Percentage)+1; i++) {
         CGFloat angle = (i * (_GapWidth + minAngle) * M_PI / 180.0);
         
         if (i == 0) {
@@ -112,15 +107,10 @@
         if (angle >= M_PI *2) {
             angle = M_PI *2;
         }
-        UIBezierPath *path1 = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.center.x - self.frame.origin.x,
-                                                                                self.center.y - self.frame.origin.y)
-                                                             radius:(self.bounds.size.width - _progressLineWidth)/ 2 - _offset
-                                                         startAngle:-M_PI_2 +(i *_GapWidth * M_PI / 180.0)
-                                                           endAngle:-M_PI_2 + angle
-                                                          clockwise:YES];
+        UIBezierPath *path1 = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.center.x - self.frame.origin.x, self.center.y - self.frame.origin.y) radius:(self.bounds.size.width - _progressLineWidth)/ 2 - _offset startAngle:-M_PI_2 + (i * _GapWidth * M_PI / 180.0) endAngle:-M_PI_2 + angle clockwise:YES];
         
         [path appendPath:path1];
-        
+        NSLog(@"%d", i);
     }
     _progressLayer.path = path.CGPath;
 }

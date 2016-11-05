@@ -7,7 +7,6 @@
 //
 
 #import "WeekRecordView.h"
-#import "SQLiteDatabaseManager.h"
 #import "StepCountModel.h"
 
 @interface WeekRecordView ()
@@ -96,7 +95,6 @@
         
         CGRect frame = changeView.frame;
         changeView.frame = frame;
-        
         
         StepCountModel *stepCountModel = [_manager selectStepCountWithDate:_selectStringArray[i]];
 

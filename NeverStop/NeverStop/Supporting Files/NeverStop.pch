@@ -54,6 +54,7 @@
 #import <AMapSearchKit/AMapSearchKit.h>
 #import "ExerciseData.h"
 #import "MapDataManager.h"
+#import "SQLiteDatabaseManager.h"
 
 
 

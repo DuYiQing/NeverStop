@@ -421,19 +421,24 @@ MAMapViewDelegate
 #pragma mark - 点击天气按钮显示
 - (void)weatherButtonAction:(UIButton *)button {
     
-    NSString *address = [NSString stringWithFormat:@"%@", _live.city];
-    NSString *weather = [NSString stringWithFormat:@"天气 : %@", _live.weather];
-    NSString *temperature = [NSString stringWithFormat:@"温度 : %@°", _live.temperature];
-    NSString *wind = [NSString stringWithFormat:@"%@风%@级", _live.windDirection, _live.windPower];
-    NSString *humidity = [NSString stringWithFormat:@"湿度 : %@%%", _live.humidity];
-    
-    [FTPopOverMenu showForSender:button withMenu:@[address, weather, temperature, wind, humidity] doneBlock:^(NSInteger selectedIndex) {
-        WeatherViewController *weatherVC = [[WeatherViewController alloc] init];
-        weatherVC.live = _live;
-        weatherVC.forecast = _forecast;
-        weatherVC.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:weatherVC animated:YES];
-    } dismissBlock:nil];
+    AFNetworkReachabilityManager *AFNetworkManager = [AFNetworkReachabilityManager sharedManager];
+    if (AFNetworkManager.networkReachabilityStatus == AFNetworkReachabilityStatusNotReachable) {
+        [FTPopOverMenu showForSender:button withMenu:@[@"暂无数据"] doneBlock:nil dismissBlock:nil];
+    } else {
+        NSString *address = [NSString stringWithFormat:@"%@", _live.city];
+        NSString *weather = [NSString stringWithFormat:@"天气 : %@", _live.weather];
+        NSString *temperature = [NSString stringWithFormat:@"温度 : %@°", _live.temperature];
+        NSString *wind = [NSString stringWithFormat:@"%@风%@级", _live.windDirection, _live.windPower];
+        NSString *humidity = [NSString stringWithFormat:@"湿度 : %@%%", _live.humidity];
+        
+        [FTPopOverMenu showForSender:button withMenu:@[address, weather, temperature, wind, humidity] doneBlock:^(NSInteger selectedIndex) {
+            WeatherViewController *weatherVC = [[WeatherViewController alloc] init];
+            weatherVC.live = _live;
+            weatherVC.forecast = _forecast;
+            weatherVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:weatherVC animated:YES];
+        } dismissBlock:nil];
+    }
 
 }
 #pragma mark - 天气信息
@@ -472,7 +477,7 @@ MAMapViewDelegate
 - (void)viewWillDisappear:(BOOL)animated {
     [_SQLManager updateStepCount:_stepCountView.stepCountLabel.text date:_dateString];
     [_targetManager closeSQLite];
-    [_SQLManager closeSQLite];
+//    [_SQLManager closeSQLite];
 }
 
 - (void)didReceiveMemoryWarning {

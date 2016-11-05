@@ -48,7 +48,7 @@ MAMapViewDelegate
 @property (nonatomic, strong) AMapReGeocodeSearchRequest *regeo;
 @property (nonatomic, strong) NSString *address;
 @property (nonatomic, strong) NSString *exerciseType;
-
+@property (nonatomic, strong) NSString *dateString;
 @property (nonatomic, strong) MapDataManager *mapDataManager;
 @property (nonatomic, strong) TargetManager *targetManager;
 @property (nonatomic, strong) NSArray *getTargetArr;
@@ -71,6 +71,7 @@ MAMapViewDelegate
                 _sportView.content = [NSString stringWithFormat:@"%.2f", sum];
             }
         }
+    }
     [_targetManager openSQLite];
     self.getTargetArr = [_targetManager selectTarget];
     if (_getTargetArr.count != 0) {
@@ -78,7 +79,7 @@ MAMapViewDelegate
         _stepCountView.target = targetModel.target;
         _weekRecordView.count = [targetModel.target integerValue];
     }
-    }
+
 }
 
 - (void)viewDidLoad {
@@ -87,10 +88,7 @@ MAMapViewDelegate
 
     self.view.backgroundColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74/255.f alpha:1.0];
     self.exerciseType = @"run";
-
-   
-
-
+    
     // 地图定位
     self.mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
     _mapView.showsUserLocation = YES;
@@ -118,9 +116,8 @@ MAMapViewDelegate
     [_SQLManager createTable];
     
     // 插入数据库
-    NSString *dateString = [NSDate getSystemTimeStringWithFormat:@"yyyy-MM-dd"];
-    [_SQLManager insertIntoWithStepCountModel:dateString];
-    [_SQLManager closeSQLite];
+    self.dateString = [NSDate getSystemTimeStringWithFormat:@"yyyy-MM-dd"];
+    [_SQLManager insertIntoWithStepCountModel:_dateString];
 
     FTPopOverMenuConfiguration *configuration = [FTPopOverMenuConfiguration defaultConfiguration];
 
@@ -134,6 +131,7 @@ MAMapViewDelegate
     [_targetManager openSQLite];
     [_targetManager createTable];
     self.getTargetArr = [_targetManager selectTarget];
+//    [_targetManager closeSQLite];
     
     if (_getTargetArr.count != 0) {
         TargetModel *targetModel = [_getTargetArr lastObject];
@@ -144,7 +142,6 @@ MAMapViewDelegate
         _weekRecordView.count = 10000;
     }
     
-    [_targetManager closeSQLite];
     
 }
 // 实时更新定位
@@ -192,12 +189,6 @@ MAMapViewDelegate
     [_whiteView addSubview:_startButton];
     [_startButton addTarget:self action:@selector(startButtonAction) forControlEvents:UIControlEventTouchUpInside];
     
-    // 一周步行记录表
-    self.weekRecordView = [[WeekRecordView alloc] initWithFrame:CGRectMake((_whiteView.width - SCREEN_WIDTH) / 2, 0, SCREEN_WIDTH, _whiteView.height)];
-//    _weekRecordView.count =
-    _weekRecordView.backgroundColor = [UIColor clearColor];
-    _weekRecordView.hidden = YES;
-    [_whiteView addSubview:_weekRecordView];
     
     
     
@@ -245,6 +236,13 @@ MAMapViewDelegate
     self.stepCountView = [[StepCountView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH, 25, SCREEN_WIDTH, _scrollView.height / 3 * 2)];
     
     [_scrollView addSubview:_stepCountView];
+    
+    // 一周步行记录表
+    self.weekRecordView = [[WeekRecordView alloc] initWithFrame:CGRectMake((_whiteView.width - SCREEN_WIDTH) / 2, 0, SCREEN_WIDTH, _whiteView.height)];
+    _weekRecordView.backgroundColor = [UIColor clearColor];
+    _weekRecordView.hidden = YES;
+    [_whiteView addSubview:_weekRecordView];
+
     
 }
 #pragma mark - 切换步行,跑步,骑行模式
@@ -332,6 +330,7 @@ MAMapViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
+    
     CGFloat lenth = scrollView.contentOffset.x / 180;
     CGAffineTransform trans = CGAffineTransformRotate(_startButton.transform, -lenth * 35/ 180.0 * M_PI);
     _sportView.transform = CGAffineTransformIdentity;
@@ -381,14 +380,15 @@ MAMapViewDelegate
 }
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     [UIView animateWithDuration:0.3f animations:^{
-        _stepCountView.todyLabel.alpha = 0;
+        _stepCountView.todayLabel.alpha = 0;
         _stepCountView.targetLabel.alpha = 0;
         _sportView.distanceLabel.alpha = 0;
     }];
 }
+
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     [UIView animateWithDuration:0.3f animations:^{
-        _stepCountView.todyLabel.alpha = 1;
+        _stepCountView.todayLabel.alpha = 1;
         _stepCountView.targetLabel.alpha = 1;
         _sportView.distanceLabel.alpha = 1;
     }];
@@ -469,8 +469,10 @@ MAMapViewDelegate
     }
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
+- (void)viewWillDisappear:(BOOL)animated {
+    [_SQLManager updateStepCount:_stepCountView.stepCountLabel.text date:_dateString];
     [_targetManager closeSQLite];
+    [_SQLManager closeSQLite];
 }
 
 - (void)didReceiveMemoryWarning {

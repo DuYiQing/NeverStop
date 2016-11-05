@@ -13,6 +13,7 @@
 #import "MotionViewController.h"
 #import "MyViewController.h"
 #import "ScopeViewController.h"
+#import "HealthManager.h"
 
 @interface AppDelegate ()
 <
@@ -56,6 +57,8 @@ void uncaughtExceptionHandler(NSException *exception) {
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [AMapServices sharedServices].apiKey = @"7a51d2c58640778bd644ee3641609981";
+    // 验证
+    [HealthManager shareInstance];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];

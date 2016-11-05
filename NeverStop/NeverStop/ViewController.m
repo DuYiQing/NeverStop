@@ -9,7 +9,6 @@
 #import "ViewController.h"
 #import "UserManager.h"
 
-static NSString * const PlaceholderColorKey = @"placeholderLabel.textColor";
 
 @interface ViewController ()
 <
@@ -24,6 +23,7 @@ UITextFieldDelegate
 @property (nonatomic, strong) UITextField *tallTextField;
 @property (nonatomic, strong) UITextField *weightTextField;
 @property (nonatomic, strong) UILabel *tipLabel;
+@property (nonatomic, strong) UIButton *enterButton;
 
 @end
 
@@ -41,13 +41,22 @@ UITextFieldDelegate
     [background addSubview:blackView];
     
     self.userManager = [UserManager shareUserManager];
-    [_userManager openSQLite];
-    [_userManager createTable];
+    
     
     
     [self createInfoView];
 
-    [_userManager closeSQLite];
+    
+    self.tipLabel = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 200) / 2, SCREEN_HEIGHT / 2, 200, 45)];
+    _tipLabel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
+    _tipLabel.font = kFONT_SIZE_15;
+    _tipLabel.textColor = [UIColor whiteColor];
+    _tipLabel.textAlignment = NSTextAlignmentCenter;
+    _tipLabel.layer.cornerRadius = 5.f;
+    _tipLabel.clipsToBounds = YES;
+    _tipLabel.hidden = YES;
+    [self.view addSubview:_tipLabel];
+    
 }
 
 - (void)createInfoView {
@@ -73,6 +82,7 @@ UITextFieldDelegate
     _nameTextField.attributedPlaceholder = namePlaceholder;
     _nameTextField.textColor = [UIColor whiteColor];
     _nameTextField.delegate = self;
+    _nameTextField.tag = 1499;
     [nameBackView addSubview:_nameTextField];
     
     
@@ -88,7 +98,7 @@ UITextFieldDelegate
     [birthBackView addSubview:birthImageView];
     
     self.ageTextField = [[UITextField alloc] initWithFrame:CGRectMake(birthImageView.x + birthImageView.width + 5, birthImageView.y, _nameTextField.width, _nameTextField.height)];
-    NSString *ageHolderText = @"请输入生日(例:1990.01.01)";
+    NSString *ageHolderText = @"请输入年龄";
     NSMutableAttributedString *agePlaceholder = [[NSMutableAttributedString alloc] initWithString:ageHolderText];
     [agePlaceholder addAttribute:NSForegroundColorAttributeName
                         value:[UIColor colorWithWhite:1 alpha:0.5]
@@ -99,6 +109,7 @@ UITextFieldDelegate
     _ageTextField.attributedPlaceholder = agePlaceholder;
     _ageTextField.textColor = [UIColor whiteColor];
     _ageTextField.delegate = self;
+    _ageTextField.tag = 1500;
     [birthBackView addSubview:_ageTextField];
     
     UIView *tallBackView = [[UIView alloc] initWithFrame:CGRectMake(birthBackView.x, birthBackView.y + birthBackView.height + 5, birthBackView.width, birthBackView.height)];
@@ -122,6 +133,7 @@ UITextFieldDelegate
     _tallTextField.attributedPlaceholder = tallPlaceholder;
     _tallTextField.textColor = [UIColor whiteColor];
     _tallTextField.delegate = self;
+    _tallTextField.tag = 1501;
     [tallBackView addSubview:_tallTextField];
     
     
@@ -146,16 +158,17 @@ UITextFieldDelegate
     _weightTextField.attributedPlaceholder = weightPlaceholder;
     _weightTextField.textColor = [UIColor whiteColor];
     _weightTextField.delegate = self;
+    _weightTextField.tag = 1502;
     [weightBackView addSubview:_weightTextField];
     
-    UIButton *enterButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    enterButton.frame = CGRectMake((SCREEN_WIDTH - 80) / 2, SCREEN_HEIGHT - 100, 80, 40);
-    enterButton.backgroundColor = [UIColor redColor];
-    enterButton.layer.cornerRadius = 5.f;
-    [enterButton setTitle:@"enter" forState:UIControlStateNormal];
-    [enterButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.view addSubview:enterButton];
-    [enterButton addTarget:self action:@selector(enterButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    self.enterButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _enterButton.frame = CGRectMake((SCREEN_WIDTH - 80) / 2, SCREEN_HEIGHT - 100, 80, 40);
+    _enterButton.backgroundColor = [UIColor redColor];
+    _enterButton.layer.cornerRadius = 5.f;
+    [_enterButton setTitle:@"enter" forState:UIControlStateNormal];
+    [_enterButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.view addSubview:_enterButton];
+    [_enterButton addTarget:self action:@selector(enterButtonAction) forControlEvents:UIControlEventTouchUpInside];
     
 }
 
@@ -167,73 +180,199 @@ UITextFieldDelegate
     
     
     if ([_nameTextField.text isEqualToString:@""]) {
-        self.tipLabel = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 200) / 2, SCREEN_HEIGHT / 2, 200, 60)];
-        _tipLabel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
+//        self.tipLabel = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 200) / 2, SCREEN_HEIGHT / 2, 200, 45)];
+//        _tipLabel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
+        _tipLabel.hidden = NO;
+        _tipLabel.alpha = 1;
         _tipLabel.text = @"昵称不能为空";
-        _tipLabel.font = kFONT_SIZE_15;
-        _tipLabel.textColor = [UIColor whiteColor];
-        _tipLabel.textAlignment = NSTextAlignmentCenter;
-        _tipLabel.layer.cornerRadius = 5.f;
-        _tipLabel.clipsToBounds = YES;
-        [self.view addSubview:_tipLabel];
-        [UIView animateWithDuration:1 delay:3 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+//        _tipLabel.font = kFONT_SIZE_15;
+//        _tipLabel.textColor = [UIColor whiteColor];
+//        _tipLabel.textAlignment = NSTextAlignmentCenter;
+//        _tipLabel.layer.cornerRadius = 5.f;
+//        _tipLabel.clipsToBounds = YES;
+//        [self.view addSubview:_tipLabel];
+        [UIView animateWithDuration:1 delay:1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             _tipLabel.alpha = 0;
         } completion:^(BOOL finished) {
-            [_tipLabel removeFromSuperview];
+//            [_tipLabel removeFromSuperview];
+            _tipLabel.hidden = YES;
         }];
     } else if([_nameTextField.text containsString:@" "]) {
-        self.tipLabel = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 200) / 2, SCREEN_HEIGHT / 2, 200, 60)];
-        _tipLabel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
+//        self.tipLabel = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 200) / 2, SCREEN_HEIGHT / 2, 200, 45)];
+//        _tipLabel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
+        _tipLabel.hidden = NO;
+        _tipLabel.alpha = 1;
         _tipLabel.text = @"昵称中不能包含空格";
-        _tipLabel.font = kFONT_SIZE_15;
-        _tipLabel.textColor = [UIColor whiteColor];
-        _tipLabel.textAlignment = NSTextAlignmentCenter;
-        _tipLabel.layer.cornerRadius = 5.f;
-        _tipLabel.clipsToBounds = YES;
-        [self.view addSubview:_tipLabel];
-        [UIView animateWithDuration:1 delay:3 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+//        _tipLabel.font = kFONT_SIZE_15;
+//        _tipLabel.textColor = [UIColor whiteColor];
+//        _tipLabel.textAlignment = NSTextAlignmentCenter;
+//        _tipLabel.layer.cornerRadius = 5.f;
+//        _tipLabel.clipsToBounds = YES;
+//        [self.view addSubview:_tipLabel];
+        [UIView animateWithDuration:1 delay:1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             _tipLabel.alpha = 0;
         } completion:^(BOOL finished) {
-            [_tipLabel removeFromSuperview];
+//            [_tipLabel removeFromSuperview];
+            _tipLabel.hidden = YES;
         }];
 
     } else if ([_tallTextField.text isEqualToString:@""]) {
-        self.tipLabel = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 200) / 2, SCREEN_HEIGHT / 2, 200, 60)];
-        _tipLabel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
+//        self.tipLabel = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 200) / 2, SCREEN_HEIGHT / 2, 200, 45)];
+//        _tipLabel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
+        _tipLabel.hidden = NO;
+        _tipLabel.alpha = 1;
         _tipLabel.text = @"身高不能为空";
-        _tipLabel.font = kFONT_SIZE_15;
-        _tipLabel.textColor = [UIColor whiteColor];
-        _tipLabel.textAlignment = NSTextAlignmentCenter;
-        _tipLabel.layer.cornerRadius = 5.f;
-        _tipLabel.clipsToBounds = YES;
+//        _tipLabel.font = kFONT_SIZE_15;
+//        _tipLabel.textColor = [UIColor whiteColor];
+//        _tipLabel.textAlignment = NSTextAlignmentCenter;
+//        _tipLabel.layer.cornerRadius = 5.f;
+//        _tipLabel.clipsToBounds = YES;
         [self.view addSubview:_tipLabel];
-        [UIView animateWithDuration:1 delay:3 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [UIView animateWithDuration:1 delay:1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             _tipLabel.alpha = 0;
         } completion:^(BOOL finished) {
-            [_tipLabel removeFromSuperview];
+//            [_tipLabel removeFromSuperview];
+            _tipLabel.hidden = YES;
         }];
 
     } else if ([_weightTextField.text isEqualToString:@""]) {
-        self.tipLabel = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 200) / 2, SCREEN_HEIGHT / 2, 200, 60)];
-        _tipLabel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
+//        self.tipLabel = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 200) / 2, SCREEN_HEIGHT / 2, 200, 45)];
+//        _tipLabel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
+        _tipLabel.hidden = NO;
+        _tipLabel.alpha = 1;
         _tipLabel.text = @"体重不能为空";
-        _tipLabel.font = kFONT_SIZE_15;
-        _tipLabel.textColor = [UIColor whiteColor];
-        _tipLabel.textAlignment = NSTextAlignmentCenter;
-        _tipLabel.layer.cornerRadius = 5.f;
-        _tipLabel.clipsToBounds = YES;
-        [self.view addSubview:_tipLabel];
-        [UIView animateWithDuration:1 delay:3 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+//        _tipLabel.font = kFONT_SIZE_15;
+//        _tipLabel.textColor = [UIColor whiteColor];
+//        _tipLabel.textAlignment = NSTextAlignmentCenter;
+//        _tipLabel.layer.cornerRadius = 5.f;
+//        _tipLabel.clipsToBounds = YES;
+//        [self.view addSubview:_tipLabel];
+        [UIView animateWithDuration:1 delay:1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             _tipLabel.alpha = 0;
         } completion:^(BOOL finished) {
-            [_tipLabel removeFromSuperview];
+//            [_tipLabel removeFromSuperview];
+            _tipLabel.hidden = YES;
         }];
 
     } else {
+        [_userManager openSQLite];
+        [_userManager createTable];
         [_userManager insertIntoWithUserName:_nameTextField.text age:_ageTextField.text tall:_tallTextField.text weight:_weightTextField.text];
+
         self.view.window.rootViewController = _rootTabBarController;
     }
 
+}
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    if ((textField.tag == 1499) && (textField.text.length > 7)) {
+        _enterButton.userInteractionEnabled = NO;
+//        self.tipLabel = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 200) / 2, SCREEN_HEIGHT / 2, 200, 45)];
+//        _tipLabel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
+        _tipLabel.hidden = NO;
+        _tipLabel.alpha = 1;
+        _tipLabel.text = @"昵称不得长于7个字符";
+//        _tipLabel.font = kFONT_SIZE_15;
+//        _tipLabel.textColor = [UIColor whiteColor];
+//        _tipLabel.textAlignment = NSTextAlignmentCenter;
+//        _tipLabel.layer.cornerRadius = 5.f;
+//        _tipLabel.clipsToBounds = YES;
+//        [self.view addSubview:_tipLabel];
+        [UIView animateWithDuration:1 delay:1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            _tipLabel.alpha = 0;
+        } completion:^(BOOL finished) {
+//            [_tipLabel removeFromSuperview];
+            _tipLabel.hidden = YES;
+        }];
+    } else {
+        _enterButton.userInteractionEnabled = YES;
+    }
+    if (textField.tag == 1500) {
+        if ([textField.text integerValue] > 100 | [textField.text integerValue] < 0) {
+            _enterButton.userInteractionEnabled = NO;
+//            self.tipLabel = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 200) / 2, SCREEN_HEIGHT / 2, 200, 45)];
+//            _tipLabel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
+            _tipLabel.hidden = NO;
+            _tipLabel.alpha = 1;
+            _tipLabel.text = @"请输入正确年龄";
+//            _tipLabel.font = kFONT_SIZE_15;
+//            _tipLabel.textColor = [UIColor whiteColor];
+//            _tipLabel.textAlignment = NSTextAlignmentCenter;
+//            _tipLabel.layer.cornerRadius = 5.f;
+//            _tipLabel.clipsToBounds = YES;
+//            [self.view addSubview:_tipLabel];
+            [UIView animateWithDuration:1 delay:1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                _tipLabel.alpha = 0;
+            } completion:^(BOOL finished) {
+//                [_tipLabel removeFromSuperview];
+                _tipLabel.hidden = YES;
+            }];
+        } else {
+            _enterButton.userInteractionEnabled = YES;
+        }
+    }
+    if (textField.tag == 1501) {
+        if ([textField.text integerValue] > 300 | [textField.text integerValue] < 100) {
+            _enterButton.userInteractionEnabled = NO;
+//            self.tipLabel = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 200) / 2, SCREEN_HEIGHT / 2, 200, 45)];
+//            _tipLabel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
+            _tipLabel.hidden = NO;
+            _tipLabel.alpha = 1;
+            _tipLabel.text = @"请输入正确身高";
+//            _tipLabel.font = kFONT_SIZE_15;
+//            _tipLabel.textColor = [UIColor whiteColor];
+//            _tipLabel.textAlignment = NSTextAlignmentCenter;
+//            _tipLabel.layer.cornerRadius = 5.f;
+//            _tipLabel.clipsToBounds = YES;
+//            [self.view addSubview:_tipLabel];
+            [UIView animateWithDuration:1 delay:1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                _tipLabel.alpha = 0;
+            } completion:^(BOOL finished) {
+//                [_tipLabel removeFromSuperview];
+                _tipLabel.hidden = YES;
+            }];
+
+        } else {
+            _enterButton.userInteractionEnabled = YES;
+        }
+    }
+    if (textField.tag == 1502) {
+        if ([textField.text integerValue] > 300 | [textField.text integerValue] < 10) {
+            _enterButton.userInteractionEnabled = YES;
+//            self.tipLabel = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 200) / 2, SCREEN_HEIGHT / 2, 200, 45)];
+//            _tipLabel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
+            _tipLabel.hidden = NO;
+            _tipLabel.alpha = 1;
+            _tipLabel.text = @"请输入正确体重";
+//            _tipLabel.font = kFONT_SIZE_15;
+//            _tipLabel.textColor = [UIColor whiteColor];
+//            _tipLabel.textAlignment = NSTextAlignmentCenter;
+//            _tipLabel.layer.cornerRadius = 5.f;
+//            _tipLabel.clipsToBounds = YES;
+//            [self.view addSubview:_tipLabel];
+            [UIView animateWithDuration:1 delay:1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                _tipLabel.alpha = 0;
+            } completion:^(BOOL finished) {
+//                [_tipLabel removeFromSuperview];
+                _tipLabel.hidden = YES;
+            }];
+
+        } else {
+            _enterButton.userInteractionEnabled = YES;
+        }
+    }
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    if (1499 == textField.tag) {
+        textField.keyboardType = UIKeyboardTypeNamePhonePad;
+    }
+    if (textField.tag == 1500) {
+        textField.keyboardType = UIKeyboardTypeNumberPad;
+    }
+    if (1501 == textField.tag | 1502 == textField.tag) {
+        textField.keyboardType = UIKeyboardTypeDecimalPad;
+    }
+    
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

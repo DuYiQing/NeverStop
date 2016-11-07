@@ -8,9 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ProgressAimViewDelegate <NSObject>
+
+- (void)aimIsCompleted;
+
+@end
+
 @interface ProgressAimView : UIView
 
 @property (nonatomic, assign) CGFloat currentNumber;
 - (instancetype)initWithFrame:(CGRect)frame aim:(NSString *)aim aimType:(NSInteger)aimType;
-
+@property (nonatomic, strong) id<ProgressAimViewDelegate> delegate;
 @end

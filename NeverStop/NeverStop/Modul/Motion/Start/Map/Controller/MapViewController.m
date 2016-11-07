@@ -61,7 +61,7 @@ MAMapViewDelegate
     // Do any additional setup after loading the view.
     self.location = [[Location alloc] init];
     self.overlayArray = [NSMutableArray array];
-    [self creatMapView];
+    [self createMapView];
     self.keyPathArray = @[@"distance", @"duration", @"speedPerHour", @"averageSpeed", @"maxSpeed", @"calorie", @"count"];
     for (int i = 0; i < _keyPathArray.count; i++) {
         [self.exerciseData addObserver:self forKeyPath:_keyPathArray[i] options: NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld  context:nil];
@@ -130,7 +130,11 @@ MAMapViewDelegate
     [_locationButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
         Location *currentLocation = [weakSelf.exerciseData.allLocationArray lastObject];
         CLLocationCoordinate2D centerCoordinate = CLLocationCoordinate2DMake(currentLocation.latitude, currentLocation.longitude);
-        [weakSelf.mapView setCenterCoordinate:centerCoordinate animated:YES];
+    
+            [weakSelf.mapView setCenterCoordinate:centerCoordinate animated:YES];
+            [weakSelf.mapView setZoomLevel:18 animated:YES];
+            
+        
     }];
     [self.view addSubview:_locationButton];
     
@@ -245,7 +249,7 @@ MAMapViewDelegate
     
 }
 #pragma mark - 创建地图
-- (void)creatMapView {
+- (void)createMapView {
     
 
     self.mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
@@ -266,7 +270,7 @@ MAMapViewDelegate
     // 罗盘
     _mapView.showsCompass = NO;
     // 缩放级别
-    [_mapView setZoomLevel:18 animated:NO];
+    [_mapView setZoomLevel:18 animated:YES];
     // 天空模式
     _mapView.skyModelEnable = NO;
     // 相机旋转
@@ -349,6 +353,7 @@ MAMapViewDelegate
             commonPolyline.title = @"2";
         }
         [_overlayArray addObject:commonPolyline];
+        
         //在地图上添加折线对象
         [_mapView addOverlay: commonPolyline];
     }
@@ -394,7 +399,7 @@ MAMapViewDelegate
       
 
         if ([overlay.title isEqualToString:@"1"]) {
-            
+       
             polylineRenderer.lineWidth = 7.5f;
             // 连接类型
             polylineRenderer.lineJoinType = kMALineJoinMiter;

@@ -13,8 +13,6 @@
 #import "CustomPickerView.h"
 #import "ExerciseViewController.h"
 #import "CustomAnimateTransitionPush.h"
-#import "ExerciseData.h"
-#import "MapDataManager.h"
 @interface StartViewController ()
 <
 MAMapViewDelegate,

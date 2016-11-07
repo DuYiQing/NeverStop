@@ -51,7 +51,7 @@
 - (void)createTable{
     
     [self.myQueue inDatabase:^(FMDatabase *db) {
-        BOOL result = [db executeUpdate:@"create table if not exists ExerciseData (exercise_id integer primary key autoincrement, exerciseType text not null, count integer, distance real, duration real, speedPerHour real, averageSpeed real, maxSpeed real, calorie real, aim text not null, aimType integer)"];
+        BOOL result = [db executeUpdate:@"create table if not exists ExerciseData (exercise_id integer primary key autoincrement, exerciseType text not null, count integer, distance real, duration real, speedPerHour real, averageSpeed real, maxSpeed real,calorie real, aim text not null, aimType integer, startTime text not null, isComplete integer,speedSetting real, averageSpeedSetting real)"];
         BOOL resultChild = [db executeUpdate:@"create table if not exists AllLocationArray (location_id integer primary key, longitude real, latitude real, isStart integer, exercise_id integer)"];
         if (result && resultChild) {
             
@@ -68,7 +68,7 @@
 //插入数据
 - (void)insertExerciseData:(ExerciseData *)exerciseData {
 //    NSError *error = nil;
-    NSString *sql = [NSString stringWithFormat:@"insert into ExerciseData values (null, '%@', %ld, %.2f, %.2f, %.2f, %.2f, %.2f, %.2f, '%@', %ld)", exerciseData.exerciseType, exerciseData.count, exerciseData.distance, exerciseData.duration, exerciseData.speedPerHour, exerciseData.averageSpeed, exerciseData.maxSpeed, exerciseData.calorie, exerciseData.aim, exerciseData.aimType];
+    NSString *sql = [NSString stringWithFormat:@"insert into ExerciseData values (null, '%@', %ld, %.2f, %.2f, %.2f, %.2f, %.2f, %.2f, '%@', %ld, '%@', %d, %.2f, %.2f)", exerciseData.exerciseType, exerciseData.count, exerciseData.distance, exerciseData.duration, exerciseData.speedPerHour, exerciseData.averageSpeed, exerciseData.maxSpeed, exerciseData.calorie, exerciseData.aim, exerciseData.aimType, exerciseData.startTime, exerciseData.isComplete, exerciseData.speedSetting, exerciseData.averageSpeedSetting];
     
 
     [self.myQueue inDatabase:^(FMDatabase *db) {
@@ -145,6 +145,10 @@
             exerciseData.calorie = [result doubleForColumn:@"calorie"];
             exerciseData.aim = [result objectForColumnName:@"aim"];
             exerciseData.aimType = [result intForColumn:@"aimType"];
+            exerciseData.startTime = [result objectForColumnName:@"startTime"];
+            exerciseData.isComplete = [result intForColumn:@"isComplete"];
+            exerciseData.speedSetting = [result doubleForColumn:@"speedSetting"];
+            exerciseData.averageSpeedSetting = [result doubleForColumn:@"averageSpeedSetting"];
             NSString *sqlChild = [NSString stringWithFormat:@"select *from AllLocationArray where exercise_id = %d", a];
             FMResultSet *resultChild = [db executeQuery:sqlChild];
             while ([resultChild next]) {

@@ -304,12 +304,21 @@ MAMapViewDelegate
     [_mapDataManager createTable];
     NSArray *array = [_mapDataManager selectAll];
     CGFloat sum = 0;
+    NSInteger count = 0;
     if (_exerciseType) {
         for (ExerciseData *data in array) {
             if ([data.exerciseType isEqualToString:_exerciseType]) {
                 sum += data.distance;
-                _sportView.content = [NSString stringWithFormat:@"%.2f", sum];
+                count++;
+            
             }
+        }
+        if (count == 0) {
+            _sportView.content = @"0.00";
+        } else {
+            count = 0;
+            _sportView.content = [NSString stringWithFormat:@"%.2f", sum];
+
         }
     }
 

@@ -92,6 +92,7 @@
             frame.size.width = self.width;
             self.changingView.frame = frame;
             self.aimLabel.text = [_aimLabel.text stringByAppendingString:@" 已完成"];
+            [self.delegate aimIsCompleted];
             CGFloat width = [_aimLabel.text widthWithFont:_aimLabel.font constrainedToHeight:20];
             
             _aimLabel.frame = CGRectMake(self.width / 2 - width / 2, _rectView.y + _rectView.height + 3, width, 20);

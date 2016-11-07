@@ -32,7 +32,7 @@ UITableViewDataSource
 }
 
 - (void)createScoreTableView {
-    self.scoreTableView = [[UITableView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    self.scoreTableView = [[UITableView alloc]initWithFrame:[UIScreen mainScreen].bounds style:UITableViewStyleGrouped];
     _scoreTableView.delegate = self;
     _scoreTableView.dataSource = self;
     _scoreTableView.rowHeight =  80.f;

@@ -15,10 +15,14 @@
 @property (nonatomic, assign) CGFloat distance;
 @property (nonatomic, assign) CGFloat duration;
 @property (nonatomic, assign) CGFloat speedPerHour;
+@property (nonatomic, assign) CGFloat speedSetting;
+@property (nonatomic, assign) CGFloat averageSpeedSetting;
 @property (nonatomic, assign) CGFloat averageSpeed;
 @property (nonatomic, assign) CGFloat maxSpeed;
 @property (nonatomic, assign) CGFloat calorie;
 @property (nonatomic, strong) NSString *exerciseType;
 @property (nonatomic, strong) NSString *aim;
 @property (nonatomic, assign) NSInteger aimType;
+@property (nonatomic, strong) NSString *startTime;
+@property (nonatomic, assign) BOOL isComplete;
 @end

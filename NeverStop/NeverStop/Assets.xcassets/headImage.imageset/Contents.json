@@ -2,12 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "time.png",
+      "filename" : "back.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "time@2x.png",
       "scale" : "2x"
     },
     {

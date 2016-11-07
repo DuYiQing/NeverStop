@@ -36,17 +36,20 @@ UITableViewDelegate
 }
 
 - (void)createOthersTableView {
-    self.othersTableView = [[UITableView alloc] initWithFrame:[UIScreen mainScreen].bounds style:UITableViewStylePlain];
+    self.othersTableView = [[UITableView alloc] initWithFrame:[UIScreen mainScreen].bounds style:UITableViewStyleGrouped];
     _othersTableView.delegate = self;
     _othersTableView.dataSource = self;
     [self.view addSubview:_othersTableView];
     
-    self.cachesLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 100, 44, 80, 40)];
+    self.cachesLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 100, 47, 80, 40)];
     _cachesLabel.textAlignment = NSTextAlignmentRight;
     _cachesLabel.textColor = [UIColor lightGrayColor];
     _cachesLabel.font = kFONT_SIZE_15;
-    [self.view addSubview:_cachesLabel];
+    [self.othersTableView addSubview:_cachesLabel];
     
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 1;
 }
 // 计算缓存
 - (CGFloat)folderSize{

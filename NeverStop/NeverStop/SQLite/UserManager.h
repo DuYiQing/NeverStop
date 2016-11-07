@@ -41,7 +41,7 @@
 - (BOOL)updateUserInfoWithID:(NSInteger)ID name:(NSString *)name age:(NSString *)age tall:(NSString *)tall weight:(NSString *)weight;
 
 
-- (UserModel *)selectUserWithName:(NSString *)name;
+- (UserModel *)selectUser;
 
 
 - (BOOL)deleteUserWithName:(NSString *)name;

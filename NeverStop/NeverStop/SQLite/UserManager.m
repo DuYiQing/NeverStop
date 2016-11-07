@@ -90,15 +90,14 @@
 
 }
 
-- (UserModel *)selectUserWithName:(NSString *)name {
-    NSString *selectSQL = [NSString stringWithFormat:@"select * from User where name = '%@'", name];
+- (UserModel *)selectUser {
+    NSString *selectSQL = [NSString stringWithFormat:@"select * from User"];
     
     sqlite3_stmt *stmt = NULL;
     
     int result = sqlite3_prepare(dbPointer, [selectSQL UTF8String], -1, &stmt, NULL);
     
-  
-    UserModel *userModel = [[UserModel alloc] init];
+    NSMutableArray *array = [NSMutableArray array];
     
     if (result == SQLITE_OK) {
         // sqlite3_step(stmt) 等于 SQLITE_ROW 代表有数据  等于 SQLITE_DONE代表已经没有其他数据
@@ -115,16 +114,18 @@
             // 获取第4列数据 (weight)
             const unsigned char *weight = sqlite3_column_text(stmt, 4);
             
+            UserModel *userModel = [[UserModel alloc] init];
             userModel.user_id = user_id;
             userModel.name = [NSString stringWithUTF8String:(const char *)name];
             userModel.age = [NSString stringWithUTF8String:(const char *)age];
             userModel.tall = [NSString stringWithUTF8String:(const char *)tall];
             userModel.weight = [NSString stringWithUTF8String:(const char *)weight];
+            [array addObject:userModel];
         }
     }
     // 销毁替身
     sqlite3_finalize(stmt);
-    return userModel;
+    return [array lastObject];
     
 
 }

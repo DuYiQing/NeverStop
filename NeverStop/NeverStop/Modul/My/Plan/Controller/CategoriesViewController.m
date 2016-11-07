@@ -34,7 +34,7 @@ UITableViewDataSource
 }
 
 - (void)createCategoriesTableView {
-    self.categoriesTableView = [[UITableView alloc] initWithFrame:[UIScreen mainScreen].bounds style:UITableViewStylePlain];
+    self.categoriesTableView = [[UITableView alloc] initWithFrame:[UIScreen mainScreen].bounds style:UITableViewStyleGrouped];
     _categoriesTableView.delegate = self;
     _categoriesTableView.dataSource = self;
     _categoriesTableView.rowHeight = 200;

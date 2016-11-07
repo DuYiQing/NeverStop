@@ -148,7 +148,7 @@
 
 - (BOOL)isSuccessWithResult:(int)result alert:(NSString *)alertString {
     if (result == SQLITE_OK) {
-//        NSLog(@"%@成功", alertString);
+        NSLog(@"%@成功", alertString);
         return YES;
     }
     NSLog(@"%@失败", alertString);

@@ -18,7 +18,6 @@
 
 
 @property (nonatomic, strong) UIView *roundView;
-@property (nonatomic, strong) UILabel *stepCountLabel;
 @property (nonatomic, assign) long systemStep;
 @property (nonatomic, strong) SQLiteDatabaseManager *sqlManager;
 @property (nonatomic, strong) NSString *dateString;
@@ -61,12 +60,12 @@
         [_stepProgressView setBackgroundStrokeColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.3]];
         
         
-        self.todyLabel = [[UILabel alloc] initWithFrame:CGRectMake((_roundView.width - 80) / 2, 30, 80, 30)];
-        _todyLabel.text = @"今日步数";
-        _todyLabel.textAlignment = NSTextAlignmentCenter;
-        _todyLabel.font = kFONT_SIZE_18;
-        _todyLabel.textColor = [UIColor whiteColor];
-        [_roundView addSubview:_todyLabel];
+        self.todayLabel = [[UILabel alloc] initWithFrame:CGRectMake((_roundView.width - 80) / 2, 30, 80, 30)];
+        _todayLabel.text = @"今日步数";
+        _todayLabel.textAlignment = NSTextAlignmentCenter;
+        _todayLabel.font = kFONT_SIZE_18;
+        _todayLabel.textColor = [UIColor whiteColor];
+        [_roundView addSubview:_todayLabel];
         
         self.stepCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, (_roundView.height - 80) / 2, _roundView.width, 80)];
         _stepCountLabel.textColor = [UIColor whiteColor];
@@ -79,20 +78,25 @@
         _targetLabel.textColor = [UIColor whiteColor];
         _targetLabel.font = kFONT_SIZE_18;
         [_roundView addSubview:_targetLabel];
+        
         [[HealthManager shareInstance] getStepCount:[HealthManager predicateForSamplesToday] completionHandler:^(double value, NSError *error) {
             if (error) {
                 NSLog(@"error");
             } else {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [_sqlManager openSQLite];
+//                    [_sqlManager openSQLite];
                     NSString *stepCountFromSQL = [_sqlManager selectStepCountWithDate:_dateString].stepCount;
-                    [_sqlManager closeSQLite];
+
                     if (value > [stepCountFromSQL integerValue]) {
                         self.systemStep = value;
                     } else {
                         self.systemStep = [stepCountFromSQL integerValue];
                     }
-                    
+
+                    [_sqlManager updateStepCount:[NSString stringWithFormat:@"%ld", _systemStep] date:_dateString];
+
+                    _stepCountLabel.text = [NSString stringWithFormat:@"%ld",_step + _systemStep];
+
                     self.percent = _systemStep / [_targetLabel.text floatValue];
                     [_stepProgressView setProgress:_percent Animated:YES];
                     
@@ -113,16 +117,18 @@
 - (void)getStepNumber{
     //    long step = [StepManager shareManager].step;
     _stepCountLabel.text = [NSString stringWithFormat:@"%ld",_step + _systemStep];
-    [_sqlManager openSQLite];
-    [_sqlManager updateStepCount:_stepCountLabel.text date:_dateString];
-    [_sqlManager closeSQLite];
-    
+
+//    [_sqlManager updateStepCount:_stepCountLabel.text date:_dateString];
+
 }
 
 - (void)setTarget:(NSString *)target {
     if (_target != target) {
         _target = target;
         _targetLabel.text = target;
+        self.percent = _systemStep / [_targetLabel.text floatValue];
+        [_stepProgressView setProgress:_percent Animated:YES];
+
     }
 }
 @end

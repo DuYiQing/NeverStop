@@ -102,7 +102,6 @@ UIPickerViewDelegate
     [self.view addSubview:confirmButton];
     [confirmButton addTarget:self action:@selector(confirmButtonAction) forControlEvents:UIControlEventTouchUpInside];
 
-    [_targetManager closeSQLite];
 }
 
 - (void)confirmButtonAction{
@@ -133,10 +132,7 @@ UIPickerViewDelegate
     _targetLabel.text = _selectArr[row];
     self.selectedRow = row;
 }
-- (void)viewDidDisappear:(BOOL)animated {
-    [_targetManager closeSQLite];
 
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

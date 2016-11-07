@@ -7,7 +7,6 @@
 //
 
 #import "WeekRecordView.h"
-#import "SQLiteDatabaseManager.h"
 #import "StepCountModel.h"
 
 @interface WeekRecordView ()
@@ -17,7 +16,6 @@
 @property (nonatomic, strong) NSMutableArray *selectStringArray;
 @property (nonatomic, strong) NSString *yearString;
 @property (nonatomic, strong) NSString *monthString;
-@property (nonatomic, strong) NSMutableArray *countArray;
 @property (nonatomic, assign) NSInteger maxCount;
 @property (nonatomic, strong) NSArray *dayArr;
 
@@ -31,9 +29,10 @@
     
     if (self) {
 
+        [_manager openSQLite];
+
         self.maxCount = 0;
         self.selectStringArray = [NSMutableArray array];
-        self.countArray = [NSMutableArray array];
         
         self.yearString = [NSDate getSystemTimeStringWithFormat:@"yyyy"];
         self.monthString = [NSDate getSystemTimeStringWithFormat:@"MM"];
@@ -74,11 +73,12 @@
             dateLabel.textAlignment = NSTextAlignmentCenter;
             dateLabel.textColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74/255.f alpha:1.0];
             [self addSubview:dateLabel];
-            [_manager openSQLite];
-
-            StepCountModel *stepCountModel = [_manager selectStepCountWithDate:_selectStringArray[i]];
-            [_countArray addObject:stepCountModel];
-            [_manager closeSQLite];
+            
+            
+//            [_manager openSQLite];
+//            StepCountModel *stepCountModel = [_manager selectStepCountWithDate:_selectStringArray[i]];
+//            [_countArray addObject:stepCountModel];
+//            [_manager closeSQLite];
         }
         
         self.timer = [NSTimer scheduledTimerWithTimeInterval:0.03 target:self selector:@selector(change) userInfo:nil repeats:YES];
@@ -89,13 +89,15 @@
 - (void)change {
     
     for (int i = 0; i < 7; i++) {
+        
 
         UIView *changeView = [self viewWithTag:1300 + i];
         
         CGRect frame = changeView.frame;
         changeView.frame = frame;
         
-        StepCountModel *stepCountModel = _countArray[i];
+        StepCountModel *stepCountModel = [_manager selectStepCountWithDate:_selectStringArray[i]];
+
         CGFloat count = [stepCountModel.stepCount integerValue] * 70 / _count;
         self.maxCount = _maxCount > count ? _maxCount : count;
         

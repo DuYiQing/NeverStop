@@ -13,6 +13,8 @@
 #import "MyViewController.h"
 #import "ScopeViewController.h"
 #import "MatchViewController.h"
+#import "HealthManager.h"
+
 @interface AppDelegate ()
 <
 UITabBarControllerDelegate
@@ -55,6 +57,8 @@ void uncaughtExceptionHandler(NSException *exception) {
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [AMapServices sharedServices].apiKey = @"7a51d2c58640778bd644ee3641609981";
+    // 验证
+    [HealthManager shareInstance];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
@@ -257,6 +261,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [[SQLiteDatabaseManager shareManager] closeSQLite];
 }
 
 @end

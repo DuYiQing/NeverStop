@@ -24,11 +24,19 @@ UITableViewDelegate
 
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    
+    self.navigationController.navigationBar.translucent = NO;
     self.cachesLabel.text = [NSString stringWithFormat:@"%.2fM", [self folderSize]];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    __weak typeof(self) weakSelf = self;
+    UIBarButtonItem *backItem = [UIBarButtonItem getBarButtonItemWithImageName:@"navigator_btn_back" HighLightedImageName:@"navigator_btn_back" targetBlock:^{
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+    }];
+    self.navigationItem.leftBarButtonItem = backItem;
     // Do any additional setup after loading the view.
     
     [self createOthersTableView];

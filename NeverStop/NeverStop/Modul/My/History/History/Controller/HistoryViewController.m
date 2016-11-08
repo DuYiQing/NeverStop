@@ -24,6 +24,9 @@ UITableViewDataSource
 
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    
+    self.navigationController.navigationBar.translucent = NO;
 }
 - (void)loadView {
     [super loadView];
@@ -34,26 +37,33 @@ UITableViewDataSource
     NSArray *array = [[MapDataManager shareDataManager] selectAll];
     NSString *lastStr;
     int a = 0;
-    NSLog(@"%@", array);
+    HistoryData *data = [[HistoryData alloc] init];
     for (ExerciseData *exerciseData in array) {
-        HistoryData *data = [[HistoryData alloc] init];
+        
         data.dateSection = [exerciseData.startTime substringWithRange:NSMakeRange(2, 6)];
         
         if ([data.dateSection isEqualToString:lastStr] || (a == 0) || ((a + 1) == array.count)) {
             [data.array addObject:exerciseData];
         }
-        if ((![data.dateSection isEqualToString:lastStr]) || (a + 1) == array.count) {
-            [self.exerciseArray addObject:data];
+        if ((![data.dateSection isEqualToString:lastStr] && a != 0 )|| (a + 1) == array.count) {
+            [self.exerciseArray addObject:[data copy]];
+            [data.array removeAllObjects];
         }
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
         [dic setObject:data forKey:@"data"];
         a++;
         lastStr = data.dateSection;
     }
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    __weak typeof(self) weakSelf = self;
+    UIBarButtonItem *backItem = [UIBarButtonItem getBarButtonItemWithImageName:@"navigator_btn_back" HighLightedImageName:@"navigator_btn_back" targetBlock:^{
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+    }];
+    self.navigationItem.leftBarButtonItem = backItem;
     self.navigationItem.title = @"历史记录";
     [self createHistoryTableView];
 }
@@ -100,6 +110,7 @@ UITableViewDataSource
     ExerciseRecordViewController *exerciseRecordVC = [[ExerciseRecordViewController alloc] init];
     HistoryData *data = _exerciseArray[indexPath.section];
     exerciseRecordVC.exerciseData = data.array[indexPath.row];
+    exerciseRecordVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:exerciseRecordVC animated:YES];
     
     

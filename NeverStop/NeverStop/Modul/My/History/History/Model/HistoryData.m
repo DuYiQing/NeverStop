@@ -17,4 +17,12 @@
     }
     return self;
 }
+- (id)copyWithZone:(NSZone *)zone {
+    HistoryData *copy = [[[self class] allocWithZone:zone] init];
+    
+    // 拷贝名字给副本对象
+    copy.dateSection = self.dateSection;
+    copy.array = [self.array copy];
+    return copy;
+}
 @end

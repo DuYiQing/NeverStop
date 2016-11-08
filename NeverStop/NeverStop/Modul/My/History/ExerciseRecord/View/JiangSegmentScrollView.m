@@ -26,23 +26,19 @@ UIScrollViewDelegate
         [self addSubview:self.bgScrollView];
         
         
-        _segmentToolView = [[JiangSegmentView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40) titles:titleArray clickBlick:^void(NSInteger index) {
+        _segmentToolView = [[JiangSegmentView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40) titles:titleArray clickBlick:^void(NSInteger index ) {
             NSLog(@"-----%ld", index);
-            [_bgScrollView setContentOffset:CGPointMake(SCREEN_WIDTH * (index - 1), 0)];
+            [_bgScrollView setContentOffset:CGPointMake(SCREEN_WIDTH * (index - 1051), 0)];
         }];
         [self addSubview:_segmentToolView];
         
         
         for (int i = 0; i < contentViewArray.count; i++) {
-            
             UIView *contentView = (UIView *)contentViewArray[i];
             contentView.frame = CGRectMake(SCREEN_WIDTH * i, _segmentToolView.bounds.size.height, SCREEN_WIDTH, _bgScrollView.frame.size.height - _segmentToolView.bounds.size.height);
             [_bgScrollView addSubview:contentView];
         }
-        
-        
     }
-    
     return self;
 }
 

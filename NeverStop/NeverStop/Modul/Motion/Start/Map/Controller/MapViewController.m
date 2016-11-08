@@ -130,10 +130,9 @@ MAMapViewDelegate
     [_locationButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
         Location *currentLocation = [weakSelf.exerciseData.allLocationArray lastObject];
         CLLocationCoordinate2D centerCoordinate = CLLocationCoordinate2DMake(currentLocation.latitude, currentLocation.longitude);
-    
-            [weakSelf.mapView setCenterCoordinate:centerCoordinate animated:YES];
-            [weakSelf.mapView setZoomLevel:18 animated:YES];
-            
+        [weakSelf.mapView setCenterCoordinate:centerCoordinate animated:YES];
+        [weakSelf.mapView setUserTrackingMode:MAUserTrackingModeFollowWithHeading];
+        [weakSelf.mapView setZoomLevel:18 animated:YES];
         
     }];
     [self.view addSubview:_locationButton];
@@ -153,7 +152,9 @@ MAMapViewDelegate
 - (void)mapType {
     UIBlurEffect * blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
     self.menuEffectView = [[UIVisualEffectView alloc]initWithEffect:blur];
-    _menuEffectView.frame = CGRectMake(_menuButton.x, _menuButton.y - 160, 250, 140);
+    _menuEffectView.frame = CGRectMake(_menuButton.x, _menuButton.y - 140, 220, 120);
+    _menuEffectView.layer.cornerRadius = 6;
+    _menuEffectView.clipsToBounds = YES;
     [self.view addSubview:_menuEffectView];
     
     VerticalButton *planeButton = [VerticalButton buttonWithType:UIButtonTypeCustom];
@@ -177,7 +178,7 @@ MAMapViewDelegate
     }
     planeButton.layer.cornerRadius = 6;
     planeButton.clipsToBounds = YES;
-    planeButton.frame = CGRectMake(20, 20, 90, 90);
+    planeButton.frame = CGRectMake(15, 15, 90, 90);
     [_menuEffectView addSubview:planeButton];
   
     VerticalButton *satelliteButton = [VerticalButton buttonWithType:UIButtonTypeCustom];
@@ -201,7 +202,7 @@ MAMapViewDelegate
     }
     satelliteButton.layer.cornerRadius = 6;
     satelliteButton.clipsToBounds = YES;
-    satelliteButton.frame = CGRectMake(planeButton.x + planeButton.width + 10, 20, 90, 90);
+    satelliteButton.frame = CGRectMake(planeButton.x + planeButton.width + 10, 15, 90, 90);
     [_menuEffectView addSubview:satelliteButton];
     
     __weak typeof(self) weakSelf = self;
@@ -291,6 +292,10 @@ MAMapViewDelegate
     Location *location = [_exerciseData.allLocationArray firstObject];
     pointAnnotation.coordinate = CLLocationCoordinate2DMake(location.latitude, location.longitude);
     
+    
+//    MAMapStatus *mapStatus = [MAMapStatus statusWithCenterCoordinate:centerCoordinate zoomLevel:18 rotationDegree:0 cameraDegree:0 screenAnchor:CGPointMake(0.5, 0.5)];
+//    [_mapView setMapStatus:mapStatus animated:YES duration:0.5];
+
     [_mapView addAnnotation:pointAnnotation];
 }
 #pragma mark - 绘画运动轨迹

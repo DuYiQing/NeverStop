@@ -78,7 +78,7 @@
     if (_exerciseData != exerciseData) {
         _exerciseData = exerciseData;
     }
-    _typeImageView.image = [UIImage imageNamed:_exerciseData.exerciseType];
+    _typeImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"type_%@", _exerciseData.exerciseType]];
     _speedSettingLabel.text = [NSString stringWithFormat:@"%.2f", _exerciseData.averageSpeedSetting];
     NSArray *array = [_exerciseData.startTime componentsSeparatedByString:@" "];
     NSString *datedayStr = [array.firstObject substringFromIndex:8];
@@ -109,7 +109,7 @@
     NSInteger minuSpeedSetting;
     secSpeedSetting = timeSpeedSetting % 60;
     minuSpeedSetting = timeSpeedSetting / 60;
-    _speedSettingLabel.text = [NSString stringWithFormat:@"%ld'%ld""", minuSpeedSetting, secSpeedSetting];
+    _speedSettingLabel.text = [NSString stringWithFormat:@"%ld'%ld\"", minuSpeedSetting, secSpeedSetting];
    
     
 }

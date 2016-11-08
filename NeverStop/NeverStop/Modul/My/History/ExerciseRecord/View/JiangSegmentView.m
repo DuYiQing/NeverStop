@@ -126,7 +126,7 @@
 }
 
 - (void)updateselectLineFrameWithoffset:(CGFloat)offsetx{
-        NSLog(@"====%f",offsetx);
+        NSLog(@"====%f", offsetx);
     
     for (UIButton *btn in _btns) {
         

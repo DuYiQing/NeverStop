@@ -33,16 +33,15 @@ UITableViewDataSource
 @implementation MyViewController
 
 - (void)viewWillAppear:(BOOL)animated {
-//    self.navigationController.navigationBarHidden = YES;
-}
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
+    
+    self.navigationController.navigationBar.translucent = YES;}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-    [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
-
-    self.navigationController.navigationBar.translucent = YES;
+   
     self.navigationItem.title = @"我的";
     
     [self createMyInfoTableView];

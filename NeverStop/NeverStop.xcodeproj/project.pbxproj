@@ -95,6 +95,10 @@
 		EEADE9251DC97ED70060209D /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A000F1DB8CF610003762E /* UIView+Frame.m */; };
 		EEBA13F61DBF8AD60001F7A4 /* ExerciseDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = EEBA13F51DBF8AD60001F7A4 /* ExerciseDataView.m */; };
 		EEC8E70D1DB8ED1500349793 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEC8E70C1DB8ED1500349793 /* HealthKit.framework */; };
+		EED334031DD0B0B300B12650 /* Tracking.m in Sources */ = {isa = PBXBuildFile; fileRef = EED334021DD0B0B300B12650 /* Tracking.m */; };
+		EEDE5C931DD17E090021DC9C /* MAMutablePolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = EEDE5C921DD17E090021DC9C /* MAMutablePolyline.m */; };
+		EEDE5C961DD17E160021DC9C /* MAMutablePolylineRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = EEDE5C951DD17E160021DC9C /* MAMutablePolylineRenderer.m */; };
+		EEDE5CDD1DD1D8850021DC9C /* RecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EEDE5CDC1DD1D8850021DC9C /* RecordTableViewCell.m */; };
 		EEE3D7101DC19A26003D0CC5 /* RouteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E49221DBCD0EB004105F2 /* RouteTableViewCell.m */; };
 		EEE3D7281DC1A1A9003D0CC5 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE3D7151DC1A1A9003D0CC5 /* StartViewController.m */; };
 		EEE3D7291DC1A1A9003D0CC5 /* AimModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE3D7181DC1A1A9003D0CC5 /* AimModel.m */; };
@@ -311,6 +315,14 @@
 		EEBA13F41DBF8AD60001F7A4 /* ExerciseDataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseDataView.h; sourceTree = "<group>"; };
 		EEBA13F51DBF8AD60001F7A4 /* ExerciseDataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseDataView.m; sourceTree = "<group>"; };
 		EEC8E70C1DB8ED1500349793 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		EED334011DD0B0B300B12650 /* Tracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tracking.h; sourceTree = "<group>"; };
+		EED334021DD0B0B300B12650 /* Tracking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tracking.m; sourceTree = "<group>"; };
+		EEDE5C911DD17E090021DC9C /* MAMutablePolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAMutablePolyline.h; sourceTree = "<group>"; };
+		EEDE5C921DD17E090021DC9C /* MAMutablePolyline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAMutablePolyline.m; sourceTree = "<group>"; };
+		EEDE5C941DD17E160021DC9C /* MAMutablePolylineRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAMutablePolylineRenderer.h; sourceTree = "<group>"; };
+		EEDE5C951DD17E160021DC9C /* MAMutablePolylineRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAMutablePolylineRenderer.m; sourceTree = "<group>"; };
+		EEDE5CDB1DD1D8850021DC9C /* RecordTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordTableViewCell.h; sourceTree = "<group>"; };
+		EEDE5CDC1DD1D8850021DC9C /* RecordTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordTableViewCell.m; sourceTree = "<group>"; };
 		EEE3D70E1DC199E8003D0CC5 /* ExerciseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseViewController.m; sourceTree = "<group>"; };
 		EEE3D7141DC1A1A9003D0CC5 /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
 		EEE3D7151DC1A1A9003D0CC5 /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
@@ -994,6 +1006,14 @@
 				EEA924C51DD01676006410A0 /* JiangSegmentScrollView.m */,
 				EEA924C71DD016BB006410A0 /* JiangSegmentView.h */,
 				EEA924C81DD016BB006410A0 /* JiangSegmentView.m */,
+				EED334011DD0B0B300B12650 /* Tracking.h */,
+				EED334021DD0B0B300B12650 /* Tracking.m */,
+				EEDE5C911DD17E090021DC9C /* MAMutablePolyline.h */,
+				EEDE5C921DD17E090021DC9C /* MAMutablePolyline.m */,
+				EEDE5C941DD17E160021DC9C /* MAMutablePolylineRenderer.h */,
+				EEDE5C951DD17E160021DC9C /* MAMutablePolylineRenderer.m */,
+				EEDE5CDB1DD1D8850021DC9C /* RecordTableViewCell.h */,
+				EEDE5CDC1DD1D8850021DC9C /* RecordTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1382,6 +1402,7 @@
 				EE1A002D1DB8CF610003762E /* DYQBaseView.m in Sources */,
 				40A64FC01DCB3F8200C35F26 /* DYQProgressView.m in Sources */,
 				49FEA0041DC47AF000E0FB2D /* Tch_RunDataileViewController.m in Sources */,
+				EEDE5C961DD17E160021DC9C /* MAMutablePolylineRenderer.m in Sources */,
 				EE1A00311DB8CF610003762E /* NSDate+EasyExtend.mm in Sources */,
 				EE1A003C1DB8CF610003762E /* UILabel+SizeToFit_W_H.m in Sources */,
 				EEA924C91DD016BB006410A0 /* JiangSegmentView.m in Sources */,
@@ -1391,6 +1412,7 @@
 				EEF3C70E1DCE22AC008306AD /* MapViewController.m in Sources */,
 				EE56EAAB1DB8CE6D000B8082 /* ViewController.m in Sources */,
 				405E49271DBCD0EB004105F2 /* RecommendTableViewCell.m in Sources */,
+				EEDE5C931DD17E090021DC9C /* MAMutablePolyline.m in Sources */,
 				EEECBD241DC3908F0037BA0B /* TodayWeatherView.m in Sources */,
 				49060C151DBEE5F0003FE373 /* NearbyTableViewCell.m in Sources */,
 				EE1A003E1DB8CF610003762E /* DataBaseManager.m in Sources */,
@@ -1443,6 +1465,7 @@
 				EE1A002C1DB8CF610003762E /* DYQBaseModel.m in Sources */,
 				49060C1B1DBEE971003FE373 /* Nearby.m in Sources */,
 				4995E3C21DC2FFE800442618 /* TCH_RunTableViewCell.m in Sources */,
+				EEDE5CDD1DD1D8850021DC9C /* RecordTableViewCell.m in Sources */,
 				49FEA0081DC4BCD200E0FB2D /* ScopeViewController.m in Sources */,
 				EEA924CC1DD0176F006410A0 /* CALayer+JiangAdd.m in Sources */,
 				40E5A42B1DC73826001AD41F /* UserManager.m in Sources */,
@@ -1453,6 +1476,7 @@
 				40E5A4311DC739EE001AD41F /* UserModel.m in Sources */,
 				EE56EAA51DB8CE6D000B8082 /* main.m in Sources */,
 				405E49281DBCD0EB004105F2 /* Route.m in Sources */,
+				EED334031DD0B0B300B12650 /* Tracking.m in Sources */,
 				40E5A4491DC8471E001AD41F /* AboutViewController.m in Sources */,
 				4995E3BF1DC2FCCD00442618 /* TCH_RunViewController.m in Sources */,
 				49704A311DBDA7CE0028DB2F /* DetailedViewController.m in Sources */,

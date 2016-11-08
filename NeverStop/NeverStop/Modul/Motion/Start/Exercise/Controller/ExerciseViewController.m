@@ -167,6 +167,7 @@ ProgressAimViewDelegate
     
     // 设置默认模式
     [_mapView setUserTrackingMode: MAUserTrackingModeFollow animated:YES];
+   
 }
 
 - (void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation {
@@ -278,7 +279,7 @@ ProgressAimViewDelegate
         NSInteger minu;
         NSInteger hour;
         sec = [time integerValue] % 60;
-        minu = ([time integerValue] / 60)% 60;
+        minu = ([time integerValue] / 60) % 60;
         hour = [time integerValue] / 3600;
         
         self.homeDataView.dataLabel.text = [NSString stringWithFormat:@"%.2ld:%.2ld:%.2ld", hour, minu, sec];

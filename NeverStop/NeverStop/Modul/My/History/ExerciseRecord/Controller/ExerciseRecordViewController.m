@@ -164,6 +164,17 @@ UITableViewDataSource
     endPointAnnotation.coordinate = CLLocationCoordinate2DMake(endLocation.latitude, endLocation.longitude);
     endPointAnnotation.title = @"end";
     [_mapView addAnnotation:endPointAnnotation];
+    
+    MAPointAnnotation *minPointAnnotation = [[MAPointAnnotation alloc] init];
+    minPointAnnotation.coordinate = self.minCoordiante;
+    minPointAnnotation.title = @"maxmin";
+    [_mapView addAnnotation:minPointAnnotation];
+    
+    MAPointAnnotation *maxPointAnnotation = [[MAPointAnnotation alloc] init];
+    maxPointAnnotation.coordinate = self.maxCoordinate;
+    maxPointAnnotation.title = @"maxmin";
+    [_mapView addAnnotation:maxPointAnnotation];
+    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
     // 设置需要轻拍的次数
     //    tap.numberOfTapsRequired = 2;
@@ -532,11 +543,12 @@ UITableViewDataSource
 //        在地图上添加折线对象
         [_mapView addOverlay: commonPolyline];
     }
-//    [self.mapView showAnnotations:self.mapView.annotations animated:YES];
-    MACoordinateSpan span = MACoordinateSpanMake(_maxCoordinate.latitude - _minCoordiante.latitude, _maxCoordinate.longitude - _minCoordiante.longitude);
-    MACoordinateRegion region = MACoordinateRegionMake(self.centerCoordinate, span);
     
-    [_mapView setRegion:region animated:YES];
+    [self.mapView showAnnotations:self.mapView.annotations animated:YES];
+//    MACoordinateSpan span = MACoordinateSpanMake(_maxCoordinate.latitude - _minCoordiante.latitude, _maxCoordinate.longitude - _minCoordiante.longitude);
+//    MACoordinateRegion region = MACoordinateRegionMake(self.centerCoordinate, span);
+//    
+//    [_mapView setRegion:region animated:YES];
 
     NSLog(@"%@", self.mapView.annotations);
     
@@ -582,6 +594,8 @@ UITableViewDataSource
         } else if ([annotation.title isEqualToString:@"end"]) {
             annotationView.image = [UIImage imageNamed:@"map_endPoint"];
 
+        } else if ([annotation.title isEqualToString:@"maxmin"]) {
+            annotationView.image = nil;
         }
         annotationView.centerOffset = CGPointMake(0, -16);
         

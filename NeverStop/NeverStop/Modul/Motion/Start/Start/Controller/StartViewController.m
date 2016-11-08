@@ -54,7 +54,7 @@ UINavigationControllerDelegate
     self.navigationItem.title = @"运动";
 
     __weak typeof(self) weakSelf = self;
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem getBarButtonItemWithImageName:@"map" HighLightedImageName:@"map" targetBlock:^{
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem getBarButtonItemWithImageName:@"navigator_btn_back" HighLightedImageName:@"navigator_btn_back" targetBlock:^{
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
     //消除阴影

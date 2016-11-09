@@ -172,7 +172,7 @@ RegisterVCDelegate
                 _tipLabel.hidden = YES;
             }];
         } else {
-            UserModel *userModel = [_userManager selectUserWithName:_nameTextField.text];
+            UserModel *userModel = [_userManager selectUser];
             EMError *error = [[EMClient sharedClient] loginWithUsername:_nameTextField.text password:_secretTextField.text];
             if (error) {
                 if (userModel.secret == nil && error.code == 204) {

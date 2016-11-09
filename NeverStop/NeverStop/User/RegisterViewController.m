@@ -290,7 +290,7 @@ UITextFieldDelegate
 
         } else {
             _enterButton.userInteractionEnabled = NO;
-            UserModel *userModel = [_userManager selectUserWithName:textField.text];
+            UserModel *userModel = [_userManager selectUser];
             if (nil == userModel.secret) {
                 DDLogInfo(@"用户名可用");
             } else {

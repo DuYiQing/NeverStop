@@ -220,7 +220,7 @@ EMContactManagerDelegate
     self.userlist = [[EMClient sharedClient].contactManager getContactsFromServerWithError:&error];
     if (!error) {
         for (NSString *userName in _userlist) {
-            if ([searchBar.text lowercaseString] == userName) {
+            if ([[searchBar.text lowercaseString] isEqualToString:userName]) {
                 UIAlertController *alert=[UIAlertController alertControllerWithTitle:@"该用户已是您的好友!" message:nil preferredStyle:UIAlertControllerStyleAlert];
                 //创建一个确定按钮
                 UIAlertAction *actionCancle=[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
@@ -228,49 +228,47 @@ EMContactManagerDelegate
                 [alert addAction:actionCancle];
                 //显示弹框控制器
                 [self presentViewController:alert animated:YES completion:nil];
-                [_searchTabelView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
-
-            } else if ([searchBar.text lowercaseString] == [[EMClient sharedClient] currentUsername]) {
-                UIAlertController *alert=[UIAlertController alertControllerWithTitle:@"不能添加自己为好友!" message:nil preferredStyle:UIAlertControllerStyleAlert];
-                //创建一个确定按钮
-                UIAlertAction *actionCancle=[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
-                //将确定按钮添加进弹框控制器
-                [alert addAction:actionCancle];
-                //显示弹框控制器
-                [self presentViewController:alert animated:YES completion:nil];
-                [_searchTabelView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
-
-            } else {
-                UIAlertController *alert=[UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"确定添加%@为好友?", [_searchBar.text lowercaseString]] message:nil preferredStyle:UIAlertControllerStyleAlert];
-                [alert addTextFieldWithConfigurationHandler:^(UITextField *textField){
-                    textField.placeholder = @"说点什么";
-                }];
-                //创建一个取消和一个确定按钮
-                UIAlertAction *actionCancle=[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-                //因为需要点击确定按钮后改变文字的值，所以需要在确定按钮这个block里面进行相应的操作
-                UIAlertAction *actionOk=[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-                    
-                    UITextField *textField = alert.textFields.firstObject;
-                    EMError *error = [[EMClient sharedClient].contactManager addContact:[_searchBar.text lowercaseString] message:[NSString stringWithFormat:@"%@", textField.text]];
-                    if (!error) {
-                        _tipLabel.hidden = NO;
-                        _tipLabel.alpha = 1;
-                        _tipLabel.text = @"添加好友请求已发送";
-                        [UIView animateWithDuration:1 delay:1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                            _tipLabel.alpha = 0;
-                        } completion:^(BOOL finished) {
-                            _tipLabel.hidden = YES;
-                        }];
-                    } else {
-                        DDLogError(@"%@", error);
-                    }
-                }];
-                //将取消和确定按钮添加进弹框控制器
-                [alert addAction:actionCancle];
-                [alert addAction:actionOk];
-                //显示弹框控制器
-                [self presentViewController:alert animated:YES completion:nil];
             }
+        }
+        if ([searchBar.text lowercaseString] == [[EMClient sharedClient] currentUsername]) {
+            UIAlertController *alert=[UIAlertController alertControllerWithTitle:@"不能添加自己为好友!" message:nil preferredStyle:UIAlertControllerStyleAlert];
+            //创建一个确定按钮
+            UIAlertAction *actionCancle=[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
+            //将确定按钮添加进弹框控制器
+            [alert addAction:actionCancle];
+            //显示弹框控制器
+            [self presentViewController:alert animated:YES completion:nil];
+        } else {
+            UIAlertController *alert=[UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"确定添加%@为好友?", [_searchBar.text lowercaseString]] message:nil preferredStyle:UIAlertControllerStyleAlert];
+            [alert addTextFieldWithConfigurationHandler:^(UITextField *textField){
+                textField.placeholder = @"说点什么";
+            }];
+            //创建一个取消和一个确定按钮
+            UIAlertAction *actionCancle=[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+            //因为需要点击确定按钮后改变文字的值，所以需要在确定按钮这个block里面进行相应的操作
+            UIAlertAction *actionOk=[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+                
+                [_searchBar resignFirstResponder];
+                UITextField *textField = alert.textFields.firstObject;
+                EMError *error = [[EMClient sharedClient].contactManager addContact:[_searchBar.text lowercaseString] message:[NSString stringWithFormat:@"%@", textField.text]];
+                if (!error) {
+                    _tipLabel.hidden = NO;
+                    _tipLabel.alpha = 1;
+                    _tipLabel.text = @"添加好友请求已发送";
+                    [UIView animateWithDuration:1 delay:1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                        _tipLabel.alpha = 0;
+                    } completion:^(BOOL finished) {
+                        _tipLabel.hidden = YES;
+                    }];
+                } else {
+                    DDLogError(@"%@", error);
+                }
+            }];
+            //将取消和确定按钮添加进弹框控制器
+            [alert addAction:actionCancle];
+            [alert addAction:actionOk];
+            //显示弹框控制器
+            [self presentViewController:alert animated:YES completion:nil];
         }
     }
 }

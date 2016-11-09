@@ -20,6 +20,7 @@ UITableViewDataSource
 >
 @property (nonatomic, strong) UITableView *myInfoTableView;
 @property (nonatomic, strong) UIImageView *topImageView;
+@property (nonatomic, strong) UILabel *userNameLabel;
 
 @end
 
@@ -34,6 +35,7 @@ UITableViewDataSource
     // Do any additional setup after loading the view.
     
     [self createMyInfoTableView];
+    
     
 }
 
@@ -61,14 +63,13 @@ UITableViewDataSource
     userImageView.image = [UIImage imageNamed:@"userImage"];
     [userView addSubview:userImageView];
     
-    UILabel *userNameLabel = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 300) / 2, userView.y + userView.height, 300, 50)];
-    userNameLabel.text = @"JDT";
-    userNameLabel.textAlignment = NSTextAlignmentCenter;
-    userNameLabel.font = kFONT_SIZE_24;
-    [_myInfoTableView addSubview:userNameLabel];
+    self.userNameLabel = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 300) / 2, userView.y + userView.height, 300, 50)];
+    _userNameLabel.text = [[EMClient sharedClient] currentUsername];
+    _userNameLabel.textAlignment = NSTextAlignmentCenter;
+    _userNameLabel.font = kFONT_SIZE_24;
+    [_myInfoTableView addSubview:_userNameLabel];
     
     
-    [[UIImage imageNamed:@"userImage"] imageByScalingProportionallyToSize:CGSizeMake(45, 45)];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -149,6 +150,15 @@ UITableViewDataSource
         default:
             break;
     }
+}
+
+- (void)setUserName:(NSString *)userName {
+    if (_userName != userName) {
+        _userName = userName;
+        self.userNameLabel.text = userName;
+    }
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

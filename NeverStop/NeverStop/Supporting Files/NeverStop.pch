@@ -9,7 +9,7 @@
 #ifndef NeverStop_pch
 #define NeverStop_pch
 
-
+#ifdef __OBJC__
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
@@ -55,7 +55,10 @@
 #import "ExerciseData.h"
 #import "MapDataManager.h"
 #import "SQLiteDatabaseManager.h"
+#import <EMSDK.h>
+#import <EMSDKFull.h>
 
+#endif
 
 
 // Include any system framework and library headers here that should be included in all compilation units.

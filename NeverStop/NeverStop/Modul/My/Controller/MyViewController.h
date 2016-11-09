@@ -11,4 +11,6 @@
 
 @interface MyViewController : BaseViewController
 
+@property (nonatomic, strong) NSString *userName;
+
 @end

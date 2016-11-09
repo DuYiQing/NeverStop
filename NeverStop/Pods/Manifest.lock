@@ -31,6 +31,7 @@ PODS:
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
   - FTPopOverMenu (1.2.2)
+  - HyphenateFullSDK (3.1.5)
   - Masonry (1.0.2)
   - MBProgressHUD (1.0.0)
   - MJExtension (3.0.13)
@@ -49,6 +50,7 @@ DEPENDENCIES:
   - CocoaLumberjack (~> 2.4.0)
   - FMDB (~> 2.6.2)
   - FTPopOverMenu (~> 1.2.1)
+  - HyphenateFullSDK (~> 3.1.5)
   - Masonry (~> 1.0.2)
   - MBProgressHUD (~> 1.0.0)
   - MJExtension (~> 3.0.13)
@@ -66,6 +68,7 @@ SPEC CHECKSUMS:
   CocoaLumberjack: aa9dcab71bdf9eaf2a63bbd9ddc87863efe45457
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   FTPopOverMenu: 6a535b7664b20d52d5a299d1f34414414e996caf
+  HyphenateFullSDK: 536f76eeb0914dba766b1d5d30dee083f0805da2
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
@@ -75,6 +78,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   UMengAnalytics: 8d95752776c32f5b954d40edc7f23944882a7c14
 
-PODFILE CHECKSUM: 0685caf5292512e704c85579bc295560ac54ee91
+PODFILE CHECKSUM: 5a4a6ec87423fb3fc2c09d29a3606128ec16c316
 
 COCOAPODS: 1.0.1

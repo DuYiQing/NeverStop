@@ -1006,14 +1006,14 @@
 				EEA924C51DD01676006410A0 /* JiangSegmentScrollView.m */,
 				EEA924C71DD016BB006410A0 /* JiangSegmentView.h */,
 				EEA924C81DD016BB006410A0 /* JiangSegmentView.m */,
-				EED334011DD0B0B300B12650 /* Tracking.h */,
-				EED334021DD0B0B300B12650 /* Tracking.m */,
 				EEDE5C911DD17E090021DC9C /* MAMutablePolyline.h */,
 				EEDE5C921DD17E090021DC9C /* MAMutablePolyline.m */,
 				EEDE5C941DD17E160021DC9C /* MAMutablePolylineRenderer.h */,
 				EEDE5C951DD17E160021DC9C /* MAMutablePolylineRenderer.m */,
 				EEDE5CDB1DD1D8850021DC9C /* RecordTableViewCell.h */,
 				EEDE5CDC1DD1D8850021DC9C /* RecordTableViewCell.m */,
+				EED334011DD0B0B300B12650 /* Tracking.h */,
+				EED334021DD0B0B300B12650 /* Tracking.m */,
 			);
 			path = View;
 			sourceTree = "<group>";

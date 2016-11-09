@@ -51,7 +51,6 @@ UITableViewDataSource
 
 
 
-
 @property (nonatomic, strong) UITableView *tableView;
 
 
@@ -70,6 +69,20 @@ UITableViewDataSource
     UIBarButtonItem *backItem = [UIBarButtonItem getBarButtonItemWithImageName:@"navigator_btn_back" HighLightedImageName:@"navigator_btn_back" targetBlock:^{
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
+    UIBarButtonItem *playItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"run"] style:UIBarButtonItemStylePlain target:self action:@selector(actionPlayAndStop)];
+    UIBarButtonItem *cameraItem = [UIBarButtonItem getBarButtonItemWithImageName:@"nav_camera" HighLightedImageName:nil targetBlock:^{
+        __block UIImage *screenshotImage = nil;
+        __block NSInteger resState = 0;
+        [weakSelf.mapView takeSnapshotInRect:weakSelf.mapView.frame withCompletionBlock:^(UIImage *resultImage, NSInteger state) {
+            screenshotImage = resultImage;
+            resState = state;
+        }];
+        UIImageView *iamgeView = [[UIImageView alloc] initWithImage:screenshotImage];
+
+        UIImageWriteToSavedPhotosAlbum(iamgeView.image, weakSelf, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    }];
+    self.navigationItem.rightBarButtonItems = @[playItem, cameraItem];
+
     self.navigationItem.leftBarButtonItem = backItem;
     self.navigationItem.title = @"运动记录";
     [self createMapView];
@@ -88,11 +101,70 @@ UITableViewDataSource
     [self createEffectView];
     // Do any additional setup after loading the view.
     
-    [self initToolBar];
     [self drawlocus];
     [self initVariates];
 
 }
+
+#pragma mark - 保存图片
+ - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
+    if (error) {
+        
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.label.text = @"正在保存";
+        hud.offset = CGPointMake(0, SCREEN_HEIGHT / 2 - 60);
+        
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
+            [self doSomething];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [hud hideAnimated:YES];
+                MBProgressHUD *hud1 = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                
+                hud1.mode = MBProgressHUDModeCustomView;
+                UIImage *image = [UIImage imageNamed:@"error"];
+                
+                hud1.customView = [[UIImageView alloc] initWithImage:image];
+                hud1.offset = CGPointMake(0, SCREEN_HEIGHT / 2 - 60);
+                
+                hud1.label.text = @"保存失败";
+                [hud1 hideAnimated:YES afterDelay:1.0f];
+                
+            });
+        });
+
+    } else {
+        
+        
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.label.text = @"正在保存";
+        hud.offset = CGPointMake(0, -60);
+
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
+            [self doSomething];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [hud hideAnimated:YES];
+                MBProgressHUD *hud1 = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                
+                hud1.mode = MBProgressHUDModeCustomView;
+                UIImage *image = [UIImage imageNamed:@"Checkmark"];
+                
+                hud1.customView = [[UIImageView alloc] initWithImage:image];
+                hud1.offset = CGPointMake(0, -60);
+
+                hud1.label.text = @"保存成功";
+                [hud1 hideAnimated:YES afterDelay:1.0f];
+
+            });
+        });
+
+        
+        
+           }
+}
+- (void)doSomething {
+    sleep(1);
+}
+
 - (CLLocationCoordinate2D *)initdata {
     CLLocationCoordinate2D commonPolylineCoords[_exerciseData.allLocationArray.count];
     int i = 0;
@@ -105,7 +177,7 @@ UITableViewDataSource
     CLLocationCoordinate2D *coordinates = commonPolylineCoords;
     return coordinates;
 }
-
+#pragma mark - 获取最大最小经纬度
 - (void)dealWithMaxMinData {
     CGFloat maxLatitude = 0;
     CGFloat maxLongitude = 0;
@@ -119,7 +191,7 @@ UITableViewDataSource
     }
     self.centerCoordinate = CLLocationCoordinate2DMake(minLatitude / 2 + maxLatitude / 2, minLongitude / 2  + maxLongitude / 2);
     self.maxCoordinate = CLLocationCoordinate2DMake(maxLatitude, maxLongitude);
-    self.minCoordiante = CLLocationCoordinate2DMake(minLatitude, maxLongitude);
+    self.minCoordiante = CLLocationCoordinate2DMake(minLatitude, minLongitude);
 }
 
 - (void)createMapView {
@@ -166,12 +238,12 @@ UITableViewDataSource
     [_mapView addAnnotation:endPointAnnotation];
     
     MAPointAnnotation *minPointAnnotation = [[MAPointAnnotation alloc] init];
-    minPointAnnotation.coordinate = self.minCoordiante;
+    minPointAnnotation.coordinate = CLLocationCoordinate2DMake(_minCoordiante.latitude, _maxCoordinate.longitude);;
     minPointAnnotation.title = @"maxmin";
     [_mapView addAnnotation:minPointAnnotation];
     
     MAPointAnnotation *maxPointAnnotation = [[MAPointAnnotation alloc] init];
-    maxPointAnnotation.coordinate = self.maxCoordinate;
+    maxPointAnnotation.coordinate = CLLocationCoordinate2DMake(_maxCoordinate.latitude, _minCoordiante.longitude);;
     maxPointAnnotation.title = @"maxmin";
     [_mapView addAnnotation:maxPointAnnotation];
     
@@ -192,10 +264,8 @@ UITableViewDataSource
     [_locationButton setBackgroundImage:[UIImage imageNamed:@"map_btn_location"] forState:UIControlStateNormal];
     _locationButton.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.3];
     [_locationButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
-       
-       
-        [weakSelf.mapView setCenterCoordinate:weakSelf.centerCoordinate animated:YES];
-        [weakSelf.mapView setZoomLevel:18 animated:YES];
+        [weakSelf.mapView showAnnotations:weakSelf.mapView.annotations animated:YES];
+
         
         
     }];
@@ -550,7 +620,6 @@ UITableViewDataSource
 //    
 //    [_mapView setRegion:region animated:YES];
 
-    NSLog(@"%@", self.mapView.annotations);
     
     self.averageSpeed = _exerciseData.averageSpeed;
     
@@ -708,12 +777,6 @@ UITableViewDataSource
 }
 
 #pragma mark - Initialazation
-
-- (void)initToolBar
-{
-    UIBarButtonItem *playItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"run"] style:UIBarButtonItemStylePlain target:self action:@selector(actionPlayAndStop)];
-    self.navigationItem.rightBarButtonItem = playItem;
-}
 
 - (void)initVariates
 {

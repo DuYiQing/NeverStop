@@ -20,7 +20,8 @@
 @interface ExerciseViewController ()
 <
 UINavigationControllerDelegate,
-MAMapViewDelegate
+MAMapViewDelegate,
+ProgressAimViewDelegate
 >
 @property (nonatomic, strong) UIButton *pauseButton;
 @property (nonatomic, strong) UIView *countDownView;
@@ -41,7 +42,6 @@ MAMapViewDelegate
 @property (nonatomic, strong) UIButton *mapButton;
 @property (nonatomic, strong) Location *location;
 
-
 @property (nonatomic, strong) MAMapView *mapView;
 @property (nonatomic, strong) Location *lastLocation;
 @property (nonatomic, assign) double allDistance;
@@ -57,8 +57,9 @@ MAMapViewDelegate
 @property (nonatomic, strong) NSArray *keyPathArray;
 @property (nonatomic, strong) ProgressAimView *progressAimView;
 @property (nonatomic, assign) NSInteger secondPauseLocation;
-
 @property (nonatomic, assign) BOOL isChange;
+@property (nonatomic, strong) UserModel *user;
+
 @end
 
 @implementation ExerciseViewController
@@ -67,10 +68,6 @@ MAMapViewDelegate
     for (int i = 0; i < _keyPathArray.count; i++) {
         [self.exerciseData removeObserver:self forKeyPath:_keyPathArray[i] context:nil];
     }
-    
-    
-
-
 }
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBarHidden = YES;
@@ -97,7 +94,13 @@ MAMapViewDelegate
     _exerciseData.maxSpeed = 0.00;
     _exerciseData.calorie = 0.0;
     _exerciseData.exerciseType = self.exerciseType;
+    _exerciseData.isComplete = NO;
     self.isChange = NO;
+    UserManager *userManager = [UserManager shareUserManager];
+    [userManager openSQLite];
+    self.user = [userManager selectUser];
+    NSLog(@"%@", self.user);
+    _exerciseData.startTime = [NSDate getSystemTimeStringWithFormat:@"YYYY年MM月dd日 hh:mm"];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -164,6 +167,7 @@ MAMapViewDelegate
     
     // 设置默认模式
     [_mapView setUserTrackingMode: MAUserTrackingModeFollow animated:YES];
+   
 }
 
 - (void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation {
@@ -200,8 +204,11 @@ MAMapViewDelegate
                     _exerciseData.count = _exerciseData.allLocationArray.count;
                 }
             } else {
+                if (_exerciseData.allLocationArray.count > 0) {
+                    
                 [_exerciseData.allLocationArray replaceObjectAtIndex:_exerciseData.allLocationArray.count - 1 withObject:location];
                 _exerciseData.count = _exerciseData.allLocationArray.count;
+                }
             }
             _secondPauseLocation++;
             _isChange = YES;
@@ -232,7 +239,16 @@ MAMapViewDelegate
                         _exerciseData.distance += distance / 1000;
                         //                _exerciseDataKVO.distance += round(distance / 1000 * 100) / 100;
                         _exerciseData.maxSpeed = _exerciseData.maxSpeed > _exerciseData.speedPerHour ? _exerciseData.maxSpeed : _exerciseData.speedPerHour;
-                        _exerciseData.averageSpeed = _exerciseData.distance / _exerciseData.duration;
+                        _exerciseData.averageSpeed = _exerciseData.distance / _exerciseData.duration * 60 * 60;
+                        _exerciseData.speedSetting = 1 / _exerciseData.speedPerHour * 3600;
+                        _exerciseData.averageSpeedSetting = 1 / _exerciseData.averageSpeed * 60 * 60;
+                        if ([_exerciseData.exerciseType isEqualToString:@"walk"]) {
+                           _exerciseData.calorie += [_user.weight floatValue] / 60 * 65 * _exerciseData.speedPerHour * time;
+                        } else if ([_exerciseData.exerciseType  isEqualToString:@"run"]) {
+                            _exerciseData.calorie += [_user.weight floatValue] * (distance / 1000) * 1.036;
+                        } else {
+                            _exerciseData.calorie += [_user.weight floatValue] / 60 * 27.5 * _exerciseData.speedPerHour * time;
+                        }
                 }
                 }
             }
@@ -264,7 +280,7 @@ MAMapViewDelegate
         NSInteger minu;
         NSInteger hour;
         sec = [time integerValue] % 60;
-        minu = ([time integerValue] / 60)% 60;
+        minu = ([time integerValue] / 60) % 60;
         hour = [time integerValue] / 3600;
         
         self.homeDataView.dataLabel.text = [NSString stringWithFormat:@"%.2ld:%.2ld:%.2ld", hour, minu, sec];
@@ -295,6 +311,10 @@ MAMapViewDelegate
             _progressAimView.currentNumber = _exerciseData.calorie;
         }
        
+    } else if ([keyPath isEqualToString:@"speedSetting"] && object == _exerciseData) {
+        
+    } else if ([keyPath isEqualToString:@"averageSpeedSetting"] && object == _exerciseData) {
+        
     }
 
 
@@ -502,6 +522,7 @@ MAMapViewDelegate
                 [self creatMapView];
                 
                 self.progressAimView = [[ProgressAimView alloc] initWithFrame:CGRectMake(15, 64 + 5, SCREEN_WIDTH - 30, 30) aim:self.aim aimType:self.aimType];
+                _progressAimView.delegate = self;
                 [self.view addSubview:_progressAimView];
                 if (self.aimType == 0) {
                     _progressAimView.alpha = 0;
@@ -585,7 +606,10 @@ MAMapViewDelegate
     dispatch_resume(_timer1);
 
 }
-
+#pragma mark - 进度条协议
+- (void)aimIsCompleted {
+    _exerciseData.isComplete = YES;
+}
 - (void)endButtonAction:(UIButton *)button {
     if (_exerciseData.distance >= 1.0f) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否结束本次运动?" preferredStyle:UIAlertControllerStyleAlert];
@@ -593,16 +617,22 @@ MAMapViewDelegate
             [self endTimer];
             _exerciseData.aim = self.aim;
             _exerciseData.aimType = self.aimType;
-            self.mapManager = [MapDataManager shareDataManager];
-            [_mapManager openDB];
-            [_mapManager createTable];
-            [_mapManager insertExerciseData:_exerciseData];
-            NSArray *array = [_mapManager selectAll];
-            NSLog(@"%@", array);
-            //    [_mapManager deleteExerciseData];
-            [_exerciseData.allLocationArray removeAllObjects];
-
+            dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+            NSLog(@"current task");
+            dispatch_async(globalQueue, ^{
+                self.mapManager = [MapDataManager shareDataManager];
+                [_mapManager openDB];
+                [_mapManager createTable];
+                [_mapManager insertExerciseData:_exerciseData];
+                NSArray *array = [_mapManager selectAll];
+                NSLog(@"%@", array);
+                //    [_mapManager deleteExerciseData];
+                [_exerciseData.allLocationArray removeAllObjects];
+            });
             [self.navigationController popViewControllerAnimated:YES];
+            
+
+           
             
           
             
@@ -612,6 +642,8 @@ MAMapViewDelegate
         [alert addAction:destructiveAction];
         
         [self presentViewController:alert animated:YES completion:nil];
+      
+        
         
         
     } else {

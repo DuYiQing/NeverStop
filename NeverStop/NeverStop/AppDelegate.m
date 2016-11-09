@@ -8,11 +8,11 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
-#import "MatchViewController.h"
 #import "MessageViewController.h"
 #import "MotionViewController.h"
 #import "MyViewController.h"
 #import "ScopeViewController.h"
+#import "MatchViewController.h"
 #import "HealthManager.h"
 
 @interface AppDelegate ()
@@ -107,10 +107,13 @@ void uncaughtExceptionHandler(NSException *exception) {
     
     
     
+
+
     
-    
+       
     
     // 比赛页面
+    
     MatchViewController *maVC = [[MatchViewController alloc] init];
     maVC.title = @"赛事";
     UINavigationController *maNavigationController = [[UINavigationController alloc] initWithRootViewController:maVC];

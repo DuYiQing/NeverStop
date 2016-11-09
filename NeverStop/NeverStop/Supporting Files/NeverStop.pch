@@ -54,6 +54,10 @@
 #import <AMapSearchKit/AMapSearchKit.h>
 #import "ExerciseData.h"
 #import "MapDataManager.h"
+#import "UserModel.h"
+#import "UserManager.h"
+#import "NSDate+Categories.h"
+#import "CALayer+JiangAdd.h"
 #import "SQLiteDatabaseManager.h"
 #import <EMSDK.h>
 #import <EMSDKFull.h>

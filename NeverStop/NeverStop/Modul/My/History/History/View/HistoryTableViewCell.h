@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface HistoryTableViewCell : UITableViewCell
-
+@property (nonatomic, strong) ExerciseData *exerciseData;
 @end

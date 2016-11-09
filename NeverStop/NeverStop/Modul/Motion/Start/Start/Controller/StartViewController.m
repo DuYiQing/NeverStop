@@ -13,8 +13,6 @@
 #import "CustomPickerView.h"
 #import "ExerciseViewController.h"
 #import "CustomAnimateTransitionPush.h"
-#import "ExerciseData.h"
-#import "MapDataManager.h"
 @interface StartViewController ()
 <
 MAMapViewDelegate,
@@ -56,7 +54,7 @@ UINavigationControllerDelegate
     self.navigationItem.title = @"运动";
 
     __weak typeof(self) weakSelf = self;
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem getBarButtonItemWithImageName:@"map" HighLightedImageName:@"map" targetBlock:^{
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem getBarButtonItemWithImageName:@"navigator_btn_back" HighLightedImageName:@"navigator_btn_back" targetBlock:^{
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
     //消除阴影
@@ -307,24 +305,7 @@ UINavigationControllerDelegate
     // 中心位置
     [_mapView setCenterCoordinate:_mapView.userLocation.coordinate animated:YES];
 }
-//- (MAAnnotationView*)mapView:(MAMapView *)mapView viewForAnnotation:(id <MAAnnotation>)annotation;
-//{
-//    if ([annotation isKindOfClass:[MAPointAnnotation class]])
-//    {
-//        MAPinAnnotationView *annotationView = nil;
-//        if (annotationView == nil)
-//        {
-//            annotationView = [[MAPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:nil];
-//        }
-//        annotationView.pinColor = MAPinAnnotationColorGreen;
-//
-//        //annotationView.canShowCallout= YES;       //设置气泡可以弹出，默认为NO
-//        annotationView.animatesDrop = NO;        //设置标注动画显示，默认为NO
-//        annotationView.draggable = NO;        //设置标注可以拖动，默认为NO
-//        return annotationView;
-//    }
-//    return nil;
-//}
+
 // 自定义精度圈样式
 - (MAOverlayRenderer *)mapView:(MAMapView *)mapView rendererForOverlay:(id<MAOverlay>)overlay {
     if ([overlay isKindOfClass:[MAPolyline class]])

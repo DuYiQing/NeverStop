@@ -21,11 +21,20 @@ UITableViewDataSource
 @end
 
 @implementation CategoriesViewController
-
+- (void)viewWillAppear:(BOOL)animated {
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    
+    self.navigationController.navigationBar.translucent = NO;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    __weak typeof(self) weakSelf = self;
+    UIBarButtonItem *backItem = [UIBarButtonItem getBarButtonItemWithImageName:@"navigator_btn_back" HighLightedImageName:@"navigator_btn_back" targetBlock:^{
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+    }];
+    self.navigationItem.leftBarButtonItem = backItem;
+    self.navigationItem.title = @"训练计划";
     self.categoriesArr = [NSMutableArray array];
     
     self.view.backgroundColor = [UIColor whiteColor];
@@ -34,7 +43,7 @@ UITableViewDataSource
 }
 
 - (void)createCategoriesTableView {
-    self.categoriesTableView = [[UITableView alloc] initWithFrame:[UIScreen mainScreen].bounds style:UITableViewStylePlain];
+    self.categoriesTableView = [[UITableView alloc] initWithFrame:[UIScreen mainScreen].bounds style:UITableViewStyleGrouped];
     _categoriesTableView.delegate = self;
     _categoriesTableView.dataSource = self;
     _categoriesTableView.rowHeight = 200;

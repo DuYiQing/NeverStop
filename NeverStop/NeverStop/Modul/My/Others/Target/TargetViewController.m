@@ -36,11 +36,18 @@ UIPickerViewDelegate
         self.selectedRow = _targetModel.row;
         [_targetPickerView selectRow:_selectedRow inComponent:0 animated:YES];
     }
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    __weak typeof(self) weakSelf = self;
+    UIBarButtonItem *backItem = [UIBarButtonItem getBarButtonItemWithImageName:@"navigator_btn_back" HighLightedImageName:@"navigator_btn_back" targetBlock:^{
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+    }];
+    self.navigationItem.leftBarButtonItem = backItem;
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.targetManager = [TargetManager shareTargetManager];

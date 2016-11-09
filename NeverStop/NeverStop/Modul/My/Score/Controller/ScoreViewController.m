@@ -22,17 +22,26 @@ UITableViewDataSource
 
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    __weak typeof(self) weakSelf = self;
+    UIBarButtonItem *backItem = [UIBarButtonItem getBarButtonItemWithImageName:@"navigator_btn_back" HighLightedImageName:@"navigator_btn_back" targetBlock:^{
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+    }];
+    self.navigationItem.title = @"成绩";
+    self.navigationItem.leftBarButtonItem = backItem;
     self.view.backgroundColor = [UIColor whiteColor];
     [self createScoreTableView];
 }
 
 - (void)createScoreTableView {
-    self.scoreTableView = [[UITableView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    self.scoreTableView = [[UITableView alloc]initWithFrame:[UIScreen mainScreen].bounds style:UITableViewStyleGrouped];
     _scoreTableView.delegate = self;
     _scoreTableView.dataSource = self;
     _scoreTableView.rowHeight =  80.f;

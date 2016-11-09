@@ -110,7 +110,6 @@ UITableViewDataSource
     ExerciseRecordViewController *exerciseRecordVC = [[ExerciseRecordViewController alloc] init];
     HistoryData *data = _exerciseArray[indexPath.section];
     exerciseRecordVC.exerciseData = data.array[indexPath.row];
-    exerciseRecordVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:exerciseRecordVC animated:YES];
     
     

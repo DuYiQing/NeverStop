@@ -132,24 +132,33 @@ UITableViewDataSource
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     switch (indexPath.row) {
         case 0: {
             ScoreViewController *scoreVC = [[ScoreViewController alloc] init];
+            scoreVC.hidesBottomBarWhenPushed = YES;
+
             [self.navigationController pushViewController:scoreVC animated:YES];
         }
             break;
         case 1: {
             PlanViewController *planVC = [[PlanViewController alloc] init];
+            planVC.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:planVC animated:YES];
+
         }
             break;
         case 2: {
             HistoryViewController *historyVC = [[HistoryViewController alloc] init];
+            historyVC.hidesBottomBarWhenPushed = YES;
+
             [self.navigationController pushViewController:historyVC animated:YES];
         }
             break;
         case 3: {
             OthersViewController *othersVC = [[OthersViewController alloc] init];
+            othersVC.hidesBottomBarWhenPushed = YES;
+
             [self.navigationController pushViewController:othersVC animated:YES];
         }
             break;

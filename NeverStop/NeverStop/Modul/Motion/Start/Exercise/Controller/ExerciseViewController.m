@@ -204,8 +204,11 @@ ProgressAimViewDelegate
                     _exerciseData.count = _exerciseData.allLocationArray.count;
                 }
             } else {
+                if (_exerciseData.allLocationArray.count > 0) {
+                    
                 [_exerciseData.allLocationArray replaceObjectAtIndex:_exerciseData.allLocationArray.count - 1 withObject:location];
                 _exerciseData.count = _exerciseData.allLocationArray.count;
+                }
             }
             _secondPauseLocation++;
             _isChange = YES;
@@ -241,10 +244,8 @@ ProgressAimViewDelegate
                         _exerciseData.averageSpeedSetting = 1 / _exerciseData.averageSpeed * 60 * 60;
                         if ([_exerciseData.exerciseType isEqualToString:@"walk"]) {
                            _exerciseData.calorie += [_user.weight floatValue] / 60 * 65 * _exerciseData.speedPerHour * time;
-                            
-                            
                         } else if ([_exerciseData.exerciseType  isEqualToString:@"run"]) {
-                            _exerciseData.calorie += [_user.weight floatValue] * _exerciseData.distance * 1.036;
+                            _exerciseData.calorie += [_user.weight floatValue] * (distance / 1000) * 1.036;
                         } else {
                             _exerciseData.calorie += [_user.weight floatValue] / 60 * 27.5 * _exerciseData.speedPerHour * time;
                         }

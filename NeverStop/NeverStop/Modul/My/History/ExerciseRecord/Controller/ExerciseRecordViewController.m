@@ -840,7 +840,7 @@ UITableViewDataSource
             cell.rightDataView.titleLabel.text = @"平均速度(Km/h)";
             break;
         case 2:
-            if (_exerciseData.aimType == 1) {
+            if (_exerciseData.isComplete == 1) {
                 cell.leftDataView.dataLabel.text = @"已完成";
             } else {
                 cell.leftDataView.dataLabel.text = @"未完成";

@@ -129,7 +129,6 @@
 		40E5A4441DC82B2D001AD41F /* OthersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E5A4431DC82B2D001AD41F /* OthersViewController.m */; };
 		40E5A4491DC8471E001AD41F /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E5A4481DC8471E001AD41F /* AboutViewController.m */; };
 		40E5A44C1DC8473E001AD41F /* TargetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E5A44B1DC8473E001AD41F /* TargetViewController.m */; };
-		40E5A4501DC8B748001AD41F /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1AFFE71DB8CF610003762E /* BaseViewController.m */; };
 		40E5A4551DC8BF4B001AD41F /* CategoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E5A4541DC8BF4B001AD41F /* CategoriesViewController.m */; };
 		40E5A4581DC8C352001AD41F /* CategoriesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E5A4571DC8C352001AD41F /* CategoriesModel.m */; };
 		40E5A45B1DC8C693001AD41F /* CategoriesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E5A45A1DC8C693001AD41F /* CategoriesTableViewCell.m */; };
@@ -150,13 +149,13 @@
 		49060C1B1DBEE971003FE373 /* Nearby.m in Sources */ = {isa = PBXBuildFile; fileRef = 49060C1A1DBEE971003FE373 /* Nearby.m */; };
 		49060C471DBF8461003FE373 /* NearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49060C461DBF8461003FE373 /* NearbyViewController.m */; };
 		494BB3B81DD401CD00448D45 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4028BD071DD1ED640088F221 /* MessageViewController.m */; };
-		494BB3B91DD4021C00448D45 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1AFFE71DB8CF610003762E /* BaseViewController.m */; };
 		494BB3BA1DD4026E00448D45 /* LocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E5A4331DC774F6001AD41F /* LocationModel.m */; };
+		494BB3E71DD44DB000448D45 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1AFFE71DB8CF610003762E /* BaseViewController.m */; };
 		494C54691DD0101A001CC7F1 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 494C54681DD0101A001CC7F1 /* Group.m */; };
 		494C546C1DD01187001CC7F1 /* GroupInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 494C546B1DD01187001CC7F1 /* GroupInfo.m */; };
 		494C546F1DD011AA001CC7F1 /* GroupAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 494C546E1DD011AA001CC7F1 /* GroupAccount.m */; };
 		494C54721DD011C0001CC7F1 /* GroupLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 494C54711DD011C0001CC7F1 /* GroupLocation.m */; };
-		495EB0B81DD322AF00AF03A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 495EB0B71DD322AF00AF03A2 /* Assets.xcassets */; };
+		495EB0B81DD322AF00AF03A2 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		49677B0E1DC6F92A00F23B6B /* GroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49677B0D1DC6F92A00F23B6B /* GroupViewController.m */; };
 		49677B391DC76ED700F23B6B /* ExerciseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE3D70E1DC199E8003D0CC5 /* ExerciseViewController.m */; };
 		49704A311DBDA7CE0028DB2F /* DetailedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49704A301DBDA7CE0028DB2F /* DetailedViewController.m */; };
@@ -2245,7 +2244,7 @@
 			files = (
 				EE8953A21DC75DEC00F4AB3C /* (null) in Resources */,
 				EE8953A31DC75DEC00F4AB3C /* (null) in Resources */,
-				495EB0B81DD322AF00AF03A2 /* Assets.xcassets in Resources */,
+				495EB0B81DD322AF00AF03A2 /* (null) in Resources */,
 				EEF3C7211DCE22EC008306AD /* Assets.xcassets in Resources */,
 				EE56EAAE1DB8CE6D000B8082 /* Main.storyboard in Resources */,
 				4028C5711DD415AE0088F221 /* MWPhotoBrowser.bundle in Resources */,
@@ -2308,8 +2307,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				494BB3E71DD44DB000448D45 /* BaseViewController.m in Sources */,
 				494BB3BA1DD4026E00448D45 /* LocationModel.m in Sources */,
-				494BB3B91DD4021C00448D45 /* BaseViewController.m in Sources */,
 				494BB3B81DD401CD00448D45 /* MessageViewController.m in Sources */,
 				4028C5781DD415AE0088F221 /* NSString+Valid.m in Sources */,
 				4028C52A1DD415AD0088F221 /* EMAudioPlayerUtil.m in Sources */,
@@ -2318,7 +2317,6 @@
 				EE4D99B71DD08CA500E16CDE /* MyViewController.m in Sources */,
 				4028C52B1DD415AD0088F221 /* EMAudioRecorderUtil.m in Sources */,
 				40E5A4611DC97BC1001AD41F /* TargetModel.m in Sources */,
-				40E5A4501DC8B748001AD41F /* BaseViewController.m in Sources */,
 				4028C59C1DD415AE0088F221 /* EaseChatBarMoreView.m in Sources */,
 				49677B391DC76ED700F23B6B /* ExerciseViewController.m in Sources */,
 				4028C58D1DD415AE0088F221 /* EaseMessageTimeCell.m in Sources */,
@@ -2465,7 +2463,6 @@
 				EEF3C70F1DCE22AC008306AD /* StatusArrayModel.m in Sources */,
 				4028C5911DD415AE0088F221 /* EaseBubbleView+Location.m in Sources */,
 				40022F7A1DC6EE780062CA94 /* PlanViewController.m in Sources */,
-				4028BD081DD1ED640088F221 /* MessageViewController.m in Sources */,
 				4028C5331DD415AD0088F221 /* EMVoiceConverter.mm in Sources */,
 				40022F691DC6DD190062CA94 /* ScoreTableViewCell.m in Sources */,
 				EEA227ED1DD068DC00754BCF /* MemberHeadView.m in Sources */,

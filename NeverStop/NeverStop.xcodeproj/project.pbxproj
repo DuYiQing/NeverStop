@@ -127,23 +127,10 @@
 		40CF904D1DD09E9A005D8B86 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CF904C1DD09E9A005D8B86 /* RegisterViewController.m */; };
 		40E5A42B1DC73826001AD41F /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E5A42A1DC73826001AD41F /* UserManager.m */; };
 		40E5A4311DC739EE001AD41F /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E5A4301DC739EE001AD41F /* UserModel.m */; };
-		49013B7F1DC8B22A00AAB28A /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1AFFE71DB8CF610003762E /* BaseViewController.m */; };
-		49013B801DC8B28200AAB28A /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1D81A71DC0CA5E00FA6CD5 /* MapViewController.m */; };
-		49013B831DC8B36800AAB28A /* LocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49013B821DC8B36800AAB28A /* LocationModel.m */; };
-		49060C151DBEE5F0003FE373 /* NearbyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49060C141DBEE5F0003FE373 /* NearbyTableViewCell.m */; };
-		49060C1B1DBEE971003FE373 /* Nearby.m in Sources */ = {isa = PBXBuildFile; fileRef = 49060C1A1DBEE971003FE373 /* Nearby.m */; };
-		49060C471DBF8461003FE373 /* NearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49060C461DBF8461003FE373 /* NearbyViewController.m */; };
-		494374131DB9B29800FF641A /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 494374081DB9B29800FF641A /* MessageViewController.m */; };
-		494C54691DD0101A001CC7F1 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 494C54681DD0101A001CC7F1 /* Group.m */; };
-		494C546C1DD01187001CC7F1 /* GroupInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 494C546B1DD01187001CC7F1 /* GroupInfo.m */; };
-		494C546F1DD011AA001CC7F1 /* GroupAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 494C546E1DD011AA001CC7F1 /* GroupAccount.m */; };
-		494C54721DD011C0001CC7F1 /* GroupLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 494C54711DD011C0001CC7F1 /* GroupLocation.m */; };
-		495EB0B81DD322AF00AF03A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 495EB0B71DD322AF00AF03A2 /* Assets.xcassets */; };
 		40E5A4441DC82B2D001AD41F /* OthersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E5A4431DC82B2D001AD41F /* OthersViewController.m */; };
 		40E5A4491DC8471E001AD41F /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E5A4481DC8471E001AD41F /* AboutViewController.m */; };
 		40E5A44C1DC8473E001AD41F /* TargetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E5A44B1DC8473E001AD41F /* TargetViewController.m */; };
 		40E5A4501DC8B748001AD41F /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1AFFE71DB8CF610003762E /* BaseViewController.m */; };
-		40E5A4521DC8B7B3001AD41F /* LocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E5A4331DC774F6001AD41F /* LocationModel.m */; };
 		40E5A4551DC8BF4B001AD41F /* CategoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E5A4541DC8BF4B001AD41F /* CategoriesViewController.m */; };
 		40E5A4581DC8C352001AD41F /* CategoriesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E5A4571DC8C352001AD41F /* CategoriesModel.m */; };
 		40E5A45B1DC8C693001AD41F /* CategoriesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E5A45A1DC8C693001AD41F /* CategoriesTableViewCell.m */; };
@@ -159,9 +146,15 @@
 		40EEB4061DD01B9F00D47FDE /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 40EEB3F01DD012DC00D47FDE /* libstdc++.6.0.9.tbd */; };
 		40EEB4081DD01BAE00D47FDE /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 40EEB4071DD01BAE00D47FDE /* libsqlite3.tbd */; };
 		40EEB4091DD01BBA00D47FDE /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 40EEB3F41DD0131900D47FDE /* libiconv.tbd */; };
+		49013B801DC8B28200AAB28A /* (null) in Sources */ = {isa = PBXBuildFile; };
 		49060C151DBEE5F0003FE373 /* NearbyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49060C141DBEE5F0003FE373 /* NearbyTableViewCell.m */; };
 		49060C1B1DBEE971003FE373 /* Nearby.m in Sources */ = {isa = PBXBuildFile; fileRef = 49060C1A1DBEE971003FE373 /* Nearby.m */; };
 		49060C471DBF8461003FE373 /* NearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49060C461DBF8461003FE373 /* NearbyViewController.m */; };
+		494C54691DD0101A001CC7F1 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 494C54681DD0101A001CC7F1 /* Group.m */; };
+		494C546C1DD01187001CC7F1 /* GroupInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 494C546B1DD01187001CC7F1 /* GroupInfo.m */; };
+		494C546F1DD011AA001CC7F1 /* GroupAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 494C546E1DD011AA001CC7F1 /* GroupAccount.m */; };
+		494C54721DD011C0001CC7F1 /* GroupLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 494C54711DD011C0001CC7F1 /* GroupLocation.m */; };
+		495EB0B81DD322AF00AF03A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 495EB0B71DD322AF00AF03A2 /* Assets.xcassets */; };
 		49677B0E1DC6F92A00F23B6B /* GroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49677B0D1DC6F92A00F23B6B /* GroupViewController.m */; };
 		49677B391DC76ED700F23B6B /* ExerciseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE3D70E1DC199E8003D0CC5 /* ExerciseViewController.m */; };
 		49704A311DBDA7CE0028DB2F /* DetailedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49704A301DBDA7CE0028DB2F /* DetailedViewController.m */; };
@@ -211,9 +204,8 @@
 		EE56EAA51DB8CE6D000B8082 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EE56EAA41DB8CE6D000B8082 /* main.m */; };
 		EE56EAA81DB8CE6D000B8082 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EE56EAA71DB8CE6D000B8082 /* AppDelegate.m */; };
 		EE56EAAE1DB8CE6D000B8082 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE56EAAC1DB8CE6D000B8082 /* Main.storyboard */; };
-		EE8953A21DC75DEC00F4AB3C /* 18r.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EEECBCB21DC3839B0037BA0B /* 18r.jpg */; };
-		EE8953A31DC75DEC00F4AB3C /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EEECBC801DC2EB750037BA0B /* background.jpg */; };
-		EE8953AA1DC75FFB00F4AB3C /* MyInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE8953A81DC75E4700F4AB3C /* MyInfoTableViewCell.m */; };
+		EE8953A21DC75DEC00F4AB3C /* (null) in Resources */ = {isa = PBXBuildFile; };
+		EE8953A31DC75DEC00F4AB3C /* (null) in Resources */ = {isa = PBXBuildFile; };
 		EEA227ED1DD068DC00754BCF /* MemberHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA227E71DD068DC00754BCF /* MemberHeadView.m */; };
 		EEA227EE1DD068DC00754BCF /* MyInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA227E91DD068DC00754BCF /* MyInfoTableViewCell.m */; };
 		EEA227EF1DD068DC00754BCF /* WaveImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA227EB1DD068DC00754BCF /* WaveImageView.m */; };
@@ -520,8 +512,6 @@
 		40E5A42A1DC73826001AD41F /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
 		40E5A42F1DC739EE001AD41F /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		40E5A4301DC739EE001AD41F /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
-		49013B811DC8B36800AAB28A /* LocationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationModel.h; sourceTree = "<group>"; };
-		49013B821DC8B36800AAB28A /* LocationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationModel.m; sourceTree = "<group>"; };
 		40E5A4321DC774F6001AD41F /* LocationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationModel.h; sourceTree = "<group>"; };
 		40E5A4331DC774F6001AD41F /* LocationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationModel.m; sourceTree = "<group>"; };
 		40E5A4421DC82B2D001AD41F /* OthersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OthersViewController.h; sourceTree = "<group>"; };
@@ -559,8 +549,6 @@
 		49060C1A1DBEE971003FE373 /* Nearby.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Nearby.m; sourceTree = "<group>"; };
 		49060C451DBF8461003FE373 /* NearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyViewController.h; sourceTree = "<group>"; };
 		49060C461DBF8461003FE373 /* NearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyViewController.m; sourceTree = "<group>"; };
-		494374071DB9B29800FF641A /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
-		494374081DB9B29800FF641A /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 		494C54671DD0101A001CC7F1 /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
 		494C54681DD0101A001CC7F1 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
 		494C546A1DD01187001CC7F1 /* GroupInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupInfo.h; sourceTree = "<group>"; };
@@ -1593,12 +1581,8 @@
 		49FEA0091DC4BCDD00E0FB2D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				49013B811DC8B36800AAB28A /* LocationModel.h */,
-				49013B821DC8B36800AAB28A /* LocationModel.m */,
 				49FEA0171DC4CD1E00E0FB2D /* Info.h */,
 				49FEA0181DC4CD1E00E0FB2D /* Info.m */,
-				49FEA0141DC4C51700E0FB2D /* Scope.h */,
-				49FEA0151DC4C51700E0FB2D /* Scope.m */,
 				494C54671DD0101A001CC7F1 /* Group.h */,
 				494C54681DD0101A001CC7F1 /* Group.m */,
 				494C546A1DD01187001CC7F1 /* GroupInfo.h */,
@@ -2259,12 +2243,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EEE3D7261DC1A1A9003D0CC5 /* 1.png in Resources */,
-				EEE3D7271DC1A1A9003D0CC5 /* 2.png in Resources */,
-				EE8953A21DC75DEC00F4AB3C /* 18r.jpg in Resources */,
-				EE8953A31DC75DEC00F4AB3C /* background.jpg in Resources */,
-				EEE3D7261DC1A1A9003D0CC5 /* 1.png in Resources */,
-				EEE3D7271DC1A1A9003D0CC5 /* 2.png in Resources */,
+				EE8953A21DC75DEC00F4AB3C /* (null) in Resources */,
+				EE8953A31DC75DEC00F4AB3C /* (null) in Resources */,
 				495EB0B81DD322AF00AF03A2 /* Assets.xcassets in Resources */,
 				EEF3C7211DCE22EC008306AD /* Assets.xcassets in Resources */,
 				EE56EAAE1DB8CE6D000B8082 /* Main.storyboard in Resources */,
@@ -2331,12 +2311,10 @@
 				4028C5781DD415AE0088F221 /* NSString+Valid.m in Sources */,
 				4028C52A1DD415AD0088F221 /* EMAudioPlayerUtil.m in Sources */,
 				4028C5701DD415AE0088F221 /* PSTGridLayoutSection.m in Sources */,
-				49013B801DC8B28200AAB28A /* MapViewController.m in Sources */,
-				49013B7F1DC8B22A00AAB28A /* BaseViewController.m in Sources */,
+				49013B801DC8B28200AAB28A /* (null) in Sources */,
 				EE4D99B71DD08CA500E16CDE /* MyViewController.m in Sources */,
 				4028C52B1DD415AD0088F221 /* EMAudioRecorderUtil.m in Sources */,
 				40E5A4611DC97BC1001AD41F /* TargetModel.m in Sources */,
-				40E5A4521DC8B7B3001AD41F /* LocationModel.m in Sources */,
 				40E5A4501DC8B748001AD41F /* BaseViewController.m in Sources */,
 				4028C59C1DD415AE0088F221 /* EaseChatBarMoreView.m in Sources */,
 				49677B391DC76ED700F23B6B /* ExerciseViewController.m in Sources */,
@@ -2397,9 +2375,6 @@
 				4028C55A1DD415AE0088F221 /* EMSDWebImagePrefetcher.m in Sources */,
 				EE1A00401DB8CF610003762E /* AppStoreUtils.m in Sources */,
 				4028C52D1DD415AD0088F221 /* EMCDDeviceManager+Microphone.m in Sources */,
-				494374131DB9B29800FF641A /* MessageViewController.m in Sources */,
-				49013B831DC8B36800AAB28A /* LocationModel.m in Sources */,
-				EE0115271DC425ED001B44AD /* VerticalButton.m in Sources */,
 				40CF90471DD086B1005D8B86 /* ViewController.m in Sources */,
 				EE1A002D1DB8CF610003762E /* DYQBaseView.m in Sources */,
 				40A64FC01DCB3F8200C35F26 /* DYQProgressView.m in Sources */,
@@ -2436,7 +2411,6 @@
 				4995E3B61DC2F19000442618 /* NearbyDetailedTableViewCell.m in Sources */,
 				4028C56D1DD415AE0088F221 /* PSTGridLayoutInfo.m in Sources */,
 				4028C55D1DD415AE0088F221 /* UIButton+EMWebCache.m in Sources */,
-				EE1A003D1DB8CF610003762E /* UIView+Frame.m in Sources */,
 				EE1A00341DB8CF610003762E /* NSString+Categories.m in Sources */,
 				EEE3D72A1DC1A1A9003D0CC5 /* AimSettingPickerView.m in Sources */,
 				4028C5601DD415AE0088F221 /* UIImage+EMWebP.m in Sources */,

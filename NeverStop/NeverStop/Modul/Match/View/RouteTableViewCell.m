@@ -17,7 +17,7 @@
         [self.contentView addSubview:_imageViewD];
         self.routeView = [[UIView alloc] init];
         _routeView.backgroundColor = [UIColor whiteColor];
-        _routeView.alpha = 0.8;
+        //_routeView.alpha = 0.8;
         [self.contentView addSubview:_routeView];
 
         self.userImabeView = [[UIImageView alloc] init];

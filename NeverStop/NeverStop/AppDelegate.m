@@ -21,6 +21,9 @@
 UITabBarControllerDelegate
 >
 @property (nonatomic, strong) UITabBarController *tabBarController;
+
+@property (nonatomic, strong) EMError *error;
+
 @end
 
 @implementation AppDelegate
@@ -61,6 +64,15 @@ void uncaughtExceptionHandler(NSException *exception) {
     // 验证
     [HealthManager shareInstance];
     
+    // 环信
+    //AppKey:注册的AppKey。
+    //apnsCertName:推送证书名（不需要加后缀）。
+    EMOptions *options = [EMOptions optionsWithAppkey:@"1175161105178569#jdtneverstop"];
+    options.apnsCertName = @"NeverStop";
+    self.error = [[EMClient sharedClient] initializeSDKWithOptions:options];
+    if (!_error) {
+        NSLog(@"初始化成功");
+    }
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
@@ -194,6 +206,7 @@ void uncaughtExceptionHandler(NSException *exception) {
         // 否则直接进入应用
         self.window.rootViewController = _tabBarController;
        
+    
     }
 
     
@@ -292,10 +305,19 @@ void uncaughtExceptionHandler(NSException *exception) {
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    [[EMClient sharedClient] applicationDidEnterBackground:application];
+
+    
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
+    [[EMClient sharedClient] applicationWillEnterForeground:application];
+
+    
+    
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

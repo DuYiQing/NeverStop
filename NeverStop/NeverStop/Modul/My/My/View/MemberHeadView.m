@@ -64,7 +64,7 @@
         _nameLabel.font = kFONT_SIZE_18_BOLD;
         _nameLabel.textColor = [UIColor blackColor];
         [_memberView addSubview:_nameLabel];
-        _nameLabel.text = @"JDT";
+        _nameLabel.text = [[EMClient sharedClient] currentUsername];
         CGFloat nameWidth = [UILabel getWidthWithTitle:_nameLabel.text font:_nameLabel.font];
         _nameLabel.frame = CGRectMake(_memberView.centerX - nameWidth / 2, 50, nameWidth, 25);
 

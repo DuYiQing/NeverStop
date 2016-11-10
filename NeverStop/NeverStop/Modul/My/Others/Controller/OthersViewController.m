@@ -77,11 +77,7 @@ UITableViewDelegate
         folderSize += [[NSFileManager defaultManager]attributesOfItemAtPath:filePath error:nil].fileSize;
     }
     //转换为M为单位
-    CGFloat sizeM = folderSize /1024.0/1024.0;
-    // 缓存大于20M时自动清除缓存
-    if (sizeM > 20) {
-        [self removeCache];
-    }
+    CGFloat sizeM = folderSize / 1024.0 / 1024.0;
     
     return sizeM;
 }

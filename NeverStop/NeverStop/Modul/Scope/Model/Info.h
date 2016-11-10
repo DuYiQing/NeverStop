@@ -20,4 +20,5 @@
 @property (nonatomic, strong) NSString *icon_image_url;
 //二级界面背景图
 @property (nonatomic, strong) NSString *background_image_url;
+@property (nonatomic, strong) NSString *id;
 @end

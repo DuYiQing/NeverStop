@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class Scope;
 @interface GroupViewController : UIViewController
+@property (nonatomic, strong) Scope *scModel;
 
 @end

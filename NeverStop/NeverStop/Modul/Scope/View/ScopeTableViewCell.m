@@ -25,8 +25,7 @@
         _userCount.font = [UIFont systemFontOfSize:12];
         _userCount.textColor = [UIColor lightGrayColor];
         self.iconImageUrl = [[UIImageView alloc] init];
-        _iconImageUrl.layer.cornerRadius = 1;
-        _iconImageUrl.layer.masksToBounds = YES;
+        [_iconImageUrl.layer setBorderWidth:2];
         //_iconImageUrl.contentMode = UIViewContentModeScaleAspectFit;
         self.disp = [[UILabel alloc] init];
         _disp.font = [UIFont systemFontOfSize:12];
@@ -45,6 +44,7 @@
         [self.contentView addSubview:_go];
         
     }
+    
     return self;
 }
 - (void)setScopeModel:(Scope *)scopeModel {
@@ -52,7 +52,7 @@
         _scopeModel = scopeModel;
     }
     self.title.text = scopeModel.info.display_name;
-    self.descriptionLabel.text = scopeModel.info.description;
+    self.descriptionLabel.text = scopeModel.info.content;
     self.userCount.text = [NSString stringWithFormat:@"%@", scopeModel.info.user_count];
     NSURL *url = [NSURL URLWithString:scopeModel.info.icon_image_url];
     [_iconImageUrl sd_setImageWithURL:url];
@@ -68,12 +68,15 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     self.iconImageUrl.frame = CGRectMake(15, 15, 70, 70);
+    _iconImageUrl.layer.cornerRadius = 8;
+    _iconImageUrl.clipsToBounds = YES;
+
     self.title.frame = CGRectMake(100,15, 600, 20);
     self.dw.frame = CGRectMake(140, 45, 8, 10);
     self.mm.frame = CGRectMake(100, 45, 10, 10);
     self.userCount.frame = CGRectMake(115, 40, 600, 20);
     self.disp.frame = CGRectMake(150, 40, 600, 20);
-    self.descriptionLabel.frame = CGRectMake(100, 65, 600, 20);
+    self.descriptionLabel.frame = CGRectMake(100, 65, SCREEN_WIDTH - 100 - 40, 20);
     self.go.frame = CGRectMake(SCREEN_WIDTH - 30, 45, 5, 10);
 
 

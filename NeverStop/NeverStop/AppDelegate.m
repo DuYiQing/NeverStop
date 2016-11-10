@@ -14,11 +14,13 @@
 #import "ScopeViewController.h"
 #import "MatchViewController.h"
 #import "HealthManager.h"
-
+#import "StartViewController.h"
+#import "HistoryViewController.h"
 @interface AppDelegate ()
 <
 UITabBarControllerDelegate
 >
+@property (nonatomic, strong) UITabBarController *tabBarController;
 
 @property (nonatomic, strong) EMError *error;
 
@@ -91,6 +93,28 @@ void uncaughtExceptionHandler(NSException *exception) {
     
     DDLogError(NSHomeDirectory());
     [self networkReachability];
+    
+    
+    
+    // 3Dtouch按压程序图标的快捷选项
+    // 快捷菜单的图标
+    UIApplicationShortcutIcon *icon0 = [UIApplicationShortcutIcon iconWithType:UIApplicationShortcutIconTypePlay];
+    UIApplicationShortcutIcon *icon1 = [UIApplicationShortcutIcon iconWithType:UIApplicationShortcutIconTypeHome];
+    UIApplicationShortcutIcon *icon2 = [UIApplicationShortcutIcon iconWithType:UIApplicationShortcutIconTypeBookmark];
+    // 快捷菜单
+    
+    UIApplicationShortcutItem *item0 = [[UIApplicationShortcutItem alloc] initWithType:@"1" localizedTitle:@"开始运动" localizedSubtitle:nil icon:icon0 userInfo:nil];
+    UIApplicationShortcutItem *item1 = [[UIApplicationShortcutItem alloc] initWithType:@"2" localizedTitle:@"我的" localizedSubtitle:nil icon:icon1 userInfo:nil];
+    UIApplicationShortcutItem *item2 = [[UIApplicationShortcutItem alloc] initWithType:@"3" localizedTitle:@"运动记录" localizedSubtitle:nil icon:icon2 userInfo:nil];
+    // 设置app快捷菜单
+    [[UIApplication sharedApplication] setShortcutItems:@[item0, item1, item2]];
+    
+    
+    
+    
+    
+    
+    
     
     return YES;
 }
@@ -169,6 +193,12 @@ void uncaughtExceptionHandler(NSException *exception) {
     rootTabBarController.viewControllers = @[scNavigationController,maNavigationController,moNavigationController,meNavigationController,myNavigationController];
     rootTabBarController.delegate = self;
     rootTabBarController.selectedIndex = 2;
+//    [[UITabBar appearance] setBarTintColor:[UIColor colorWithRed:37/255.f green:54/255.f blue:74/255.f alpha:1.0]];
+//    [UITabBar appearance].translucent = NO;
+    self.tabBarController = [[UITabBarController alloc] init];
+    _tabBarController.viewControllers = @[scNavigationController,maNavigationController,moNavigationController,meNavigationController,myNavigationController];
+    _tabBarController.delegate = self;
+    _tabBarController.selectedIndex = 2;
     
     
     
@@ -178,11 +208,12 @@ void uncaughtExceptionHandler(NSException *exception) {
     if (![userDef boolForKey:@"notFirst"]) {
         // 如果是第一次,进入引导页
         ViewController *viewController = [[ViewController alloc] init];
-        viewController.rootTabBarController = rootTabBarController;
+        viewController.rootTabBarController = _tabBarController;
         self.window.rootViewController = viewController;
     } else {
         // 否则直接进入应用
-        self.window.rootViewController = rootTabBarController;
+        self.window.rootViewController = _tabBarController;
+       
     
     }
 
@@ -252,6 +283,26 @@ void uncaughtExceptionHandler(NSException *exception) {
     //配置DDLog
     [DDLog addLogger:[DDTTYLogger sharedInstance]]; // TTY = Xcode console
     
+}
+- (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
+
+    if ([shortcutItem.type isEqualToString:@"1"]) {
+        self.tabBarController.selectedIndex = 2;
+        StartViewController *startVC = [[StartViewController alloc] init];
+        startVC.hidesBottomBarWhenPushed = YES;
+
+        [self.tabBarController.selectedViewController pushViewController:startVC animated:YES];
+    } else if ([shortcutItem.type isEqualToString:@"2"]) {
+        self.tabBarController.selectedIndex = 4;
+    } else if ([shortcutItem.type isEqualToString:@"3"]) {
+        self.tabBarController.selectedIndex = 4;
+        HistoryViewController *historyVC = [[HistoryViewController alloc] init];
+       historyVC.hidesBottomBarWhenPushed = YES;
+           [self.tabBarController.selectedViewController pushViewController:historyVC animated:YES];
+    }
+
+    
+
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

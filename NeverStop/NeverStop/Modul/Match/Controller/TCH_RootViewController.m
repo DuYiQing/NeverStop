@@ -286,7 +286,7 @@ UITableViewDataSource
 // 附近的tabelView
 - (void) nearbyTableView {
     
-    self.neTV = [[UITableView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
+    self.neTV = [[UITableView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64 - 64 - 44) style:UITableViewStylePlain];
     _neTV.backgroundColor = [UIColor whiteColor];
     _neTV.rowHeight = 160.f;
     _neTV.delegate = self;

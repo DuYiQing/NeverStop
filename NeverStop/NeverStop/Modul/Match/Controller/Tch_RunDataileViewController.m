@@ -20,6 +20,7 @@
     NSURL *url = [NSURL URLWithString:_runModel.article_url];
     UIWebView *webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    webView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT + 125);
     [self.view addSubview:webView];
     [webView loadRequest:request];
     

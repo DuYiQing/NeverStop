@@ -30,7 +30,7 @@ UITableViewDataSource
     [self roubeJX];
     
     self.view.backgroundColor = [UIColor blackColor];
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,SCREEN_HEIGHT) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,SCREEN_HEIGHT - 64) style:UITableViewStylePlain];
     _tableView.backgroundColor = [UIColor whiteColor];
     _tableView.rowHeight = 160.f;
     _tableView.delegate = self;

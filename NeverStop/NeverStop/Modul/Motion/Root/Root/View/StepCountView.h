@@ -10,4 +10,10 @@
 
 @interface StepCountView : UIView
 
+@property (nonatomic, strong) NSString *target;
+@property (nonatomic, strong) UILabel *todayLabel;
+@property (nonatomic, strong) UILabel *targetLabel;
+@property (nonatomic, strong) UILabel *stepCountLabel;
+
+
 @end

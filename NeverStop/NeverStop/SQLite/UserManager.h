@@ -35,13 +35,13 @@
 - (BOOL)createTable;
 
 
-- (BOOL)insertIntoWithUserName:(NSString *)name age:(NSString *)age tall:(NSString *)tall weight:(NSString *)weight;
+- (BOOL)insertIntoWithUserName:(NSString *)name secret:(NSString *)secret age:(NSString *)age tall:(NSString *)tall weight:(NSString *)weight;
 
 
-- (BOOL)updateUserInfoWithID:(NSInteger)ID name:(NSString *)name age:(NSString *)age tall:(NSString *)tall weight:(NSString *)weight;
+- (BOOL)updateUserInfoWithID:(NSInteger)ID name:(NSString *)name secret:(NSString *)secret age:(NSString *)age tall:(NSString *)tall weight:(NSString *)weight;
 
 
-- (UserModel *)selectUserWithName:(NSString *)name;
+- (UserModel *)selectUser;
 
 
 - (BOOL)deleteUserWithName:(NSString *)name;

@@ -52,7 +52,7 @@
 }
 
 - (BOOL)createTable {
-    NSString *createTableSQL = @"create table if not exists User (user_id integer primary key autoincrement, name text not null unique, age text, tall text not null, weight text not null)";
+    NSString *createTableSQL = @"create table if not exists User (user_id integer primary key autoincrement, name text not null unique, secret text not null, age text, tall text not null, weight text not null)";
         
     char *error = NULL;
     int result = sqlite3_exec(dbPointer, [createTableSQL UTF8String], NULL, NULL, &error);
@@ -61,8 +61,8 @@
 
 }
 
-- (BOOL)insertIntoWithUserName:(NSString *)name age:(NSString *)age tall:(NSString *)tall weight:(NSString *)weight {
-    NSString *insertSQL = [NSString stringWithFormat:@"insert into User values (null, '%@', '%@', '%@', '%@')", name, age, tall, weight];
+- (BOOL)insertIntoWithUserName:(NSString *)name secret:(NSString *)secret age:(NSString *)age tall:(NSString *)tall weight:(NSString *)weight {
+    NSString *insertSQL = [NSString stringWithFormat:@"insert into User values (null, '%@', '%@', '%@', '%@', '%@')", name, secret, age, tall, weight];
     char *error = NULL;
     
     int result = sqlite3_exec(dbPointer, [insertSQL UTF8String], NULL, NULL, &error);
@@ -81,8 +81,8 @@
 
 }
 
-- (BOOL)updateUserInfoWithID:(NSInteger)ID name:(NSString *)name age:(NSString *)age tall:(NSString *)tall weight:(NSString *)weight {
-    NSString *updateSQL = [NSString stringWithFormat:@"update User set name = '%@', age = '%@', tall = '%@', weight = '%@' where user_id = %ld", name, age, tall, weight, ID];
+- (BOOL)updateUserInfoWithID:(NSInteger)ID name:(NSString *)name secret:(NSString *)secret age:(NSString *)age tall:(NSString *)tall weight:(NSString *)weight {
+    NSString *updateSQL = [NSString stringWithFormat:@"update User set name = '%@', secret = '%@', age = '%@', tall = '%@', weight = '%@' where user_id = %ld", name, secret, age, tall, weight, ID];
     char *error = NULL;
     int result = sqlite3_exec(dbPointer, [updateSQL UTF8String], NULL, NULL, &error);
     [self logErrorMessage:error];
@@ -90,15 +90,14 @@
 
 }
 
-- (UserModel *)selectUserWithName:(NSString *)name {
-    NSString *selectSQL = [NSString stringWithFormat:@"select * from User where name = '%@'", name];
+- (UserModel *)selectUser {
+    NSString *selectSQL = [NSString stringWithFormat:@"select * from User"];
     
     sqlite3_stmt *stmt = NULL;
     
     int result = sqlite3_prepare(dbPointer, [selectSQL UTF8String], -1, &stmt, NULL);
     
-  
-    UserModel *userModel = [[UserModel alloc] init];
+    NSMutableArray *array = [NSMutableArray array];
     
     if (result == SQLITE_OK) {
         // sqlite3_step(stmt) 等于 SQLITE_ROW 代表有数据  等于 SQLITE_DONE代表已经没有其他数据
@@ -108,39 +107,44 @@
             NSInteger user_id = sqlite3_column_int(stmt, 0);
             // 获取第1列数据 (name)
             const unsigned char *name =  sqlite3_column_text(stmt, 1);
-            // 获取第2列数据 (age)
-            const unsigned char *age = sqlite3_column_text(stmt, 2);
-            // 获取第3列数据 (tall)
-            const unsigned char *tall = sqlite3_column_text(stmt, 3);
-            // 获取第4列数据 (weight)
-            const unsigned char *weight = sqlite3_column_text(stmt, 4);
+            // 获取第2列数据 (secret)
+            const unsigned char *secret = sqlite3_column_text(stmt, 2);
+            // 获取第3列数据 (age)
+            const unsigned char *age = sqlite3_column_text(stmt, 3);
+            // 获取第4列数据 (tall)
+            const unsigned char *tall = sqlite3_column_text(stmt, 4);
+            // 获取第5列数据 (weight)
+            const unsigned char *weight = sqlite3_column_text(stmt, 5);
             
+            UserModel *userModel = [[UserModel alloc] init];
             userModel.user_id = user_id;
             userModel.name = [NSString stringWithUTF8String:(const char *)name];
+            userModel.secret = [NSString stringWithUTF8String:(const char *)secret];
             userModel.age = [NSString stringWithUTF8String:(const char *)age];
             userModel.tall = [NSString stringWithUTF8String:(const char *)tall];
             userModel.weight = [NSString stringWithUTF8String:(const char *)weight];
+            [array addObject:userModel];
         }
     }
     // 销毁替身
     sqlite3_finalize(stmt);
-    return userModel;
+    return [array lastObject];
     
 
 }
 
 - (void)logErrorMessage:(char *)error {
     if (error != NULL) {
-        NSLog(@"error : %s", error);
+        DDLogError(@"error : %s", error);
     }
 }
 
 - (BOOL)isSuccessWithResult:(int)result alert:(NSString *)alertString {
     if (result == SQLITE_OK) {
-        NSLog(@"%@成功", alertString);
+        DDLogInfo(@"%@成功", alertString);
         return YES;
     }
-    NSLog(@"%@失败", alertString);
+    DDLogInfo(@"%@失败", alertString);
     return NO;
     
 }

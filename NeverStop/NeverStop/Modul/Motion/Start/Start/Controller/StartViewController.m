@@ -13,7 +13,6 @@
 #import "CustomPickerView.h"
 #import "ExerciseViewController.h"
 #import "CustomAnimateTransitionPush.h"
-
 @interface StartViewController ()
 <
 MAMapViewDelegate,
@@ -30,7 +29,7 @@ UINavigationControllerDelegate
 
 @property (nonatomic, strong) NSString *setting;
 @property (nonatomic, assign) NSInteger row;
-
+@property (nonatomic, strong) ExerciseData *exerciseData;
 
 @end
 
@@ -55,7 +54,7 @@ UINavigationControllerDelegate
     self.navigationItem.title = @"运动";
 
     __weak typeof(self) weakSelf = self;
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem getBarButtonItemWithImageName:@"map" HighLightedImageName:@"map" targetBlock:^{
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem getBarButtonItemWithImageName:@"navigator_btn_back" HighLightedImageName:@"navigator_btn_back" targetBlock:^{
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
     //消除阴影
@@ -105,7 +104,7 @@ UINavigationControllerDelegate
     
     
     
-    
+    NSLog(@"+++++++++%f++++++++%f", _settingButton.frame.origin.y, _settingButton.frame.size.height);
     
     
 }
@@ -120,24 +119,41 @@ UINavigationControllerDelegate
     CaloriePickerView *caloriePicker = [[CaloriePickerView alloc] init];
     caloriePicker.delegate = self;
     caloriePicker.contentMode = JiangPickerContentModeBottom;
-    
+    MapDataManager *mapDataManager = [MapDataManager shareDataManager];
+    [mapDataManager openDB];
+    [mapDataManager createTable];
+    NSArray *array = [mapDataManager selectAll];
+    NSString *str;
+    if (array.count > 0) {
+       self.exerciseData = [array lastObject];
+    }
     switch (row) {
         case 0:
             [_settingButton setTitle:@"设定单次目标" forState:UIControlStateNormal];
             CGFloat width0 = [_settingButton.titleLabel.text widthWithFont:_settingButton.titleLabel.font constrainedToHeight:50];
-            _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width0 / 2, _mapView.y + _mapView.height + 100, width0, 50);
+            _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width0 / 2, _mapView.y + _mapView.height + 64, width0, 50);
             break;
         case 1:
-            [_settingButton setTitle:setting forState:UIControlStateNormal];
+            if (array.count > 0) {
+                self.row = _exerciseData.aimType;
+            } else {
+                self.row = 0;
+            }
+            str = [setting stringByReplacingOccurrencesOfString:@"上次选择 " withString:@""];
+            if (self.row == 0) {
+                [_settingButton setTitle:@"设定单次目标" forState:UIControlStateNormal];
+            } else {
+            [_settingButton setTitle:str forState:UIControlStateNormal];
+            }
             CGFloat width1 = [_settingButton.titleLabel.text widthWithFont:_settingButton.titleLabel.font constrainedToHeight:50];
-            _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width1 / 2, _mapView.y + _mapView.height + 100, width1, 50);
+            _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width1 / 2, _mapView.y + _mapView.height + 64, width1, 50);
             break;
         case 2:
             if (childRow != 0) {
                 NSString *distanceStr = [NSString stringWithFormat:@"距离目标: %@", setting];
                 [_settingButton setTitle:distanceStr forState:UIControlStateNormal];
                 CGFloat width2 = [_settingButton.titleLabel.text widthWithFont:_settingButton.titleLabel.font constrainedToHeight:50];
-                _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width2 / 2, _mapView.y + _mapView.height + 100, width2, 50);
+                _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width2 / 2, _mapView.y + _mapView.height + 64, width2, 50);
                 
             } else {
                 customPicker.cus_ContentMode = CustomPickerContentModeDistance;
@@ -149,7 +165,7 @@ UINavigationControllerDelegate
                 NSString *timeStr = [NSString stringWithFormat:@"时间目标: %@", setting];
                 [_settingButton setTitle:timeStr forState:UIControlStateNormal];
                 CGFloat width3 = [_settingButton.titleLabel.text widthWithFont:_settingButton.titleLabel.font constrainedToHeight:50];
-                _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width3 / 2, _mapView.y + _mapView.height + 100, width3, 50);
+                _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width3 / 2, _mapView.y + _mapView.height + 64, width3, 50);
             } else {
                 customPicker.cus_ContentMode = CustomPickerContentModeTime;
                 [customPicker show];
@@ -160,7 +176,7 @@ UINavigationControllerDelegate
                 NSString *calorieStr = [NSString stringWithFormat:@"卡路里目标: %@", setting];
                 [_settingButton setTitle:calorieStr forState:UIControlStateNormal];
                 CGFloat width4 = [_settingButton.titleLabel.text widthWithFont:_settingButton.titleLabel.font constrainedToHeight:50];
-                _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width4 / 2, _mapView.y + _mapView.height + 100, width4, 50);
+                _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width4 / 2, _mapView.y + _mapView.height + 64, width4, 50);
             } else {
                 [caloriePicker show];
             }
@@ -168,7 +184,7 @@ UINavigationControllerDelegate
         default:
             break;
     }
-    
+    NSLog(@"+++++++++%f++++++++%f", _settingButton.frame.origin.y, _settingButton.frame.size.height);
     
     
     
@@ -289,24 +305,7 @@ UINavigationControllerDelegate
     // 中心位置
     [_mapView setCenterCoordinate:_mapView.userLocation.coordinate animated:YES];
 }
-//- (MAAnnotationView*)mapView:(MAMapView *)mapView viewForAnnotation:(id <MAAnnotation>)annotation;
-//{
-//    if ([annotation isKindOfClass:[MAPointAnnotation class]])
-//    {
-//        MAPinAnnotationView *annotationView = nil;
-//        if (annotationView == nil)
-//        {
-//            annotationView = [[MAPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:nil];
-//        }
-//        annotationView.pinColor = MAPinAnnotationColorGreen;
-//
-//        //annotationView.canShowCallout= YES;       //设置气泡可以弹出，默认为NO
-//        annotationView.animatesDrop = NO;        //设置标注动画显示，默认为NO
-//        annotationView.draggable = NO;        //设置标注可以拖动，默认为NO
-//        return annotationView;
-//    }
-//    return nil;
-//}
+
 // 自定义精度圈样式
 - (MAOverlayRenderer *)mapView:(MAMapView *)mapView rendererForOverlay:(id<MAOverlay>)overlay {
     if ([overlay isKindOfClass:[MAPolyline class]])

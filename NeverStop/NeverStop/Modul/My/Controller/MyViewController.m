@@ -10,6 +10,8 @@
 #import "MyInfoTableViewCell.h"
 #import "ScoreViewController.h"
 #import "PlanViewController.h"
+#import "HistoryViewController.h"
+#import "OthersViewController.h"
 
 @interface MyViewController ()
 <
@@ -18,6 +20,7 @@ UITableViewDataSource
 >
 @property (nonatomic, strong) UITableView *myInfoTableView;
 @property (nonatomic, strong) UIImageView *topImageView;
+@property (nonatomic, strong) UILabel *userNameLabel;
 
 @end
 
@@ -33,6 +36,7 @@ UITableViewDataSource
     
     [self createMyInfoTableView];
     
+    
 }
 
 - (void)createMyInfoTableView {
@@ -40,7 +44,7 @@ UITableViewDataSource
     self.myInfoTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
     _myInfoTableView.delegate = self;
     _myInfoTableView.dataSource = self;
-    _myInfoTableView.rowHeight = 100.f;
+//    _myInfoTableView.rowHeight = 100.f;
     _myInfoTableView.contentInset = UIEdgeInsetsMake(SCREEN_HEIGHT / 3, 0, 44, 0);
     [self.view addSubview:_myInfoTableView];
     
@@ -59,14 +63,13 @@ UITableViewDataSource
     userImageView.image = [UIImage imageNamed:@"userImage"];
     [userView addSubview:userImageView];
     
-    UILabel *userNameLabel = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 300) / 2, userView.y + userView.height, 300, 50)];
-    userNameLabel.text = @"JDT";
-    userNameLabel.textAlignment = NSTextAlignmentCenter;
-    userNameLabel.font = kFONT_SIZE_24;
-    [_myInfoTableView addSubview:userNameLabel];
+    self.userNameLabel = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 300) / 2, userView.y + userView.height, 300, 50)];
+    _userNameLabel.text = [[EMClient sharedClient] currentUsername];
+    _userNameLabel.textAlignment = NSTextAlignmentCenter;
+    _userNameLabel.font = kFONT_SIZE_24;
+    [_myInfoTableView addSubview:_userNameLabel];
     
     
-    [[UIImage imageNamed:@"userImage"] imageByScalingProportionallyToSize:CGSizeMake(45, 45)];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -80,7 +83,13 @@ UITableViewDataSource
     return 5;
     
 }
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (3 == indexPath.row | 4 == indexPath.row) {
+        return 80;
+    }
+    return 100.f;
+    
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MyInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (nil == cell) {
@@ -100,12 +109,12 @@ UITableViewDataSource
         case 3:
             cell.imageName = @"hist";
             cell.title = @"历史记录";
-            cell.subtitle = @"";
+//            cell.subtitle = @"";
             break;
         case 4:
             cell.imageName = @"set";
             cell.title = @"设置";
-            cell.subtitle = @"";
+//            cell.subtitle = @"";
             break;
         default:
             break;
@@ -127,13 +136,13 @@ UITableViewDataSource
         }
             break;
         case 3: {
-            ScoreViewController *scoreVC = [[ScoreViewController alloc] init];
-            [self.navigationController pushViewController:scoreVC animated:YES];
+            HistoryViewController *historyVC = [[HistoryViewController alloc] init];
+            [self.navigationController pushViewController:historyVC animated:YES];
         }
             break;
         case 4: {
-            ScoreViewController *scoreVC = [[ScoreViewController alloc] init];
-            [self.navigationController pushViewController:scoreVC animated:YES];
+            OthersViewController *othersVC = [[OthersViewController alloc] init];
+            [self.navigationController pushViewController:othersVC animated:YES];
         }
             break;
 
@@ -141,6 +150,15 @@ UITableViewDataSource
         default:
             break;
     }
+}
+
+- (void)setUserName:(NSString *)userName {
+    if (_userName != userName) {
+        _userName = userName;
+        self.userNameLabel.text = userName;
+    }
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

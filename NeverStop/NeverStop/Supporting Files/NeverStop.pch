@@ -9,7 +9,7 @@
 #ifndef NeverStop_pch
 #define NeverStop_pch
 
-
+#ifdef __OBJC__
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
@@ -44,13 +44,25 @@
 #import <UIKit/UIDevice.h>
 #import "SQLiteDatabaseManager.h"
 #import <FTPopOverMenu.h>
-
+#import "TargetManager.h"
+#import "TargetModel.h"
+#import <CoreMotion/CoreMotion.h>
+#import <FMDB/FMDB.h>
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import <MAMapKit/MAMapKit.h>
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import <AMapSearchKit/AMapSearchKit.h>
+#import "ExerciseData.h"
+#import "MapDataManager.h"
+#import "UserModel.h"
+#import "UserManager.h"
+#import "NSDate+Categories.h"
+#import "CALayer+JiangAdd.h"
+#import "SQLiteDatabaseManager.h"
+#import <EMSDK.h>
+#import <EMSDKFull.h>
 
-
+#endif
 
 
 // Include any system framework and library headers here that should be included in all compilation units.

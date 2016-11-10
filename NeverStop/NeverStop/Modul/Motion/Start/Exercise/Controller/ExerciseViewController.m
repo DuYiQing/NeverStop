@@ -13,14 +13,15 @@
 #import "MapViewController.h"
 #import "CustomAnimateTransitionPop.h"
 #import "Location.h"
-//#import "MapDataManager.h"
+#import "MapDataManager.h"
 #import "ProgressAimView.h"
 #import "ExerciseData.h"
 
 @interface ExerciseViewController ()
 <
 UINavigationControllerDelegate,
-MAMapViewDelegate
+MAMapViewDelegate,
+ProgressAimViewDelegate
 >
 @property (nonatomic, strong) UIButton *pauseButton;
 @property (nonatomic, strong) UIView *countDownView;
@@ -41,7 +42,6 @@ MAMapViewDelegate
 @property (nonatomic, strong) UIButton *mapButton;
 @property (nonatomic, strong) Location *location;
 
-
 @property (nonatomic, strong) MAMapView *mapView;
 @property (nonatomic, strong) Location *lastLocation;
 @property (nonatomic, assign) double allDistance;
@@ -49,7 +49,7 @@ MAMapViewDelegate
 @property (nonatomic, strong) NSString *allDistanceStr;
 @property (nonatomic, strong) MAPolyline *commonPolyline;
 
-//@property (nonatomic, strong) MapDataManager *mapManager;
+@property (nonatomic, strong) MapDataManager *mapManager;
 @property (nonatomic, strong) ExerciseData *exerciseData;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, assign) NSInteger a;
@@ -57,22 +57,17 @@ MAMapViewDelegate
 @property (nonatomic, strong) NSArray *keyPathArray;
 @property (nonatomic, strong) ProgressAimView *progressAimView;
 @property (nonatomic, assign) NSInteger secondPauseLocation;
+@property (nonatomic, assign) BOOL isChange;
+@property (nonatomic, strong) UserModel *user;
+
 @end
 
 @implementation ExerciseViewController
 - (void)dealloc {
     self.navigationController.delegate = nil;
-//    [self.exerciseDataKVO removeObserver:self forKeyPath:@"distance" context:nil];
-//    [self.exerciseDataKVO removeObserver:self forKeyPath:@"duration" context:nil];
-//    [self.exerciseDataKVO removeObserver:self forKeyPath:@"speedPerHour" context:nil];
-//    [self.exerciseDataKVO removeObserver:self forKeyPath:@"averageSpeed" context:nil];
     for (int i = 0; i < _keyPathArray.count; i++) {
         [self.exerciseData removeObserver:self forKeyPath:_keyPathArray[i] context:nil];
     }
-    
-    
-
-
 }
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBarHidden = YES;
@@ -91,7 +86,6 @@ MAMapViewDelegate
     self.keyPathArray = @[@"distance", @"duration", @"speedPerHour", @"averageSpeed", @"maxSpeed", @"calorie", @"count"];
     self.lastLocation = [[Location alloc] init];
     self.exerciseData = [ExerciseData shareData];
-//    self.exerciseDataKVO = [[ExerciseData alloc] init];
     self.secondPauseLocation = 1;
     _exerciseData.distance = 0.00;
     _exerciseData.duration = 0;
@@ -100,7 +94,13 @@ MAMapViewDelegate
     _exerciseData.maxSpeed = 0.00;
     _exerciseData.calorie = 0.0;
     _exerciseData.exerciseType = self.exerciseType;
-    NSLog(@"%@", _exerciseData.exerciseType);
+    _exerciseData.isComplete = NO;
+    self.isChange = NO;
+    UserManager *userManager = [UserManager shareUserManager];
+    [userManager openSQLite];
+    self.user = [userManager selectUser];
+    NSLog(@"%@", self.user);
+    _exerciseData.startTime = [NSDate getSystemTimeStringWithFormat:@"YYYY年MM月dd日 hh:mm"];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -167,6 +167,7 @@ MAMapViewDelegate
     
     // 设置默认模式
     [_mapView setUserTrackingMode: MAUserTrackingModeFollow animated:YES];
+   
 }
 
 - (void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation {
@@ -180,18 +181,37 @@ MAMapViewDelegate
         location.longitude = userLocation.coordinate.longitude;
         if (self.isMoving == YES) {
             location.isStart = YES;
+            if (_isChange == YES) {
+                Location *lastLoc = [location copy];
+                lastLoc.isStart = NO;
+                [_exerciseData.allLocationArray replaceObjectAtIndex:_exerciseData.allLocationArray.count - 1 withObject:lastLoc];
+                _exerciseData.count = _exerciseData.allLocationArray.count;
+            }
+            _isChange = NO;
             [_exerciseData.allLocationArray addObject:location];
             _exerciseData.count = _exerciseData.allLocationArray.count;
         } else {
+            Location *lastLoc = [_lastLocation copy];
+            lastLoc.isStart = NO;
+            location.isStart = NO;
             if (_secondPauseLocation <= 2) {
-                location.isStart = NO;
-                [_exerciseData.allLocationArray addObject:location];
-                _exerciseData.count = _exerciseData.allLocationArray.count;
+                if (_secondPauseLocation == 1) {
+                    [_exerciseData.allLocationArray addObject:lastLoc];
+                    _exerciseData.count = _exerciseData.allLocationArray.count;
+                    
+                } else {
+                    [_exerciseData.allLocationArray addObject:location];
+                    _exerciseData.count = _exerciseData.allLocationArray.count;
+                }
             } else {
+                if (_exerciseData.allLocationArray.count > 0) {
+                    
                 [_exerciseData.allLocationArray replaceObjectAtIndex:_exerciseData.allLocationArray.count - 1 withObject:location];
                 _exerciseData.count = _exerciseData.allLocationArray.count;
+                }
             }
             _secondPauseLocation++;
+            _isChange = YES;
         }
         // 添加到坐标数组中
        
@@ -199,33 +219,46 @@ MAMapViewDelegate
         if (self.isMoving == YES) {
 
             if (_exerciseData.allLocationArray.count > 1) {
-                //1.将两个经纬度点转成投影点
-                MAMapPoint point1 = MAMapPointForCoordinate(CLLocationCoordinate2DMake(_lastLocation.latitude,_lastLocation.longitude));
-                MAMapPoint point2 = MAMapPointForCoordinate(CLLocationCoordinate2DMake(location.latitude,location.longitude));
-                //2.计算距离
-//                NSLog(@"last : %f, %f", _lastLocation.latitude, _lastLocation.longitude);
-//                NSLog(@"now : %f, %f", location.latitude, location.longitude);
-                CLLocationDistance distance = MAMetersBetweenMapPoints(point1,point2);
-//                NSLog(@"distance : %f", distance);
-                ;
-                CGFloat time = ((_exerciseData.duration - _lastTime) / 60.0) / 60.0;
-                if (time != 0) {
+                // 1.将两个经纬度点转成投影点
+                if (_lastLocation.isStart != NO) {
                     
-//                NSLog(@"%ld", _mapManager.duration - _lastTime);
-                _exerciseData.speedPerHour = (distance / 1000) / time;
-                
-                _exerciseData.distance += distance / 1000;
-//                _exerciseDataKVO.distance += round(distance / 1000 * 100) / 100;
-                _exerciseData.maxSpeed = _exerciseData.maxSpeed > _exerciseData.speedPerHour ? _exerciseData.maxSpeed : _exerciseData.speedPerHour;
-                _exerciseData.averageSpeed = _exerciseData.distance / _exerciseData.duration;
+                    MAMapPoint point1 = MAMapPointForCoordinate(CLLocationCoordinate2DMake(_lastLocation.latitude,_lastLocation.longitude));
+                    MAMapPoint point2 = MAMapPointForCoordinate(CLLocationCoordinate2DMake(location.latitude,location.longitude));
+                    // 2.计算距离
+                    //                NSLog(@"last : %f, %f", _lastLocation.latitude, _lastLocation.longitude);
+                    //                NSLog(@"now : %f, %f", location.latitude, location.longitude);
+                    CLLocationDistance distance = MAMetersBetweenMapPoints(point1,point2);
+                    //                NSLog(@"distance : %f", distance);
+                    ;
+                    CGFloat time = ((_exerciseData.duration - _lastTime) / 60.0) / 60.0;
+                    if (time != 0) {
+                        
+                        //                NSLog(@"%ld", _mapManager.duration - _lastTime);
+                        _exerciseData.speedPerHour = (distance / 1000) / time;
+                        
+                        _exerciseData.distance += distance / 1000;
+                        //                _exerciseDataKVO.distance += round(distance / 1000 * 100) / 100;
+                        _exerciseData.maxSpeed = _exerciseData.maxSpeed > _exerciseData.speedPerHour ? _exerciseData.maxSpeed : _exerciseData.speedPerHour;
+                        _exerciseData.averageSpeed = _exerciseData.distance / _exerciseData.duration * 60 * 60;
+                        _exerciseData.speedSetting = 1 / _exerciseData.speedPerHour * 3600;
+                        _exerciseData.averageSpeedSetting = 1 / _exerciseData.averageSpeed * 60 * 60;
+                        if ([_exerciseData.exerciseType isEqualToString:@"walk"]) {
+                           _exerciseData.calorie += [_user.weight floatValue] / 60 * 65 * _exerciseData.speedPerHour * time;
+                        } else if ([_exerciseData.exerciseType  isEqualToString:@"run"]) {
+                            _exerciseData.calorie += [_user.weight floatValue] * (distance / 1000) * 1.036;
+                        } else {
+                            _exerciseData.calorie += [_user.weight floatValue] / 60 * 27.5 * _exerciseData.speedPerHour * time;
+                        }
+                }
                 }
             }
          
-            _lastLocation.latitude = location.latitude;
-            _lastLocation.longitude = location.longitude;
-            self.lastTime = _exerciseData.duration;
         }
         
+        self.lastTime = _exerciseData.duration;
+        _lastLocation.isStart = location.isStart;
+        _lastLocation.latitude = location.latitude;
+        _lastLocation.longitude = location.longitude;
     
     
         
@@ -247,13 +280,18 @@ MAMapViewDelegate
         NSInteger minu;
         NSInteger hour;
         sec = [time integerValue] % 60;
-        minu = ([time integerValue] / 60)% 60;
+        minu = ([time integerValue] / 60) % 60;
         hour = [time integerValue] / 3600;
         
         self.homeDataView.dataLabel.text = [NSString stringWithFormat:@"%.2ld:%.2ld:%.2ld", hour, minu, sec];
+        
 //        NSLog(@"%ld", (long)_exerciseData);
         if (self.aimType == 3) {
-            _progressAimView.currentNumber = _exerciseData.duration;
+        
+            if (_exerciseData.duration != 0) {
+                
+                _progressAimView.currentNumber = _exerciseData.duration;
+            }
             
         }
         
@@ -273,6 +311,10 @@ MAMapViewDelegate
             _progressAimView.currentNumber = _exerciseData.calorie;
         }
        
+    } else if ([keyPath isEqualToString:@"speedSetting"] && object == _exerciseData) {
+        
+    } else if ([keyPath isEqualToString:@"averageSpeedSetting"] && object == _exerciseData) {
+        
     }
 
 
@@ -480,8 +522,11 @@ MAMapViewDelegate
                 [self creatMapView];
                 
                 self.progressAimView = [[ProgressAimView alloc] initWithFrame:CGRectMake(15, 64 + 5, SCREEN_WIDTH - 30, 30) aim:self.aim aimType:self.aimType];
+                _progressAimView.delegate = self;
                 [self.view addSubview:_progressAimView];
-                
+                if (self.aimType == 0) {
+                    _progressAimView.alpha = 0;
+                }
 #pragma mark - 结束按钮
                 self.endButton = [UIButton buttonWithType:UIButtonTypeCustom];
                 _endButton.frame = CGRectMake(SCREEN_WIDTH / 2 - 40, SCREEN_HEIGHT - 240, 80, 80);
@@ -561,11 +606,62 @@ MAMapViewDelegate
     dispatch_resume(_timer1);
 
 }
-
+#pragma mark - 进度条协议
+- (void)aimIsCompleted {
+    _exerciseData.isComplete = YES;
+}
 - (void)endButtonAction:(UIButton *)button {
-    [self endTimer];
-    [_exerciseData.allLocationArray removeAllObjects];
-    [self.navigationController popViewControllerAnimated:YES];
+    if (_exerciseData.distance >= 1.0f) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否结束本次运动?" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *destructiveAction = [UIAlertAction actionWithTitle:@"结束" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            [self endTimer];
+            _exerciseData.aim = self.aim;
+            _exerciseData.aimType = self.aimType;
+            dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+            NSLog(@"current task");
+            dispatch_async(globalQueue, ^{
+                self.mapManager = [MapDataManager shareDataManager];
+                [_mapManager openDB];
+                [_mapManager createTable];
+                [_mapManager insertExerciseData:_exerciseData];
+                NSArray *array = [_mapManager selectAll];
+                NSLog(@"%@", array);
+                //    [_mapManager deleteExerciseData];
+                [_exerciseData.allLocationArray removeAllObjects];
+            });
+            [self.navigationController popViewControllerAnimated:YES];
+            
+
+           
+            
+          
+            
+        }];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"继续" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:cancelAction];
+        [alert addAction:destructiveAction];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+      
+        
+        
+        
+    } else {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"本次运动距离过短, 无法保存。\n是否结束本次运动?" preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *destructiveAction = [UIAlertAction actionWithTitle:@"结束运动" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            [self endTimer];
+            [_exerciseData.allLocationArray removeAllObjects];
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"继续" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+           
+
+        }];
+        [alert addAction:cancelAction];
+        [alert addAction:destructiveAction];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    }
 }
 
 - (void)pauseButtonAction:(UIButton *)button {
@@ -583,7 +679,7 @@ MAMapViewDelegate
         } else {
             // 开始计时
             [self createTimer];
-            _secondPauseLocation = 0;
+            _secondPauseLocation = 1;
             self.pauseButton.centerX = SCREEN_WIDTH / 2;
             self.endButton.centerX = SCREEN_WIDTH / 2;
             self.pauseButton.selected = !self.pauseButton.selected;

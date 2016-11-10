@@ -8,16 +8,21 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
-#import "MatchViewController.h"
 #import "MessageViewController.h"
 #import "MotionViewController.h"
 #import "MyViewController.h"
 #import "ScopeViewController.h"
-
+#import "MatchViewController.h"
+#import "HealthManager.h"
+#import "StartViewController.h"
+#import "HistoryViewController.h"
 @interface AppDelegate ()
 <
 UITabBarControllerDelegate
 >
+@property (nonatomic, strong) UITabBarController *tabBarController;
+
+@property (nonatomic, strong) EMError *error;
 
 @end
 
@@ -56,7 +61,18 @@ void uncaughtExceptionHandler(NSException *exception) {
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [AMapServices sharedServices].apiKey = @"7a51d2c58640778bd644ee3641609981";
+    // 验证
+    [HealthManager shareInstance];
     
+    // 环信
+    //AppKey:注册的AppKey。
+    //apnsCertName:推送证书名（不需要加后缀）。
+    EMOptions *options = [EMOptions optionsWithAppkey:@"1175161105178569#jdtneverstop"];
+    options.apnsCertName = @"NeverStop";
+    self.error = [[EMClient sharedClient] initializeSDKWithOptions:options];
+    if (!_error) {
+        NSLog(@"初始化成功");
+    }
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
@@ -76,6 +92,28 @@ void uncaughtExceptionHandler(NSException *exception) {
     DDLogError(NSHomeDirectory());
     [self networkReachability];
     
+    
+    
+    // 3Dtouch按压程序图标的快捷选项
+    // 快捷菜单的图标
+    UIApplicationShortcutIcon *icon0 = [UIApplicationShortcutIcon iconWithType:UIApplicationShortcutIconTypePlay];
+    UIApplicationShortcutIcon *icon1 = [UIApplicationShortcutIcon iconWithType:UIApplicationShortcutIconTypeHome];
+    UIApplicationShortcutIcon *icon2 = [UIApplicationShortcutIcon iconWithType:UIApplicationShortcutIconTypeBookmark];
+    // 快捷菜单
+    
+    UIApplicationShortcutItem *item0 = [[UIApplicationShortcutItem alloc] initWithType:@"1" localizedTitle:@"开始运动" localizedSubtitle:nil icon:icon0 userInfo:nil];
+    UIApplicationShortcutItem *item1 = [[UIApplicationShortcutItem alloc] initWithType:@"2" localizedTitle:@"我的" localizedSubtitle:nil icon:icon1 userInfo:nil];
+    UIApplicationShortcutItem *item2 = [[UIApplicationShortcutItem alloc] initWithType:@"3" localizedTitle:@"运动记录" localizedSubtitle:nil icon:icon2 userInfo:nil];
+    // 设置app快捷菜单
+    [[UIApplication sharedApplication] setShortcutItems:@[item0, item1, item2]];
+    
+    
+    
+    
+    
+    
+    
+    
     return YES;
 }
 
@@ -93,10 +131,13 @@ void uncaughtExceptionHandler(NSException *exception) {
     
     
     
+
+
     
-    
+       
     
     // 比赛页面
+    
     MatchViewController *maVC = [[MatchViewController alloc] init];
     maVC.title = @"赛事";
     UINavigationController *maNavigationController = [[UINavigationController alloc] initWithRootViewController:maVC];
@@ -152,6 +193,12 @@ void uncaughtExceptionHandler(NSException *exception) {
     rootTabBarController.selectedIndex = 2;
 //    [[UITabBar appearance] setBarTintColor:[UIColor colorWithRed:37/255.f green:54/255.f blue:74/255.f alpha:1.0]];
 //    [UITabBar appearance].translucent = NO;
+    self.tabBarController = [[UITabBarController alloc] init];
+    _tabBarController.viewControllers = @[scNavigationController,maNavigationController,moNavigationController,meNavigationController,myNavigationController];
+    _tabBarController.delegate = self;
+    _tabBarController.selectedIndex = 2;
+    
+    
     
     // 使用NSUserDefaults 读取用户数据
     NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
@@ -159,12 +206,13 @@ void uncaughtExceptionHandler(NSException *exception) {
     if (![userDef boolForKey:@"notFirst"]) {
         // 如果是第一次,进入引导页
         ViewController *viewController = [[ViewController alloc] init];
-        viewController.rootTabBarController = rootTabBarController;
+        viewController.rootTabBarController = _tabBarController;
         self.window.rootViewController = viewController;
     } else {
         // 否则直接进入应用
-        self.window.rootViewController = rootTabBarController;
+        self.window.rootViewController = _tabBarController;
        
+    
     }
 
     
@@ -234,6 +282,26 @@ void uncaughtExceptionHandler(NSException *exception) {
     [DDLog addLogger:[DDTTYLogger sharedInstance]]; // TTY = Xcode console
     
 }
+- (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
+
+    if ([shortcutItem.type isEqualToString:@"1"]) {
+        self.tabBarController.selectedIndex = 2;
+        StartViewController *startVC = [[StartViewController alloc] init];
+        startVC.hidesBottomBarWhenPushed = YES;
+
+        [self.tabBarController.selectedViewController pushViewController:startVC animated:YES];
+    } else if ([shortcutItem.type isEqualToString:@"2"]) {
+        self.tabBarController.selectedIndex = 4;
+    } else if ([shortcutItem.type isEqualToString:@"3"]) {
+        self.tabBarController.selectedIndex = 4;
+        HistoryViewController *historyVC = [[HistoryViewController alloc] init];
+       historyVC.hidesBottomBarWhenPushed = YES;
+           [self.tabBarController.selectedViewController pushViewController:historyVC animated:YES];
+    }
+
+    
+
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -243,10 +311,19 @@ void uncaughtExceptionHandler(NSException *exception) {
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    [[EMClient sharedClient] applicationDidEnterBackground:application];
+
+    
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
+    [[EMClient sharedClient] applicationWillEnterForeground:application];
+
+    
+    
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -255,6 +332,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [[SQLiteDatabaseManager shareManager] closeSQLite];
 }
 
 @end

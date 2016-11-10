@@ -82,9 +82,17 @@
             
             frame.size.width = currentNumber / self.aimCount * _rectView.width;
 //            NSLog(@"%.f", _changingView.width);
+            if (frame.size.width == 0) {
+                NSLog(@"%f", frame.size.width);
+            }
             self.changingView.frame = frame;
         } else {
+            CGRect frame = self.changingView.frame;
+            
+            frame.size.width = self.width;
+            self.changingView.frame = frame;
             self.aimLabel.text = [_aimLabel.text stringByAppendingString:@" 已完成"];
+            [self.delegate aimIsCompleted];
             CGFloat width = [_aimLabel.text widthWithFont:_aimLabel.font constrainedToHeight:20];
             
             _aimLabel.frame = CGRectMake(self.width / 2 - width / 2, _rectView.y + _rectView.height + 3, width, 20);

@@ -35,7 +35,7 @@
     
     NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     NSString *stepDBPath = [documentsPath stringByAppendingPathComponent:@"StepCount.db"];
-    NSLog(@"path : %@", stepDBPath);
+//    NSLog(@"path : %@", stepDBPath);
     // 打开数据库(如果没有就先创建,后打开,如果有,就直接打开)
     // 参数1:数据库文件路径
     // 参数2:数据库指针地址
@@ -91,9 +91,7 @@
 }
 
 - (StepCountModel *)selectStepCountWithDate:(NSString *)date {
-    // 查询所有的数据
-    // select *from 表名
-    // 如果需要查询固定条件的数据需要使用where
+    
     NSString *selectSQL = [NSString stringWithFormat:@"select * from StepCount where date = '%@'", date];
     
     // 准备执行SQL
@@ -150,7 +148,7 @@
 
 - (BOOL)isSuccessWithResult:(int)result alert:(NSString *)alertString {
     if (result == SQLITE_OK) {
-//        NSLog(@"%@成功", alertString);
+        NSLog(@"%@成功", alertString);
         return YES;
     }
     NSLog(@"%@失败", alertString);

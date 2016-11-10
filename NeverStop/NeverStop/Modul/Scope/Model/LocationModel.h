@@ -14,4 +14,5 @@
 // 地名
 @property (nonatomic, strong) NSString *display_name;
 
+
 @end

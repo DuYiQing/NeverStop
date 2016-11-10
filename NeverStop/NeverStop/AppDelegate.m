@@ -267,13 +267,17 @@ void uncaughtExceptionHandler(NSException *exception) {
 
     if ([shortcutItem.type isEqualToString:@"1"]) {
         self.tabBarController.selectedIndex = 2;
-       
-        [self.tabBarController.selectedViewController pushViewController:[[StartViewController alloc]init] animated:YES];
+        StartViewController *startVC = [[StartViewController alloc] init];
+        startVC.hidesBottomBarWhenPushed = YES;
+
+        [self.tabBarController.selectedViewController pushViewController:startVC animated:YES];
     } else if ([shortcutItem.type isEqualToString:@"2"]) {
         self.tabBarController.selectedIndex = 4;
     } else if ([shortcutItem.type isEqualToString:@"3"]) {
         self.tabBarController.selectedIndex = 4;
-           [self.tabBarController.selectedViewController pushViewController:[[HistoryViewController alloc] init] animated:YES];
+        HistoryViewController *historyVC = [[HistoryViewController alloc] init];
+       historyVC.hidesBottomBarWhenPushed = YES;
+           [self.tabBarController.selectedViewController pushViewController:historyVC animated:YES];
     }
 
     

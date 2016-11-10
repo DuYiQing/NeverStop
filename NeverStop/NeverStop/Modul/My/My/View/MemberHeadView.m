@@ -45,16 +45,23 @@
         _headView.layer.borderWidth = 0.1f;
         _headView.backgroundColor = [UIColor whiteColor];
         _headView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        _headView.layer.shadowColor = [UIColor blackColor].CGColor;
+        _headView.layer.shadowOffset = CGSizeMake(2, 2);
+        _headView.layer.shadowOpacity = 0.6;//阴影透明度，默认0
+        _headView.layer.shadowRadius = 4;//阴影半径
         self.headView.userInteractionEnabled = YES;
         [_memberView addSubview:_headView];
         
         self.headImageView = [[UIImageView alloc] init];
         _headImageView.frame = CGRectMake(5, 5, 70, 70);
+        
+
         _headImageView.image = [UIImage imageNamed:@"icon"];
         [self addSubview:_headImageView];
         _headImageView.userInteractionEnabled = YES;
         _headImageView.layer.cornerRadius = 35;
         _headImageView.clipsToBounds = YES;
+      
         [_headView addSubview:_headImageView];
         
 

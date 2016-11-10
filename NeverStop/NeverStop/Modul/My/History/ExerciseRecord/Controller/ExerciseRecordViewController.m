@@ -12,8 +12,8 @@
 #import "StatusArrayModel.h"
 #import "VerticalButton.h"
 #import "ExerciseDataView.h"
-#import "MAMutablePolylineRenderer.h"
-#import "MAMutablePolyline.h"
+//#import "MAMutablePolylineRenderer.h"
+//#import "MAMutablePolyline.h"
 #import "RecordTableViewCell.h"
 @interface ExerciseRecordViewController ()
 <
@@ -41,12 +41,12 @@ UITableViewDataSource
 @property (nonatomic, assign) BOOL isPlaying;
 @property (nonatomic, assign) double averageSpeed;
 @property (nonatomic, assign) NSInteger currentLocationIndex;
-@property (nonatomic, strong) MAMutablePolyline *mutablePolyline;
+//@property (nonatomic, strong) MAMutablePolyline *mutablePolyline;
 @property (nonatomic, assign) CLLocationCoordinate2D centerCoordinate;
 @property (nonatomic, assign) CLLocationCoordinate2D maxCoordinate;
 @property (nonatomic, assign) CLLocationCoordinate2D minCoordiante;
 
-@property (nonatomic, strong) MAMutablePolylineRenderer *mutableView;
+//@property (nonatomic, strong) MAMutablePolylineRenderer *mutableView;
 
 
 
@@ -66,7 +66,7 @@ UITableViewDataSource
 - (void)viewDidLoad {
     [super viewDidLoad];
     __weak typeof(self) weakSelf = self;
-    UIBarButtonItem *backItem = [UIBarButtonItem getBarButtonItemWithImageName:@"navigator_btn_back" HighLightedImageName:@"navigator_btn_back" targetBlock:^{
+    UIBarButtonItem *backItem = [UIBarButtonItem getBarButtonItemWithImageName:@"navigator_btn_back" HighLightedImageName:nil targetBlock:^{
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
     UIBarButtonItem *playItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"run"] style:UIBarButtonItemStylePlain target:self action:@selector(actionPlayAndStop)];
@@ -371,30 +371,46 @@ UITableViewDataSource
 
 }
 - (MAOverlayRenderer *)mapView:(MAMapView *)mapView rendererForOverlay:(id<MAOverlay>)overlay {
-    if ([overlay isKindOfClass:[MAMutablePolyline class]])
-    {
-        MAMutablePolylineRenderer *view = [[MAMutablePolylineRenderer alloc] initWithMutablePolyline:(MAMutablePolyline *)overlay];
-        view.lineWidth = 4.0;
-        view.strokeColor = [UIColor redColor];
-        
-        return view;
-    }
+//    if ([overlay isKindOfClass:[MAMutablePolyline class]])
+//    {
+//        MAMutablePolylineRenderer *view = [[MAMutablePolylineRenderer alloc] initWithMutablePolyline:(MAMutablePolyline *)overlay];
+//        view.lineWidth = 4.0;
+//        view.strokeColor = [UIColor greenColor];
+//        
+//        return view;
+//    }
 
-    if ([overlay isKindOfClass:[MAPolyline class]])
+    if ([overlay isKindOfClass:[MAMultiPolyline class]])
     {
-        MAPolylineRenderer *polylineRenderer = [[MAPolylineRenderer alloc] initWithPolyline:(MAPolyline *)overlay];
-        
+//        MAPolylineRenderer *polylineRenderer = [[MAPolylineRenderer alloc] initWithPolyline:(MAPolyline *)overlay];
+        MAMultiColoredPolylineRenderer *polylineRenderer = [[MAMultiColoredPolylineRenderer alloc] initWithMultiPolyline:(MAMultiPolyline *)overlay];
         
         
         if ([overlay.title isEqualToString:@"1"]) {
+        
             
+      
+//            CLLocationCoordinate2D *coordinates = [self initdata];
+//            MAMapPoint mapPoints[_exerciseData.allLocationArray.count];
+//            for (int i = 0; i < _exerciseData.allLocationArray.count; i++) {
+//                mapPoints[i] = MAMapPointForCoordinate(coordinates[i]);
+//            }
+//            CGPoint *points = [polylineRenderer glPointsForMapPoints:mapPoints count:_exerciseData.allLocationArray.count];
+//            
+//            [polylineRenderer renderLinesWithPoints:points pointCount:_exerciseData.allLocationArray.count strokeColors:@[[UIColor greenColor],[UIColor redColor]] drawStyleIndexes:@[@1, @2] isGradient:YES lineWidth:7.5f looped:NO LineJoinType:kMALineJoinMiter LineCapType:kMALineCapButt lineDash:NO];
+//            
+            
+            //        MAPolylineRenderer *polylineRenderer = [[MAPolylineRenderer alloc] initWithPolyline:commonPolyline];
+        
             polylineRenderer.lineWidth = 7.5f;
             // 连接类型
             polylineRenderer.lineJoinType = kMALineJoinMiter;
             // 端点类型
             polylineRenderer.lineCapType = kMALineCapButt;
-            polylineRenderer.strokeColor = [UIColor colorWithRed:0.185 green:1.0 blue:0.6866 alpha:1.0];
+            
+            polylineRenderer.strokeColors = @[[UIColor colorWithRed:0.185 green:1.0 blue:0.6866 alpha:1.0], [UIColor redColor]];
             polylineRenderer.lineDash = NO;
+            polylineRenderer.gradient = YES;
             
         } else if ([overlay.title isEqualToString:@"2"]) {
             
@@ -591,20 +607,16 @@ UITableViewDataSource
             [mutableArray addObject:value];
 //            NSLog(@"%@", value);
         }
-//        NSLog(@"%@", mutableArray);
-//        self.mutablePolyline = [[MAMutablePolyline alloc] initWithPoints:mutableArray];
-//        if (temp.isStart == YES) {
-//            self.mutablePolyline. = @"1";
-//        } else {
-//            self.mutablePolyline.title = @"2";
-//        }
-//        [self.mapView addOverlay:self.mutablePolyline];
-        
+
         
         //构造折线对象
-        MAPolyline *commonPolyline = [MAPolyline polylineWithCoordinates:commonPolylineCoords count:temp.array.count];
+        
+        MAMultiPolyline *commonPolyline = [MAMultiPolyline polylineWithCoordinates:commonPolylineCoords count:temp.array.count drawStyleIndexes:@[@1, @2]];
+  
         if (temp.isStart == YES) {
             commonPolyline.title = @"1";
+            
+            
         } else {
             commonPolyline.title = @"2";
         }
@@ -615,10 +627,6 @@ UITableViewDataSource
     }
     
     [self.mapView showAnnotations:self.mapView.annotations animated:YES];
-//    MACoordinateSpan span = MACoordinateSpanMake(_maxCoordinate.latitude - _minCoordiante.latitude, _maxCoordinate.longitude - _minCoordiante.longitude);
-//    MACoordinateRegion region = MACoordinateRegionMake(self.centerCoordinate, span);
-//    
-//    [_mapView setRegion:region animated:YES];
 
     
     self.averageSpeed = _exerciseData.averageSpeed;
@@ -680,7 +688,7 @@ UITableViewDataSource
     self.isPlaying = !self.isPlaying;
     if (self.isPlaying)
     {
-        self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"run"];
+        self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"nav_guiji"];
         if (self.myLocation == nil)
         {
             self.myLocation = [[MAPointAnnotation alloc] init];
@@ -695,7 +703,7 @@ UITableViewDataSource
     }
     else
     {
-        self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"walk"];
+        self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"nav_guiji"];
         
         MAAnnotationView *view = [self.mapView viewForAnnotation:self.myLocation];
         
@@ -727,8 +735,8 @@ UITableViewDataSource
         CLLocationCoordinate2D preCoord = self.currentLocationIndex == 0 ? nextCoord : self.myLocation.coordinate;
         
         double heading = [self coordinateHeadingFrom:preCoord To:nextCoord];
-//        CLLocationDistance distance = MAMetersBetweenMapPoints(MAMapPointForCoordinate(nextCoord), MAMapPointForCoordinate(preCoord));
-        NSTimeInterval duration = 3;
+        CLLocationDistance distance = MAMetersBetweenMapPoints(MAMapPointForCoordinate(nextCoord), MAMapPointForCoordinate(preCoord));
+        NSTimeInterval duration = distance / (_exerciseData.averageSpeed * 1000 / 60 / 60 * 1000);
         
         [UIView animateWithDuration:duration
                          animations:^{
@@ -893,12 +901,17 @@ UITableViewDataSource
         case 0:
             cell.leftDataView.dataLabel.text = [NSString stringWithFormat:@"%.2ld:%.2ld:%.2ld", hour, minu, sec];;
             cell.leftDataView.titleLabel.text = @"时长";
+            cell.leftImageView.image = [UIImage imageNamed:@"表-4"];
             cell.rightDataView.dataLabel.text = [NSString stringWithFormat:@"%ld'%ld\"", minuSpeedSetting, secSpeedSetting];
             cell.rightDataView.titleLabel.text = @"平均配速";
+            cell.rightImageView.image = [UIImage imageNamed:@"快速抄表"];
             break;
         case 1:
             cell.leftDataView.dataLabel.text = [NSString stringWithFormat:@"%.1f", _exerciseData.calorie];;
             cell.leftDataView.titleLabel.text = @"卡路里(大卡)";
+            cell.leftImageView.image = [UIImage imageNamed:@"676-卡里路-4"];
+            cell.rightImageView.image = [UIImage imageNamed:@"速度表"];
+
             cell.rightDataView.dataLabel.text = [NSString stringWithFormat:@"%.2f", _exerciseData.averageSpeed];
             cell.rightDataView.titleLabel.text = @"平均速度(Km/h)";
             break;
@@ -908,6 +921,9 @@ UITableViewDataSource
             } else {
                 cell.leftDataView.dataLabel.text = @"未完成";
             }
+            cell.rightImageView.image = [UIImage imageNamed:@"速度表"];
+
+            cell.leftImageView.image = [UIImage imageNamed:@"目标"];
             cell.leftDataView.titleLabel.text = _exerciseData.aim;
             cell.rightDataView.dataLabel.text = [NSString stringWithFormat:@"%.2f", _exerciseData.maxSpeed];
             cell.rightDataView.titleLabel.text = @"最大速度(Km/h)";

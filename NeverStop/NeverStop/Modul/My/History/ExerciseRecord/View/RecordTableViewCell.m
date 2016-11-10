@@ -21,7 +21,6 @@
         self.leftImageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.leftDataView.x - 25, _leftDataView.y + _leftDataView.height / 2 - 12, 24, 24)];
         _leftImageView.layer.cornerRadius = _leftImageView.height / 2;
         _leftImageView.clipsToBounds = YES;
-        _leftImageView.backgroundColor = [UIColor cyanColor];
         [self addSubview:_leftImageView];
         self.rightDataView = [[ExerciseDataView alloc] initWithFrame:CGRectMake(self.width / 4 * 3 - 20, 20, 140, 60)];
         [self addSubview:_leftDataView];
@@ -34,7 +33,6 @@
         self.rightImageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.rightDataView.x - 25, _rightDataView.y + _rightDataView.height / 2 - 12, 24, 24)];
         _rightImageView.layer.cornerRadius = _rightImageView.height / 2;
         _rightImageView.clipsToBounds = YES;
-        _rightImageView.backgroundColor = [UIColor redColor];
         [self addSubview:_rightImageView];
     }
     return self;

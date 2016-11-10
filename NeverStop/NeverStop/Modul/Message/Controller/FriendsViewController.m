@@ -8,6 +8,7 @@
 
 #import "FriendsViewController.h"
 #import "MessageTableViewCell.h"
+#import "ChatViewController.h"
 
 @interface FriendsViewController ()
 <
@@ -67,6 +68,14 @@ UITableViewDataSource
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSString *userName = _userlist[indexPath.row];
+
+    ChatViewController *chatVC = [[ChatViewController alloc] initWithConversationChatter:userName conversationType:EMConversationTypeChat];
+    [self.navigationController pushViewController:chatVC animated:YES];
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -73,6 +73,8 @@ void uncaughtExceptionHandler(NSException *exception) {
     if (!_error) {
         NSLog(@"初始化成功");
     }
+    
+    
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
@@ -187,6 +189,12 @@ void uncaughtExceptionHandler(NSException *exception) {
     
     
     
+    UITabBarController *rootTabBarController = [[UITabBarController alloc] init];
+    rootTabBarController.viewControllers = @[scNavigationController,maNavigationController,moNavigationController,meNavigationController,myNavigationController];
+    rootTabBarController.delegate = self;
+    rootTabBarController.selectedIndex = 2;
+//    [[UITabBar appearance] setBarTintColor:[UIColor colorWithRed:37/255.f green:54/255.f blue:74/255.f alpha:1.0]];
+//    [UITabBar appearance].translucent = NO;
     self.tabBarController = [[UITabBarController alloc] init];
     _tabBarController.viewControllers = @[scNavigationController,maNavigationController,moNavigationController,meNavigationController,myNavigationController];
     _tabBarController.delegate = self;

@@ -28,7 +28,7 @@ UITableViewDataSource
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor greenColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     [self runTableView];
     
 }
@@ -36,7 +36,7 @@ UITableViewDataSource
 
 - (void)runTableView {
     
-    self.runTV = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
+    self.runTV = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64 - 34) style:UITableViewStylePlain];
     _runTV.backgroundColor = [UIColor whiteColor];
     _runTV.rowHeight = 100.f;
     _runTV.delegate = self;

@@ -448,7 +448,6 @@ MAMapViewDelegate
         
         annotationView.image = [UIImage imageNamed:@"map_startPoint"];
         annotationView.centerOffset = CGPointMake(0, -16);
-        
         return annotationView;
     }
     return nil;

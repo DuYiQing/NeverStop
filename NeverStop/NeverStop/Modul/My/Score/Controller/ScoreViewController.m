@@ -31,7 +31,7 @@ UITableViewDataSource
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     __weak typeof(self) weakSelf = self;
-    UIBarButtonItem *backItem = [UIBarButtonItem getBarButtonItemWithImageName:@"navigator_btn_back" HighLightedImageName:@"navigator_btn_back" targetBlock:^{
+    UIBarButtonItem *backItem = [UIBarButtonItem getBarButtonItemWithImageName:@"navigator_btn_back" HighLightedImageName:nil targetBlock:^{
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
     self.navigationItem.title = @"成绩";

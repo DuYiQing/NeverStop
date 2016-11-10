@@ -54,7 +54,8 @@ UINavigationControllerDelegate
     self.navigationItem.title = @"运动";
 
     __weak typeof(self) weakSelf = self;
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem getBarButtonItemWithImageName:@"navigator_btn_back" HighLightedImageName:@"navigator_btn_back" targetBlock:^{
+    
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem getBarButtonItemWithImageName:@"nav_back_black" HighLightedImageName:nil targetBlock:^{
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
     //消除阴影
@@ -85,12 +86,12 @@ UINavigationControllerDelegate
     // 缩放 开始按钮
     self.startButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _startButton.frame = CGRectMake(SCREEN_WIDTH / 2 - 40, SCREEN_HEIGHT - 240, 80, 80);
-    UIImage *startImage = [UIImage imageNamed:@"1"];
+    UIImage *startImage = [UIImage imageNamed:@"btn_start"];
     startImage = [startImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [_startButton setBackgroundImage:startImage forState:UIControlStateNormal];
     [_startButton setBackgroundImage:startImage forState:UIControlStateHighlighted];
     [_startButton setBackgroundImage:startImage forState:UIControlStateHighlighted];
-    _startButton.backgroundColor = [UIColor greenColor];
+//    _startButton.backgroundColor = [UIColor greenColor];
     
     
     

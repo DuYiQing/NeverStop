@@ -530,9 +530,9 @@ ProgressAimViewDelegate
 #pragma mark - 结束按钮
                 self.endButton = [UIButton buttonWithType:UIButtonTypeCustom];
                 _endButton.frame = CGRectMake(SCREEN_WIDTH / 2 - 40, SCREEN_HEIGHT - 240, 80, 80);
-                UIImage *endImage = [UIImage imageNamed:@"2"];
+                UIImage *endImage = [UIImage imageNamed:@"btn_end"];
                 [_endButton setBackgroundImage:endImage forState:UIControlStateNormal];
-                _endButton.backgroundColor = [UIColor redColor];
+//                _endButton.backgroundColor = [UIColor whiteColor];
                 _endButton.layer.cornerRadius = 40;
                 _endButton.clipsToBounds = YES;
                 [self.view addSubview:_endButton];
@@ -541,10 +541,10 @@ ProgressAimViewDelegate
 #pragma mark - 开始暂停按钮
                 self.pauseButton = [UIButton buttonWithType:UIButtonTypeCustom];
                 _pauseButton.frame = CGRectMake(SCREEN_WIDTH / 2 - 40, SCREEN_HEIGHT - 240, 80, 80);
-                UIImage *pauseImage = [UIImage imageNamed:@"2"];
+                UIImage *pauseImage = [UIImage imageNamed:@"btn_pause"];
                 [_pauseButton setBackgroundImage:pauseImage forState:UIControlStateNormal];
                 
-                _pauseButton.backgroundColor = [UIColor greenColor];
+//                _pauseButton.backgroundColor = [UIColor whiteColor];
                 _pauseButton.layer.cornerRadius = 40;
                 _pauseButton.clipsToBounds = YES;
                 
@@ -673,7 +673,7 @@ ProgressAimViewDelegate
             self.pauseButton.centerX = SCREEN_WIDTH / 2 - 70;
             self.endButton.centerX = SCREEN_WIDTH / 2 + 70;
             self.pauseButton.selected = !self.pauseButton.selected;
-            [self.pauseButton setBackgroundImage:[UIImage imageNamed:@"1"] forState:UIControlStateNormal];
+            [self.pauseButton setBackgroundImage:[UIImage imageNamed:@"btn_start"] forState:UIControlStateNormal];
             
             self.isMoving = NO;
         } else {
@@ -683,7 +683,7 @@ ProgressAimViewDelegate
             self.pauseButton.centerX = SCREEN_WIDTH / 2;
             self.endButton.centerX = SCREEN_WIDTH / 2;
             self.pauseButton.selected = !self.pauseButton.selected;
-            [self.pauseButton setBackgroundImage:[UIImage imageNamed:@"2"] forState:UIControlStateNormal];
+            [self.pauseButton setBackgroundImage:[UIImage imageNamed:@"btn_pause"] forState:UIControlStateNormal];
             self.isMoving = YES;
         }
     }];

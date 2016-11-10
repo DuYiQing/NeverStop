@@ -26,7 +26,11 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.typeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(30, 20, 50, 50)];
-        _typeImageView.backgroundColor = [UIColor orangeColor];
+        _typeImageView.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.0];
+        _typeImageView.layer.shadowColor = [UIColor blackColor].CGColor;
+        _typeImageView.layer.shadowOffset = CGSizeMake(2, 2);
+        _typeImageView.layer.shadowOpacity = 0.6;//阴影透明度，默认0
+        _typeImageView.layer.shadowRadius = 4;//阴影半径
         _typeImageView.layer.cornerRadius = _typeImageView.width / 2;
         [self.contentView addSubview:_typeImageView];
         

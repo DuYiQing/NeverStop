@@ -93,7 +93,7 @@ MAMapViewDelegate
     _leftDataView.titleLabel.text = @"距离 (公里)";
     _leftDataView.dataLabel.textColor = [UIColor blackColor];
     _leftDataView.dataLabel.font = kFONT_SIZE_24_BOLD;
-    _leftDataView.dataLabel.text = @"01:22:17";
+    _leftDataView.dataLabel.text = [NSString stringWithFormat:@"%.2f", _exerciseData.distance];
     [effectView addSubview:_leftDataView];
     
     
@@ -102,7 +102,7 @@ MAMapViewDelegate
     _rightDataView.titleLabel.text = @"时速 (公里时)";
     _rightDataView.dataLabel.textColor = [UIColor blackColor];
     _rightDataView.dataLabel.font = kFONT_SIZE_24_BOLD;
-    _rightDataView.dataLabel.text = @"01:22:17";
+    _rightDataView.dataLabel.text = [NSString stringWithFormat:@"%.2f", _exerciseData.averageSpeed];
     [effectView addSubview:_rightDataView];
 //
 //    
@@ -382,11 +382,13 @@ MAMapViewDelegate
          
       
          
-         self.rightDataView.dataLabel.text = [NSString stringWithFormat:@"%.2ld:%.2ld:%.2ld", hour, minu, sec];
+//         self.rightDataView.dataLabel.text = [NSString stringWithFormat:@"%.2ld:%.2ld:%.2ld", hour, minu, sec];
          
      } else if ([keyPath isEqualToString:@"distance"] && object == _exerciseData) {
          self.leftDataView.dataLabel.text = [NSString stringWithFormat:@"%.2f", _exerciseData.distance];
      } else if ([keyPath isEqualToString:@"speedPerHour"] && object == _exerciseData) {
+         self.rightDataView.dataLabel.text = [NSString stringWithFormat:@"%.2f", _exerciseData.speedPerHour];
+
      } else if ([keyPath isEqualToString:@"averageSpeed"] && object == _exerciseData) {
          
      } else if ([keyPath isEqualToString:@"maxSpeed"] && object == _exerciseData) {

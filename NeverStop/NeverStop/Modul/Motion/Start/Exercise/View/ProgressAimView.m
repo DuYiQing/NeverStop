@@ -63,7 +63,7 @@
              self.aimCount = [[[str stringByReplacingOccurrencesOfString:@"时间目标: " withString:@""] stringByReplacingOccurrencesOfString:@"分钟" withString:@""] floatValue] * 60;
             break;
         case 4:
-            self.aimCount = [[[str stringByReplacingOccurrencesOfString:@"卡路里: " withString:@""] stringByReplacingOccurrencesOfString:@"卡路里" withString:@""] floatValue] * 60;
+            self.aimCount = [[[str stringByReplacingOccurrencesOfString:@"卡路里目标: " withString:@""] stringByReplacingOccurrencesOfString:@"大卡" withString:@""] floatValue];
             break;
         default:
             break;

@@ -69,7 +69,11 @@ UITableViewDataSource
     UIBarButtonItem *backItem = [UIBarButtonItem getBarButtonItemWithImageName:@"navigator_btn_back" HighLightedImageName:nil targetBlock:^{
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
-    UIBarButtonItem *playItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"run"] style:UIBarButtonItemStylePlain target:self action:@selector(actionPlayAndStop)];
+    UIButton *playButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    playButton.frame = CGRectMake(0, 0, 21, 21);
+    [playButton setBackgroundImage:[UIImage imageNamed:@"nav_guiji"] forState:UIControlStateNormal];
+    [playButton addTarget:self action:@selector(actionPlayAndStop) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *playItem = [[UIBarButtonItem alloc] initWithCustomView:playButton];
     UIBarButtonItem *cameraItem = [UIBarButtonItem getBarButtonItemWithImageName:@"nav_camera" HighLightedImageName:nil targetBlock:^{
         __block UIImage *screenshotImage = nil;
         __block NSInteger resState = 0;
@@ -408,7 +412,7 @@ UITableViewDataSource
             // 端点类型
             polylineRenderer.lineCapType = kMALineCapButt;
             
-            polylineRenderer.strokeColors = @[[UIColor colorWithRed:0.185 green:1.0 blue:0.6866 alpha:1.0], [UIColor redColor]];
+            polylineRenderer.strokeColors = @[[UIColor redColor], [UIColor colorWithRed:0.185 green:1.0 blue:0.6866 alpha:1.0]];
             polylineRenderer.lineDash = NO;
             polylineRenderer.gradient = YES;
             
@@ -419,8 +423,10 @@ UITableViewDataSource
             polylineRenderer.lineJoinType = kMALineJoinMiter;
             // 端点类型
             polylineRenderer.lineCapType = kMALineCapButt;
-            polylineRenderer.strokeColor  = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0];
+            polylineRenderer.strokeColors  = @[[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0], [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0]];
             polylineRenderer.lineDash = YES;
+            polylineRenderer.gradient = YES;
+
         }
         
         return polylineRenderer;

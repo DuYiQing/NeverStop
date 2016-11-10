@@ -301,7 +301,9 @@ ProgressAimViewDelegate
             _progressAimView.currentNumber = _exerciseData.distance;
         }
     } else if ([keyPath isEqualToString:@"speedPerHour"] && object == _exerciseData) {
-        self.rightDataView.dataLabel.text = [NSString stringWithFormat:@"%.2f", _exerciseData.speedPerHour];
+        if (self.aimType != 4) {
+            self.rightDataView.dataLabel.text = [NSString stringWithFormat:@"%.2f", _exerciseData.speedPerHour];
+        }
     } else if ([keyPath isEqualToString:@"averageSpeed"] && object == _exerciseData) {
        
     } else if ([keyPath isEqualToString:@"maxSpeed"] && object == _exerciseData) {
@@ -309,6 +311,8 @@ ProgressAimViewDelegate
     } else if ([keyPath isEqualToString:@"calorie"] && object == _exerciseData) {
         if (self.aimType == 4) {
             _progressAimView.currentNumber = _exerciseData.calorie;
+            self.rightDataView.dataLabel.text = [NSString stringWithFormat:@"%.2f", _exerciseData.calorie];
+
         }
        
     } else if ([keyPath isEqualToString:@"speedSetting"] && object == _exerciseData) {
@@ -366,7 +370,7 @@ ProgressAimViewDelegate
     _homeDataView.titleLabel.font = [UIFont boldSystemFontOfSize:20];
     _homeDataView.titleLabel.text = @"时长";
     _homeDataView.dataLabel.font = [UIFont systemFontOfSize:80];
-    _homeDataView.dataLabel.text = @"01:22:17";
+    _homeDataView.dataLabel.text = @"00:00:00";
 //    _homeDataView.backgroundColor = [UIColor greenColor];
     [self.dataModulesView addSubview:_homeDataView];
     
@@ -375,15 +379,20 @@ ProgressAimViewDelegate
     _leftDataView.titleLabel.font = kFONT_SIZE_18_BOLD;
     _leftDataView.titleLabel.text = @"距离 (公里)";
     _leftDataView.dataLabel.font = kFONT_SIZE_24_BOLD;
-    _leftDataView.dataLabel.text = @"01:22:17";
+    _leftDataView.dataLabel.text = @"0.00";
     [self.dataModulesView addSubview:_leftDataView];
     
     
     self.rightDataView = [[ExerciseDataView alloc] initWithFrame:CGRectMake(_dataModulesView.width / 2, _dataModulesView.height - 60, _dataModulesView.width / 2, _leftDataView.height)];
     _rightDataView.titleLabel.font = kFONT_SIZE_18_BOLD;
-    _rightDataView.titleLabel.text = @"时速 (公里时)";
+    if (self.aimType == 4) {
+        _rightDataView.titleLabel.text = @"卡路里 (大卡)";
+        _rightDataView.dataLabel.text = @"0.0";
+    } else {
+        _rightDataView.titleLabel.text = @"时速 (公里时)";
+        _rightDataView.dataLabel.text = @"0.00";
+    }
     _rightDataView.dataLabel.font = kFONT_SIZE_24_BOLD;
-    _rightDataView.dataLabel.text = @"01:22:17";
     [self.dataModulesView addSubview:_rightDataView];
    
     
@@ -535,6 +544,7 @@ ProgressAimViewDelegate
 //                _endButton.backgroundColor = [UIColor whiteColor];
                 _endButton.layer.cornerRadius = 40;
                 _endButton.clipsToBounds = YES;
+                _endButton.alpha = 0;
                 [self.view addSubview:_endButton];
                 __weak typeof(self) weakSelf = self;
                 [_endButton addTarget:self action:@selector(endButtonAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -669,6 +679,8 @@ ProgressAimViewDelegate
     [UIView animateWithDuration:0.5 animations:^{
         if (!self.pauseButton.selected) {
             // 暂停计时
+            _endButton.alpha = 1;
+
             [self pauseTimer];
             self.pauseButton.centerX = SCREEN_WIDTH / 2 - 70;
             self.endButton.centerX = SCREEN_WIDTH / 2 + 70;
@@ -678,6 +690,8 @@ ProgressAimViewDelegate
             self.isMoving = NO;
         } else {
             // 开始计时
+            _endButton.alpha = 0;
+
             [self createTimer];
             _secondPauseLocation = 1;
             self.pauseButton.centerX = SCREEN_WIDTH / 2;

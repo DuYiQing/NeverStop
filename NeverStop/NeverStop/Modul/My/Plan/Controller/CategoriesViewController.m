@@ -47,11 +47,14 @@ UITableViewDataSource
     _categoriesTableView.delegate = self;
     _categoriesTableView.dataSource = self;
     _categoriesTableView.rowHeight = 200;
-    _categoriesTableView.contentInset = UIEdgeInsetsMake(0, 0, 64, 0);
+    _categoriesTableView.contentInset = UIEdgeInsetsMake(0, 0, 24, 0);
     [self.view addSubview:_categoriesTableView];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _categoriesArr.count;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

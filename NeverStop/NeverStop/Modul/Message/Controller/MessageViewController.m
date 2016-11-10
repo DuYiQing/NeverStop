@@ -78,9 +78,20 @@ EMContactManagerDelegate
     
     [self createTipLabel];
     
+//    [self getMessageList];
     
     //注册好友回调
     [[EMClient sharedClient].contactManager addDelegate:self delegateQueue:nil];
+    
+    
+}
+
+- (void)getMessageList {
+    
+//    for (NSString *userName in _userlist) {
+        EMConversation *conversation = [[EMClient sharedClient].chatManager getConversation:@"tong2b" type:EMConversationTypeChat createIfNotExist:YES];
+        DDLogInfo(@"%@", conversation.latestMessage);
+//    }
     
 }
 

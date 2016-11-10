@@ -71,6 +71,8 @@ void uncaughtExceptionHandler(NSException *exception) {
     if (!_error) {
         NSLog(@"初始化成功");
     }
+    
+    
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

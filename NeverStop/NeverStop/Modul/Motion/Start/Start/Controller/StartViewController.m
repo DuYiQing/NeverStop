@@ -87,7 +87,6 @@ UINavigationControllerDelegate
     self.startButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _startButton.frame = CGRectMake(SCREEN_WIDTH / 2 - 40, SCREEN_HEIGHT - 240, 80, 80);
     UIImage *startImage = [UIImage imageNamed:@"start_btn"];
-    startImage = [startImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [_startButton setBackgroundImage:startImage forState:UIControlStateNormal];
     [_startButton setBackgroundImage:startImage forState:UIControlStateHighlighted];
     [_startButton setBackgroundImage:startImage forState:UIControlStateHighlighted];

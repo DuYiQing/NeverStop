@@ -44,7 +44,7 @@
     editionLabel.textAlignment = NSTextAlignmentCenter;
     [logoImageView addSubview:editionLabel];
     
-    UILabel *aboutUsLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, backView.y + backView.height + 20, SCREEN_WIDTH - 60, SCREEN_HEIGHT / 2)];
+    UILabel *aboutUsLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, backView.y + backView.height + 30, SCREEN_WIDTH - 100, SCREEN_HEIGHT / 2)];
     aboutUsLabel.text = @"        我们是一群热爱运动热爱生活的年轻人，因为运动，我们的学习、工作充满活力和智慧。\n        没有人天生就是懒惰的，也没有人会享受肥胖带来的一系列麻烦，你以为你坚持不了，只是你还没有发现更好的你。\n        加入Never Stop，让运动变得简单，让你发现最好的你。";
     aboutUsLabel.numberOfLines = 0;
     [aboutUsLabel sizeToFit];

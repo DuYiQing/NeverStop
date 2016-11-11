@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "map_btn_close.png",
+      "filename" : "start_btn.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "map_btn_close@2x.png",
+      "filename" : "start_btn@2x.png",
       "scale" : "2x"
     },
     {

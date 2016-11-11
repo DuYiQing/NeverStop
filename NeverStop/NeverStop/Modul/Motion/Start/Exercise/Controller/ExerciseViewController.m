@@ -243,11 +243,11 @@ ProgressAimViewDelegate
                         _exerciseData.speedSetting = 1 / _exerciseData.speedPerHour * 3600;
                         _exerciseData.averageSpeedSetting = 1 / _exerciseData.averageSpeed * 60 * 60;
                         if ([_exerciseData.exerciseType isEqualToString:@"walk"]) {
-                           _exerciseData.calorie += [_user.weight floatValue] / 60 * 65 * _exerciseData.speedPerHour * time;
-                        } else if ([_exerciseData.exerciseType  isEqualToString:@"run"]) {
-                            _exerciseData.calorie += [_user.weight floatValue] * (distance / 1000) * 1.036;
+                           _exerciseData.calorie += [_user.weight floatValue] / 60.0 * 65 * _exerciseData.speedPerHour * time;
+                        } else if ([_exerciseData.exerciseType isEqualToString:@"run"]) {
+                            _exerciseData.calorie += [_user.weight floatValue] * (distance / 1000.0) * 1.036;
                         } else {
-                            _exerciseData.calorie += [_user.weight floatValue] / 60 * 27.5 * _exerciseData.speedPerHour * time;
+                            _exerciseData.calorie += [_user.weight floatValue] / 60.0 * 27.5 * _exerciseData.speedPerHour * time;
                         }
                 }
                 }
@@ -311,7 +311,7 @@ ProgressAimViewDelegate
     } else if ([keyPath isEqualToString:@"calorie"] && object == _exerciseData) {
         if (self.aimType == 4) {
             _progressAimView.currentNumber = _exerciseData.calorie;
-            self.rightDataView.dataLabel.text = [NSString stringWithFormat:@"%.2f", _exerciseData.calorie];
+            self.rightDataView.dataLabel.text = [NSString stringWithFormat:@"%.1f", _exerciseData.calorie];
 
         }
        

@@ -86,7 +86,7 @@ UINavigationControllerDelegate
     // 缩放 开始按钮
     self.startButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _startButton.frame = CGRectMake(SCREEN_WIDTH / 2 - 40, SCREEN_HEIGHT - 240, 80, 80);
-    UIImage *startImage = [UIImage imageNamed:@"btn_start"];
+    UIImage *startImage = [UIImage imageNamed:@"start_btn"];
     startImage = [startImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [_startButton setBackgroundImage:startImage forState:UIControlStateNormal];
     [_startButton setBackgroundImage:startImage forState:UIControlStateHighlighted];

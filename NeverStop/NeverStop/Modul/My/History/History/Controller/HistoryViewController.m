@@ -70,7 +70,7 @@ UITableViewDataSource
 
 - (void)createHistoryTableView {
     
-    self.historyTableView = [[UITableView alloc] initWithFrame:[UIScreen mainScreen].bounds style:UITableViewStylePlain];
+    self.historyTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64) style:UITableViewStylePlain];
     _historyTableView.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.0];
     _historyTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _historyTableView.delegate = self;

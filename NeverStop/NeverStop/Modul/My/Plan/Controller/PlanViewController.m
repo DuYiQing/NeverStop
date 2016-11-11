@@ -49,7 +49,7 @@ UITableViewDataSource
     self.planTableView = [[UITableView alloc]initWithFrame:[UIScreen mainScreen].bounds style:UITableViewStylePlain];
     _planTableView.delegate = self;
     _planTableView.dataSource = self;
-    _planTableView.rowHeight = 200;
+    _planTableView.rowHeight = 201;
     _planTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _planTableView.contentInset = UIEdgeInsetsMake(0, 0, 64, 0);
     [self.view addSubview:_planTableView];

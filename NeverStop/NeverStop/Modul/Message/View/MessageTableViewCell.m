@@ -8,13 +8,14 @@
 
 #import "MessageTableViewCell.h"
 #import "RequestModel.h"
+#import "ConversationModel.h"
 
 @interface MessageTableViewCell ()
 
 @property (nonatomic, strong) UIImageView *headImageView;
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *messageLabel;
-
+@property (nonatomic, strong) UILabel *timeLabel;
 
 @end
 
@@ -31,11 +32,16 @@
         _nameLabel.font = kFONT_SIZE_18;
         [self.contentView addSubview:_nameLabel];
         
-        self.messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(_nameLabel.x, _nameLabel.y + _nameLabel.height, SCREEN_WIDTH - 100, 30)];
+        self.messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(_nameLabel.x, _nameLabel.y + _nameLabel.height, SCREEN_WIDTH - 150, 30)];
         _messageLabel.textColor = [UIColor grayColor];
         _messageLabel.font = kFONT_SIZE_15;
         [self.contentView addSubview:_messageLabel];
         
+        self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 100, 20, 90, 30)];
+        _timeLabel.textColor = [UIColor lightGrayColor];
+        _timeLabel.textAlignment = NSTextAlignmentRight;
+        _timeLabel.font = kFONT_SIZE_12;
+        [self.contentView addSubview:_timeLabel];
         
     }
     return self;
@@ -56,6 +62,15 @@
     }
 }
 
+- (void)setConversationModel:(ConversationModel *)conversationModel {
+    if (_conversationModel != conversationModel) {
+        _conversationModel = conversationModel;
+        _headImageView.image = [UIImage imageNamed:@"conversation"];
+        _nameLabel.text = conversationModel.userName;
+        _messageLabel.text = conversationModel.text;
+        _timeLabel.text = conversationModel.time;
+    }
+}
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

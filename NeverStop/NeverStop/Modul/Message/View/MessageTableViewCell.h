@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 @class RequestModel;
+@class ConversationModel;
 
 @interface MessageTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) RequestModel *requestModel;
 @property (nonatomic, strong) NSString *userName;
+@property (nonatomic, strong) ConversationModel *conversationModel;
+
 
 @end

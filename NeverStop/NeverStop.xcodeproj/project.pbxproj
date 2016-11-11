@@ -115,6 +115,8 @@
 		4028C59D1DD415AE0088F221 /* EaseRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4028C5231DD415AD0088F221 /* EaseRecordView.m */; };
 		4028C59E1DD415AE0088F221 /* EaseConversationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4028C5261DD415AD0088F221 /* EaseConversationCell.m */; };
 		4028C59F1DD415AE0088F221 /* EaseUIResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4028C5281DD415AD0088F221 /* EaseUIResource.bundle */; };
+		403E8AA01DD45DC600902039 /* ConversationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 403E8A9F1DD45DC600902039 /* ConversationModel.m */; };
+		403E8AA31DD46F7D00902039 /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 403E8AA21DD46F7D00902039 /* HeaderView.m */; };
 		405E49251DBCD0EB004105F2 /* MatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E491A1DBCD0EB004105F2 /* MatchViewController.m */; };
 		405E49261DBCD0EB004105F2 /* Recommend.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E491C1DBCD0EB004105F2 /* Recommend.m */; };
 		405E49271DBCD0EB004105F2 /* RecommendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 405E491E1DBCD0EB004105F2 /* RecommendTableViewCell.m */; };
@@ -489,6 +491,10 @@
 		4028C5251DD415AD0088F221 /* EaseConversationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseConversationCell.h; sourceTree = "<group>"; };
 		4028C5261DD415AD0088F221 /* EaseConversationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseConversationCell.m; sourceTree = "<group>"; };
 		4028C5281DD415AD0088F221 /* EaseUIResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EaseUIResource.bundle; sourceTree = "<group>"; };
+		403E8A9E1DD45DC600902039 /* ConversationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversationModel.h; sourceTree = "<group>"; };
+		403E8A9F1DD45DC600902039 /* ConversationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversationModel.m; sourceTree = "<group>"; };
+		403E8AA11DD46F7D00902039 /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderView.h; sourceTree = "<group>"; };
+		403E8AA21DD46F7D00902039 /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
 		405E49191DBCD0EB004105F2 /* MatchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchViewController.h; sourceTree = "<group>"; };
 		405E491A1DBCD0EB004105F2 /* MatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchViewController.m; sourceTree = "<group>"; };
 		405E491B1DBCD0EB004105F2 /* Recommend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recommend.h; sourceTree = "<group>"; };
@@ -871,6 +877,8 @@
 			children = (
 				4028BD091DD1EDF40088F221 /* RequestModel.h */,
 				4028BD0A1DD1EDF40088F221 /* RequestModel.m */,
+				403E8A9E1DD45DC600902039 /* ConversationModel.h */,
+				403E8A9F1DD45DC600902039 /* ConversationModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -880,6 +888,8 @@
 			children = (
 				4028BD0C1DD1EFCC0088F221 /* MessageTableViewCell.h */,
 				4028BD0D1DD1EFCC0088F221 /* MessageTableViewCell.m */,
+				403E8AA11DD46F7D00902039 /* HeaderView.h */,
+				403E8AA21DD46F7D00902039 /* HeaderView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2308,6 +2318,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				494BB3E71DD44DB000448D45 /* BaseViewController.m in Sources */,
+				403E8AA31DD46F7D00902039 /* HeaderView.m in Sources */,
 				494BB3BA1DD4026E00448D45 /* LocationModel.m in Sources */,
 				494BB3B81DD401CD00448D45 /* MessageViewController.m in Sources */,
 				4028C5781DD415AE0088F221 /* NSString+Valid.m in Sources */,
@@ -2397,6 +2408,7 @@
 				EE1A003E1DB8CF610003762E /* DataBaseManager.m in Sources */,
 				40CF904D1DD09E9A005D8B86 /* RegisterViewController.m in Sources */,
 				EE1A00361DB8CF610003762E /* NSString+Size.m in Sources */,
+				403E8AA01DD45DC600902039 /* ConversationModel.m in Sources */,
 				4028C5751DD415AE0088F221 /* EaseUserModel.m in Sources */,
 				EE1A00321DB8CF610003762E /* NSDictionary+Categories.m in Sources */,
 				4028C5991DD415AE0088F221 /* EaseTextView.m in Sources */,

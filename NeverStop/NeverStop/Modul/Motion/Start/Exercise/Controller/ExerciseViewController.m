@@ -225,8 +225,8 @@ ProgressAimViewDelegate
                     MAMapPoint point1 = MAMapPointForCoordinate(CLLocationCoordinate2DMake(_lastLocation.latitude,_lastLocation.longitude));
                     MAMapPoint point2 = MAMapPointForCoordinate(CLLocationCoordinate2DMake(location.latitude,location.longitude));
                     // 2.计算距离
-                    //                NSLog(@"last : %f, %f", _lastLocation.latitude, _lastLocation.longitude);
-                    //                NSLog(@"now : %f, %f", location.latitude, location.longitude);
+                    // NSLog(@"last : %f, %f", _lastLocation.latitude, _lastLocation.longitude);
+                    // NSLog(@"now : %f, %f", location.latitude, location.longitude);
                     CLLocationDistance distance = MAMetersBetweenMapPoints(point1,point2);
                     //                NSLog(@"distance : %f", distance);
                     ;

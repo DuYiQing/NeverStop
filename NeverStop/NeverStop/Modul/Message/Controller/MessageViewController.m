@@ -212,7 +212,7 @@ EMChatManagerDelegate
 // 创建tableView
 - (void)createTableView {
     
-    self.searchTabelView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStyleGrouped];
+    self.searchTabelView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, SCREEN_HEIGHT - 66) style:UITableViewStyleGrouped];
     _searchTabelView.delegate = self;
     _searchTabelView.dataSource = self;
     _searchTabelView.rowHeight = 70.f;
@@ -298,6 +298,7 @@ EMChatManagerDelegate
         ConversationModel *conversationModel = _messageArray[indexPath.row];
         
         ChatViewController *chatVC = [[ChatViewController alloc] initWithConversationChatter:conversationModel.userName conversationType:EMConversationTypeChat];
+        chatVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:chatVC animated:YES];
         
         

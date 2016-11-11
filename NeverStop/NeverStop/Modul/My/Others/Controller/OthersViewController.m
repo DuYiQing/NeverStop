@@ -17,6 +17,8 @@ UITableViewDelegate
 >
 @property (nonatomic, strong) UITableView *othersTableView;
 @property (nonatomic, strong) UILabel *cachesLabel;
+//@property (nonatomic, assign) CGFloat folderSize;
+
 
 @end
 
@@ -61,21 +63,28 @@ UITableViewDelegate
 }
 // 计算缓存
 - (CGFloat)folderSize{
+    
+//    dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
     CGFloat folderSize;
     
-    //获取路径
-    NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory,NSUserDomainMask,YES)firstObject];
-    
-    //获取所有文件的数组
-    NSArray *files = [[NSFileManager defaultManager] subpathsAtPath:cachePath];
-    
-    for(NSString *path in files) {
+//    dispatch_async(globalQueue, ^{
+        //获取路径
+        NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory,NSUserDomainMask,YES)firstObject];
         
-        NSString*filePath = [cachePath stringByAppendingString:[NSString stringWithFormat:@"/%@",path]];
+        //获取所有文件的数组
+        NSArray *files = [[NSFileManager defaultManager] subpathsAtPath:cachePath];
         
-        //累加
-        folderSize += [[NSFileManager defaultManager]attributesOfItemAtPath:filePath error:nil].fileSize;
-    }
+        for(NSString *path in files) {
+            
+            NSString*filePath = [cachePath stringByAppendingString:[NSString stringWithFormat:@"/%@",path]];
+            
+            //累加
+            folderSize += [[NSFileManager defaultManager]attributesOfItemAtPath:filePath error:nil].fileSize;
+        }
+    
+//    });
+
     //转换为M为单位
     CGFloat sizeM = folderSize / 1024.0 / 1024.0;
     

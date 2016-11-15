@@ -18,6 +18,8 @@
 @property (nonatomic, assign) BOOL isCompleted;
 @end
 @implementation ProgressAimView
+
+
 - (instancetype)initWithFrame:(CGRect)frame aim:(NSString *)aim aimType:(NSInteger)aimType
 {
     self = [super initWithFrame:frame];

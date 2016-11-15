@@ -18,5 +18,5 @@
 
 @property (nonatomic, assign) CGFloat currentNumber;
 - (instancetype)initWithFrame:(CGRect)frame aim:(NSString *)aim aimType:(NSInteger)aimType;
-@property (nonatomic, strong) id<ProgressAimViewDelegate> delegate;
+@property (nonatomic, weak) id<ProgressAimViewDelegate> delegate;
 @end

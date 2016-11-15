@@ -103,6 +103,8 @@ UITableViewDataSource
     if (nil == cell) {
         cell = [[MyInfoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         }
+    cell.selectionStyle =  UITableViewCellSelectionStyleNone;
+    
     switch (indexPath.row) {
         case 0:
             cell.imageName = @"recode";

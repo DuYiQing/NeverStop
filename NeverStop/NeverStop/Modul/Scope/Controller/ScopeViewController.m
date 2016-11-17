@@ -52,9 +52,9 @@ UITableViewDelegate
     ScopeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (cell == nil) {
         cell = [[ScopeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell.backgroundColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74/255.f alpha:1.0];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    //cell.backgroundColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74/255.f alpha:1.0];
-    cell.backgroundColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74/255.f alpha:1.0];
     Scope *scopeModel = _scopeArray[indexPath.row];
     cell.scopeModel = scopeModel;
     return cell;

@@ -17,5 +17,7 @@
 @interface RegisterViewController : UIViewController
 
 @property (nonatomic, assign) id<RegisterVCDelegate>delegate;
+@property (nonatomic, strong) UITabBarController *rootTabBarController;
+
 
 @end

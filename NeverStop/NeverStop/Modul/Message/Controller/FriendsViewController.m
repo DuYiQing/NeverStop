@@ -53,6 +53,43 @@ UITableViewDataSource
     _friendsTableView.rowHeight = 70;
     [self.view addSubview:_friendsTableView];
 }
+// 删除好友
+- (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除好友" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"您确定要删除该好友吗" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *sure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            
+            NSString *userName = _userlist[indexPath.row];
+            // 删除好友
+            EMError *error = [[EMClient sharedClient].contactManager deleteContact:userName];
+            if (!error) {
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"删除成功" message:nil preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+                    
+                    [(NSMutableArray *)_userlist removeObjectAtIndex:indexPath.row];
+                    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                }];
+                [alert addAction:okAction];
+                [self presentViewController:alert animated:YES completion:nil];
+            } else {
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"删除失败" message:nil preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *getAction = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDestructive handler:nil];
+                [alert addAction:getAction];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
+        }];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            
+                [_friendsTableView reloadData];
+        }];
+        [alert addAction:sure];
+        [alert addAction:cancel];
+        [self presentViewController:alert animated:YES completion:nil];
+    }];
+    return @[deleteAction];
+    
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 1;
 }
@@ -63,6 +100,8 @@ UITableViewDataSource
     MessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (nil == cell) {
         cell = [[MessageTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
     }
     cell.userName = _userlist[indexPath.row];
     return cell;

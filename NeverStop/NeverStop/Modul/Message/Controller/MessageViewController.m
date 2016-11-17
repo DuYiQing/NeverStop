@@ -223,6 +223,20 @@ EMChatManagerDelegate
     
 }
 
+// 左滑删除对话
+- (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除对话" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        // 更新数据
+        [_messageArray removeObjectAtIndex:indexPath.row];
+        // 更新UI
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }];
+    // 删除按钮的颜色
+    deleteAction.backgroundColor = [UIColor redColor];
+    // 返回按钮数组
+    return @[deleteAction];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (nil == cell) {

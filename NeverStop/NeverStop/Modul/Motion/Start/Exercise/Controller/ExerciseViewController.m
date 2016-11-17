@@ -65,6 +65,8 @@ ProgressAimViewDelegate
 @implementation ExerciseViewController
 - (void)dealloc {
     self.navigationController.delegate = nil;
+    _mapView.delegate = nil;
+    _progressAimView.delegate = nil;
     for (int i = 0; i < _keyPathArray.count; i++) {
         [self.exerciseData removeObserver:self forKeyPath:_keyPathArray[i] context:nil];
     }

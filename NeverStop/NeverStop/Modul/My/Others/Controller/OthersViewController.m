@@ -126,6 +126,8 @@ UITableViewDelegate
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (nil == cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
     }
     switch (indexPath.row) {
         case 0:

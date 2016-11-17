@@ -146,6 +146,10 @@
 		40EEB4061DD01B9F00D47FDE /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 40EEB3F01DD012DC00D47FDE /* libstdc++.6.0.9.tbd */; };
 		40EEB4081DD01BAE00D47FDE /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 40EEB4071DD01BAE00D47FDE /* libsqlite3.tbd */; };
 		40EEB4091DD01BBA00D47FDE /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 40EEB3F41DD0131900D47FDE /* libiconv.tbd */; };
+		40FDB9F61DD7477800DA2521 /* PlanDetailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FDB9F51DD7477800DA2521 /* PlanDetailsModel.m */; };
+		40FDB9F91DD93F3C00DA2521 /* EverydayDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FDB9F81DD93F3C00DA2521 /* EverydayDetailModel.m */; };
+		40FDB9FD1DD9417B00DA2521 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FDB9FB1DD9417B00DA2521 /* DetailsViewController.m */; };
+		40FDBAA61DDB3FE700DA2521 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40FDBAA51DDB3FE700DA2521 /* Media.xcassets */; };
 		49013B801DC8B28200AAB28A /* (null) in Sources */ = {isa = PBXBuildFile; };
 		49060C151DBEE5F0003FE373 /* NearbyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49060C141DBEE5F0003FE373 /* NearbyTableViewCell.m */; };
 		49060C1B1DBEE971003FE373 /* Nearby.m in Sources */ = {isa = PBXBuildFile; fileRef = 49060C1A1DBEE971003FE373 /* Nearby.m */; };
@@ -550,6 +554,13 @@
 		40EEB4011DD01B1C00D47FDE /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		40EEB4031DD01B2E00D47FDE /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		40EEB4071DD01BAE00D47FDE /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		40FDB9F41DD7477800DA2521 /* PlanDetailsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanDetailsModel.h; sourceTree = "<group>"; };
+		40FDB9F51DD7477800DA2521 /* PlanDetailsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanDetailsModel.m; sourceTree = "<group>"; };
+		40FDB9F71DD93F3C00DA2521 /* EverydayDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EverydayDetailModel.h; sourceTree = "<group>"; };
+		40FDB9F81DD93F3C00DA2521 /* EverydayDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EverydayDetailModel.m; sourceTree = "<group>"; };
+		40FDB9FA1DD9417B00DA2521 /* DetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
+		40FDB9FB1DD9417B00DA2521 /* DetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
+		40FDBAA51DDB3FE700DA2521 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		49060C131DBEE5F0003FE373 /* NearbyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyTableViewCell.h; sourceTree = "<group>"; };
 		49060C141DBEE5F0003FE373 /* NearbyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyTableViewCell.m; sourceTree = "<group>"; };
 		49060C191DBEE971003FE373 /* Nearby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Nearby.h; sourceTree = "<group>"; };
@@ -846,6 +857,10 @@
 				40E5A4571DC8C352001AD41F /* CategoriesModel.m */,
 				40022F7B1DC6EE8E0062CA94 /* PlanModel.h */,
 				40022F7C1DC6EE8E0062CA94 /* PlanModel.m */,
+				40FDB9F41DD7477800DA2521 /* PlanDetailsModel.h */,
+				40FDB9F51DD7477800DA2521 /* PlanDetailsModel.m */,
+				40FDB9F71DD93F3C00DA2521 /* EverydayDetailModel.h */,
+				40FDB9F81DD93F3C00DA2521 /* EverydayDetailModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -868,6 +883,8 @@
 				40E5A4541DC8BF4B001AD41F /* CategoriesViewController.m */,
 				40022F781DC6EE780062CA94 /* PlanViewController.h */,
 				40022F791DC6EE780062CA94 /* PlanViewController.m */,
+				40FDB9FA1DD9417B00DA2521 /* DetailsViewController.h */,
+				40FDB9FB1DD9417B00DA2521 /* DetailsViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1831,6 +1848,7 @@
 				40CF90441DD08638005D8B86 /* User */,
 				EE56EAA61DB8CE6D000B8082 /* AppDelegate.h */,
 				EE56EAA71DB8CE6D000B8082 /* AppDelegate.m */,
+				40FDBAA51DDB3FE700DA2521 /* Media.xcassets */,
 				EEF3C7201DCE22EC008306AD /* Assets.xcassets */,
 				EE56EAB41DB8CE6D000B8082 /* Info.plist */,
 				EE56EAB11DB8CE6D000B8082 /* LaunchScreen.storyboard */,
@@ -2259,6 +2277,7 @@
 				EE56EAAE1DB8CE6D000B8082 /* Main.storyboard in Resources */,
 				4028C5711DD415AE0088F221 /* MWPhotoBrowser.bundle in Resources */,
 				4028C59F1DD415AE0088F221 /* EaseUIResource.bundle in Resources */,
+				40FDBAA61DDB3FE700DA2521 /* Media.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2404,6 +2423,7 @@
 				405E49271DBCD0EB004105F2 /* RecommendTableViewCell.m in Sources */,
 				EEDE5C931DD17E090021DC9C /* MAMutablePolyline.m in Sources */,
 				EEECBD241DC3908F0037BA0B /* TodayWeatherView.m in Sources */,
+				40FDB9F91DD93F3C00DA2521 /* EverydayDetailModel.m in Sources */,
 				49060C151DBEE5F0003FE373 /* NearbyTableViewCell.m in Sources */,
 				EE1A003E1DB8CF610003762E /* DataBaseManager.m in Sources */,
 				40CF904D1DD09E9A005D8B86 /* RegisterViewController.m in Sources */,
@@ -2451,6 +2471,7 @@
 				4028C56C1DD415AE0088F221 /* PSTCollectionViewUpdateItem.m in Sources */,
 				EEECBD1B1DC3908F0037BA0B /* HealthManager.m in Sources */,
 				40022F7D1DC6EE8E0062CA94 /* PlanModel.m in Sources */,
+				40FDB9FD1DD9417B00DA2521 /* DetailsViewController.m in Sources */,
 				4028BD0E1DD1EFCC0088F221 /* MessageTableViewCell.m in Sources */,
 				4028C5591DD415AE0088F221 /* EMSDWebImageManager.m in Sources */,
 				4028C5871DD415AE0088F221 /* EaseUsersListViewController.m in Sources */,
@@ -2484,6 +2505,7 @@
 				4028C5761DD415AE0088F221 /* NSDate+Category.m in Sources */,
 				EE1A00331DB8CF610003762E /* NSNumber+Extend.m in Sources */,
 				EEE3D72E1DC1A1A9003D0CC5 /* CustomPickerView.m in Sources */,
+				40FDB9F61DD7477800DA2521 /* PlanDetailsModel.m in Sources */,
 				4028C59A1DD415AE0088F221 /* EaseFaceView.m in Sources */,
 				4028C5941DD415AE0088F221 /* EaseBubbleView+Voice.m in Sources */,
 				EE1A00461DB8CF610003762E /* XLImagePageView.m in Sources */,
@@ -2664,8 +2686,9 @@
 			baseConfigurationReference = 6FF5020B15B17A794E56E0B5 /* Pods-NeverStop.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = NeverStop/NeverStop.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lefeng Guo (QWKQAE7W9B)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = QWKQAE7W9B;
 				ENABLE_BITCODE = NO;
@@ -2692,8 +2715,9 @@
 			baseConfigurationReference = 364DA3B93C758159869B6031 /* Pods-NeverStop.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = NeverStop/NeverStop.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lefeng Guo (QWKQAE7W9B)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = QWKQAE7W9B;
 				ENABLE_BITCODE = NO;

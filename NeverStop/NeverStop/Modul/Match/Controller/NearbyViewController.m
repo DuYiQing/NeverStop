@@ -94,6 +94,7 @@ UITableViewDataSource
     NearbyDetailedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (cell == nil) {
         cell = [[NearbyDetailedTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     cell.backgroundColor = [UIColor whiteColor];
     NearbyDatail *NDModel = _nearbyArray[indexPath.row];

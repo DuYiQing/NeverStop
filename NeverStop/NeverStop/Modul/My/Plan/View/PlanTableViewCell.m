@@ -29,7 +29,7 @@
 - (void)setPlanModel:(PlanModel *)planModel {
     if (_planModel != planModel) {
         _planModel = planModel;
-        [_cellImageView sd_setImageWithURL:[NSURL URLWithString:planModel.cover] placeholderImage:[UIImage imageNamed:@"w2.jpg"]];
+        [_cellImageView sd_setImageWithURL:[NSURL URLWithString:planModel.cover] placeholderImage:[UIImage imageNamed:@"loading"]];
     }
 }
 

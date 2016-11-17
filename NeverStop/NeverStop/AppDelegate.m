@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "RegisterViewController.h"
 #import "MessageViewController.h"
 #import "MotionViewController.h"
 #import "MyViewController.h"
@@ -163,16 +164,16 @@ void uncaughtExceptionHandler(NSException *exception) {
     
     
     
-    // 消息页面
-    MessageViewController *meVC = [[MessageViewController alloc] init];
-    meVC.title =@"消息";
-    UINavigationController *meNavigationController = [[UINavigationController alloc] initWithRootViewController:meVC];
-    UIImage *meimage = [UIImage imageNamed:@"xxh"];
-    meimage = [meimage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    UIImage *ameimage = [UIImage imageNamed:@"xxl"];
-    ameimage = [ameimage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    meNavigationController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"消息" image:meimage selectedImage:ameimage];
-    
+//    // 消息页面
+//    MessageViewController *meVC = [[MessageViewController alloc] init];
+//    meVC.title =@"消息";
+//    UINavigationController *meNavigationController = [[UINavigationController alloc] initWithRootViewController:meVC];
+//    UIImage *meimage = [UIImage imageNamed:@"xxh"];
+//    meimage = [meimage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//    UIImage *ameimage = [UIImage imageNamed:@"xxl"];
+//    ameimage = [ameimage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//    meNavigationController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"消息" image:meimage selectedImage:ameimage];
+//    
     
     // 我的页面
     MyViewController *myVC = [[MyViewController alloc] init];
@@ -190,13 +191,13 @@ void uncaughtExceptionHandler(NSException *exception) {
     
     
     UITabBarController *rootTabBarController = [[UITabBarController alloc] init];
-    rootTabBarController.viewControllers = @[scNavigationController,maNavigationController,moNavigationController,meNavigationController,myNavigationController];
+    rootTabBarController.viewControllers = @[scNavigationController,maNavigationController,moNavigationController,myNavigationController];
     rootTabBarController.delegate = self;
     rootTabBarController.selectedIndex = 2;
 //    [[UITabBar appearance] setBarTintColor:[UIColor colorWithRed:37/255.f green:54/255.f blue:74/255.f alpha:1.0]];
 //    [UITabBar appearance].translucent = NO;
     self.tabBarController = [[UITabBarController alloc] init];
-    _tabBarController.viewControllers = @[scNavigationController,maNavigationController,moNavigationController,meNavigationController,myNavigationController];
+    _tabBarController.viewControllers = @[scNavigationController,maNavigationController,moNavigationController,myNavigationController];
     _tabBarController.delegate = self;
     _tabBarController.selectedIndex = 2;
     
@@ -207,19 +208,25 @@ void uncaughtExceptionHandler(NSException *exception) {
     // 判断是否第一次进入应用
     if (![userDef boolForKey:@"notFirst"]) {
         // 如果是第一次,进入引导页
-        ViewController *viewController = [[ViewController alloc] init];
-        viewController.rootTabBarController = _tabBarController;
-        self.window.rootViewController = viewController;
+//        ViewController *viewController = [[ViewController alloc] init];
+//        viewController.rootTabBarController = _tabBarController;
+//        self.window.rootViewController = viewController;
+        RegisterViewController *registerVC = [[RegisterViewController alloc] init];
+        registerVC.rootTabBarController = _tabBarController;
+        self.window.rootViewController = registerVC;
+        
     } else {
         // 否则直接进入应用
         self.window.rootViewController = _tabBarController;
-       
-    
     }
 
     
     
 
+    
+}
+
+- (void)getUserInfo {
     
 }
 

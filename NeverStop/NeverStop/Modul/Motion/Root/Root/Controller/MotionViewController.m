@@ -142,6 +142,12 @@ MAMapViewDelegate
         _weekRecordView.count = 10000;
     }
     
+//    UILabel *tipLabel = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 300) / 2, _scrollView.y + _scrollView.height - 60, 300, 50)];
+//    tipLabel.text = @"未开启定位功能和未允许访问运动与健身数据将不能正常使用NeverStop,请将设置-隐私-定位服务设置为始终,在隐私里设置允许访问健康";
+//    tipLabel.textColor = [UIColor whiteColor];
+//    tipLabel.font = kFONT_SIZE_12;
+//    tipLabel.numberOfLines = 0;
+//    [self.view addSubview:tipLabel];
     
 }
 // 实时更新定位

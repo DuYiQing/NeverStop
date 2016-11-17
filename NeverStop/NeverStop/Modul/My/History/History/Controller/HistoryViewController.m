@@ -10,6 +10,7 @@
 #import "HistoryTableViewCell.h"
 #import "HistoryData.h"
 #import "ExerciseRecordViewController.h"
+#import "JiangFlashLabel.h"
 @interface HistoryViewController ()
 <
 UITableViewDelegate,
@@ -31,6 +32,9 @@ UITableViewDataSource
 - (void)loadView {
     [super loadView];
     self.exerciseArray = [NSMutableArray array];
+    
+
+    
     
     [[MapDataManager shareDataManager] openDB];
     [[MapDataManager shareDataManager] createTable];
@@ -66,17 +70,34 @@ UITableViewDataSource
     self.navigationItem.leftBarButtonItem = backItem;
     self.navigationItem.title = @"历史记录";
     [self createHistoryTableView];
+    
+    if (_exerciseArray.count == 0) {
+    
+        
+        
+        NSString *str =  @"暂无数据 马上开始运动吧";
+        CGFloat width = [str widthWithFont:[UIFont boldSystemFontOfSize:22] constrainedToHeight:50];
+    JiangFlashLabel *tipLabel = [[JiangFlashLabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH  - width) / 2, SCREEN_HEIGHT / 5, width, 50)];
+    tipLabel.font = [UIFont boldSystemFontOfSize:22];
+    tipLabel.textColor = [UIColor blackColor];
+    tipLabel.spotlightColor = [UIColor whiteColor];
+    tipLabel.text = str;
+    [tipLabel startAnimating];
+    [self.view addSubview:tipLabel];
+
+        
+        
+    
+    }
 }
 
 - (void)createHistoryTableView {
-    
     self.historyTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64) style:UITableViewStylePlain];
     _historyTableView.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.0];
     _historyTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _historyTableView.delegate = self;
     _historyTableView.dataSource = self;
     _historyTableView.showsHorizontalScrollIndicator = NO;
-
     _historyTableView.rowHeight = 100;
     [self.view addSubview:_historyTableView];
     

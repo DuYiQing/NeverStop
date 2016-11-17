@@ -18,6 +18,9 @@
 <
 UITextFieldDelegate
 >
+{
+    BOOL flag;
+}
 
 @property (nonatomic, strong) UserManager *userManager;
 @property (nonatomic, strong) UITextField *nameTextField;
@@ -195,11 +198,21 @@ UITextFieldDelegate
     [weightBackView addSubview:_weightTextField];
     
     
+    UILabel *mesLabel = [[UILabel alloc] initWithFrame:CGRectMake(weightBackView.x, weightBackView.y + weightBackView.height + 50, weightBackView.width, 60)];
+    mesLabel.text = @"为了您更好地使用NeverStop,请如实填写以上信息,NeverStop承诺不会泄露任何用户信息";
+    mesLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.7];
+    mesLabel.textAlignment = NSTextAlignmentCenter;
+    mesLabel.font = kFONT_SIZE_15_BOLD;
+    mesLabel.numberOfLines = 0;
+    [mesLabel sizeToFit];
+    [self.view addSubview:mesLabel];
+    
+    
     UIButton *registerButton = [UIButton buttonWithType:UIButtonTypeCustom];
     registerButton.frame = CGRectMake((SCREEN_WIDTH - 180) / 2, SCREEN_HEIGHT - 150, 180, 40);
     registerButton.backgroundColor = [UIColor colorWithRed:0.0783 green:0.2043 blue:0.0647 alpha:1.0];
     registerButton.layer.cornerRadius = 5.f;
-    [registerButton setTitle:@"注册" forState:UIControlStateNormal];
+    [registerButton setTitle:@"开始使用" forState:UIControlStateNormal];
     [self.view addSubview:registerButton];
     [registerButton addTarget:self action:@selector(registerButtonAction) forControlEvents:UIControlEventTouchUpInside];
     
@@ -253,15 +266,21 @@ UITextFieldDelegate
         }];
         
     } else {
-        EMError *error = [[EMClient sharedClient] registerWithUsername:_nameTextField.text password:_secretTextField.text];
-        if (error == nil) {
+//        EMError *error = [[EMClient sharedClient] registerWithUsername:_nameTextField.text password:_secretTextField.text];
+//        if (error == nil) {
             DDLogInfo(@"注册成功");
+            flag = YES;
+            NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+            [userDef setBool:flag forKey:@"notFirst"];
+            [userDef synchronize];
+
             [_userManager insertIntoWithUserName:_nameTextField.text secret:_secretTextField.text age:_ageTextField.text tall:_tallTextField.text weight:_weightTextField.text];
             [self.delegate getName:_nameTextField.text password:_secretTextField.text];
-            [self dismissViewControllerAnimated:YES completion:nil];
-        } else {
-            DDLogError(@"注册失败 : %@", error);
-        }
+//            [self dismissViewControllerAnimated:YES completion:nil];
+        self.view.window.rootViewController = _rootTabBarController;
+//        } else {
+//            DDLogError(@"注册失败 : %@", error);
+//        }
 
     }
 

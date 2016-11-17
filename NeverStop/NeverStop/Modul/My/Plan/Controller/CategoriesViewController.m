@@ -9,6 +9,7 @@
 #import "CategoriesViewController.h"
 #import "CategoriesModel.h"
 #import "CategoriesTableViewCell.h"
+#import "DetailsViewController.h"
 
 @interface CategoriesViewController ()
 <
@@ -85,6 +86,17 @@ UITableViewDataSource
     } failure:^(NSError *error) {
         
     }];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    DetailsViewController *detailsVC = [[DetailsViewController alloc] init];
+    detailsVC.hidesBottomBarWhenPushed = YES;
+    CategoriesModel *categoryModel = _categoriesArr[indexPath.row];
+    detailsVC.planId = categoryModel.categoryId;
+    [self.navigationController pushViewController:detailsVC animated:YES];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

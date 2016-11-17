@@ -50,7 +50,7 @@ UITableViewDataSource
 - (void)setupHeaderView
 {
     self.waveImageView = [[WaveImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, imageHeight)];
-    _waveImageView.image = [UIImage imageNamed:@"headImage.jpg"];
+    _waveImageView.image = [UIImage imageNamed:@"headImage2"];
     [_myInfoTableView addSubview:_waveImageView];
     
     
@@ -102,7 +102,9 @@ UITableViewDataSource
     MyInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (nil == cell) {
         cell = [[MyInfoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+    }
     switch (indexPath.row) {
         case 0:
             cell.imageName = @"recode";

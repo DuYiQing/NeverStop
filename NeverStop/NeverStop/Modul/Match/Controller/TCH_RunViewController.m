@@ -48,6 +48,7 @@ UITableViewDataSource
     TCH_RunTableViewCell *tchRunCell = [tableView dequeueReusableCellWithIdentifier:@"tchRunCell"];
     if (tchRunCell == nil) {
         tchRunCell = [[TCH_RunTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"tchRunCell"];
+        tchRunCell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     TCH_Run *tchRunModel = _tchRunArray[indexPath.row];
     tchRunCell.tchRun = tchRunModel;

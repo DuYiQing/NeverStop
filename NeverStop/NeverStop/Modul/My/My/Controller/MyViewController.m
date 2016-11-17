@@ -105,6 +105,7 @@ UITableViewDataSource
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     }
+
     switch (indexPath.row) {
         case 0:
             cell.imageName = @"recode";

@@ -65,8 +65,8 @@ ProgressAimViewDelegate
 @implementation ExerciseViewController
 - (void)dealloc {
     self.navigationController.delegate = nil;
-    _mapView.delegate = nil;
     _progressAimView.delegate = nil;
+    _mapView.delegate = nil;
     for (int i = 0; i < _keyPathArray.count; i++) {
         [self.exerciseData removeObserver:self forKeyPath:_keyPathArray[i] context:nil];
     }
@@ -76,7 +76,7 @@ ProgressAimViewDelegate
     self.navigationController.delegate = self;
     [self mapBtnAnimation];
     
-    [_mapView setUserTrackingMode: MAUserTrackingModeFollow animated:YES];
+    [_mapView setUserTrackingMode:MAUserTrackingModeFollow animated:YES];
     
     
 
@@ -150,6 +150,7 @@ ProgressAimViewDelegate
     self.a = 0;
     [self.timer setFireDate:[NSDate distantFuture]];
     [_timer invalidate];
+    _timer = nil;
 }
 
 
@@ -227,8 +228,8 @@ ProgressAimViewDelegate
                     MAMapPoint point1 = MAMapPointForCoordinate(CLLocationCoordinate2DMake(_lastLocation.latitude,_lastLocation.longitude));
                     MAMapPoint point2 = MAMapPointForCoordinate(CLLocationCoordinate2DMake(location.latitude,location.longitude));
                     // 2.计算距离
-                    //                NSLog(@"last : %f, %f", _lastLocation.latitude, _lastLocation.longitude);
-                    //                NSLog(@"now : %f, %f", location.latitude, location.longitude);
+                    // NSLog(@"last : %f, %f", _lastLocation.latitude, _lastLocation.longitude);
+                    // NSLog(@"now : %f, %f", location.latitude, location.longitude);
                     CLLocationDistance distance = MAMetersBetweenMapPoints(point1,point2);
                     //                NSLog(@"distance : %f", distance);
                     ;
@@ -517,6 +518,15 @@ ProgressAimViewDelegate
 
     }
 }
+- (void)createProgressAimView {
+    self.progressAimView = [[ProgressAimView alloc] initWithFrame:CGRectMake(15, 64 + 5, SCREEN_WIDTH - 30, 30) aim:self.aim aimType:self.aimType];
+     _progressAimView.delegate = self;
+    [self.view addSubview:_progressAimView];
+    if (self.aimType == 0) {
+        _progressAimView.alpha = 0;
+    }
+
+}
 #pragma mark - 倒计时
 - (void)startTime {
     __block int timeout = 3; //倒计时时间
@@ -531,13 +541,7 @@ ProgressAimViewDelegate
                 [self.countDownView removeFromSuperview];
                 
                 [self creatMapView];
-                
-                self.progressAimView = [[ProgressAimView alloc] initWithFrame:CGRectMake(15, 64 + 5, SCREEN_WIDTH - 30, 30) aim:self.aim aimType:self.aimType];
-                _progressAimView.delegate = self;
-                [self.view addSubview:_progressAimView];
-                if (self.aimType == 0) {
-                    _progressAimView.alpha = 0;
-                }
+                [self createProgressAimView];
 #pragma mark - 结束按钮
                 self.endButton = [UIButton buttonWithType:UIButtonTypeCustom];
                 _endButton.frame = CGRectMake(SCREEN_WIDTH / 2 - 40, SCREEN_HEIGHT - 240, 80, 80);
@@ -642,11 +646,7 @@ ProgressAimViewDelegate
                 [_exerciseData.allLocationArray removeAllObjects];
             });
             [self.navigationController popViewControllerAnimated:YES];
-            
-
-           
-            
-          
+       
             
         }];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"继续" style:UIAlertActionStyleCancel handler:nil];

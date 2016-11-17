@@ -120,6 +120,7 @@ UITableViewDataSource
     HistoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (nil == cell) {
         cell = [[HistoryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        
         cell.selectionStyle =  UITableViewCellSelectionStyleNone;
     }
     HistoryData *data = _exerciseArray[indexPath.section];

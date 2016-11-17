@@ -69,8 +69,10 @@ UITextFieldDelegate
 }
 
 - (void)createInfoView {
-    
-    UIView *nameBackView = [[UIView alloc] initWithFrame:CGRectMake(60, 100, SCREEN_WIDTH - 120, 50)];
+    NSString *text = @"请输入昵称(仅限字母和数字)";
+    CGFloat width = [text widthWithFont:[UIFont boldSystemFontOfSize:14] constrainedToHeight:40] + 5;
+    CGFloat backViewWidth = width + 10 + 35 + 5;
+    UIView *nameBackView = [[UIView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - backViewWidth) / 2, 100,  backViewWidth, 50)];
     nameBackView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
     nameBackView.layer.cornerRadius = 5.f;
     [self.view addSubview:nameBackView];
@@ -78,8 +80,7 @@ UITextFieldDelegate
     UIImageView *nameImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 7.5, 35, 35)];
     nameImageView.image = [UIImage imageNamed:@"guide_name"];
     [nameBackView addSubview:nameImageView];
-    
-    self.nameTextField = [[UITextField alloc] initWithFrame:CGRectMake(nameImageView.x + nameImageView.width + 5, nameImageView.y, 190, 40)];
+    self.nameTextField = [[UITextField alloc] initWithFrame:CGRectMake(nameImageView.x + nameImageView.width + 5, nameImageView.y, width, 40)];
     NSString *nameHolderText = @"请输入昵称(仅限字母和数字)";
     NSMutableAttributedString *namePlaceholder = [[NSMutableAttributedString alloc] initWithString:nameHolderText];
     [namePlaceholder addAttribute:NSForegroundColorAttributeName
@@ -95,7 +96,7 @@ UITextFieldDelegate
     [nameBackView addSubview:_nameTextField];
     
     
-    UIView *secretBackView = [[UIView alloc] initWithFrame:CGRectMake(nameBackView.x, nameBackView.y + nameBackView.height + 5, SCREEN_WIDTH - 120, 50)];
+    UIView *secretBackView = [[UIView alloc] initWithFrame:CGRectMake(nameBackView.x, nameBackView.y + nameBackView.height + 5, nameBackView.width, 50)];
     secretBackView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
     secretBackView.layer.cornerRadius = 5.f;
     [self.view addSubview:secretBackView];
@@ -104,7 +105,7 @@ UITextFieldDelegate
     secrectImageView.image = [UIImage imageNamed:@"guide_secret"];
     [secretBackView addSubview:secrectImageView];
     
-    self.secretTextField = [[UITextField alloc] initWithFrame:CGRectMake(nameImageView.x + nameImageView.width + 5, nameImageView.y, 190, 40)];
+    self.secretTextField = [[UITextField alloc] initWithFrame:CGRectMake(nameImageView.x + nameImageView.width + 5, nameImageView.y, width, 40)];
     [_secretTextField setSecureTextEntry:YES];
     NSString *secretHolderText = @"请输入密码(仅限字母和数字)";
     NSMutableAttributedString *secretPlaceholder = [[NSMutableAttributedString alloc] initWithString:secretHolderText];
@@ -209,7 +210,7 @@ UITextFieldDelegate
     
     
     UIButton *registerButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    registerButton.frame = CGRectMake((SCREEN_WIDTH - 180) / 2, SCREEN_HEIGHT - 150, 180, 40);
+    registerButton.frame = CGRectMake((SCREEN_WIDTH - 180) / 2, weightBackView.y + weightBackView.height + 5, 180, 40);
     registerButton.backgroundColor = [UIColor colorWithRed:0.0783 green:0.2043 blue:0.0647 alpha:1.0];
     registerButton.layer.cornerRadius = 5.f;
     [registerButton setTitle:@"开始使用" forState:UIControlStateNormal];

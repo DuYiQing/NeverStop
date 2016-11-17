@@ -60,20 +60,20 @@
         [_stepProgressView setBackgroundStrokeColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.3]];
         
         
-        self.todayLabel = [[UILabel alloc] initWithFrame:CGRectMake((_roundView.width - 80) / 2, 30, 80, 30)];
+        
+        self.stepCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, (_roundView.height - 66) / 2, _roundView.width, 66)];
+        _stepCountLabel.textColor = [UIColor whiteColor];
+        _stepCountLabel.textAlignment = NSTextAlignmentCenter;
+        _stepCountLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:60];
+        [_roundView addSubview:_stepCountLabel];
+        self.todayLabel = [[UILabel alloc] initWithFrame:CGRectMake((_roundView.width - 80) / 2, _stepCountLabel.y - 30, 80, 30)];
         _todayLabel.text = @"今日步数";
         _todayLabel.textAlignment = NSTextAlignmentCenter;
         _todayLabel.font = kFONT_SIZE_18;
         _todayLabel.textColor = [UIColor whiteColor];
         [_roundView addSubview:_todayLabel];
         
-        self.stepCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, (_roundView.height - 80) / 2, _roundView.width, 80)];
-        _stepCountLabel.textColor = [UIColor whiteColor];
-        _stepCountLabel.textAlignment = NSTextAlignmentCenter;
-        _stepCountLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:60];
-        [_roundView addSubview:_stepCountLabel];
-        
-        self.targetLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _stepCountLabel.y + _stepCountLabel.height + 5, _roundView.width, 35)];
+        self.targetLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _stepCountLabel.y + _stepCountLabel.height, _roundView.width, 35)];
         _targetLabel.textAlignment = NSTextAlignmentCenter;
         _targetLabel.textColor = [UIColor whiteColor];
         _targetLabel.font = kFONT_SIZE_18;

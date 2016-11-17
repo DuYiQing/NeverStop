@@ -180,7 +180,7 @@ MAMapViewDelegate
     [_modeButton addTarget:self action:@selector(modeButtonAction) forControlEvents:UIControlEventTouchUpInside];
     
     // 白色View
-    self.whiteView = [[UIView alloc] initWithFrame:CGRectMake(-(SCREEN_HEIGHT - SCREEN_WIDTH) / 2, 420, SCREEN_HEIGHT, (SCREEN_HEIGHT - 450) * 2)];
+    self.whiteView = [[UIView alloc] initWithFrame:CGRectMake(-(SCREEN_HEIGHT - SCREEN_WIDTH) / 2, SCREEN_HEIGHT * 0.6, SCREEN_HEIGHT, SCREEN_HEIGHT *0.375 * 2)];
     _whiteView.layer.cornerRadius = SCREEN_HEIGHT / 2;
     _whiteView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_whiteView];

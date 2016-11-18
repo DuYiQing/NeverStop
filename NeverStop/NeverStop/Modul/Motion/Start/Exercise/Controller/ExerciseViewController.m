@@ -372,7 +372,7 @@ ProgressAimViewDelegate
     self.homeDataView = [[ExerciseDataView alloc] initWithFrame:CGRectMake(0, 0, self.dataModulesView.width, 130)];
     _homeDataView.titleLabel.font = [UIFont boldSystemFontOfSize:20];
     _homeDataView.titleLabel.text = @"时长";
-    _homeDataView.dataLabel.font = [UIFont systemFontOfSize:80];
+    _homeDataView.dataLabel.font = [UIFont systemFontOfSize:70];
     _homeDataView.dataLabel.text = @"00:00:00";
 //    _homeDataView.backgroundColor = [UIColor greenColor];
     [self.dataModulesView addSubview:_homeDataView];

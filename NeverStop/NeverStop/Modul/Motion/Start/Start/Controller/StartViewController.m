@@ -63,23 +63,7 @@ UINavigationControllerDelegate
     self.view.backgroundColor = [UIColor whiteColor];
     [self creatMapView];
     
-    // 设定目标按钮
-    self.settingButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_settingButton setTitle:@"设定单次目标" forState:UIControlStateNormal];
-    [_settingButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    _settingButton.titleLabel.font = kFONT_SIZE_18_BOLD;
-    _settingButton.backgroundColor = [UIColor clearColor];
-    CGFloat width = [_settingButton.titleLabel.text widthWithFont:_settingButton.titleLabel.font constrainedToHeight:50];
-    _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width / 2, _mapView.y + _mapView.height, width, 50);
-    
-    [_settingButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
-        AimSettingPickerView *aimSettingPicker = [[AimSettingPickerView alloc]init];
-        aimSettingPicker.delegate = weakSelf;
-        aimSettingPicker.contentMode = JiangPickerContentModeBottom;
-        [aimSettingPicker show];
-        
-    }];
-    [self.view addSubview:_settingButton];
+   
     
     
     
@@ -102,6 +86,23 @@ UINavigationControllerDelegate
     _startButton.clipsToBounds = YES;
     [self.view addSubview:_startButton];
     
+    // 设定目标按钮
+    self.settingButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_settingButton setTitle:@"设定单次目标" forState:UIControlStateNormal];
+    [_settingButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    _settingButton.titleLabel.font = kFONT_SIZE_18_BOLD;
+    _settingButton.backgroundColor = [UIColor clearColor];
+    CGFloat width = [_settingButton.titleLabel.text widthWithFont:_settingButton.titleLabel.font constrainedToHeight:50];
+    _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width / 2, _startButton.y - 60, width, 50);
+    
+    [_settingButton handleControlEvent:UIControlEventTouchUpInside withBlock:^{
+        AimSettingPickerView *aimSettingPicker = [[AimSettingPickerView alloc]init];
+        aimSettingPicker.delegate = weakSelf;
+        aimSettingPicker.contentMode = JiangPickerContentModeBottom;
+        [aimSettingPicker show];
+        
+    }];
+    [self.view addSubview:_settingButton];
     
     
     NSLog(@"+++++++++%f++++++++%f", _settingButton.frame.origin.y, _settingButton.frame.size.height);
@@ -146,14 +147,16 @@ UINavigationControllerDelegate
             [_settingButton setTitle:str forState:UIControlStateNormal];
             }
             CGFloat width1 = [_settingButton.titleLabel.text widthWithFont:_settingButton.titleLabel.font constrainedToHeight:50];
-            _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width1 / 2, _mapView.y + _mapView.height + 64, width1, 50);
+            _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width1 / 2, _startButton.y - 60, width1, 50);
+
             break;
         case 2:
             if (childRow != 0) {
                 NSString *distanceStr = [NSString stringWithFormat:@"距离目标: %@", setting];
                 [_settingButton setTitle:distanceStr forState:UIControlStateNormal];
                 CGFloat width2 = [_settingButton.titleLabel.text widthWithFont:_settingButton.titleLabel.font constrainedToHeight:50];
-                _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width2 / 2, _mapView.y + _mapView.height + 64, width2, 50);
+                _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width2 / 2, _startButton.y - 60, width2, 50);
+
                 
             } else {
                 customPicker.cus_ContentMode = CustomPickerContentModeDistance;
@@ -165,7 +168,8 @@ UINavigationControllerDelegate
                 NSString *timeStr = [NSString stringWithFormat:@"时间目标: %@", setting];
                 [_settingButton setTitle:timeStr forState:UIControlStateNormal];
                 CGFloat width3 = [_settingButton.titleLabel.text widthWithFont:_settingButton.titleLabel.font constrainedToHeight:50];
-                _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width3 / 2, _mapView.y + _mapView.height + 64, width3, 50);
+                _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width3 / 2, _startButton.y - 60, width3, 50);
+
             } else {
                 customPicker.cus_ContentMode = CustomPickerContentModeTime;
                 [customPicker show];
@@ -176,7 +180,7 @@ UINavigationControllerDelegate
                 NSString *calorieStr = [NSString stringWithFormat:@"卡路里目标: %@", setting];
                 [_settingButton setTitle:calorieStr forState:UIControlStateNormal];
                 CGFloat width4 = [_settingButton.titleLabel.text widthWithFont:_settingButton.titleLabel.font constrainedToHeight:50];
-                _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width4 / 2, _mapView.y + _mapView.height + 64, width4, 50);
+                _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width4 / 2, _startButton.y - 60, width4, 50);
             } else {
                 [caloriePicker show];
             }
@@ -193,19 +197,19 @@ UINavigationControllerDelegate
     NSString *string = [NSString stringWithFormat:@"卡路里目标: %@大卡", selected];
     [_settingButton setTitle:string forState:UIControlStateNormal];
     CGFloat width = [_settingButton.titleLabel.text widthWithFont:_settingButton.titleLabel.font constrainedToHeight:50];
-    _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width / 2, _mapView.y + _mapView.height + 100, width, 50);
+    _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width / 2, _startButton.y - 60, width, 50);
     
 }
 - (void)customPicker:(CustomPickerView *)customPicker selected:(NSString *)selected childSelected:(NSString *)childSelected viewForRow:(NSInteger)row forChildRow:(NSInteger)childRow {
     if (customPicker.cus_ContentMode == CustomPickerContentModeDistance) {
         [_settingButton setTitle:[NSString stringWithFormat:@"距离目标: %@.%@公里", selected, childSelected] forState:UIControlStateNormal];
         CGFloat width = [_settingButton.titleLabel.text widthWithFont:_settingButton.titleLabel.font constrainedToHeight:50];
-        _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width / 2, _mapView.y + _mapView.height + 100, width, 50);
+        _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width / 2, _startButton.y - 60, width, 50);
     } else {
         NSInteger time = [selected intValue] * 60 + [childSelected intValue];
         [_settingButton setTitle:[NSString stringWithFormat:@"时间目标: %ld分钟", time] forState:UIControlStateNormal];
         CGFloat width = [_settingButton.titleLabel.text widthWithFont:_settingButton.titleLabel.font constrainedToHeight:50];
-        _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width / 2, _mapView.y + _mapView.height + 100, width, 50);
+        _settingButton.frame = CGRectMake(SCREEN_WIDTH / 2 - width / 2, _startButton.y - 60, width, 50);
     }
     
 }

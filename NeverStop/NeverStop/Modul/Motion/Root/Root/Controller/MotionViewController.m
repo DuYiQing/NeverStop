@@ -187,8 +187,8 @@ MAMapViewDelegate
     
     // 开始按钮
     self.startButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _startButton.frame = CGRectMake((_whiteView.width - 100) / 2, 60, 100, 100);
-    _startButton.layer.cornerRadius = 50;
+    _startButton.frame = CGRectMake((_whiteView.width - SCREEN_WIDTH / 4) / 2, 50, SCREEN_WIDTH / 4, SCREEN_WIDTH / 4);
+    _startButton.layer.cornerRadius = _startButton.width / 2;
     [_startButton setTitle:@"开始" forState:UIControlStateNormal];
     [_startButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     _startButton.backgroundColor = [UIColor colorWithRed:37/255.f green:54/255.f blue:74/255.f alpha:1.0];
@@ -235,7 +235,7 @@ MAMapViewDelegate
     [self.view addSubview:_scrollView];
     
     // 运动
-    self.sportView = [[SportView alloc]initWithFrame:CGRectMake(0, 55, SCREEN_WIDTH, _scrollView.height / 3 * 2)];
+    self.sportView = [[SportView alloc]initWithFrame:CGRectMake(0, 50, SCREEN_WIDTH, SCREEN_HEIGHT / 3)];
     [_scrollView addSubview:_sportView];
     
     // 计步
@@ -360,7 +360,7 @@ MAMapViewDelegate
     
     CGFloat scale = SCREEN_WIDTH / _startButton.width;
     if (scrollView.contentOffset.x >= 0 && scrollView.contentOffset.x <= SCREEN_WIDTH) {
-        _startButton.width = 100 - scrollView.contentOffset.x / scale;
+        _startButton.width = SCREEN_WIDTH / 4 - scrollView.contentOffset.x / scale;
         _startButton.height = _startButton.width;
         _startButton.x = (_whiteView.width - _startButton.width) / 2;
         _startButton.layer.cornerRadius = _startButton.width / 2;

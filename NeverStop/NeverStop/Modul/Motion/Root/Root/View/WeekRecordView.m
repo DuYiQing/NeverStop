@@ -46,7 +46,7 @@
         
         for (int i = 0; i < 7; i++) {
             
-            UIView *rectView = [[UIView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / 8 * (i + 1), 70, 7, 70)];
+            UIView *rectView = [[UIView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / 8 * (i + 1), 70, 7, SCREEN_HEIGHT / 11)];
             rectView.backgroundColor = [UIColor colorWithRed:0.8534 green:0.8534 blue:0.8534 alpha:1.0];
             rectView.layer.cornerRadius = 3;
             rectView.clipsToBounds = YES;

@@ -88,16 +88,16 @@ UITableViewDataSource
     }];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    DetailsViewController *detailsVC = [[DetailsViewController alloc] init];
-    detailsVC.hidesBottomBarWhenPushed = YES;
-    CategoriesModel *categoryModel = _categoriesArr[indexPath.row];
-    detailsVC.planId = categoryModel.categoryId;
-    [self.navigationController pushViewController:detailsVC animated:YES];
-    
-    
-}
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    
+//    DetailsViewController *detailsVC = [[DetailsViewController alloc] init];
+//    detailsVC.hidesBottomBarWhenPushed = YES;
+//    CategoriesModel *categoryModel = _categoriesArr[indexPath.row];
+//    detailsVC.planId = categoryModel.categoryId;
+//    [self.navigationController pushViewController:detailsVC animated:YES];
+//    
+//    
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

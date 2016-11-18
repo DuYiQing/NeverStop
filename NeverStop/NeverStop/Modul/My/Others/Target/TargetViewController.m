@@ -90,7 +90,7 @@ UIPickerViewDelegate
     lineLabel.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.3];
     [self.view addSubview:lineLabel];
     
-    self.targetPickerView = [[UIPickerView alloc]initWithFrame:CGRectMake(0, _targetLabel.y + _targetLabel.height - 60, SCREEN_WIDTH, 500)];
+    self.targetPickerView = [[UIPickerView alloc]initWithFrame:CGRectMake(0, _targetLabel.y + _targetLabel.height - 20, SCREEN_WIDTH, SCREEN_HEIGHT / 5 * 3)];
     _targetPickerView.delegate = self;
     _targetPickerView.dataSource = self;
     _targetPickerView.showsSelectionIndicator = YES;
@@ -102,7 +102,7 @@ UIPickerViewDelegate
     [self.view addSubview:_targetPickerView];
     
     UIButton *confirmButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    confirmButton.frame = CGRectMake((SCREEN_WIDTH - 80) / 2, _targetPickerView.y + _targetPickerView.height - 30, 80, 40);
+    confirmButton.frame = CGRectMake((SCREEN_WIDTH - 80) / 2, _targetPickerView.y + _targetPickerView.height - 10, 80, 40);
     confirmButton.backgroundColor = [UIColor blueColor];
     confirmButton.layer.cornerRadius = 5.f;
     [confirmButton setTitle:@"确认" forState:UIControlStateNormal];
@@ -118,7 +118,7 @@ UIPickerViewDelegate
 
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component {
-    return 140;
+    return SCREEN_HEIGHT / 4;
 }
 
 

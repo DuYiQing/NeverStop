@@ -279,7 +279,7 @@ UINavigationControllerDelegate
 
 
 - (void)creatMapView {
-    self.mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 320)];
+    self.mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT / 5 *2)];
     [self.view addSubview:_mapView];
     _mapView.showsUserLocation = YES;
     _mapView.delegate = self;

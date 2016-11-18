@@ -29,11 +29,10 @@
         _distanceLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:_distanceLabel];
         
-        self.numberLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _distanceLabel.y + _distanceLabel.height + 20, SCREEN_WIDTH, 120)];
-        
+        self.numberLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _distanceLabel.y + _distanceLabel.height + 12, SCREEN_WIDTH, 120)];
         _numberLabel.textColor = [UIColor whiteColor];
         _numberLabel.textAlignment = NSTextAlignmentCenter;
-        _numberLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:120];
+        _numberLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:110];
         self.manager = [MapDataManager shareDataManager];
         [_manager openDB];
         [_manager createTable];

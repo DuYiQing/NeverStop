@@ -418,7 +418,7 @@ ProgressAimViewDelegate
 }
 #pragma mark - 创建锁屏视图
 - (void)createLockView {
-    self.glideView = [[GlideView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 40, SCREEN_HEIGHT - 200, 80, 100)];
+    self.glideView = [[GlideView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 40, SCREEN_HEIGHT / 3 * 2, 80, 100)];
     self.glideCenter = CGPointMake(_glideView.centerX, _glideView.centerY);
 
     UIBlurEffect * blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
@@ -544,7 +544,7 @@ ProgressAimViewDelegate
                 [self createProgressAimView];
 #pragma mark - 结束按钮
                 self.endButton = [UIButton buttonWithType:UIButtonTypeCustom];
-                _endButton.frame = CGRectMake(SCREEN_WIDTH / 2 - 40, SCREEN_HEIGHT - 240, 80, 80);
+                _endButton.frame = CGRectMake(SCREEN_WIDTH / 2 - 40, SCREEN_HEIGHT / 3 * 2, 80, 80);
                 UIImage *endImage = [UIImage imageNamed:@"btn_end"];
                 [_endButton setBackgroundImage:endImage forState:UIControlStateNormal];
 //                _endButton.backgroundColor = [UIColor whiteColor];
@@ -556,7 +556,7 @@ ProgressAimViewDelegate
                 [_endButton addTarget:self action:@selector(endButtonAction:) forControlEvents:UIControlEventTouchUpInside];
 #pragma mark - 开始暂停按钮
                 self.pauseButton = [UIButton buttonWithType:UIButtonTypeCustom];
-                _pauseButton.frame = CGRectMake(SCREEN_WIDTH / 2 - 40, SCREEN_HEIGHT - 240, 80, 80);
+                _pauseButton.frame = CGRectMake(SCREEN_WIDTH / 2 - 40, SCREEN_HEIGHT / 3 * 2, 80, 80);
                 UIImage *pauseImage = [UIImage imageNamed:@"btn_pause"];
                 [_pauseButton setBackgroundImage:pauseImage forState:UIControlStateNormal];
                 

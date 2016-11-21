@@ -153,7 +153,8 @@ void uncaughtExceptionHandler(NSException *exception) {
 //    NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
 //    [defaultCenter addObserver:self selector:@selector(networkDidReceiveMessage:) name:kJPFNetworkDidReceiveMessageNotification object:nil];
     
-    
+    // 本地通知内容获取:
+    NSDictionary *localNotification = [launchOptions objectForKey: UIApplicationLaunchOptionsLocalNotificationKey];
     
     
     return YES;
@@ -165,6 +166,14 @@ void uncaughtExceptionHandler(NSException *exception) {
 //    NSDictionary *extras = [userInfo valueForKey:@"extras"];
 //    NSString *customizeField1 = [extras valueForKey:@"customizeField1"]; //服务端传递的Extras附加字段，key是自己定义的
 //}
+
+
+
+
+
+
+
+
 
 
 // 注册APNs成功并上报DeviceToken
@@ -188,6 +197,11 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
     }
+    if (![notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        // 本地通知为notification
+        [JPUSHService handleRemoteNotification:userInfo];
+
+    }
     completionHandler(UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以选择设置
 }
 
@@ -197,6 +211,12 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     NSDictionary * userInfo = response.notification.request.content.userInfo;
     if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
+    }
+    if (![response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        // 本地通知为response.notification
+        [JPUSHService handleRemoteNotification:userInfo];
+
+       
     }
     completionHandler();  // 系统要求执行这个方法
 }
@@ -213,6 +233,54 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     // Required,For systems with less than or equal to iOS6
     [JPUSHService handleRemoteNotification:userInfo];
 }
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+    
+}
+- (void)testAddNotification {
+    
+    JPushNotificationContent *content = [[JPushNotificationContent alloc] init];
+    content.title = @"Test Notifications";
+    content.subtitle = @"2016";
+    content.body = @"This is a test code";
+    content.badge = @1;
+    content.categoryIdentifier = @"Custom Category Name";
+    
+    // 5s后提醒 iOS 10 以上支持
+    JPushNotificationTrigger *trigger1 = [[JPushNotificationTrigger alloc] init];
+    trigger1.timeInterval = 5;
+    //每小时重复 1 次 iOS 10 以上支持
+    JPushNotificationTrigger *trigger2 = [[JPushNotificationTrigger alloc] init];
+    trigger2.timeInterval = 3600;
+    trigger2.repeat = YES;
+    
+    //每周一早上8：00提醒，iOS10以上支持
+    NSDateComponents *components = [[NSDateComponents alloc] init];
+    components.weekday = 2;
+    components.hour = 8;
+    JPushNotificationTrigger *trigger3 = [[JPushNotificationTrigger alloc] init];
+    trigger3.dateComponents = components;
+    trigger3.repeat = YES;
+    
+    
+    //5s后提醒，iOS10以下支持
+    JPushNotificationTrigger *trigger5 = [[JPushNotificationTrigger alloc] init];
+    trigger5.fireDate = [NSDate dateWithTimeIntervalSinceNow:5];
+    
+    JPushNotificationRequest *request = [[JPushNotificationRequest alloc] init];
+    request.requestIdentifier = @"sampleRequest";
+    request.content = content;
+    request.trigger = trigger1;//trigger2;//trigger3;//trigger4;//trigger5;
+    request.completionHandler = ^(id result) {
+        NSLog(@"结果返回：%@", result);
+    };
+    [JPUSHService addNotification:request];
+}
+
+
+
+
+
+
 
 
 - (void)createTabBarController {

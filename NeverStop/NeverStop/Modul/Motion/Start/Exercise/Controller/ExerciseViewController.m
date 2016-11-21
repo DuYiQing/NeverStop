@@ -688,7 +688,6 @@ ProgressAimViewDelegate
             self.endButton.centerX = SCREEN_WIDTH / 2 + 70;
             self.pauseButton.selected = !self.pauseButton.selected;
             [self.pauseButton setBackgroundImage:[UIImage imageNamed:@"btn_start"] forState:UIControlStateNormal];
-            
             self.isMoving = NO;
         } else {
             // 开始计时

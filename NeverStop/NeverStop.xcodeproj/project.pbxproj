@@ -150,7 +150,7 @@
 		40FDB9F91DD93F3C00DA2521 /* EverydayDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FDB9F81DD93F3C00DA2521 /* EverydayDetailModel.m */; };
 		40FDB9FD1DD9417B00DA2521 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FDB9FB1DD9417B00DA2521 /* DetailsViewController.m */; };
 		40FDBAA61DDB3FE700DA2521 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40FDBAA51DDB3FE700DA2521 /* Media.xcassets */; };
-		49013B801DC8B28200AAB28A /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		49013B801DC8B28200AAB28A /* (null) in Sources */ = {isa = PBXBuildFile; };
 		49060C151DBEE5F0003FE373 /* NearbyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49060C141DBEE5F0003FE373 /* NearbyTableViewCell.m */; };
 		49060C1B1DBEE971003FE373 /* Nearby.m in Sources */ = {isa = PBXBuildFile; fileRef = 49060C1A1DBEE971003FE373 /* Nearby.m */; };
 		49060C471DBF8461003FE373 /* NearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49060C461DBF8461003FE373 /* NearbyViewController.m */; };
@@ -161,7 +161,7 @@
 		494C546C1DD01187001CC7F1 /* GroupInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 494C546B1DD01187001CC7F1 /* GroupInfo.m */; };
 		494C546F1DD011AA001CC7F1 /* GroupAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 494C546E1DD011AA001CC7F1 /* GroupAccount.m */; };
 		494C54721DD011C0001CC7F1 /* GroupLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 494C54711DD011C0001CC7F1 /* GroupLocation.m */; };
-		495EB0B81DD322AF00AF03A2 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
+		495EB0B81DD322AF00AF03A2 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		49677B0E1DC6F92A00F23B6B /* GroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49677B0D1DC6F92A00F23B6B /* GroupViewController.m */; };
 		49677B391DC76ED700F23B6B /* ExerciseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE3D70E1DC199E8003D0CC5 /* ExerciseViewController.m */; };
 		49704A311DBDA7CE0028DB2F /* DetailedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49704A301DBDA7CE0028DB2F /* DetailedViewController.m */; };
@@ -179,8 +179,8 @@
 		49FEA0161DC4C51700E0FB2D /* Scope.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FEA0151DC4C51700E0FB2D /* Scope.m */; };
 		49FEA0191DC4CD1E00E0FB2D /* Info.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FEA0181DC4CD1E00E0FB2D /* Info.m */; };
 		51A099F404C6DE66F7A2C786 /* libPods-NeverStop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBA9E162BB3BD86CD3202020 /* libPods-NeverStop.a */; };
-		5A3204D11E76580B007F960E /* jcore-ios-1.1.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A3204CE1E76580B007F960E /* jcore-ios-1.1.1.a */; };
-		5A3204D21E76580B007F960E /* jpush-ios-3.0.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A3204CF1E76580B007F960E /* jpush-ios-3.0.2.a */; };
+		5A3204B91E7656C5007F960E /* jcore-ios-1.1.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A3204B61E7656C5007F960E /* jcore-ios-1.1.1.a */; };
+		5A3204BA1E7656C5007F960E /* jpush-ios-3.0.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A3204B71E7656C5007F960E /* jpush-ios-3.0.2.a */; };
 		EE01152A1DC4963E001B44AD /* ProgressAimView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE0115291DC4963E001B44AD /* ProgressAimView.m */; };
 		EE1A002C1DB8CF610003762E /* DYQBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1AFFEA1DB8CF610003762E /* DYQBaseModel.m */; };
 		EE1A002D1DB8CF610003762E /* DYQBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1AFFED1DB8CF610003762E /* DYQBaseView.m */; };
@@ -213,8 +213,8 @@
 		EE56EAA51DB8CE6D000B8082 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EE56EAA41DB8CE6D000B8082 /* main.m */; };
 		EE56EAA81DB8CE6D000B8082 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EE56EAA71DB8CE6D000B8082 /* AppDelegate.m */; };
 		EE56EAAE1DB8CE6D000B8082 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE56EAAC1DB8CE6D000B8082 /* Main.storyboard */; };
-		EE8953A21DC75DEC00F4AB3C /* BuildFile in Resources */ = {isa = PBXBuildFile; };
-		EE8953A31DC75DEC00F4AB3C /* BuildFile in Resources */ = {isa = PBXBuildFile; };
+		EE8953A21DC75DEC00F4AB3C /* (null) in Resources */ = {isa = PBXBuildFile; };
+		EE8953A31DC75DEC00F4AB3C /* (null) in Resources */ = {isa = PBXBuildFile; };
 		EEA227ED1DD068DC00754BCF /* MemberHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA227E71DD068DC00754BCF /* MemberHeadView.m */; };
 		EEA227EE1DD068DC00754BCF /* MyInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA227E91DD068DC00754BCF /* MyInfoTableViewCell.m */; };
 		EEA227EF1DD068DC00754BCF /* WaveImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA227EB1DD068DC00754BCF /* WaveImageView.m */; };
@@ -618,9 +618,9 @@
 		49FEA0151DC4C51700E0FB2D /* Scope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scope.m; sourceTree = "<group>"; };
 		49FEA0171DC4CD1E00E0FB2D /* Info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Info.h; sourceTree = "<group>"; };
 		49FEA0181DC4CD1E00E0FB2D /* Info.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Info.m; sourceTree = "<group>"; };
-		5A3204CE1E76580B007F960E /* jcore-ios-1.1.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jcore-ios-1.1.1.a"; sourceTree = "<group>"; };
-		5A3204CF1E76580B007F960E /* jpush-ios-3.0.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-3.0.2.a"; sourceTree = "<group>"; };
-		5A3204D01E76580B007F960E /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
+		5A3204B61E7656C5007F960E /* jcore-ios-1.1.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jcore-ios-1.1.1.a"; sourceTree = "<group>"; };
+		5A3204B71E7656C5007F960E /* jpush-ios-3.0.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-3.0.2.a"; sourceTree = "<group>"; };
+		5A3204B81E7656C5007F960E /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
 		6FF5020B15B17A794E56E0B5 /* Pods-NeverStop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeverStop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NeverStop/Pods-NeverStop.debug.xcconfig"; sourceTree = "<group>"; };
 		EBA9E162BB3BD86CD3202020 /* libPods-NeverStop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NeverStop.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE0115281DC4963E001B44AD /* ProgressAimView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressAimView.h; sourceTree = "<group>"; };
@@ -798,7 +798,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EEB51B4D1DDA94DD00305C7A /* libresolv.tbd in Frameworks */,
-				5A3204D11E76580B007F960E /* jcore-ios-1.1.1.a in Frameworks */,
+				5A3204B91E7656C5007F960E /* jcore-ios-1.1.1.a in Frameworks */,
 				EEB51B4C1DDA94D200305C7A /* UserNotifications.framework in Frameworks */,
 				EEB51B4A1DDA94C700305C7A /* AdSupport.framework in Frameworks */,
 				EEB51B481DDA94BC00305C7A /* Security.framework in Frameworks */,
@@ -815,7 +815,7 @@
 				40EEB4051DD01B5500D47FDE /* libz.tbd in Frameworks */,
 				40EEB4041DD01B2E00D47FDE /* libc++.tbd in Frameworks */,
 				40EEB4021DD01B1C00D47FDE /* ImageIO.framework in Frameworks */,
-				5A3204D21E76580B007F960E /* jpush-ios-3.0.2.a in Frameworks */,
+				5A3204BA1E7656C5007F960E /* jpush-ios-3.0.2.a in Frameworks */,
 				40EEB4001DD01AFB00D47FDE /* MobileCoreServices.framework in Frameworks */,
 				40EEB3FF1DD01AEC00D47FDE /* AVFoundation.framework in Frameworks */,
 				40EEB3FD1DD01AE200D47FDE /* AudioToolbox.framework in Frameworks */,
@@ -893,12 +893,12 @@
 			children = (
 				40E5A4561DC8C352001AD41F /* CategoriesModel.h */,
 				40E5A4571DC8C352001AD41F /* CategoriesModel.m */,
-				40FDB9F71DD93F3C00DA2521 /* EverydayDetailModel.h */,
-				40FDB9F81DD93F3C00DA2521 /* EverydayDetailModel.m */,
-				40FDB9F41DD7477800DA2521 /* PlanDetailsModel.h */,
-				40FDB9F51DD7477800DA2521 /* PlanDetailsModel.m */,
 				40022F7B1DC6EE8E0062CA94 /* PlanModel.h */,
 				40022F7C1DC6EE8E0062CA94 /* PlanModel.m */,
+				40FDB9F41DD7477800DA2521 /* PlanDetailsModel.h */,
+				40FDB9F51DD7477800DA2521 /* PlanDetailsModel.m */,
+				40FDB9F71DD93F3C00DA2521 /* EverydayDetailModel.h */,
+				40FDB9F81DD93F3C00DA2521 /* EverydayDetailModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -919,10 +919,10 @@
 			children = (
 				40E5A4531DC8BF4B001AD41F /* CategoriesViewController.h */,
 				40E5A4541DC8BF4B001AD41F /* CategoriesViewController.m */,
-				40FDB9FA1DD9417B00DA2521 /* DetailsViewController.h */,
-				40FDB9FB1DD9417B00DA2521 /* DetailsViewController.m */,
 				40022F781DC6EE780062CA94 /* PlanViewController.h */,
 				40022F791DC6EE780062CA94 /* PlanViewController.m */,
+				40FDB9FA1DD9417B00DA2521 /* DetailsViewController.h */,
+				40FDB9FB1DD9417B00DA2521 /* DetailsViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -930,10 +930,10 @@
 		4028BD031DD1ED100088F221 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				403E8A9E1DD45DC600902039 /* ConversationModel.h */,
-				403E8A9F1DD45DC600902039 /* ConversationModel.m */,
 				4028BD091DD1EDF40088F221 /* RequestModel.h */,
 				4028BD0A1DD1EDF40088F221 /* RequestModel.m */,
+				403E8A9E1DD45DC600902039 /* ConversationModel.h */,
+				403E8A9F1DD45DC600902039 /* ConversationModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -941,10 +941,10 @@
 		4028BD041DD1ED1D0088F221 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				403E8AA11DD46F7D00902039 /* HeaderView.h */,
-				403E8AA21DD46F7D00902039 /* HeaderView.m */,
 				4028BD0C1DD1EFCC0088F221 /* MessageTableViewCell.h */,
 				4028BD0D1DD1EFCC0088F221 /* MessageTableViewCell.m */,
+				403E8AA11DD46F7D00902039 /* HeaderView.h */,
+				403E8AA21DD46F7D00902039 /* HeaderView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -952,10 +952,10 @@
 		4028BD051DD1ED240088F221 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				4028C1BF1DD351250088F221 /* ChatViewController.h */,
-				4028C1C01DD351250088F221 /* ChatViewController.m */,
 				4028BD0F1DD2C0290088F221 /* FriendsViewController.h */,
 				4028BD101DD2C0290088F221 /* FriendsViewController.m */,
+				4028C1BF1DD351250088F221 /* ChatViewController.h */,
+				4028C1C01DD351250088F221 /* ChatViewController.m */,
 				4028BD061DD1ED640088F221 /* MessageViewController.h */,
 				4028BD071DD1ED640088F221 /* MessageViewController.m */,
 			);
@@ -965,11 +965,11 @@
 		4028C4021DD415AD0088F221 /* EaseUI */ = {
 			isa = PBXGroup;
 			children = (
-				4028C4061DD415AD0088F221 /* EMUIKit */,
-				4028C5271DD415AD0088F221 /* resources */,
 				4028C4031DD415AD0088F221 /* EaseUI-Prefix.pch */,
 				4028C4041DD415AD0088F221 /* EaseUI.h */,
 				4028C4051DD415AD0088F221 /* EaseUI.m */,
+				4028C4061DD415AD0088F221 /* EMUIKit */,
+				4028C5271DD415AD0088F221 /* resources */,
 			);
 			path = EaseUI;
 			sourceTree = "<group>";
@@ -1000,9 +1000,9 @@
 		4028C4081DD415AD0088F221 /* DeviceHelper */ = {
 			isa = PBXGroup;
 			children = (
-				4028C41D1DD415AD0088F221 /* VoiceConvert */,
 				4028C4091DD415AD0088F221 /* delegates */,
 				4028C40C1DD415AD0088F221 /* internal */,
+				4028C41D1DD415AD0088F221 /* VoiceConvert */,
 			);
 			path = DeviceHelper;
 			sourceTree = "<group>";
@@ -1043,10 +1043,10 @@
 			isa = PBXGroup;
 			children = (
 				4028C41E1DD415AD0088F221 /* amrwapper */,
-				4028C4251DD415AD0088F221 /* opencore-amrnb */,
-				4028C4291DD415AD0088F221 /* opencore-amrwb */,
 				4028C4231DD415AD0088F221 /* EMVoiceConverter.h */,
 				4028C4241DD415AD0088F221 /* EMVoiceConverter.mm */,
+				4028C4251DD415AD0088F221 /* opencore-amrnb */,
+				4028C4291DD415AD0088F221 /* opencore-amrwb */,
 			);
 			path = VoiceConvert;
 			sourceTree = "<group>";
@@ -1252,7 +1252,6 @@
 			isa = PBXGroup;
 			children = (
 				4028C4C81DD415AD0088F221 /* Category */,
-				4028C4DA1DD415AD0088F221 /* Emoji */,
 				4028C4D31DD415AD0088F221 /* EaseChineseToPinyin.h */,
 				4028C4D41DD415AD0088F221 /* EaseChineseToPinyin.m */,
 				4028C4D51DD415AD0088F221 /* EaseConvertToCommonEmoticonsHelper.h */,
@@ -1260,6 +1259,7 @@
 				4028C4D71DD415AD0088F221 /* EaseLocalDefine.h */,
 				4028C4D81DD415AD0088F221 /* EaseMessageReadManager.h */,
 				4028C4D91DD415AD0088F221 /* EaseMessageReadManager.m */,
+				4028C4DA1DD415AD0088F221 /* Emoji */,
 				4028C4E31DD415AD0088F221 /* FixFopen.c */,
 			);
 			path = Util;
@@ -1386,9 +1386,6 @@
 		4028C5101DD415AD0088F221 /* toolbar */ = {
 			isa = PBXGroup;
 			children = (
-				4028C5191DD415AD0088F221 /* FaceView */,
-				4028C51E1DD415AD0088F221 /* MoreView */,
-				4028C5211DD415AD0088F221 /* RecordView */,
 				4028C5111DD415AD0088F221 /* EaseChatToolbar.h */,
 				4028C5121DD415AD0088F221 /* EaseChatToolbar.m */,
 				4028C5131DD415AD0088F221 /* EaseChatToolbarItem.h */,
@@ -1397,6 +1394,9 @@
 				4028C5161DD415AD0088F221 /* EaseImageView.m */,
 				4028C5171DD415AD0088F221 /* EaseTextView.h */,
 				4028C5181DD415AD0088F221 /* EaseTextView.m */,
+				4028C5191DD415AD0088F221 /* FaceView */,
+				4028C51E1DD415AD0088F221 /* MoreView */,
+				4028C5211DD415AD0088F221 /* RecordView */,
 			);
 			path = toolbar;
 			sourceTree = "<group>";
@@ -1646,16 +1646,16 @@
 		49FEA0091DC4BCDD00E0FB2D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				494C54671DD0101A001CC7F1 /* Group.h */,
-				494C54681DD0101A001CC7F1 /* Group.m */,
-				494C546D1DD011AA001CC7F1 /* GroupAccount.h */,
-				494C546E1DD011AA001CC7F1 /* GroupAccount.m */,
-				494C546A1DD01187001CC7F1 /* GroupInfo.h */,
-				494C546B1DD01187001CC7F1 /* GroupInfo.m */,
-				494C54701DD011C0001CC7F1 /* GroupLocation.h */,
-				494C54711DD011C0001CC7F1 /* GroupLocation.m */,
 				49FEA0171DC4CD1E00E0FB2D /* Info.h */,
 				49FEA0181DC4CD1E00E0FB2D /* Info.m */,
+				494C54671DD0101A001CC7F1 /* Group.h */,
+				494C54681DD0101A001CC7F1 /* Group.m */,
+				494C546A1DD01187001CC7F1 /* GroupInfo.h */,
+				494C546B1DD01187001CC7F1 /* GroupInfo.m */,
+				494C546D1DD011AA001CC7F1 /* GroupAccount.h */,
+				494C546E1DD011AA001CC7F1 /* GroupAccount.m */,
+				494C54701DD011C0001CC7F1 /* GroupLocation.h */,
+				494C54711DD011C0001CC7F1 /* GroupLocation.m */,
 				40E5A4321DC774F6001AD41F /* LocationModel.h */,
 				40E5A4331DC774F6001AD41F /* LocationModel.m */,
 				49FEA0141DC4C51700E0FB2D /* Scope.h */,
@@ -1704,12 +1704,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		5A3204CD1E76580B007F960E /* Lib */ = {
+		5A3204B51E7656C5007F960E /* Lib */ = {
 			isa = PBXGroup;
 			children = (
-				5A3204D01E76580B007F960E /* JPUSHService.h */,
-				5A3204CE1E76580B007F960E /* jcore-ios-1.1.1.a */,
-				5A3204CF1E76580B007F960E /* jpush-ios-3.0.2.a */,
+				5A3204B61E7656C5007F960E /* jcore-ios-1.1.1.a */,
+				5A3204B71E7656C5007F960E /* jpush-ios-3.0.2.a */,
+				5A3204B81E7656C5007F960E /* JPUSHService.h */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -1899,18 +1899,18 @@
 		EE56EAA21DB8CE6D000B8082 /* NeverStop */ = {
 			isa = PBXGroup;
 			children = (
-				494374021DB9B29800FF641A /* Modul */,
 				EEB51B351DDA93EC00305C7A /* PushNotification */,
+				494374021DB9B29800FF641A /* Modul */,
 				409229C51DBFCD5300FDAD4E /* SQLite */,
 				EE56EAA31DB8CE6D000B8082 /* Supporting Files */,
 				40CF90441DD08638005D8B86 /* User */,
 				EE56EAA61DB8CE6D000B8082 /* AppDelegate.h */,
 				EE56EAA71DB8CE6D000B8082 /* AppDelegate.m */,
+				40FDBAA51DDB3FE700DA2521 /* Media.xcassets */,
 				EEF3C7201DCE22EC008306AD /* Assets.xcassets */,
 				EE56EAB41DB8CE6D000B8082 /* Info.plist */,
 				EE56EAB11DB8CE6D000B8082 /* LaunchScreen.storyboard */,
 				EE56EAAC1DB8CE6D000B8082 /* Main.storyboard */,
-				40FDBAA51DDB3FE700DA2521 /* Media.xcassets */,
 				EE1A005C1DB8E0090003762E /* NeverStop.entitlements */,
 			);
 			path = NeverStop;
@@ -2035,10 +2035,9 @@
 		EEB51B351DDA93EC00305C7A /* PushNotification */ = {
 			isa = PBXGroup;
 			children = (
-				5A3204CD1E76580B007F960E /* Lib */,
+				5A3204B51E7656C5007F960E /* Lib */,
 			);
 			name = PushNotification;
-			path = PushNotification;
 			sourceTree = "<group>";
 		};
 		EEE3D7111DC1A1A9003D0CC5 /* Controller */ = {
@@ -2340,9 +2339,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE8953A21DC75DEC00F4AB3C /* BuildFile in Resources */,
-				EE8953A31DC75DEC00F4AB3C /* BuildFile in Resources */,
-				495EB0B81DD322AF00AF03A2 /* BuildFile in Resources */,
+				EE8953A21DC75DEC00F4AB3C /* (null) in Resources */,
+				EE8953A31DC75DEC00F4AB3C /* (null) in Resources */,
+				495EB0B81DD322AF00AF03A2 /* (null) in Resources */,
 				EEF3C7211DCE22EC008306AD /* Assets.xcassets in Resources */,
 				EE56EAAE1DB8CE6D000B8082 /* Main.storyboard in Resources */,
 				4028C5711DD415AE0088F221 /* MWPhotoBrowser.bundle in Resources */,
@@ -2366,7 +2365,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		9E0B78746A4B6171B81DA7C0 /* [CP] Copy Pods Resources */ = {
@@ -2413,7 +2412,7 @@
 				4028C5781DD415AE0088F221 /* NSString+Valid.m in Sources */,
 				4028C52A1DD415AD0088F221 /* EMAudioPlayerUtil.m in Sources */,
 				4028C5701DD415AE0088F221 /* PSTGridLayoutSection.m in Sources */,
-				49013B801DC8B28200AAB28A /* BuildFile in Sources */,
+				49013B801DC8B28200AAB28A /* (null) in Sources */,
 				EE4D99B71DD08CA500E16CDE /* MyViewController.m in Sources */,
 				4028C52B1DD415AD0088F221 /* EMAudioRecorderUtil.m in Sources */,
 				40E5A4611DC97BC1001AD41F /* TargetModel.m in Sources */,
